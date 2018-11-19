@@ -484,8 +484,7 @@
          e.cancelBubble = true;
      }
  }
-</code></pre><p> };</p>
-<p> var btn4=document.getElementById(‘btn4’);<br> var handlers3=function(){<br> console.log(‘123’)<br> };<br> EventUtil.addHandlers(btn4,’click’,handlers3);<br> //……<br> EventUtil.removeHandlers(btn4,’click’,handlers3);   </p>
+</code></pre><p> };<br> var btn4=document.getElementById(‘btn4’);<br> var handlers3=function(){<br> console.log(‘123’)<br> };<br> EventUtil.addHandlers(btn4,’click’,handlers3);<br> //……<br> EventUtil.removeHandlers(btn4,’click’,handlers3);   </p>
 <h1 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h1></li>
 <li>兼容触发DOM上的某个事件时，会产生一个事件对象event，这个对象中包含了所有与事件有关的信息，比如导致事件的元素target，事件的类型，及其他特定的相关信息。例如鼠标操作导致的事件对象中会包含鼠标的位置，单双击等，而键盘操作导致的事件对象会包含按下的键等信息；   </li>
 <li>事件被触发时，会默认给事件处理程序传入一个参数e , 表示事件对象；通过e，我们可以获得其中包含的与事件有关的信息；   </li>
@@ -566,8 +565,7 @@
          e.cancelBubble = true;
      }
  }
-</code></pre><p> };</p>
-<p> var myBtn=document.getElementById(‘my-btn’);<br> btn.onclick=function(event){</p>
+</code></pre><p> };<br> var myBtn=document.getElementById(‘my-btn’);<br> btn.onclick=function(event){</p>
 <pre><code> event=EventUtil.getEvent(event);
  EventUtil.preventDefault(event);
 </code></pre><p> };   </p>
@@ -591,8 +589,9 @@
              console.log(&#39;hi&#39;);
              break;
      }
-</code></pre><p> };<br> EventUtil.addHandler(myLinks,’click’,myHandlers);</p>
-</li>
+ };
+ EventUtil.addHandler(myLinks,&#39;click&#39;,myHandlers);
+</code></pre></li>
 </ol>
 
           
