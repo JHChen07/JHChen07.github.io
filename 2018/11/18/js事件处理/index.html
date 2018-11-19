@@ -246,7 +246,7 @@
 
 
 
- </div>
+<link href="/js/google-code-prettify/prettify.css" type="text/css" rel="stylesheet"> </div>
     </header>
 
     <main id="main" class="main">
@@ -421,7 +421,7 @@
 <p> </p><h1 onclick="this.innerHTML='谢谢!'">请点击该文本</h1><br> <button onclick="displayDate()">点击这里</button>   <p></p>
 <h2 id="DOM0级事件处理程序"><a href="#DOM0级事件处理程序" class="headerlink" title="DOM0级事件处理程序"></a>DOM0级事件处理程序</h2><p>把事件处理函数赋值给一个事件的句柄，优点是此种做法较简易，可以跨浏览器，而且行为层并未与结构层耦合。   </p>
 <p> var btn5 = document.getElementById(‘btn5’); // 获取文档对象<br> btn5.onclick = function() {</p>
-<pre><code>console.log(this.id); //btn5 4 
+<pre><code> console.log(this.id); //btn5 4 
 </code></pre><p> }; // onclick属性的值是一个包含在同名HTML特性中指定的代码的函数</p>
 </li>
 <li>基于DOM0的事件，对于同一个dom节点而言，只能注册一个，之后注册的同种事件会覆盖之前注册的。利用这个原理我们可以解除事件：btn5.onclick＝null；其中this就是绑定事件的那个元素。   </li>
@@ -429,64 +429,64 @@
 <li>DOM2支持同一dom元素注册多个同种事件，事件发生的顺序按照添加的顺序依次触发（IE是相反的）；DOM2事件通过addEventListener和removeEventListener管理。   </li>
 <li>addEventListener(eventName,handlers,boolean)；removeEventListener()，两个方法都一样接收三个参数，第一个是要处理的事件名（事件句柄的引用e.g click），第二个是事件处理程序，第三个值为false时表示在事件冒泡阶段调用事件处理程序，一般建议在冒泡阶段使用，这样可以兼容更多的浏览器，特殊情况才在捕获阶段；   </li>
 <li><p>注意：通过addEventListener()添加的事件处理程序只能用removeEventListener()来移除，并且移除时传入的参数必须与添加时传入的参数（包括事件处理函数）一样。   </p>
-<pre><code>var btn2 = document.getElementById(&apos;btn2&apos;);
-var handlers = function () {
-    console.log(this.id);
-}; // 函数引用
-// 确保了传入的事件处理函数是同一个函数对象
-btn2.addEventListener(&apos;click&apos;,handlers,false);
-btn2.removeEventListener(&apos;click&apos;,handlers.false);   
+<pre><code> var btn2 = document.getElementById(&#39;btn2&#39;);
+ var handlers = function () {
+     console.log(this.id);
+ }; // 函数引用
+ // 确保了传入的事件处理函数是同一个函数对象
+ btn2.addEventListener(&#39;click&#39;,handlers,false);
+ btn2.removeEventListener(&#39;click&#39;,handlers.false);   
 </code></pre><h2 id="IE事件处理程序"><a href="#IE事件处理程序" class="headerlink" title="IE事件处理程序"></a>IE事件处理程序</h2></li>
 <li>IE用了attachEvent()，detachEvent()，接收两个参数，事件名称（和DOM2级稍有不同）和事件处理程序，通过attachEvent()添加的事件处理程序都会被添加到冒泡阶段，IE8及以前只支持事件冒泡。与addEventListener（）一样，attachEvent（）也可以添加多个事件处理程序。但是执行顺序却是与添加的顺序相反的顺序。   </li>
 <li><p>IE事件处理与DOM0级方法的主要区别在于事件处理程序的作用域。后者是在其所属元素的作用域内运行，而前者则是会在全局作用域中进行，因此，此时的this为window。   </p>
 <h2 id="跨浏览器的事件处理程序"><a href="#跨浏览器的事件处理程序" class="headerlink" title="跨浏览器的事件处理程序"></a>跨浏览器的事件处理程序</h2><p>在同一个对象上注册事件，并不一定按照注册顺序执行，冒泡或捕获模式会影响其被接触的顺序。   </p>
 <p> //创建的方法是addHandlers(),removeHandlers(),这两个方法属于一个叫EventUtil的对象<br> var EventUtil = {</p>
-<pre><code>// 视情况分别使用DOM2级、IE方法、DOM0级方法添加事件，注意DOM0级对每个事件只支持一个事件处理函数
-addHandlers: function (element, type, handler) {
-    if (element,addEventListener){
-        element.addEventListener(type, handler, false);
-    } else if (element.attachEvent) {   
-        element.attachEvent(&apos;on&apos; + type, handler);
-    } else {
-        element[&quot;on&quot; + type] = handler;
-    }
-},
+<pre><code> // 视情况分别使用DOM2级、IE方法、DOM0级方法添加事件，注意DOM0级对每个事件只支持一个事件处理函数
+ addHandlers: function (element, type, handler) {
+     if (element,addEventListener){
+         element.addEventListener(type, handler, false);
+     } else if (element.attachEvent) {   
+         element.attachEvent(&#39;on&#39; + type, handler);
+     } else {
+         element[&quot;on&quot; + type] = handler;
+     }
+ },
 
-removeHandlers: function(element, type, handler) {
-    if (element,removeEventListener){
-        element.removeEventListener(type, handler, false);
-    } else if (element.detachEvent) {   
-        element.detachEvent(&apos;on&apos; + type, handler);
-    } else {
-        element[&quot;on&quot; + type] = null;
-    }
-},
-// 获取事件对象
-getEvent: function (e) {
-    return e?e:e.which;
-},
-// 获取事件的实际目标
-getTarget: function (e) {
-    return e.target || event.srcElement;
-},
+ removeHandlers: function(element, type, handler) {
+     if (element,removeEventListener){
+         element.removeEventListener(type, handler, false);
+     } else if (element.detachEvent) {   
+         element.detachEvent(&#39;on&#39; + type, handler);
+     } else {
+         element[&quot;on&quot; + type] = null;
+     }
+ },
+ // 获取事件对象
+ getEvent: function (e) {
+     return e?e:e.which;
+ },
+ // 获取事件的实际目标
+ getTarget: function (e) {
+     return e.target || event.srcElement;
+ },
 
-//阻止默认行为
-preventDefault: function (e) {
-    if (e.preventDefault){
-        e.preventDefault();
-    } else {
-        e.returnValue = false;
-    }
-},
+ //阻止默认行为
+ preventDefault: function (e) {
+     if (e.preventDefault){
+         e.preventDefault();
+     } else {
+         e.returnValue = false;
+     }
+ },
 
-//阻止冒泡
-stopPropagation: function (e) {
-    if (e.stopPropagation){
-        e.stopPropagation();
-    } else {
-        e.cancelBubble = true;
-    }
-}
+ //阻止冒泡
+ stopPropagation: function (e) {
+     if (e.stopPropagation){
+         e.stopPropagation();
+     } else {
+         e.cancelBubble = true;
+     }
+ }
 </code></pre><p> };</p>
 <p> var btn4=document.getElementById(‘btn4’);<br> var handlers3=function(){<br> console.log(‘123’)<br> };<br> EventUtil.addHandlers(btn4,’click’,handlers3);<br> //……<br> EventUtil.removeHandlers(btn4,’click’,handlers3);   </p>
 <h1 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h1></li>
@@ -497,103 +497,103 @@ stopPropagation: function (e) {
 <li>兼容DOM的浏览器会自动将一个事件对象event传递给事件处理程序。<br>注：关于事件对象中的this，target，currentTarget,看个例子：（注：event.target不支持IE浏览器，应该用event.srcElement；还有 IE中通过attachment添加的事件是运行在全局作用域中的，this===window）</li>
 <li>在事件处理程序内部，对象this始终等于currentTarget的值，而target只包含时间的实际目标。如果直接将事件处理程序指给了实际目标，this与两者是相等的。如果事件处理程序指给了父元素，则this与currentTarget都是父节点。（事件冒泡到了父节点）。   </li>
 <li><p>（ 当事件绑定在真正的目标元素上时，this===target===currentTarget，而且绑定事件时是否捕获结果都是一样的，此时eventParse==2）   </p>
-<pre><code>// this,target,currentTarget,this===currentTarget
-$(&apos;#outer&apos;).on(&apos;click&apos;,&apos;#center&apos;,function(e){
-console.log(this.id);      //on()中间的参数是个过滤器,相当于将事件绑定到了#center上;此时点击#center将不会触发事件
-console.log(e.target.id);
-console.log(e.currentTarget.id);
-});
+<pre><code> // this,target,currentTarget,this===currentTarget
+ $(&#39;#outer&#39;).on(&#39;click&#39;,&#39;#center&#39;,function(e){
+ console.log(this.id);      //on()中间的参数是个过滤器,相当于将事件绑定到了#center上;此时点击#center将不会触发事件
+ console.log(e.target.id);
+ console.log(e.currentTarget.id);
+ });
 
-$(&apos;#outer&apos;).on(&apos;click&apos;,function(e){
-console.log(this.id);
-console.log(e.target.id);
-console.log(e.currentTarget.id);
-});
+ $(&#39;#outer&#39;).on(&#39;click&#39;,function(e){
+ console.log(this.id);
+ console.log(e.target.id);
+ console.log(e.currentTarget.id);
+ });
 
-event.stopPropagation()   // 不能简单说阻止了事件的冒泡，其实也阻止了事件的继续捕获，确切的说应该是阻止事件的进一步传播
-var d1 = document.getElementById(&apos;d1&apos;);
-d1.addEventListener(&apos;click&apos;, function (evt) {
-    console.log(&apos;d1&apos;);
-    evt.stopPropagation();
-}, true);
-var d2 = document.getElementById(&apos;d2&apos;);
-d2.addEventListener(&apos;click&apos;, function () {
-    console.log(&apos;d2&apos;);
-}, true);
+ event.stopPropagation()   // 不能简单说阻止了事件的冒泡，其实也阻止了事件的继续捕获，确切的说应该是阻止事件的进一步传播
+ var d1 = document.getElementById(&#39;d1&#39;);
+ d1.addEventListener(&#39;click&#39;, function (evt) {
+     console.log(&#39;d1&#39;);
+     evt.stopPropagation();
+ }, true);
+ var d2 = document.getElementById(&#39;d2&#39;);
+ d2.addEventListener(&#39;click&#39;, function () {
+     console.log(&#39;d2&#39;);
+ }, true);
 
-//输出结果是d1   
+ //输出结果是d1   
 </code></pre><h2 id="IE中的事件对象"><a href="#IE中的事件对象" class="headerlink" title="IE中的事件对象"></a>IE中的事件对象</h2><p>IE中event参数是未定的，事件对象是作为window的一个属性存在的，因此可以通过window.event来访问event对象，不同于DOM级中event是作为参数直接传入和返回。<br>属性上与DOM也有不同：<br> <img src="事件属性.jpg" alt="事件属性"><br>标准event方法：<br> <img src="标准event方法.jpg" alt="标准event方法">   </p>
 <h2 id="跨浏览器的事件对象"><a href="#跨浏览器的事件对象" class="headerlink" title="跨浏览器的事件对象"></a>跨浏览器的事件对象</h2><p> //前文跨浏览器的事件处理程序已经作了描述，重点在于获取事件以及之后的兼容方法描述<br> var EventUtil = {</p>
-<pre><code>addHandlers: function (element, type, handler) {
-    if (element,addEventListener){
-        element.addEventListener(type, handler, false);
-    } else if (element.attachEvent) {   
-        element.attachEvent(&apos;on&apos; + type, handler);
-    } else {
-        element[&quot;on&quot; + type] = handler;
-    }
-},
+<pre><code> addHandlers: function (element, type, handler) {
+     if (element,addEventListener){
+         element.addEventListener(type, handler, false);
+     } else if (element.attachEvent) {   
+         element.attachEvent(&#39;on&#39; + type, handler);
+     } else {
+         element[&quot;on&quot; + type] = handler;
+     }
+ },
 
-removeHandlers: function(element, type, handler) {
-    if (element,removeEventListener){
-        element.removeEventListener(type, handler, false);
-    } else if (element.detachEvent) {   
-        element.detachEvent(&apos;on&apos; + type, handler);
-    } else {
-        element[&quot;on&quot; + type] = null;
-    }
-},
+ removeHandlers: function(element, type, handler) {
+     if (element,removeEventListener){
+         element.removeEventListener(type, handler, false);
+     } else if (element.detachEvent) {   
+         element.detachEvent(&#39;on&#39; + type, handler);
+     } else {
+         element[&quot;on&quot; + type] = null;
+     }
+ },
 
-getEvent: function (e) {
-    return e?e:e.which;
-},
+ getEvent: function (e) {
+     return e?e:e.which;
+ },
 
-getTarget: function (e) {
-    return e.target || event.srcElement;
-},
+ getTarget: function (e) {
+     return e.target || event.srcElement;
+ },
 
-//阻止默认行为
-preventDefault: function (e) {
-    if (e.preventDefault){
-        e.preventDefault();
-    } else {
-        e.returnValue = false;
-    }
-},
+ //阻止默认行为
+ preventDefault: function (e) {
+     if (e.preventDefault){
+         e.preventDefault();
+     } else {
+         e.returnValue = false;
+     }
+ },
 
-//阻止冒泡
-stopPropagation: function (e) {
-    if (e.stopPropagation){
-        e.stopPropagation();
-    } else {
-        e.cancelBubble = true;
-    }
-}
+ //阻止冒泡
+ stopPropagation: function (e) {
+     if (e.stopPropagation){
+         e.stopPropagation();
+     } else {
+         e.cancelBubble = true;
+     }
+ }
 </code></pre><p> };</p>
 <p> var myBtn=document.getElementById(‘my-btn’);<br> btn.onclick=function(event){</p>
-<pre><code>event=EventUtil.getEvent(event);
-EventUtil.preventDefault(event);
+<pre><code> event=EventUtil.getEvent(event);
+ EventUtil.preventDefault(event);
 </code></pre><p> };   </p>
 <h1 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h1></li>
 <li>每当将事件处理程序制定给元素时，运行中的浏览器代码与支持页面交互的JS代码之间就会建立一个连接，而这种连接越多，页面执行起来就越慢。考虑内存和性能问题，为了解决事件处理程序过多的问题，采用事件委托变得很有必要。（考虑到内存，也应该尽量减少不必要的事件处理程序，并且，对于内存中过时不用（删除了目标元素，但是相应的事件处理程序并没有移除）的“空事件处理程序”，也是很有必要将其移除的）   </li>
 <li>因为冒泡机制，比如既然点击子元素，也会触发父元素的点击事件，那我们完全可以将子元素的事件要做的事写到父元素的事件里，也就是将子元素的事件处理程序写到父元素的事件处理程序中，这就是事件委托；利用事件委托，只指定一个事件处理程序，就可以管理某一个类型的所有事件。   </li>
 <li><p>因为把事件绑定到了父节点上，因此省了绑定事件。就算后面新增的子节点也有了相关事件，删除部分子节点不用去销毁对应节点上绑定的事件。<br>父节点是通过event.target来找对应的子节点的。（事件处理程序中的this值始终等于currentTarget的值，指向的是绑定到的那个元素）<br>如： </p>
-<pre><code>var myLinks=document.getElementById(&apos;my-links&apos;);
-myHandlers=function(event){
-    event=EventUtil.getEvent(event);
-    var target=EventUtil.getTarget(event);
+<pre><code> var myLinks=document.getElementById(&#39;my-links&#39;);
+ myHandlers=function(event){
+     event=EventUtil.getEvent(event);
+     var target=EventUtil.getTarget(event);
 
-    switch(target.id){
-        case &apos;item-1&apos;:
-            location.href=&apos;http://xxxxxx/&apos;;
-            break;
-        case &apos;item-2&apos;:
-            document.title=&apos;event&apos;;
-            break;
-        case &apos;item-3&apos;:
-            console.log(&apos;hi&apos;);
-            break;
-    }
+     switch(target.id){
+         case &#39;item-1&#39;:
+             location.href=&#39;http://xxxxxx/&#39;;
+             break;
+         case &#39;item-2&#39;:
+             document.title=&#39;event&#39;;
+             break;
+         case &#39;item-3&#39;:
+             console.log(&#39;hi&#39;);
+             break;
+     }
 </code></pre><p> };<br> EventUtil.addHandler(myLinks,’click’,myHandlers);</p>
 </li>
 </ol>
@@ -603,11 +603,16 @@ myHandlers=function(event){
     
     
     
+    <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+      
+    </div>
     
     <div>
+        
           
-            
-          
+        
     </div>
 
     
@@ -994,5 +999,13 @@ myHandlers=function(event){
 
   
 
+  <script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(window).load(function(){
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+    })    
+  </script>
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
 </body>
 </html>
