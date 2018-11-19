@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="其他,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="DOCTYPE和浏览器渲染模式 浏览器解析HTML方式   DOM结构 W3C DOM标准 DOM节点 HTML DOM节点树 节点的关系   盒模型 JavaScript如何设置获取盒模型对应的宽和高 外边距重叠   BFC BFC原理（渲染规则） 如何创建BFC   CSS普通流（文档流） 调节普通流元素位置   变量对象 JavaScript的基本类型 引用类型 内置对象、原生对象及宿主">
+<meta name="keywords" content="其他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="零碎知识">
+<meta property="og:url" content="http://yoursite.com/2018/11/19/零碎知识/index.html">
+<meta property="og:site_name" content="jhchen の BLOG">
+<meta property="og:description" content="DOCTYPE和浏览器渲染模式 浏览器解析HTML方式   DOM结构 W3C DOM标准 DOM节点 HTML DOM节点树 节点的关系   盒模型 JavaScript如何设置获取盒模型对应的宽和高 外边距重叠   BFC BFC原理（渲染规则） 如何创建BFC   CSS普通流（文档流） 调节普通流元素位置   变量对象 JavaScript的基本类型 引用类型 内置对象、原生对象及宿主">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/11/19/零碎知识/DOM节点树.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/19/零碎知识/DOM节点.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/19/零碎知识/盒模型.png">
+<meta property="og:updated_time" content="2018-11-19T09:01:13.261Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="零碎知识">
+<meta name="twitter:description" content="DOCTYPE和浏览器渲染模式 浏览器解析HTML方式   DOM结构 W3C DOM标准 DOM节点 HTML DOM节点树 节点的关系   盒模型 JavaScript如何设置获取盒模型对应的宽和高 外边距重叠   BFC BFC原理（渲染规则） 如何创建BFC   CSS普通流（文档流） 调节普通流元素位置   变量对象 JavaScript的基本类型 引用类型 内置对象、原生对象及宿主">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/19/零碎知识/DOM节点树.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/19/零碎知识/">
+
+
+
+
+
+  <title>零碎知识 | jhchen の BLOG</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/JHChen07" class="github-corner" aria-label="View source on GitHub">
+      <svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+      </svg>
+    </a>
+    <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jhchen の BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+<link href="/js/google-code-prettify/prettify.css" type="text/css" rel="stylesheet"> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/零碎知识/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JHChen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jhchen の BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">零碎知识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-19T16:53:32+08:00">
+                2018-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- TOC -->
+<ul>
+<li><a href="#doctype和浏览器渲染模式">DOCTYPE和浏览器渲染模式</a><ul>
+<li><a href="#浏览器解析html方式">浏览器解析HTML方式</a></li>
+</ul>
+</li>
+<li><a href="#dom结构">DOM结构</a><ul>
+<li><a href="#w3c-dom标准">W3C DOM标准</a></li>
+<li><a href="#dom节点">DOM节点</a></li>
+<li><a href="#html-dom节点树">HTML DOM节点树</a></li>
+<li><a href="#节点的关系">节点的关系</a></li>
+</ul>
+</li>
+<li><a href="#盒模型">盒模型</a><ul>
+<li><a href="#javascript如何设置获取盒模型对应的宽和高">JavaScript如何设置获取盒模型对应的宽和高</a></li>
+<li><a href="#外边距重叠">外边距重叠</a></li>
+</ul>
+</li>
+<li><a href="#bfc">BFC</a><ul>
+<li><a href="#bfc原理渲染规则">BFC原理（渲染规则）</a></li>
+<li><a href="#如何创建bfc">如何创建BFC</a></li>
+</ul>
+</li>
+<li><a href="#css普通流文档流">CSS普通流（文档流）</a><ul>
+<li><a href="#调节普通流元素位置">调节普通流元素位置</a></li>
+</ul>
+</li>
+<li><a href="#变量对象">变量对象</a><ul>
+<li><a href="#javascript的基本类型">JavaScript的基本类型</a></li>
+<li><a href="#引用类型">引用类型</a></li>
+<li><a href="#内置对象原生对象及宿主对象">内置对象、原生对象及宿主对象</a></li>
+<li><a href="#特殊包装类">特殊包装类</a></li>
+<li><a href="#typeof返回值">typeof返回值</a></li>
+<li><a href="#instanceof-操作符">instanceof 操作符</a></li>
+<li><a href="#objectprototypetostring获取对象类型">Object.prototype.toString获取对象类型</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="DOCTYPE和浏览器渲染模式"><a href="#DOCTYPE和浏览器渲染模式" class="headerlink" title="DOCTYPE和浏览器渲染模式"></a>DOCTYPE和浏览器渲染模式</h1><p>一个文档类型标记是一种标准通用标记语言的文档类型声明，目的是告知通用标记语言解析器，应该是用什么文档类型定义（DTD）来解析文档。DOCTYPE还会对浏览器的渲染模式产生影响，不同的渲染模式会影响到浏览器对于CSS代码甚至是JavaScript脚本的解析，尤其是在IE系列浏览器中。因此，由DOCTYPE所决定的HTML页面的渲染模式至关重要。   </p>
+<h2 id="浏览器解析HTML方式"><a href="#浏览器解析HTML方式" class="headerlink" title="浏览器解析HTML方式"></a>浏览器解析HTML方式</h2><ol>
+<li>非怪异（标准）模式   页面按照HTML和CSS的定义渲染   </li>
+<li>怪异模式   尝试模拟旧浏览器的行为   </li>
+<li>部分怪异（近乎标准）模式   除了实施一种表单元格尺寸的怪异行为，其他符合标准<br>注：一个不含任何DOCTYPE的网页将会以怪异模式渲染。   <h1 id="DOM结构"><a href="#DOM结构" class="headerlink" title="DOM结构"></a>DOM结构</h1>DOM：Document Object Module，文档对象模型。   <h2 id="W3C-DOM标准"><a href="#W3C-DOM标准" class="headerlink" title="W3C DOM标准"></a>W3C DOM标准</h2></li>
+<li>核心DOM - 针对任何结构化文档的标准模型   </li>
+<li>XML DOM - 针对XML文档的标准模型   </li>
+<li>HTML DOM - 针对HTML文档的标准模型   <h2 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h2>根据W3C的HTML DOM标准，HTML文档中的所有内容都是节点<br>文档节点、元素节点、属性节点、文本节点、注释节点等。   <h2 id="HTML-DOM节点树"><a href="#HTML-DOM节点树" class="headerlink" title="HTML DOM节点树"></a>HTML DOM节点树</h2>HTML文本会被解析为DOM树，树中的所有节点均可通过JavaScript进行访问。所有HTML元素（节点）均可被修改，也可以创建或删除节点。<br><img src="DOM节点树.png" alt="DOM节点树">   <h2 id="节点的关系"><a href="#节点的关系" class="headerlink" title="节点的关系"></a>节点的关系</h2>父、子、同胞等术语用于描述这些关系。节点树中，顶端节点被称为根；每个节点都有父节点，除了根；一个节点可以拥有任意数量的子，同胞拥有相同的根。<br><img src="DOM节点.png" alt="DOM节点">   <h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1>每个元素都是一个矩形盒子，盒模型是元素大小的呈现方式。每个盒子有四个边：外边距边，边匡边，内填充边与内容边。<br><img src="盒模型.png" alt="盒模型"><br>盒子模型分为两种，一种是W3C标准盒模型，一种是IE盒模型。</li>
+<li>content-box （标准盒模型）<br>width = content宽度<br>height = content高度  </li>
+<li>border-box （IE盒模型）<br>width = border + padding + content宽度<br>height = border + padding + content高度<br>以上两者可以通过<code>box-sizing</code>属性自由转换，默认为<code>content-box</code>。   <h2 id="JavaScript如何设置获取盒模型对应的宽和高"><a href="#JavaScript如何设置获取盒模型对应的宽和高" class="headerlink" title="JavaScript如何设置获取盒模型对应的宽和高"></a>JavaScript如何设置获取盒模型对应的宽和高</h2></li>
+<li>dom.style.width/height 只能取到行内样式的宽和高，style标签中和link外链的样式取不到。   </li>
+<li>dom.currentStyle.width/height 取到的是最终渲染后的宽和高，只有IE支持此属性。   </li>
+<li>window.getComputedStyle(dom).width/height 同（2）但是多浏览器支持，IE9以上支持。   </li>
+<li>dom.getBoundingClientRect().width/height 也是得到渲染后的宽和高，大多浏览器支持。IE9以上支持，除此外还可以取到相对于视窗的上下左右的距离  <h2 id="外边距重叠"><a href="#外边距重叠" class="headerlink" title="外边距重叠"></a>外边距重叠</h2>当两个或更多个垂直边距相遇时，它们将形成一个外边距。这个外边距的高度等于两个发生叠加的外边距的高度中的较大者。但是只有普通文档流中的快款的垂直外边距才会发生外边距叠加。行内框、浮动框或绝对定位框之间的外边距不会叠加。<br>垂直外边距叠加有三种情况：   </li>
+<li>元素自身叠加。当元素没有内容、内边距、边框时，它的上下边距就相遇了，即会在垂直方向产生叠加。当添加上述任何一项，叠加就会取消。   </li>
+<li>相邻元素叠加。   </li>
+<li>包含（父子）元素叠加。包含元素的外边距隔着父元素的内边距和边框，当这两项都不存在时，父子元素垂直外边距相邻，产生叠加。添加任何一项就会取消叠加。   <h1 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h1>BFC（Block Formatting Context）：块格式化上下文。<br>BFC决定了元素如何对其内容进行定位，以及与其他元素的关系和相互作用。当设计到可视化布局时，BFC提供了一个环境，HTML元素在这个环境按照一定的规则进行布局。一个环境中的元素不会影响到其它环境中的布局。   <h2 id="BFC原理（渲染规则）"><a href="#BFC原理（渲染规则）" class="headerlink" title="BFC原理（渲染规则）"></a>BFC原理（渲染规则）</h2></li>
+<li>BFC元素垂直方向的边距会发生重叠。属于不同BFC外边距不会发生重叠。   </li>
+<li>BFC的区域不会与浮动元素的布局重叠。   </li>
+<li>BFC元素是一个独立的容器，外面的元素不会影响里面的元素。反之亦然。   </li>
+<li>计算BFC高度时，浮动元素也会参与计算（清除浮动）   <h2 id="如何创建BFC"><a href="#如何创建BFC" class="headerlink" title="如何创建BFC"></a>如何创建BFC</h2></li>
+<li>根元素或包含根元素的元素   </li>
+<li>浮动元素（元素的 <code>float</code> 不是 <code>none</code>）   </li>
+<li>绝对定位元素（元素的 <code>position</code> 为 <code>absolute</code> 或 <code>fixed</code>）   </li>
+<li>行内块元素（元素的 <code>display</code> 为 <code>inline-block</code>）   </li>
+<li>表格单元格（元素的 <code>display</code> 为 <code>table-cell</code>，HTML表格单元格默认为该值）   </li>
+<li>表格标题（元素的 <code>display</code> 为 <code>table-caption</code>，HTML表格标题默认为该值）   </li>
+<li>匿名表格单元格元素（元素的 <code>display</code> 为 <code>table</code>、<code>table-row</code>、 <code>table-row-group</code>、<code>table-header-group</code>、<code>table-footer-group</code>（分别是HTML <code>table</code>、<code>row</code>、<code>tbody</code>、<code>thead</code>、<code>tfoot</code> 的默认属性）或 <code>inline-table</code>）   </li>
+<li><code>overflow</code> 值不为 <code>visible</code> 的块元素   </li>
+<li><code>display</code> 值为 <code>flow-roo</code>t` 的元素   </li>
+<li><code>contain</code> 值为 <code>layout</code>、<code>content</code> 或 <code>strict</code> 的元素   </li>
+<li>弹性元素（<code>display</code>为 <code>flex</code> 或 <code>inline-flex</code> 元素的直接子元素）   </li>
+<li>网格元素（<code>display</code> 为 <code>grid</code> 或 <code>inline-grid</code> 元素的直接子元素）   </li>
+<li>多列容器（元素的 <code>column-count</code> 或 <code>column-width</code> 不为 <code>auto</code>，包括 <code>column-count</code> 为 <code>1</code>）<br><code>column-span</code> 为 <code>all</code> 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（标准变更，Chrome bug）<br>注：块格式化上下文包含创建它的元素内部的所有内容。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其他BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（Margin Collapsing）也只会发生在属于同一BFC的块级元素之间。   <h1 id="CSS普通流（文档流）"><a href="#CSS普通流（文档流）" class="headerlink" title="CSS普通流（文档流）"></a>CSS普通流（文档流）</h1>元素按照其在HTML中的位置顺序决定排布的过程。<h2 id="调节普通流元素位置"><a href="#调节普通流元素位置" class="headerlink" title="调节普通流元素位置"></a>调节普通流元素位置</h2>一般使用margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。margin用于布局分开元素使元素与元素互不相干；padding用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段“距离”。<br><code>注：只要不是float和绝对定位方式布局的，都在普通流里面。</code>   <h1 id="变量对象"><a href="#变量对象" class="headerlink" title="变量对象"></a>变量对象</h1><h2 id="JavaScript的基本类型"><a href="#JavaScript的基本类型" class="headerlink" title="JavaScript的基本类型"></a>JavaScript的基本类型</h2></li>
+<li>Number   </li>
+<li>String   </li>
+<li>Boolean   </li>
+<li>Undefined   </li>
+<li>Null   </li>
+<li>Object<br>五种基本类型保存在内存的栈中，值固定，复制其变量时会创建这个值得一个副本。使用<code>typeof</code>区分。前五中没有原型没有构造函数。   <h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2>引用类型的值是对象，保存在堆中。引用类型的变量实际上是一个指针，他保存在栈中，指向堆内存中的对象。复制引用类型变量实际是复制该指针，所以他们都指向同一个对象，用<code>instanceof</code>确定哪一个值是哪种引用类型。   <h2 id="内置对象、原生对象及宿主对象"><a href="#内置对象、原生对象及宿主对象" class="headerlink" title="内置对象、原生对象及宿主对象"></a>内置对象、原生对象及宿主对象</h2>内置对象和元素对象是被ECMAScript规范定义和实现的，两者之间的差异微不足道。所有ECMAScript实现的对象都是原生对象（其中一些是内置对象、一些在程序执行的时候创建，例如用户自定义对象）。内置对象是原生对象的一个子集、是在程序开始之前内置到ECMAScript里的（例如，parseInt, Match等）。所有的宿主对象是由宿主环境提供的，通常是浏览器，并可能包括如window、alert等。<br>注意，宿主对象可能是ES自身实现的，完全符合规范的语义。从这点来说，他们能称为“原生宿主”对象（尽快很理论），不过规范没有定义“原生宿主”对象的概念。   <h2 id="特殊包装类"><a href="#特殊包装类" class="headerlink" title="特殊包装类"></a>特殊包装类</h2></li>
+<li>Boolean: 布尔对象   </li>
+<li>String: 字符串对象   </li>
+<li><p>Number：数字对象<br>这些对象的创建，是通过相应的内置构造器创建，并且包含原生值作为其内部属性，这些对象可以转换成原始值，反之亦然。   </p>
+<pre><code> var c = new Boolean(true);
+ var d = new String(&#39;test&#39;);
+ var e = new Number(10);
+
+ // 转换成原始值
+ // 使用不带new关键字的函数
+ с = Boolean(c);
+ d = String(d);
+ e = Number(e);
+
+ // 重新转换成对象
+ с = Object(c);
+ d = Object(d);
+ e = Object(e);   
+</code></pre><h2 id="typeof返回值"><a href="#typeof返回值" class="headerlink" title="typeof返回值"></a>typeof返回值</h2><p>实际是用来检测一个对象是否已经定义或者是否已经赋值。<br>| Value              | Class     | Type                          |<br>| —————— | ——— | —————————– |<br>| “foo”              | String    | string                        |<br>| 1.2                | Number    | number                        |<br>| true               | Boolean   | boolean                       |<br>| undefined          | Undefined | undefined                     |<br>| new Function(“”)   | Function  | function                      |<br>| new String(“foo”)  | String    | object                        |<br>| new Number(1.2)    | Number    | object                        |<br>| new Boolean(true)  | Boolean   | object                        |<br>| new Date()         | Date      | object                        |<br>| new Error()        | Error     | object                        |<br>| [1,2,3]            | Array     | object                        |<br>| new Array(1, 2, 3) | Array     | object                        |<br>| /abc/g             | RegExp    | object (function in Nitro/V8) |<br>| new RegExp(“meow”) | RegExp    | object (function in Nitro/V8) |<br>| {}                 | Object    | object                        |<br>| new Object()       | Object    | object                        |<br>返回的类型只有6种：   </p>
+</li>
+<li>string   </li>
+<li>number   </li>
+<li>boolean   </li>
+<li>undefined   </li>
+<li>object   </li>
+<li><p>function   </p>
+<h2 id="instanceof-操作符"><a href="#instanceof-操作符" class="headerlink" title="instanceof 操作符"></a>instanceof 操作符</h2><p>instanceof 操作符用来比较两个操作数的构造函数。只有在比较自定义的对象时才有意义。如果用来比较内置类型，将会和 typeof 操作符 一样用处不大。   </p>
+<h2 id="Object-prototype-toString获取对象类型"><a href="#Object-prototype-toString获取对象类型" class="headerlink" title="Object.prototype.toString获取对象类型"></a>Object.prototype.toString获取对象类型</h2><p>检测一个对象的类型，强烈推荐使用 Object.prototype.toString 方法； 因为这是唯一一个可依赖的方式。typeof 的一些返回值在标准文档中并未定义， 因此不同的引擎实现可能不同。 我们使用Object.prototype.toString方法:    </p>
+<p> Object.prototype.toString.call([])    // “[object Array]”<br> Object.prototype.toString.call({})    // “[object Object]”<br> Object.prototype.toString.call(2)    // “[object Number]”</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+    <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+      
+    </div>
+    
+    <div>
+        
+          
+        
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/其他/" rel="tag"><i class="fa fa-tag"></i> 其他</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/19/跨域/" rel="next" title="跨域">
+                <i class="fa fa-chevron-left"></i> 跨域
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/19/Vue2.0生命周期/" rel="prev" title="Vue2.0生命周期">
+                Vue2.0生命周期 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="JHChen">
+            
+              <p class="site-author-name" itemprop="name">JHChen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DOCTYPE和浏览器渲染模式"><span class="nav-number">1.</span> <span class="nav-text">DOCTYPE和浏览器渲染模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器解析HTML方式"><span class="nav-number">1.1.</span> <span class="nav-text">浏览器解析HTML方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM结构"><span class="nav-number">2.</span> <span class="nav-text">DOM结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#W3C-DOM标准"><span class="nav-number">2.1.</span> <span class="nav-text">W3C DOM标准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM节点"><span class="nav-number">2.2.</span> <span class="nav-text">DOM节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-DOM节点树"><span class="nav-number">2.3.</span> <span class="nav-text">HTML DOM节点树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节点的关系"><span class="nav-number">2.4.</span> <span class="nav-text">节点的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#盒模型"><span class="nav-number">3.</span> <span class="nav-text">盒模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript如何设置获取盒模型对应的宽和高"><span class="nav-number">3.1.</span> <span class="nav-text">JavaScript如何设置获取盒模型对应的宽和高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外边距重叠"><span class="nav-number">3.2.</span> <span class="nav-text">外边距重叠</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BFC"><span class="nav-number">4.</span> <span class="nav-text">BFC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC原理（渲染规则）"><span class="nav-number">4.1.</span> <span class="nav-text">BFC原理（渲染规则）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何创建BFC"><span class="nav-number">4.2.</span> <span class="nav-text">如何创建BFC</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS普通流（文档流）"><span class="nav-number">5.</span> <span class="nav-text">CSS普通流（文档流）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调节普通流元素位置"><span class="nav-number">5.1.</span> <span class="nav-text">调节普通流元素位置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变量对象"><span class="nav-number">6.</span> <span class="nav-text">变量对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript的基本类型"><span class="nav-number">6.1.</span> <span class="nav-text">JavaScript的基本类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用类型"><span class="nav-number">6.2.</span> <span class="nav-text">引用类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内置对象、原生对象及宿主对象"><span class="nav-number">6.3.</span> <span class="nav-text">内置对象、原生对象及宿主对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊包装类"><span class="nav-number">6.4.</span> <span class="nav-text">特殊包装类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#typeof返回值"><span class="nav-number">6.5.</span> <span class="nav-text">typeof返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instanceof-操作符"><span class="nav-number">6.6.</span> <span class="nav-text">instanceof 操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-prototype-toString获取对象类型"><span class="nav-number">6.7.</span> <span class="nav-text">Object.prototype.toString获取对象类型</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JHChen</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">10.5k</span>
+  
+
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(window).load(function(){
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+    })    
+  </script>
+  <script type="text/javascript" src="/js/src/clipboard.js"></script> 
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>
