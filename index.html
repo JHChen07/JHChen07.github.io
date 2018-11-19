@@ -852,6 +852,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -873,7 +895,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  953
                 </span>
               
 
@@ -889,7 +911,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  4
                 </span>
               
             </div>
@@ -912,7 +934,116 @@
       
         
           
-            
+            <!-- TOC -->
+<ul>
+<li><a href="#vuejs-20-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90">vue.js 2.0 生命周期钩子</a><ul>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0">生命周期钩子函数</a></li>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%8E%A2%E7%A9%B6">生命周期探究</a><ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%8C%82%E8%BD%BD%E5%AE%8C%E6%88%90">数据挂载完成</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0">数据更新</a></li>
+<li><a href="#%E9%94%80%E6%AF%81%E5%AE%9E%E4%BE%8B">销毁实例</a></li>
+<li><a href="#create%E5%92%8Cmounted%E7%9B%B8%E5%85%B3">create和mounted相关</a></li>
+<li><a href="#destroy%E7%9B%B8%E5%85%B3">destroy相关</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="vue-js-2-0-生命周期钩子"><a href="#vue-js-2-0-生命周期钩子" class="headerlink" title="vue.js 2.0 生命周期钩子"></a>vue.js 2.0 生命周期钩子</h1><p>每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。<br><img src="生命周期流程图.png" alt="生命周期图示">   </p>
+<h2 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h2><p><img src="生命周期钩子函数报表.png" alt="生命周期钩子函数">   </p>
+<h2 id="生命周期探究"><a href="#生命周期探究" class="headerlink" title="生命周期探究"></a>生命周期探究</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.jsdelivr.net/vue/2.1.3/vue.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;app&quot;&gt;
+    &lt;p&gt;{{ message }}&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+
+var app = new Vue({
+    el: &#39;#app&#39;,
+    data: {
+        message : &quot;xuxiao is boy&quot; 
+    },
+    beforeCreate: function () {
+                console.group(&#39;beforeCreate 创建前状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot; , &quot;el     : &quot; + this.$el); //undefined
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //undefined 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message)  
+        },
+        created: function () {
+            console.group(&#39;created 创建完毕状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el); //undefined
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化
+        },
+        beforeMount: function () {
+            console.group(&#39;beforeMount 挂载前状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + (this.$el)); //已被初始化
+            console.log(this.$el);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化  
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化  
+        },
+        mounted: function () {
+            console.group(&#39;mounted 挂载结束状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el); //已被初始化
+            console.log(this.$el);    
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化 
+        },
+        beforeUpdate: function () {
+            console.group(&#39;beforeUpdate 更新前状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
+            console.log(this.$el);   
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
+        },
+        updated: function () {
+            console.group(&#39;updated 更新完成状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
+            console.log(this.$el); 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
+        },
+        beforeDestroy: function () {
+            console.group(&#39;beforeDestroy 销毁前状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
+            console.log(this.$el);    
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
+        },
+        destroyed: function () {
+            console.group(&#39;destroyed 销毁完成状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
+            console.log(this.$el);  
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message)
+        }
+    })
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;   
+</code></pre><h3 id="数据挂载完成"><a href="#数据挂载完成" class="headerlink" title="数据挂载完成"></a>数据挂载完成</h3><p><img src="生命周期挂载结束.png" alt="数据挂载完成">   </p>
+<h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p><img src="生命周期数据更新.png" alt="数据更新">   </p>
+<h3 id="销毁实例"><a href="#销毁实例" class="headerlink" title="销毁实例"></a>销毁实例</h3><p><img src="生命周期销毁.png" alt="销毁实例"> </p>
+<h3 id="create和mounted相关"><a href="#create和mounted相关" class="headerlink" title="create和mounted相关"></a>create和mounted相关</h3><ol>
+<li>beforeCreated: el和data并未初始化   </li>
+<li>created：完成了data数据的初始化，el并没有初始化   </li>
+<li>beforeMounted：完成了el和data的初始化   </li>
+<li>mounted：完成挂载   </li>
+<li>beforeMounted钩子处，el并没有渲染新的值，这就是Virtual DOM，先把坑占住了。到后面mounted挂载的时候再把值渲染进去   </li>
+<li><p>update相关   </p>
+<p> e.g. app.message = ‘yes !! i do’<br>当data里的值被修改后，将会出发update的操作   </p>
+<h3 id="destroy相关"><a href="#destroy相关" class="headerlink" title="destroy相关"></a>destroy相关</h3><p> app.$destroy();<br>销毁完成后，我们再重新改变message的值，vue不在对此动作进行响应了。但是原先生成的DOM元素还在，相当于销毁后就不再受vue控制了。</p>
+</li>
+</ol>
+
           
         
       
@@ -2575,7 +2706,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2627,7 +2758,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">10.5k</span>
+    <span title="Site words total count">11.5k</span>
   
 
 </div>
