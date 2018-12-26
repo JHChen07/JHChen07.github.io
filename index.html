@@ -262,6 +262,392 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/js事件及事件处理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JHChen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jhchen の BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/26/js事件及事件处理/" itemprop="url">js事件及事件处理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T21:07:48+08:00">
+                2018-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!-- TOC -->
+<ul>
+<li><a href="#事件以及事件流">事件以及事件流</a><ul>
+<li><a href="#dom事件流">DOM事件流</a></li>
+</ul>
+</li>
+<li><a href="#事件处理程序">事件处理程序</a><ul>
+<li><a href="#html事件处理程序">HTML事件处理程序</a></li>
+<li><a href="#dom0级事件处理程序">DOM0级事件处理程序</a></li>
+<li><a href="#dom2级事件处理程序">DOM2级事件处理程序</a></li>
+<li><a href="#ie事件处理程序">IE事件处理程序</a></li>
+<li><a href="#跨浏览器的事件处理程序">跨浏览器的事件处理程序</a></li>
+</ul>
+</li>
+<li><a href="#事件对象">事件对象</a><ul>
+<li><a href="#dom事件">DOM事件</a></li>
+<li><a href="#ie中的事件对象">IE中的事件对象</a></li>
+<li><a href="#跨浏览器的事件对象">跨浏览器的事件对象</a></li>
+</ul>
+</li>
+<li><a href="#事件委托">事件委托</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="事件以及事件流"><a href="#事件以及事件流" class="headerlink" title="事件以及事件流"></a>事件以及事件流</h1><p>事件，就是文档或浏览器窗口中发生的一些交互瞬间（用户或浏览器本身执行的某种动作）。事件流描述的是从页面中接收事件的顺序。   </p>
+<ol>
+<li>IE浏览器中规定的是事件冒泡流，事件冒泡即事件最开始由最具体的元素（文档中嵌套层次最深的节点）接收，然后逐级向上传播至最不具体的节点（文档）;   </li>
+<li><p>Netscape浏览器中规定的是事件捕获流，事件捕获指不太具体的节点应该更早接收到事件，而最具体的节点最后接收到事件。事件捕获的用意在于事件到达预定节点之前捕获它。<br>为了兼容更多的浏览器，非特殊情况一般我们都是把事件添加到在事件冒泡阶段。   </p>
+<h2 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h2><p>“DOM2级事件”规定的事件流包括3个阶段，事件捕获阶段、处于目标阶段和事件冒泡阶段。其中，事件捕获为事件截获提供机会；处于目标阶段时实际的目标接收事件；冒泡阶段能对事件作出响应。实际上，捕获阶段中事件并未到达目标，下一个阶段才能到达目标，并且，目标被当做是事件冒泡阶段的一部分。   </p>
+<h1 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h1><h2 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h2><p>将事件处理程序直接内嵌在HTML文档结构中，此种做法导致结构层和行为层耦合，代码维护不便。（还有时差问题等）<br>如：   </p>
+<p> </p><h1 onclick="this.innerHTML='谢谢!'">请点击该文本</h1><br> <button onclick="displayDate()">点击这里</button>   <p></p>
+<h2 id="DOM0级事件处理程序"><a href="#DOM0级事件处理程序" class="headerlink" title="DOM0级事件处理程序"></a>DOM0级事件处理程序</h2><p>把事件处理函数赋值给一个事件的句柄，优点是此种做法较简易，可以跨浏览器，而且行为层并未与结构层耦合。   </p>
+<p> var btn5 = document.getElementById(‘btn5’); // 获取文档对象<br> btn5.onclick = function() {</p>
+<pre><code> console.log(this.id); //btn5 4 
+</code></pre><p> }; // onclick属性的值是一个包含在同名HTML特性中指定的代码的函数</p>
+</li>
+<li>基于DOM0的事件，对于同一个dom节点而言，只能注册一个，之后注册的同种事件会覆盖之前注册的。利用这个原理我们可以解除事件：btn5.onclick＝null；其中this就是绑定事件的那个元素。   </li>
+<li>以这种方式添加的事件处理程序会在事件流的冒泡阶段被处理。   <h2 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h2></li>
+<li>DOM2支持同一dom元素注册多个同种事件，事件发生的顺序按照添加的顺序依次触发（IE是相反的）；DOM2事件通过addEventListener和removeEventListener管理。   </li>
+<li>addEventListener(eventName,handlers,boolean)；removeEventListener()，两个方法都一样接收三个参数，第一个是要处理的事件名（事件句柄的引用e.g click），第二个是事件处理程序，第三个值为false时表示在事件冒泡阶段调用事件处理程序，一般建议在冒泡阶段使用，这样可以兼容更多的浏览器，特殊情况才在捕获阶段；   </li>
+<li><p>注意：通过addEventListener()添加的事件处理程序只能用removeEventListener()来移除，并且移除时传入的参数必须与添加时传入的参数（包括事件处理函数）一样。   </p>
+<pre><code> var btn2 = document.getElementById(&#39;btn2&#39;);
+ var handlers = function () {
+     console.log(this.id);
+ }; // 函数引用
+ // 确保了传入的事件处理函数是同一个函数对象
+ btn2.addEventListener(&#39;click&#39;,handlers,false);
+ btn2.removeEventListener(&#39;click&#39;,handlers.false);   
+</code></pre><h2 id="IE事件处理程序"><a href="#IE事件处理程序" class="headerlink" title="IE事件处理程序"></a>IE事件处理程序</h2></li>
+<li>IE用了attachEvent()，detachEvent()，接收两个参数，事件名称（和DOM2级稍有不同）和事件处理程序，通过attachEvent()添加的事件处理程序都会被添加到冒泡阶段，IE8及以前只支持事件冒泡。与addEventListener（）一样，attachEvent（）也可以添加多个事件处理程序。但是执行顺序却是与添加的顺序相反的顺序。   </li>
+<li><p>IE事件处理与DOM0级方法的主要区别在于事件处理程序的作用域。后者是在其所属元素的作用域内运行，而前者则是会在全局作用域中进行，因此，此时的this为window。   </p>
+<h2 id="跨浏览器的事件处理程序"><a href="#跨浏览器的事件处理程序" class="headerlink" title="跨浏览器的事件处理程序"></a>跨浏览器的事件处理程序</h2><p>在同一个对象上注册事件，并不一定按照注册顺序执行，冒泡或捕获模式会影响其被接触的顺序。   </p>
+<p> //创建的方法是addHandlers(),removeHandlers(),这两个方法属于一个叫EventUtil的对象<br> var EventUtil = {</p>
+<pre><code> // 视情况分别使用DOM2级、IE方法、DOM0级方法添加事件，注意DOM0级对每个事件只支持一个事件处理函数
+ addHandlers: function (element, type, handler) {
+     if (element,addEventListener){
+         element.addEventListener(type, handler, false);
+     } else if (element.attachEvent) {   
+         element.attachEvent(&#39;on&#39; + type, handler);
+     } else {
+         element[&quot;on&quot; + type] = handler;
+     }
+ },
+
+ removeHandlers: function(element, type, handler) {
+     if (element,removeEventListener){
+         element.removeEventListener(type, handler, false);
+     } else if (element.detachEvent) {   
+         element.detachEvent(&#39;on&#39; + type, handler);
+     } else {
+         element[&quot;on&quot; + type] = null;
+     }
+ },
+ // 获取事件对象
+ getEvent: function (e) {
+     return e?e:e.which;
+ },
+ // 获取事件的实际目标
+ getTarget: function (e) {
+     return e.target || event.srcElement;
+ },
+
+ //阻止默认行为
+ preventDefault: function (e) {
+     if (e.preventDefault){
+         e.preventDefault();
+     } else {
+         e.returnValue = false;
+     }
+ },
+
+ //阻止冒泡
+ stopPropagation: function (e) {
+     if (e.stopPropagation){
+         e.stopPropagation();
+     } else {
+         e.cancelBubble = true;
+     }
+ }
+</code></pre><p> };<br> var btn4=document.getElementById(‘btn4’);<br> var handlers3=function(){<br> console.log(‘123’)<br> };<br> EventUtil.addHandlers(btn4,’click’,handlers3);<br> //……<br> EventUtil.removeHandlers(btn4,’click’,handlers3);   </p>
+<h1 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h1></li>
+<li>兼容触发DOM上的某个事件时，会产生一个事件对象event，这个对象中包含了所有与事件有关的信息，比如导致事件的元素target，事件的类型，及其他特定的相关信息。例如鼠标操作导致的事件对象中会包含鼠标的位置，单双击等，而键盘操作导致的事件对象会包含按下的键等信息；   </li>
+<li>事件被触发时，会默认给事件处理程序传入一个参数e , 表示事件对象；通过e，我们可以获得其中包含的与事件有关的信息；   </li>
+<li>只有在事件处理程序执行期间，event对象才会存在，一旦事件处理程序执行完毕，event对象就会被销毁；   </li>
+<li>Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。事件通常与函数结合使用，函数不会在事件发生前被执行！   <h2 id="DOM事件"><a href="#DOM事件" class="headerlink" title="DOM事件"></a>DOM事件</h2></li>
+<li>兼容DOM的浏览器会自动将一个事件对象event传递给事件处理程序。<br>注：关于事件对象中的this，target，currentTarget,看个例子：（注：event.target不支持IE浏览器，应该用event.srcElement；还有 IE中通过attachment添加的事件是运行在全局作用域中的，this===window）</li>
+<li>在事件处理程序内部，对象this始终等于currentTarget的值，而target只包含时间的实际目标。如果直接将事件处理程序指给了实际目标，this与两者是相等的。如果事件处理程序指给了父元素，则this与currentTarget都是父节点。（事件冒泡到了父节点）。   </li>
+<li><p>（ 当事件绑定在真正的目标元素上时，this===target===currentTarget，而且绑定事件时是否捕获结果都是一样的，此时eventParse==2）   </p>
+<pre><code> // this,target,currentTarget,this===currentTarget
+ $(&#39;#outer&#39;).on(&#39;click&#39;,&#39;#center&#39;,function(e){
+ console.log(this.id);      //on()中间的参数是个过滤器,相当于将事件绑定到了#center上;此时点击#center将不会触发事件
+ console.log(e.target.id);
+ console.log(e.currentTarget.id);
+ });
+
+ $(&#39;#outer&#39;).on(&#39;click&#39;,function(e){
+ console.log(this.id);
+ console.log(e.target.id);
+ console.log(e.currentTarget.id);
+ });
+
+ event.stopPropagation()   // 不能简单说阻止了事件的冒泡，其实也阻止了事件的继续捕获，确切的说应该是阻止事件的进一步传播
+ var d1 = document.getElementById(&#39;d1&#39;);
+ d1.addEventListener(&#39;click&#39;, function (evt) {
+     console.log(&#39;d1&#39;);
+     evt.stopPropagation();
+ }, true);
+ var d2 = document.getElementById(&#39;d2&#39;);
+ d2.addEventListener(&#39;click&#39;, function () {
+     console.log(&#39;d2&#39;);
+ }, true);
+
+ //输出结果是d1   
+</code></pre><h2 id="IE中的事件对象"><a href="#IE中的事件对象" class="headerlink" title="IE中的事件对象"></a>IE中的事件对象</h2><p>IE中event参数是未定的，事件对象是作为window的一个属性存在的，因此可以通过window.event来访问event对象，不同于DOM级中event是作为参数直接传入和返回。<br>属性上与DOM也有不同：<br> <img src="/事件属性.jpg" alt="事件属性"><br>标准event方法：<br> <img src="/标准event方法.jpg" alt="标准event方法">   </p>
+<h2 id="跨浏览器的事件对象"><a href="#跨浏览器的事件对象" class="headerlink" title="跨浏览器的事件对象"></a>跨浏览器的事件对象</h2><p> //前文跨浏览器的事件处理程序已经作了描述，重点在于获取事件以及之后的兼容方法描述<br> var EventUtil = {</p>
+<pre><code> addHandlers: function (element, type, handler) {
+     if (element,addEventListener){
+         element.addEventListener(type, handler, false);
+     } else if (element.attachEvent) {   
+         element.attachEvent(&#39;on&#39; + type, handler);
+     } else {
+         element[&quot;on&quot; + type] = handler;
+     }
+ },
+
+ removeHandlers: function(element, type, handler) {
+     if (element,removeEventListener){
+         element.removeEventListener(type, handler, false);
+     } else if (element.detachEvent) {   
+         element.detachEvent(&#39;on&#39; + type, handler);
+     } else {
+         element[&quot;on&quot; + type] = null;
+     }
+ },
+
+ getEvent: function (e) {
+     return e?e:e.which;
+ },
+
+ getTarget: function (e) {
+     return e.target || event.srcElement;
+ },
+
+ //阻止默认行为
+ preventDefault: function (e) {
+     if (e.preventDefault){
+         e.preventDefault();
+     } else {
+         e.returnValue = false;
+     }
+ },
+
+ //阻止冒泡
+ stopPropagation: function (e) {
+     if (e.stopPropagation){
+         e.stopPropagation();
+     } else {
+         e.cancelBubble = true;
+     }
+ }
+</code></pre><p> };<br> var myBtn=document.getElementById(‘my-btn’);<br> btn.onclick=function(event){</p>
+<pre><code> event=EventUtil.getEvent(event);
+ EventUtil.preventDefault(event);
+</code></pre><p> };   </p>
+<h1 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h1></li>
+<li>每当将事件处理程序制定给元素时，运行中的浏览器代码与支持页面交互的JS代码之间就会建立一个连接，而这种连接越多，页面执行起来就越慢。考虑内存和性能问题，为了解决事件处理程序过多的问题，采用事件委托变得很有必要。（考虑到内存，也应该尽量减少不必要的事件处理程序，并且，对于内存中过时不用（删除了目标元素，但是相应的事件处理程序并没有移除）的“空事件处理程序”，也是很有必要将其移除的）   </li>
+<li>因为冒泡机制，比如既然点击子元素，也会触发父元素的点击事件，那我们完全可以将子元素的事件要做的事写到父元素的事件里，也就是将子元素的事件处理程序写到父元素的事件处理程序中，这就是事件委托；利用事件委托，只指定一个事件处理程序，就可以管理某一个类型的所有事件。   </li>
+<li><p>因为把事件绑定到了父节点上，因此省了绑定事件。就算后面新增的子节点也有了相关事件，删除部分子节点不用去销毁对应节点上绑定的事件。<br>父节点是通过event.target来找对应的子节点的。（事件处理程序中的this值始终等于currentTarget的值，指向的是绑定到的那个元素）<br>如： </p>
+<pre><code> var myLinks=document.getElementById(&#39;my-links&#39;);
+ myHandlers=function(event){
+     event=EventUtil.getEvent(event);
+     var target=EventUtil.getTarget(event);
+
+     switch(target.id){
+         case &#39;item-1&#39;:
+             location.href=&#39;http://xxxxxx/&#39;;
+             break;
+         case &#39;item-2&#39;:
+             document.title=&#39;event&#39;;
+             break;
+         case &#39;item-3&#39;:
+             console.log(&#39;hi&#39;);
+             break;
+     }
+ };
+ EventUtil.addHandler(myLinks,&#39;click&#39;,myHandlers);
+</code></pre></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+      
+    </div>
+    
+    <div>
+        
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/RegExp/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -281,7 +667,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/26/RegExp/" itemprop="url">RegExp类型</a></h1>
+                <a class="post-title-link" href="/2018/12/26/RegExp/" itemprop="url">RegExp</a></h1>
         
 
         <div class="post-meta">
@@ -293,7 +679,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T20:44:43+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T21:06:42+08:00">
                 2018-12-26
               </time>
             
@@ -520,7 +906,7 @@ for(i=0;i&lt;10;i++) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/web语义化/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/web语义化/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JHChen">
@@ -539,7 +925,7 @@ for(i=0;i&lt;10;i++) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/19/web语义化/" itemprop="url">web语义化</a></h1>
+                <a class="post-title-link" href="/2018/12/26/web语义化/" itemprop="url">web语义化</a></h1>
         
 
         <div class="post-meta">
@@ -551,8 +937,8 @@ for(i=0;i&lt;10;i++) {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-19T16:57:26+08:00">
-                2018-11-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T21:05:10+08:00">
+                2018-12-26
               </time>
             
 
@@ -561,28 +947,6 @@ for(i=0;i&lt;10;i++) {
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -644,7 +1008,25 @@ for(i=0;i&lt;10;i++) {
       
         
           
-            <h1 id="快速理解语义化"><a href="#快速理解语义化" class="headerlink" title="快速理解语义化"></a>快速理解语义化</h1><p>语义化的含义就是用正确的标签做正确的事情，html语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析；在没有样式CCS情况下也以一种文档格式显示，并且是容易阅读的。搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于SEO（搜索引擎优化）。使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。<br>总结：   </p>
+            <!-- TOC -->
+<ul>
+<li><a href="#%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E8%AF%AD%E4%B9%89%E5%8C%96">快速理解语义化</a><ul>
+<li><a href="#html%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE">HTML语义化标签</a><ul>
+<li><a href="#header%E5%85%83%E7%B4%A0">header元素</a></li>
+<li><a href="#hgroup%E5%85%83%E7%B4%A0">hgroup元素</a></li>
+<li><a href="#footer%E5%85%83%E7%B4%A0">footer元素</a></li>
+<li><a href="#nav%E5%85%83%E7%B4%A0">nav元素</a></li>
+<li><a href="#article%E5%85%83%E7%B4%A0">article元素</a></li>
+<li><a href="#section%E5%85%83%E7%B4%A0">section元素</a></li>
+<li><a href="#aside%E5%85%83%E7%B4%A0">aside元素</a></li>
+</ul>
+</li>
+<li><a href="#css%E8%AF%AD%E4%B9%89%E5%8C%96">CSS语义化</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="快速理解语义化"><a href="#快速理解语义化" class="headerlink" title="快速理解语义化"></a>快速理解语义化</h1><p>语义化的含义就是用正确的标签做正确的事情，html语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析；在没有样式CCS情况下也以一种文档格式显示，并且是容易阅读的。搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于SEO（搜索引擎优化）。使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。<br>总结：   </p>
 <ol>
 <li>正确的标签做正确的事；</li>
 <li>页面内容结构化；</li>
@@ -680,9 +1062,10 @@ for(i=0;i&lt;10;i++) {
      &lt;h1&gt;网站标题&lt;h1&gt;
      &lt;h2&gt;网站副标题&lt;/h2&gt;
  &lt;/hgroup&gt;
-</code></pre><p> <header><br>注意：   </header></p>
+</code></pre><p> <header><br>注意：    </header></p>
 </li>
-<li>不限于“网页”头部   </li>
+<li><p>不限于“网页”头部   </p>
+</li>
 <li>没有个数限制   </li>
 <li><p>hgroup、h1-h6可以替代header   </p>
 <h3 id="hgroup元素"><a href="#hgroup元素" class="headerlink" title="hgroup元素"></a>hgroup元素</h3><p>hgroup元素代表“网页”或“section”的标题，当元素有多个层级时，该元素可以将h1到h6元素放在其内，譬如文章的主标题和副标题组合。   </p>
@@ -691,9 +1074,10 @@ for(i=0;i&lt;10;i++) {
  &lt;h2&gt;这是一个副标题&lt;/h2&gt;
 </code></pre><p> <br>注意：   </p>
 </li>
-<li>只需要一个h1-h6不需要hgroup，连续多个就用   </li>
+<li><p>只需要一个h1-h6不需要hgroup，连续多个就用   </p>
+</li>
 <li><p>如果有连续多个标题和其他文章数据，h1-h6标签就用hgroup包住，和其他文章元数据一起放入header标签   </p>
-<h3 id="footer元素"><a href="#footer元素" class="headerlink" title="footer元素"></a>footer元素</h3><p>footer元素代表“网页”或任意“section”的页脚，通常含有该节的一些基本信息，譬如：作者，相关文档链接，版权资料。如果footer元素包含了整个节，那么它们就代表附录，索引，提拔，许可协议，标签，类别等一些其他类似信息。   </p>
+<h3 id="footer元素"><a href="#footer元素" class="headerlink" title="footer元素"></a>footer元素</h3><p>footer元素代表“网页”或任意“section”的页脚，通常含有该节的一些基本信息，譬如：作者，相关文档链接，版权资料。如果footer元素包含了整个节，那么它们就代表附录，索引，提拔，许可协议，标签，类别等一些其他类似信息。  </p>
 <p> <footer></footer></p>
 <pre><code> COPYRGHT@。。。
 </code></pre><p> <br>没有个数限制，除了内容不一样，其他跟header类似   </p>
@@ -762,9 +1146,10 @@ for(i=0;i&lt;10;i++) {
          &lt;p&gt;关于其他section的介绍&lt;/p&gt;
      &lt;/section&gt;
  &lt;/article&gt;
-</code></pre><p> <br>注意：    </p>
+</code></pre><p> <br>注意：     </p>
 </li>
-<li>一张页面可以用section划分为简介、文章条目和联系信息。不过在文章内页，最好用article。section不是一般意义上的容器元素，如果想作为样式展示和脚本的便利，可以用div。   </li>
+<li><p>一张页面可以用section划分为简介、文章条目和联系信息。不过在文章内页，最好用article。section不是一般意义上的容器元素，如果想作为样式展示和脚本的便利，可以用div。   </p>
+</li>
 <li>可以表示文档中的节或者段。   </li>
 <li><p>acticle、nav、aside可以理解为特殊的section，如果可以用article、nav、aside就不要用section，没有实际意义的就用div   </p>
 <h3 id="aside元素"><a href="#aside元素" class="headerlink" title="aside元素"></a>aside元素</h3><p>aside 元素被包含在article元素中作为主要内容的附属信息部分，其中的内容可以是与当前文章有关的相关资料，标签，名词解释等。<br>在article元素之外使用作为页面或站点全局的附属信息部分。最典型的是侧边栏，其中的内容可以是日志串连，其他组的导航，甚至广告，这些内容相关的页面<br>代码示例：   </p>
@@ -776,21 +1161,176 @@ for(i=0;i&lt;10;i++) {
  &lt;/aside&gt;
 </code></pre><p> <br>注意：   </p>
 </li>
-<li>aside 在 article 内表示主要内容的附属信息。   </li>
+<li><p>aside 在 article 内表示主要内容的附属信息。   </p>
+</li>
 <li>在article之外侧可以做侧边栏，没有article与之对应，最好不用   </li>
 <li><p>如果是广告，其他日志链接或者其他分类导航也可以用。<br>最后，IE8以下需要考虑HTML5的标签兼容性解决方案。   </p>
 <h2 id="CSS语义化"><a href="#CSS语义化" class="headerlink" title="CSS语义化"></a>CSS语义化</h2><p>CSS语义就是class和ID命名的语义。class属性作为HTML与CSS衔接的纽带，其本意是用来描述元素内容的。指用易于理解的名称对html标签附加的class或id命名。如果说HTML语义化标签是给机器看的，那么CSS命名的语义化就是给人看的。良好的CSS命名方式减少沟通调试成本，易于理解。<br>CSS命名首先要满足W3C的命名规范和团队的命名规范。其次是高效和可重用性。<br>示例：   </p>
  <!-- 以表现为中心 -->
 <p> <div class="ft margin10"></div></p>
 <pre><code> &lt;span&gt;用户名：小维&lt;/span&gt;
-</code></pre> <div>
-
+</code></pre><p> </p>
  <!-- 以信息为中心 -->
-<p> </p><p class="user_info"></p>
-<pre><code> &lt;em&gt;用户名:小维&lt;/em&gt;
-</code></pre> <p>   </p></div></li>
+ <p class="user_info"><br>     <em>用户名:小维</em><br> </p> </li>
 </ol>
 
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+      
+    </div>
+    
+    <div>
+        
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/js引用类型/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JHChen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jhchen の BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/26/js引用类型/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T20:56:58+08:00">
+                2018-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  0
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
           
         
       
@@ -1886,392 +2426,6 @@ var app = new Vue({
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/js事件处理/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JHChen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jhchen の BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/18/js事件处理/" itemprop="url">js事件处理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-18T20:32:23+08:00">
-                2018-11-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.8k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  10
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <!-- TOC -->
-<ul>
-<li><a href="#事件以及事件流">事件以及事件流</a><ul>
-<li><a href="#dom事件流">DOM事件流</a></li>
-</ul>
-</li>
-<li><a href="#事件处理程序">事件处理程序</a><ul>
-<li><a href="#html事件处理程序">HTML事件处理程序</a></li>
-<li><a href="#dom0级事件处理程序">DOM0级事件处理程序</a></li>
-<li><a href="#dom2级事件处理程序">DOM2级事件处理程序</a></li>
-<li><a href="#ie事件处理程序">IE事件处理程序</a></li>
-<li><a href="#跨浏览器的事件处理程序">跨浏览器的事件处理程序</a></li>
-</ul>
-</li>
-<li><a href="#事件对象">事件对象</a><ul>
-<li><a href="#dom事件">DOM事件</a></li>
-<li><a href="#ie中的事件对象">IE中的事件对象</a></li>
-<li><a href="#跨浏览器的事件对象">跨浏览器的事件对象</a></li>
-</ul>
-</li>
-<li><a href="#事件委托">事件委托</a></li>
-</ul>
-<!-- /TOC -->
-<h1 id="事件以及事件流"><a href="#事件以及事件流" class="headerlink" title="事件以及事件流"></a>事件以及事件流</h1><p>事件，就是文档或浏览器窗口中发生的一些交互瞬间（用户或浏览器本身执行的某种动作）。事件流描述的是从页面中接收事件的顺序。   </p>
-<ol>
-<li>IE浏览器中规定的是事件冒泡流，事件冒泡即事件最开始由最具体的元素（文档中嵌套层次最深的节点）接收，然后逐级向上传播至最不具体的节点（文档）;   </li>
-<li><p>Netscape浏览器中规定的是事件捕获流，事件捕获指不太具体的节点应该更早接收到事件，而最具体的节点最后接收到事件。事件捕获的用意在于事件到达预定节点之前捕获它。<br>为了兼容更多的浏览器，非特殊情况一般我们都是把事件添加到在事件冒泡阶段。   </p>
-<h2 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h2><p>“DOM2级事件”规定的事件流包括3个阶段，事件捕获阶段、处于目标阶段和事件冒泡阶段。其中，事件捕获为事件截获提供机会；处于目标阶段时实际的目标接收事件；冒泡阶段能对事件作出响应。实际上，捕获阶段中事件并未到达目标，下一个阶段才能到达目标，并且，目标被当做是事件冒泡阶段的一部分。   </p>
-<h1 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h1><h2 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h2><p>将事件处理程序直接内嵌在HTML文档结构中，此种做法导致结构层和行为层耦合，代码维护不便。（还有时差问题等）<br>如：   </p>
-<p> </p><h1 onclick="this.innerHTML='谢谢!'">请点击该文本</h1><br> <button onclick="displayDate()">点击这里</button>   <p></p>
-<h2 id="DOM0级事件处理程序"><a href="#DOM0级事件处理程序" class="headerlink" title="DOM0级事件处理程序"></a>DOM0级事件处理程序</h2><p>把事件处理函数赋值给一个事件的句柄，优点是此种做法较简易，可以跨浏览器，而且行为层并未与结构层耦合。   </p>
-<p> var btn5 = document.getElementById(‘btn5’); // 获取文档对象<br> btn5.onclick = function() {</p>
-<pre><code> console.log(this.id); //btn5 4 
-</code></pre><p> }; // onclick属性的值是一个包含在同名HTML特性中指定的代码的函数</p>
-</li>
-<li>基于DOM0的事件，对于同一个dom节点而言，只能注册一个，之后注册的同种事件会覆盖之前注册的。利用这个原理我们可以解除事件：btn5.onclick＝null；其中this就是绑定事件的那个元素。   </li>
-<li>以这种方式添加的事件处理程序会在事件流的冒泡阶段被处理。   <h2 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h2></li>
-<li>DOM2支持同一dom元素注册多个同种事件，事件发生的顺序按照添加的顺序依次触发（IE是相反的）；DOM2事件通过addEventListener和removeEventListener管理。   </li>
-<li>addEventListener(eventName,handlers,boolean)；removeEventListener()，两个方法都一样接收三个参数，第一个是要处理的事件名（事件句柄的引用e.g click），第二个是事件处理程序，第三个值为false时表示在事件冒泡阶段调用事件处理程序，一般建议在冒泡阶段使用，这样可以兼容更多的浏览器，特殊情况才在捕获阶段；   </li>
-<li><p>注意：通过addEventListener()添加的事件处理程序只能用removeEventListener()来移除，并且移除时传入的参数必须与添加时传入的参数（包括事件处理函数）一样。   </p>
-<pre><code> var btn2 = document.getElementById(&#39;btn2&#39;);
- var handlers = function () {
-     console.log(this.id);
- }; // 函数引用
- // 确保了传入的事件处理函数是同一个函数对象
- btn2.addEventListener(&#39;click&#39;,handlers,false);
- btn2.removeEventListener(&#39;click&#39;,handlers.false);   
-</code></pre><h2 id="IE事件处理程序"><a href="#IE事件处理程序" class="headerlink" title="IE事件处理程序"></a>IE事件处理程序</h2></li>
-<li>IE用了attachEvent()，detachEvent()，接收两个参数，事件名称（和DOM2级稍有不同）和事件处理程序，通过attachEvent()添加的事件处理程序都会被添加到冒泡阶段，IE8及以前只支持事件冒泡。与addEventListener（）一样，attachEvent（）也可以添加多个事件处理程序。但是执行顺序却是与添加的顺序相反的顺序。   </li>
-<li><p>IE事件处理与DOM0级方法的主要区别在于事件处理程序的作用域。后者是在其所属元素的作用域内运行，而前者则是会在全局作用域中进行，因此，此时的this为window。   </p>
-<h2 id="跨浏览器的事件处理程序"><a href="#跨浏览器的事件处理程序" class="headerlink" title="跨浏览器的事件处理程序"></a>跨浏览器的事件处理程序</h2><p>在同一个对象上注册事件，并不一定按照注册顺序执行，冒泡或捕获模式会影响其被接触的顺序。   </p>
-<p> //创建的方法是addHandlers(),removeHandlers(),这两个方法属于一个叫EventUtil的对象<br> var EventUtil = {</p>
-<pre><code> // 视情况分别使用DOM2级、IE方法、DOM0级方法添加事件，注意DOM0级对每个事件只支持一个事件处理函数
- addHandlers: function (element, type, handler) {
-     if (element,addEventListener){
-         element.addEventListener(type, handler, false);
-     } else if (element.attachEvent) {   
-         element.attachEvent(&#39;on&#39; + type, handler);
-     } else {
-         element[&quot;on&quot; + type] = handler;
-     }
- },
-
- removeHandlers: function(element, type, handler) {
-     if (element,removeEventListener){
-         element.removeEventListener(type, handler, false);
-     } else if (element.detachEvent) {   
-         element.detachEvent(&#39;on&#39; + type, handler);
-     } else {
-         element[&quot;on&quot; + type] = null;
-     }
- },
- // 获取事件对象
- getEvent: function (e) {
-     return e?e:e.which;
- },
- // 获取事件的实际目标
- getTarget: function (e) {
-     return e.target || event.srcElement;
- },
-
- //阻止默认行为
- preventDefault: function (e) {
-     if (e.preventDefault){
-         e.preventDefault();
-     } else {
-         e.returnValue = false;
-     }
- },
-
- //阻止冒泡
- stopPropagation: function (e) {
-     if (e.stopPropagation){
-         e.stopPropagation();
-     } else {
-         e.cancelBubble = true;
-     }
- }
-</code></pre><p> };<br> var btn4=document.getElementById(‘btn4’);<br> var handlers3=function(){<br> console.log(‘123’)<br> };<br> EventUtil.addHandlers(btn4,’click’,handlers3);<br> //……<br> EventUtil.removeHandlers(btn4,’click’,handlers3);   </p>
-<h1 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h1></li>
-<li>兼容触发DOM上的某个事件时，会产生一个事件对象event，这个对象中包含了所有与事件有关的信息，比如导致事件的元素target，事件的类型，及其他特定的相关信息。例如鼠标操作导致的事件对象中会包含鼠标的位置，单双击等，而键盘操作导致的事件对象会包含按下的键等信息；   </li>
-<li>事件被触发时，会默认给事件处理程序传入一个参数e , 表示事件对象；通过e，我们可以获得其中包含的与事件有关的信息；   </li>
-<li>只有在事件处理程序执行期间，event对象才会存在，一旦事件处理程序执行完毕，event对象就会被销毁；   </li>
-<li>Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。事件通常与函数结合使用，函数不会在事件发生前被执行！   <h2 id="DOM事件"><a href="#DOM事件" class="headerlink" title="DOM事件"></a>DOM事件</h2></li>
-<li>兼容DOM的浏览器会自动将一个事件对象event传递给事件处理程序。<br>注：关于事件对象中的this，target，currentTarget,看个例子：（注：event.target不支持IE浏览器，应该用event.srcElement；还有 IE中通过attachment添加的事件是运行在全局作用域中的，this===window）</li>
-<li>在事件处理程序内部，对象this始终等于currentTarget的值，而target只包含时间的实际目标。如果直接将事件处理程序指给了实际目标，this与两者是相等的。如果事件处理程序指给了父元素，则this与currentTarget都是父节点。（事件冒泡到了父节点）。   </li>
-<li><p>（ 当事件绑定在真正的目标元素上时，this===target===currentTarget，而且绑定事件时是否捕获结果都是一样的，此时eventParse==2）   </p>
-<pre><code> // this,target,currentTarget,this===currentTarget
- $(&#39;#outer&#39;).on(&#39;click&#39;,&#39;#center&#39;,function(e){
- console.log(this.id);      //on()中间的参数是个过滤器,相当于将事件绑定到了#center上;此时点击#center将不会触发事件
- console.log(e.target.id);
- console.log(e.currentTarget.id);
- });
-
- $(&#39;#outer&#39;).on(&#39;click&#39;,function(e){
- console.log(this.id);
- console.log(e.target.id);
- console.log(e.currentTarget.id);
- });
-
- event.stopPropagation()   // 不能简单说阻止了事件的冒泡，其实也阻止了事件的继续捕获，确切的说应该是阻止事件的进一步传播
- var d1 = document.getElementById(&#39;d1&#39;);
- d1.addEventListener(&#39;click&#39;, function (evt) {
-     console.log(&#39;d1&#39;);
-     evt.stopPropagation();
- }, true);
- var d2 = document.getElementById(&#39;d2&#39;);
- d2.addEventListener(&#39;click&#39;, function () {
-     console.log(&#39;d2&#39;);
- }, true);
-
- //输出结果是d1   
-</code></pre><h2 id="IE中的事件对象"><a href="#IE中的事件对象" class="headerlink" title="IE中的事件对象"></a>IE中的事件对象</h2><p>IE中event参数是未定的，事件对象是作为window的一个属性存在的，因此可以通过window.event来访问event对象，不同于DOM级中event是作为参数直接传入和返回。<br>属性上与DOM也有不同：<br> <img src="/事件属性.jpg" alt="事件属性"><br>标准event方法：<br> <img src="/标准event方法.jpg" alt="标准event方法">   </p>
-<h2 id="跨浏览器的事件对象"><a href="#跨浏览器的事件对象" class="headerlink" title="跨浏览器的事件对象"></a>跨浏览器的事件对象</h2><p> //前文跨浏览器的事件处理程序已经作了描述，重点在于获取事件以及之后的兼容方法描述<br> var EventUtil = {</p>
-<pre><code> addHandlers: function (element, type, handler) {
-     if (element,addEventListener){
-         element.addEventListener(type, handler, false);
-     } else if (element.attachEvent) {   
-         element.attachEvent(&#39;on&#39; + type, handler);
-     } else {
-         element[&quot;on&quot; + type] = handler;
-     }
- },
-
- removeHandlers: function(element, type, handler) {
-     if (element,removeEventListener){
-         element.removeEventListener(type, handler, false);
-     } else if (element.detachEvent) {   
-         element.detachEvent(&#39;on&#39; + type, handler);
-     } else {
-         element[&quot;on&quot; + type] = null;
-     }
- },
-
- getEvent: function (e) {
-     return e?e:e.which;
- },
-
- getTarget: function (e) {
-     return e.target || event.srcElement;
- },
-
- //阻止默认行为
- preventDefault: function (e) {
-     if (e.preventDefault){
-         e.preventDefault();
-     } else {
-         e.returnValue = false;
-     }
- },
-
- //阻止冒泡
- stopPropagation: function (e) {
-     if (e.stopPropagation){
-         e.stopPropagation();
-     } else {
-         e.cancelBubble = true;
-     }
- }
-</code></pre><p> };<br> var myBtn=document.getElementById(‘my-btn’);<br> btn.onclick=function(event){</p>
-<pre><code> event=EventUtil.getEvent(event);
- EventUtil.preventDefault(event);
-</code></pre><p> };   </p>
-<h1 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h1></li>
-<li>每当将事件处理程序制定给元素时，运行中的浏览器代码与支持页面交互的JS代码之间就会建立一个连接，而这种连接越多，页面执行起来就越慢。考虑内存和性能问题，为了解决事件处理程序过多的问题，采用事件委托变得很有必要。（考虑到内存，也应该尽量减少不必要的事件处理程序，并且，对于内存中过时不用（删除了目标元素，但是相应的事件处理程序并没有移除）的“空事件处理程序”，也是很有必要将其移除的）   </li>
-<li>因为冒泡机制，比如既然点击子元素，也会触发父元素的点击事件，那我们完全可以将子元素的事件要做的事写到父元素的事件里，也就是将子元素的事件处理程序写到父元素的事件处理程序中，这就是事件委托；利用事件委托，只指定一个事件处理程序，就可以管理某一个类型的所有事件。   </li>
-<li><p>因为把事件绑定到了父节点上，因此省了绑定事件。就算后面新增的子节点也有了相关事件，删除部分子节点不用去销毁对应节点上绑定的事件。<br>父节点是通过event.target来找对应的子节点的。（事件处理程序中的this值始终等于currentTarget的值，指向的是绑定到的那个元素）<br>如： </p>
-<pre><code> var myLinks=document.getElementById(&#39;my-links&#39;);
- myHandlers=function(event){
-     event=EventUtil.getEvent(event);
-     var target=EventUtil.getTarget(event);
-
-     switch(target.id){
-         case &#39;item-1&#39;:
-             location.href=&#39;http://xxxxxx/&#39;;
-             break;
-         case &#39;item-2&#39;:
-             document.title=&#39;event&#39;;
-             break;
-         case &#39;item-3&#39;:
-             console.log(&#39;hi&#39;);
-             break;
-     }
- };
- EventUtil.addHandler(myLinks,&#39;click&#39;,myHandlers);
-</code></pre></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
-    <div>
-        
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/布局方式/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2724,179 +2878,13 @@ var app = new Vue({
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="JHChen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jhchen の BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/18/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-18T15:57:35+08:00">
-                2018-11-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  75
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
-    <div>
-        
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2942,7 +2930,7 @@ var app = new Vue({
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
