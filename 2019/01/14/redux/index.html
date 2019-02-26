@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="引用类型,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -86,18 +86,17 @@
 
 
 
-<meta name="description" content="正则表达式的定义 字面量形式 构造函数形式 RegExp实例属性 RegExp实例方法 exec() test()   RegExp构造函数属性     模式的局限性   正则表达式是用于匹配字符串中字符组合的模式。在JS中，正则表达式也是对象。正则表达式中，可以进行“分组”，用一对圆括号（捕获括号）括起来的表达式就是一个分组，分组之后可以将各组子表达式的匹配结果分别处理。正则表达式的匹配模式">
-<meta name="keywords" content="引用类型">
+<meta name="description" content="reduxreact组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RegExp">
-<meta property="og:url" content="http://yoursite.com/2018/12/26/RegExp/index.html">
+<meta property="og:title" content="jhchen の BLOG">
+<meta property="og:url" content="http://yoursite.com/2019/01/14/redux/index.html">
 <meta property="og:site_name" content="jhchen の BLOG">
-<meta property="og:description" content="正则表达式的定义 字面量形式 构造函数形式 RegExp实例属性 RegExp实例方法 exec() test()   RegExp构造函数属性     模式的局限性   正则表达式是用于匹配字符串中字符组合的模式。在JS中，正则表达式也是对象。正则表达式中，可以进行“分组”，用一对圆括号（捕获括号）括起来的表达式就是一个分组，分组之后可以将各组子表达式的匹配结果分别处理。正则表达式的匹配模式">
+<meta property="og:description" content="reduxreact组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-26T13:07:08.887Z">
+<meta property="og:updated_time" content="2019-01-14T08:29:12.444Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RegExp">
-<meta name="twitter:description" content="正则表达式的定义 字面量形式 构造函数形式 RegExp实例属性 RegExp实例方法 exec() test()   RegExp构造函数属性     模式的局限性   正则表达式是用于匹配字符串中字符组合的模式。在JS中，正则表达式也是对象。正则表达式中，可以进行“分组”，用一对圆括号（捕获括号）括起来的表达式就是一个分组，分组之后可以将各组子表达式的匹配结果分别处理。正则表达式的匹配模式">
+<meta name="twitter:title" content="jhchen の BLOG">
+<meta name="twitter:description" content="reduxreact组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过s">
 
 
 
@@ -127,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/26/RegExp/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/14/redux/">
 
 
 
 
 
-  <title>RegExp | jhchen の BLOG</title>
+  <title> | jhchen の BLOG</title>
   
 
 
@@ -266,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/RegExp/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/redux/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JHChen">
@@ -283,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">RegExp</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -295,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T21:06:42+08:00">
-                2018-12-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-14T10:15:28+08:00">
+                2019-01-14
               </time>
             
 
@@ -327,7 +326,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.2k
                 </span>
               
 
@@ -364,107 +363,103 @@
       
 
       
-        <!-- TOC -->
-<ul>
-<li><a href="#正则表达式的定义">正则表达式的定义</a><ul>
-<li><a href="#字面量形式">字面量形式</a></li>
-<li><a href="#构造函数形式">构造函数形式</a><ul>
-<li><a href="#regexp实例属性">RegExp实例属性</a></li>
-<li><a href="#regexp实例方法">RegExp实例方法</a><ul>
-<li><a href="#exec">exec()</a></li>
-<li><a href="#test">test()</a></li>
+        <h1 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h1><p>react组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。<br>redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过store对象来负责执行action动作，获取state应用状态、订阅状态改变时触发的事件。<br>redux提供的是一种应用状态管理问题的解决思路。    </p>
+<h1 id="action"><a href="#action" class="headerlink" title="action"></a>action</h1><ul>
+<li>action   <ul>
+<li>action type   </li>
+<li>action payload   </li>
 </ul>
 </li>
-<li><a href="#regexp构造函数属性">RegExp构造函数属性</a></li>
+<li>action Creator   </li>
+<li>action Creator Generator      </li>
 </ul>
-</li>
-</ul>
-</li>
-<li><a href="#模式的局限性">模式的局限性</a></li>
-</ul>
-<!-- /TOC -->
-<p>正则表达式是用于匹配字符串中字符组合的模式。在JS中，正则表达式也是对象。<br>正则表达式中，可以进行“分组”，用一对圆括号（捕获括号）括起来的表达式就是一个分组，分组之后可以将各组子表达式的匹配结果分别处理。<br>正则表达式的匹配模式支持以下3个标志：   </p>
-<ol>
-<li>g: 表示全局（global）模式，模式将被应用于多有字符串，发现第一个匹配项后不会停止；   </li>
-<li>i: 表示不区分大小写（case-insestive）模式；   </li>
-<li>m: 表示多行（multiline）模式，即在到达一行末尾时还会继续查找下一行中是否存在与模式匹配的项。   </li>
-</ol>
-<p>正则表达式中的元字符包括：<code>([{\^$|?*+.}])</code>，因此，如果想要匹配这些字符串，pattern中的所有元字符都必须转义。   </p>
-<h2 id="正则表达式的定义"><a href="#正则表达式的定义" class="headerlink" title="正则表达式的定义"></a>正则表达式的定义</h2><h3 id="字面量形式"><a href="#字面量形式" class="headerlink" title="字面量形式"></a>字面量形式</h3><p>var expression1 = /pattern/flags;   </p>
-<h3 id="构造函数形式"><a href="#构造函数形式" class="headerlink" title="构造函数形式"></a>构造函数形式</h3><p>RegExp的构造函数接收两个参数，一个是要匹配的字符串模式，另一个是可选的标志字符串。<br>var expression2 = new RegExp(‘[bc]at’, ‘i’);<br>以上，expression1和expression2是完全等价的正则表达式，但是传递给RegExp构造函数的两个参数都是字符串。（注意元字符的双重转义）<br>但是，字面量形式的正则表达式始终共享一个RegExp实例，实例属性不会重置，而构造函数创建的正则表达式，每一个新RegExp都是一个新实例，所以，第二种方法能循环调用实例属性，而第一种方法则不能。   </p>
-<pre><code>var re = null;
-    i;
-for(i=0; i&lt;10; i++) {
-    re = /cat/g;
-    re.test(&#39;catastrongophe&#39;);
+<p>在形式上，action就是带有type属性的JS对象。在redux的约定中，将所有改变应用状态的操作规范为一个个action，在action中，也可以附上要用来修改应用状态state的数据：   </p>
+<pre><code>{
+    type: &#39;DD_TODO&#39;,
+    text: &#39;use redux&#39;
 }
-for(i=0;i&lt;10;i++) {
-    re = new RegExp(&#39;cat&#39;, &#39;g&#39;);
-    re.test(&#39;catastrongophe&#39;);
+{
+    type: &#39;LOAD_ARTICLE&#39;,
+    response: { ... }
 }   
-</code></pre><h4 id="RegExp实例属性"><a href="#RegExp实例属性" class="headerlink" title="RegExp实例属性"></a>RegExp实例属性</h4><ol>
-<li>global：布尔值，表示是否设置了g标志；   </li>
-<li>ignoreCase：布尔值，表示是否设置了i标志；   </li>
-<li>lastIndex：整数，表示开始搜索下一个匹配项的字符位置；   </li>
-<li>multiline：布尔值，表示是否设置了m标志；   </li>
-<li>source：正则表达式的字符串表示，按照字面量形式而传入构造函数中的字符串模式返回；   </li>
-</ol>
-<h4 id="RegExp实例方法"><a href="#RegExp实例方法" class="headerlink" title="RegExp实例方法"></a>RegExp实例方法</h4><h5 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h5><p>exec()是专门为捕获组而设计的，接收一个参数，即要应用模式的字符串，返回包含第一的匹配项信息的数组，或者null；返回的数组虽然是Array的实例，但是有index和input属性，前者表示匹配项在字符串中的位置，后者表示应用模式的字符串。在返回的数组中，第一项是与整个模式匹配的字符串，其他项是与模式中捕获组匹配的字符串。若无捕获组则该数组只有第一项或为null。并且，该方法忽略g标志，但是每次匹配lastIndex属性会相应改变。   </p>
-<h5 id="test"><a href="#test" class="headerlink" title="test()"></a>test()</h5><p>test()接收字符串作为唯一的一个参数，返回true或false。适用于仅判断目标字符串与某个模式是否匹配。（验证输入等）   </p>
-<h4 id="RegExp构造函数属性"><a href="#RegExp构造函数属性" class="headerlink" title="RegExp构造函数属性"></a>RegExp构造函数属性</h4><table>
-<thead>
-<tr>
-<th>长属性名</th>
-<th>短属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>input</td>
-<td>$_</td>
-<td>最近一次要匹配的字符串</td>
-</tr>
-<tr>
-<td>lastMatch</td>
-<td>$&amp;</td>
-<td>最近一次的匹配项</td>
-</tr>
-<tr>
-<td>lastParen</td>
-<td>$+</td>
-<td>最近一次匹配的捕获组</td>
-</tr>
-<tr>
-<td>leftContext</td>
-<td>$`</td>
-<td>input字符串中lastMatch之前的文本</td>
-</tr>
-<tr>
-<td>multiline</td>
-<td>$*</td>
-<td>布尔值，标志是否所有的表达式都使用多行模式</td>
-</tr>
-<tr>
-<td>rightContext</td>
-<td>$’</td>
-<td>input字符串中lastMatch之后的文本</td>
-</tr>
-</tbody>
-</table>
-<p>注意：短属性名必须通过方括号访问：RegExp.[‘$&amp;’]，另外还有9个用于存储不厚重的构造函数属性，RegExp.$1、…RegExp.$9，分别用于存储第1到第9个捕获组。   </p>
-<h2 id="模式的局限性"><a href="#模式的局限性" class="headerlink" title="模式的局限性"></a>模式的局限性</h2><p>下面列举了ECMAScript正则表达式不支持的特性：   </p>
-<ol>
-<li>匹配字符串开始和结尾的锚（但支持以插入^\&amp;来匹配字符串的开始和结尾）；   </li>
-<li>向后查找（完全支持向前查找）；  </li>
-<li>并集和交集；   </li>
-<li>原子组；   </li>
-<li>Unicode支持（除单个字符外，如\uffff；   </li>
-<li>命名的捕获组（但支持编号的捕获组）；   </li>
-<li>s(single，单行)和x（free-spacing，无间隔）匹配模式；   </li>
-<li>条件匹配；   </li>
-<li>正则表达式注释。   </li>
-</ol>
+</code></pre><p>action有两个作用，一是定义应用可以进行的动作或操作的类型，另一个是传递改变应用状态的数据。在redux的约定中，action必须包含type属性。附Flux Standard Action标准：   </p>
+<pre><code>{
+    // action 类型
+    type: &#39;INCREMENT&#39;,
+    // payload 中返回我们要传递的数据，用来修改应用 state
+    payload: {
+        num: 1  
+    },
+    // payload 数据未获取成功时返回 true
+    error: false,
+    // 一些不必要在 payload 中传递的其他数据
+    meta: {
+        success: true
+    }
+}   
+</code></pre><p>根据Flux标准，action必须为JS对象，必须包含type属性，可以有其他几个属性。除此之外不允许有其他属性。    </p>
+<h1 id="action-creator创建action"><a href="#action-creator创建action" class="headerlink" title="action creator创建action"></a>action creator创建action</h1><p>示例：   </p>
+<pre><code>function addNumber(num) {
+    return { type: &#39;INCREMENT&#39;, num }
+}
+
+function minusNumber(num) {
+    return { type: &#39;DECREMENT&#39;, num }
+}
+
+...
+
+increment = () =&gt; {
+    this.dispatch(addNumber(1));
+};
+
+decrement = () =&gt; {
+    this.dispatch(minusNumber(-1));
+};    
+</code></pre><p>还可以使用generator：   </p>
+<pre><code>// actionTypes.js
+export const INCREMENT = &#39;INCREMENT&#39;
+export const DECREMENT = &#39;DECREMENT&#39;
+
+// action.js
+import { INCREMENT, DECREMENT } from &#39;./actionTypes&#39;
+
+const counterActionGenerator = (type, num) =&gt; (num) =&gt; {
+    let action = { type, num : num }
+    return action
+}
+
+const addNumber = counterActionGenerator(INCREMENT, null)
+const minusNumber = counterActionGenerator(DECREMENT, null)   
+</code></pre><h1 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h1><p>在redux中，根据应用状态和触发的action返回新的状态的函数成为reducer。命名的由来是因为这种函数与被传入Array.prototype.reduce(reducer, ?initialValue)的回调函数属于相同的类型。在JS中，reduce属于高阶函数，它能将其中的回调函数reducer递归应用到数组的所有元素上并返回一个独立的值。<br>值得注意的是，reducer的模型，它只是根据传入的状态数据state和action老判断返回一个新的state，reducer必须死一个纯函数，纯函数主要含义就是她不可以修改影响输入值，并且没有副作用，副作用指的是例如函数中一些一部调用或者会影响函数作用域之外的变量一类的操作。使用react技术栈时尤其要注意：保证数据的不可变性（immutability）。<br>保证reducer返回的是一个新的state数据，而不能直接修改传入的数值，首先，数据发生改变，在react应用当中，届满也要跟着相应改变重新渲染，这一步之间需要有一个比较差异的diff操作，因此改变之前和改变之后的数据都需要使用到。另外使用redux也能实现一些诸如时间旅行的功能，这些功能也需要依赖不可变的数据来实现。    </p>
+<h1 id="store"><a href="#store" class="headerlink" title="store"></a>store</h1><ul>
+<li>store   <ul>
+<li>getState</li>
+<li>disPatch</li>
+<li>subscribe</li>
+<li>unsubscribe</li>
+</ul>
+</li>
+<li><p>createStore</p>
+<ul>
+<li>reducer</li>
+<li><p>defaultState<br>getState方法是用来获取当前存储中的状态数据。<br>dispatch是具体讲传入的action操作执行并触发listeners时间监听器的地方。<br>subscribe用来添加listener的方法，同时会返回一个unsubscribe的方法用来取消listener。listener是当状态数据改变时会自动触发的事件。     </p>
+<p>const counter = (state = 0, action) =&gt; {<br>switch (action.type) {<br>  case ‘INCREMENT’:<br>  return state + 1;<br>  case ‘DECREMENT’:<br>  return state - 1;<br>  default:<br>  return state;<br>}<br>}<br>// 这里使用的是ES6的解构赋值的方法<br>const { createStore } = Redux;<br>// import { createStore } from ‘redux’;</p>
+<p>const store = createStore(counter);<br>console.log(store.getState());</p>
+<p>/<em> document.addEventListener(‘click’, () =&gt; {<br>store.dispatch({ type: ‘INCREMENT’ });<br>}); </em>/</p>
+<p>const render = () =&gt; {<br>document.getElementById(‘root’).innerText = store.getState();<br>};</p>
+<p>store.subscribe(() =&gt; { console.log(store.getState()) })<br>let unsubscribe = store.subscribe(render);</p>
+<p>render();</p>
+<p>document.getElementById(‘increment’).addEventListener(‘click’,function() {<br>store.dispatch({ type: ‘INCREMENT’ });<br>})</p>
+<p>document.getElementById(‘decrement’).addEventListener(‘click’,function() {<br>store.dispatch({ type: ‘DECREMENT’ });<br>})</p>
+<p>document.getElementById(‘unsubscribe’).addEventListener(‘click’,function() {<br>unsubscribe()<br>console.log(‘unsubscribed!’)<br>})   </p>
+<h1 id="middleware"><a href="#middleware" class="headerlink" title="middleware"></a>middleware</h1><p>一般意义下可以译为中间件，如用作处理登录验证的模块。<br>在redux应用中，运用middleware可以不更改redux原生方法就能观察到action被触发以及应用状态前后的变化。   </p>
+<h1 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h1><h2 id="provider"><a href="#provider" class="headerlink" title="provider"></a>provider</h2><p>provider的作用向应用传递store的一个容器组件，一般都会放在应用组件的最外层。   </p>
+<h2 id="connect"><a href="#connect" class="headerlink" title="connect()"></a>connect()</h2><p>connect方法可以根据现有的展示组件自动生成一个容器组件。</p>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -491,12 +486,6 @@ for(i=0;i&lt;10;i++) {
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/引用类型/" rel="tag"><i class="fa fa-tag"></i> 引用类型</a>
-          
-        </div>
-      
 
       
       
@@ -506,8 +495,8 @@ for(i=0;i&lt;10;i++) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/26/web语义化/" rel="next" title="web语义化">
-                <i class="fa fa-chevron-left"></i> web语义化
+              <a href="/2018/12/26/js事件及事件处理/" rel="next" title="js事件及事件处理">
+                <i class="fa fa-chevron-left"></i> js事件及事件处理
               </a>
             
           </div>
@@ -516,8 +505,8 @@ for(i=0;i&lt;10;i++) {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/26/js事件及事件处理/" rel="prev" title="js事件及事件处理">
-                js事件及事件处理 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/15/ES6标准入门/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -652,7 +641,7 @@ for(i=0;i&lt;10;i++) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式的定义"><span class="nav-number">1.</span> <span class="nav-text">正则表达式的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字面量形式"><span class="nav-number">1.1.</span> <span class="nav-text">字面量形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数形式"><span class="nav-number">1.2.</span> <span class="nav-text">构造函数形式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RegExp实例属性"><span class="nav-number">1.2.1.</span> <span class="nav-text">RegExp实例属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RegExp实例方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">RegExp实例方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#exec"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">exec()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#test"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">test()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RegExp构造函数属性"><span class="nav-number">1.2.3.</span> <span class="nav-text">RegExp构造函数属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式的局限性"><span class="nav-number">2.</span> <span class="nav-text">模式的局限性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redux"><span class="nav-number">1.</span> <span class="nav-text">redux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#action"><span class="nav-number">2.</span> <span class="nav-text">action</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#action-creator创建action"><span class="nav-number">3.</span> <span class="nav-text">action creator创建action</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reducer"><span class="nav-number">4.</span> <span class="nav-text">reducer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#store"><span class="nav-number">5.</span> <span class="nav-text">store</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#middleware"><span class="nav-number">6.</span> <span class="nav-text">middleware</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react-redux"><span class="nav-number">7.</span> <span class="nav-text">react-redux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#provider"><span class="nav-number">7.1.</span> <span class="nav-text">provider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#connect"><span class="nav-number">7.2.</span> <span class="nav-text">connect()</span></a></li></ol></li></ol></div>
             
 
           </div>

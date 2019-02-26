@@ -96,7 +96,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/12/26/js事件及事件处理/事件属性.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/12/26/js事件及事件处理/标准event方法.jpg">
-<meta property="og:updated_time" content="2018-12-31T06:01:56.354Z">
+<meta property="og:updated_time" content="2018-12-31T06:07:02.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js事件及事件处理">
 <meta name="twitter:description" content="事件以及事件流 DOM事件流   事件处理程序 HTML事件处理程序 DOM0级事件处理程序 DOM2级事件处理程序 IE事件处理程序 跨浏览器的事件处理程序   事件对象 DOM事件 IE中的事件对象 跨浏览器的事件对象   事件委托   事件以及事件流事件，就是文档或浏览器窗口中发生的一些交互瞬间（用户或浏览器本身执行的某种动作）。事件流描述的是从页面中接收事件的顺序。     IE浏览器">
@@ -274,7 +274,7 @@
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JHChen">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="/source/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
@@ -474,7 +474,6 @@ btn5.onclick = function() {
  getTarget: function (e) {
      return e.target || event.srcElement;
  },
-
  //阻止默认行为
  preventDefault: function (e) {
      if (e.preventDefault){
@@ -483,7 +482,6 @@ btn5.onclick = function() {
          e.returnValue = false;
      }
  },
-
  //阻止冒泡
  stopPropagation: function (e) {
      if (e.stopPropagation){
@@ -492,7 +490,9 @@ btn5.onclick = function() {
          e.cancelBubble = true;
      }
  }
-</code></pre><p> };<br> var btn4=document.getElementById(‘btn4’);<br> var handlers3=function(){<br> console.log(‘123’)<br> };<br> EventUtil.addHandlers(btn4,’click’,handlers3);<br> //……<br> EventUtil.removeHandlers(btn4,’click’,handlers3);   </p>
+</code></pre><p> }<br> var btn4=document.getElementById(‘btn4’);<br> var handlers3=function(){</p>
+<pre><code> console.log(&#39;123&#39;)
+</code></pre><p> };<br> EventUtil.addHandlers(btn4,’click’,handlers3);<br> //……<br> EventUtil.removeHandlers(btn4,’click’,handlers3);   </p>
 <h1 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h1></li>
 <li>兼容触发DOM上的某个事件时，会产生一个事件对象event，这个对象中包含了所有与事件有关的信息，比如导致事件的元素target，事件的类型，及其他特定的相关信息。例如鼠标操作导致的事件对象中会包含鼠标的位置，单双击等，而键盘操作导致的事件对象会包含按下的键等信息；   </li>
 <li>事件被触发时，会默认给事件处理程序传入一个参数e , 表示事件对象；通过e，我们可以获得其中包含的与事件有关的信息；   </li>
@@ -652,6 +652,10 @@ btn5.onclick = function() {
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/01/14/redux/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -716,7 +720,7 @@ btn5.onclick = function() {
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="JHChen">
+              <img class="site-author-image" itemprop="image" src="/source/images/avatar.jpg" alt="JHChen">
             
               <p class="site-author-name" itemprop="name">JHChen</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -729,7 +733,7 @@ btn5.onclick = function() {
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -751,7 +755,7 @@ btn5.onclick = function() {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -805,7 +809,7 @@ btn5.onclick = function() {
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -819,7 +823,7 @@ btn5.onclick = function() {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">12.7k</span>
+    <span title="Site words total count">14.1k</span>
   
 
 </div>
