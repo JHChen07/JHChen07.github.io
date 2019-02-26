@@ -89,7 +89,7 @@
 <meta name="description" content="vue.js 2.0 生命周期钩子 生命周期钩子函数 生命周期探究 数据挂载完成 数据更新 销毁实例 create和mounted相关 destroy相关       vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    生命">
 <meta name="keywords" content="Vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue2.0生命周期">
+<meta property="og:title" content="Vue生命周期">
 <meta property="og:url" content="http://yoursite.com/2018/11/19/Vue生命周期/index.html">
 <meta property="og:site_name" content="jhchen の BLOG">
 <meta property="og:description" content="vue.js 2.0 生命周期钩子 生命周期钩子函数 生命周期探究 数据挂载完成 数据更新 销毁实例 create和mounted相关 destroy相关       vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    生命">
@@ -99,9 +99,9 @@
 <meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期挂载结束.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期数据更新.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期销毁.png">
-<meta property="og:updated_time" content="2019-02-26T03:03:44.572Z">
+<meta property="og:updated_time" content="2019-02-26T03:08:28.101Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue2.0生命周期">
+<meta name="twitter:title" content="Vue生命周期">
 <meta name="twitter:description" content="vue.js 2.0 生命周期钩子 生命周期钩子函数 生命周期探究 数据挂载完成 数据更新 销毁实例 create和mounted相关 destroy相关       vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    生命">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期流程图.png">
 
@@ -139,7 +139,7 @@
 
 
 
-  <title>Vue2.0生命周期 | jhchen の BLOG</title>
+  <title>Vue生命周期 | jhchen の BLOG</title>
   
 
 
@@ -289,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Vue2.0生命周期</h1>
+          <h1 class="post-title" itemprop="name headline">Vue生命周期</h1>
         
 
         <div class="post-meta">
@@ -355,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  953
+                  954
                 </span>
               
 
@@ -496,11 +496,12 @@ var app = new Vue({
 <li>beforeMounted：完成了el和data的初始化   </li>
 <li>mounted：完成挂载   </li>
 <li>beforeMounted钩子处，el并没有渲染新的值，这就是Virtual DOM，先把坑占住了。到后面mounted挂载的时候再把值渲染进去   </li>
-<li><p>update相关   </p>
-<p> e.g. app.message = ‘yes !! i do’<br>当data里的值被修改后，将会出发update的操作   </p>
-<h3 id="destroy相关"><a href="#destroy相关" class="headerlink" title="destroy相关"></a>destroy相关</h3><p> app.$destroy();<br>销毁完成后，我们再重新改变message的值，vue不在对此动作进行响应了。但是原先生成的DOM元素还在，相当于销毁后就不再受vue控制了。</p>
-</li>
+<li>update相关   </li>
 </ol>
+<pre><code>e.g. app.message = &#39;yes !! i do&#39;
+</code></pre><p>当data里的值被修改后，将会出发update的操作   </p>
+<h3 id="destroy相关"><a href="#destroy相关" class="headerlink" title="destroy相关"></a>destroy相关</h3><pre><code>app.$destroy();   
+</code></pre><p>销毁完成后，我们再重新改变message的值，vue不在对此动作进行响应了。但是原先生成的DOM元素还在，相当于销毁后就不再受vue控制了。</p>
 
       
     </div>

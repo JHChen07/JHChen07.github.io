@@ -2163,7 +2163,7 @@ for(i=0;i&lt;10;i++) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/19/Vue生命周期/" itemprop="url">Vue2.0生命周期</a></h1>
+                <a class="post-title-link" href="/2018/11/19/Vue生命周期/" itemprop="url">Vue生命周期</a></h1>
         
 
         <div class="post-meta">
@@ -2229,7 +2229,7 @@ for(i=0;i&lt;10;i++) {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  953
+                  954
                 </span>
               
 
@@ -2372,11 +2372,12 @@ var app = new Vue({
 <li>beforeMounted：完成了el和data的初始化   </li>
 <li>mounted：完成挂载   </li>
 <li>beforeMounted钩子处，el并没有渲染新的值，这就是Virtual DOM，先把坑占住了。到后面mounted挂载的时候再把值渲染进去   </li>
-<li><p>update相关   </p>
-<p> e.g. app.message = ‘yes !! i do’<br>当data里的值被修改后，将会出发update的操作   </p>
-<h3 id="destroy相关"><a href="#destroy相关" class="headerlink" title="destroy相关"></a>destroy相关</h3><p> app.$destroy();<br>销毁完成后，我们再重新改变message的值，vue不在对此动作进行响应了。但是原先生成的DOM元素还在，相当于销毁后就不再受vue控制了。</p>
-</li>
+<li>update相关   </li>
 </ol>
+<pre><code>e.g. app.message = &#39;yes !! i do&#39;
+</code></pre><p>当data里的值被修改后，将会出发update的操作   </p>
+<h3 id="destroy相关"><a href="#destroy相关" class="headerlink" title="destroy相关"></a>destroy相关</h3><pre><code>app.$destroy();   
+</code></pre><p>销毁完成后，我们再重新改变message的值，vue不在对此动作进行响应了。但是原先生成的DOM元素还在，相当于销毁后就不再受vue控制了。</p>
 
           
         
