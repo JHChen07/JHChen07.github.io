@@ -96,7 +96,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/11/18/布局方式/flex弹性布局.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/18/布局方式/flex支持浏览器.png">
-<meta property="og:updated_time" content="2019-02-26T03:45:52.241Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/18/布局方式/flex模型.png">
+<meta property="og:updated_time" content="2019-02-26T03:49:47.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="布局方式">
 <meta name="twitter:description" content="CSS常用布局 1.两栏布局 2.三栏布局 3.水平居中 4.水平居中及垂直居中   flex布局   CSS常用布局1.两栏布局   一栏定宽，一栏自适应。 实现方式有两种： float+margin position：absolute     2.三栏布局   两边定宽，然后中间的width是auto的，可以自适应内容，再加上margin边距来进行设定。 有四种实现方式 左右两栏float">
@@ -352,7 +353,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  874
+                  863
                 </span>
               
 
@@ -440,14 +441,10 @@
 </ol>
 <h1 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h1><p><img src="/2018/11/18/布局方式/flex弹性布局.png" alt="flex弹性布局"></p>
 <ol>
-<li><p>Flex 布局，可以简便、完整、响应式地实现各种页面布局。Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。flex只支持IE 10+。</p>
-<p> <img src="/2018/11/18/布局方式/flex支持浏览器.png" alt="flex支持情况"></p>
+<li><p>Flex 布局，可以简便、完整、响应式地实现各种页面布局。Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。flex只支持IE 10+。<br> <img src="/2018/11/18/布局方式/flex支持浏览器.png" alt="flex支持情况"></p>
 </li>
-<li><p>flex布局，子元素的<code>float</code>、<code>clear</code>和<code>vertical-align</code>属性失效。   </p>
+<li><p>flex布局，子元素的<code>float</code>、<code>clear</code>和<code>vertical-align</code>属性失效。<br> <img src="/2018/11/18/布局方式/flex模型.png" alt="flex模型">   </p>
 </li>
-</ol>
-<pre><code>![flex模型](布局方式/flex模型.png)   
-</code></pre><ol start="3">
 <li><p>flex元素中，有两根轴，主轴<code>main axis</code>（默认水平，方向向右），交叉轴<code>cross axis</code>（位置是主轴顺时针旋转90°），主轴开始的位置为<code>main start</code>，主轴结束的位置为<code>main end</code>。交叉轴同理。<br>flex的子元素中，占据主轴的空间为<code>main size</code>，占据的交叉轴为<code>cross size</code>。   </p>
 </li>
 <li><p>父容器属性   </p>
