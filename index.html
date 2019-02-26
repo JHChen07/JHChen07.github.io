@@ -918,7 +918,7 @@ document.getElementById(&#39;unsubscribe&#39;).addEventListener(&#39;click&#39;,
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/js事件及事件处理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/JS事件及事件处理/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JHChen">
@@ -937,7 +937,7 @@ document.getElementById(&#39;unsubscribe&#39;).addEventListener(&#39;click&#39;,
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/26/js事件及事件处理/" itemprop="url">js事件及事件处理</a></h1>
+                <a class="post-title-link" href="/2018/12/26/JS事件及事件处理/" itemprop="url">js事件及事件处理</a></h1>
         
 
         <div class="post-meta">
@@ -1093,64 +1093,73 @@ btn5.onclick = function() {
  // 确保了传入的事件处理函数是同一个函数对象
  btn2.addEventListener(&#39;click&#39;,handlers,false);
  btn2.removeEventListener(&#39;click&#39;,handlers.false);   
-</code></pre><h2 id="IE事件处理程序"><a href="#IE事件处理程序" class="headerlink" title="IE事件处理程序"></a>IE事件处理程序</h2></li>
-<li><p>IE用了attachEvent()，detachEvent()，接收两个参数，事件名称（和DOM2级稍有不同）和事件处理程序，通过attachEvent()添加的事件处理程序都会被添加到冒泡阶段，IE8及以前只支持事件冒泡。与addEventListener（）一样，attachEvent（）也可以添加多个事件处理程序。但是执行顺序却是与添加的顺序相反的顺序。   </p>
-</li>
-<li><p>IE事件处理与DOM0级方法的主要区别在于事件处理程序的作用域。后者是在其所属元素的作用域内运行，而前者则是会在全局作用域中进行，因此，此时的this为window。   </p>
+</code></pre></li>
+</ol>
+<h2 id="IE事件处理程序"><a href="#IE事件处理程序" class="headerlink" title="IE事件处理程序"></a>IE事件处理程序</h2><ol>
+<li>IE用了attachEvent()，detachEvent()，接收两个参数，事件名称（和DOM2级稍有不同）和事件处理程序，通过attachEvent()添加的事件处理程序都会被添加到冒泡阶段，IE8及以前只支持事件冒泡。与addEventListener（）一样，attachEvent（）也可以添加多个事件处理程序。但是执行顺序却是与添加的顺序相反的顺序。   </li>
+<li>IE事件处理与DOM0级方法的主要区别在于事件处理程序的作用域。后者是在其所属元素的作用域内运行，而前者则是会在全局作用域中进行，因此，此时的this为window。   </li>
+</ol>
 <h2 id="跨浏览器的事件处理程序"><a href="#跨浏览器的事件处理程序" class="headerlink" title="跨浏览器的事件处理程序"></a>跨浏览器的事件处理程序</h2><p>在同一个对象上注册事件，并不一定按照注册顺序执行，冒泡或捕获模式会影响其被接触的顺序。   </p>
-<p> //创建的方法是addHandlers(),removeHandlers(),这两个方法属于一个叫EventUtil的对象<br> var EventUtil = {</p>
-<pre><code> // 视情况分别使用DOM2级、IE方法、DOM0级方法添加事件，注意DOM0级对每个事件只支持一个事件处理函数
- addHandlers: function (element, type, handler) {
-     if (element,addEventListener){
-         element.addEventListener(type, handler, false);
-     } else if (element.attachEvent) {   
-         element.attachEvent(&#39;on&#39; + type, handler);
-     } else {
-         element[&quot;on&quot; + type] = handler;
-     }
- },
+<pre><code>//创建的方法是addHandlers(),removeHandlers(),这两个方法属于一个叫EventUtil的对象
+var EventUtil = {
+    // 视情况分别使用DOM2级、IE方法、DOM0级方法添加事件，注意DOM0级对每个事件只支持一个事件处理函数
+    addHandlers: function (element, type, handler) {
+        if (element,addEventListener){
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent) {   
+            element.attachEvent(&#39;on&#39; + type, handler);
+        } else {
+            element[&quot;on&quot; + type] = handler;
+        }
+    },
 
- removeHandlers: function(element, type, handler) {
-     if (element,removeEventListener){
-         element.removeEventListener(type, handler, false);
-     } else if (element.detachEvent) {   
-         element.detachEvent(&#39;on&#39; + type, handler);
-     } else {
-         element[&quot;on&quot; + type] = null;
-     }
- },
- // 获取事件对象
- getEvent: function (e) {
-     return e?e:e.which;
- },
- // 获取事件的实际目标
- getTarget: function (e) {
-     return e.target || event.srcElement;
- },
- //阻止默认行为
- preventDefault: function (e) {
-     if (e.preventDefault){
-         e.preventDefault();
-     } else {
-         e.returnValue = false;
-     }
- },
- //阻止冒泡
- stopPropagation: function (e) {
-     if (e.stopPropagation){
-         e.stopPropagation();
-     } else {
-         e.cancelBubble = true;
-     }
- }
-</code></pre><p> }<br> var btn4=document.getElementById(‘btn4’);<br> var handlers3=function(){</p>
-<pre><code> console.log(&#39;123&#39;)
-</code></pre><p> };<br> EventUtil.addHandlers(btn4,’click’,handlers3);<br> EventUtil.removeHandlers(btn4,’click’,handlers3);   </p>
-<h1 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h1></li>
+    removeHandlers: function(element, type, handler) {
+        if (element,removeEventListener){
+            element.removeEventListener(type, handler, false);
+        } else if (element.detachEvent) {   
+            element.detachEvent(&#39;on&#39; + type, handler);
+        } else {
+            element[&quot;on&quot; + type] = null;
+        }
+    },
+    // 获取事件对象
+    getEvent: function (e) {
+        return e?e:e.which;
+    },
+    // 获取事件的实际目标
+    getTarget: function (e) {
+        return e.target || event.srcElement;
+    },
+    //阻止默认行为
+    preventDefault: function (e) {
+        if (e.preventDefault){
+            e.preventDefault();
+        } else {
+            e.returnValue = false;
+        }
+    },
+    //阻止冒泡
+    stopPropagation: function (e) {
+        if (e.stopPropagation){
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+    }
+}
+var btn4=document.getElementById(&#39;btn4&#39;);
+var handlers3=function(){
+    console.log(&#39;123&#39;)
+};
+EventUtil.addHandlers(btn4,&#39;click&#39;,handlers3);
+EventUtil.removeHandlers(btn4,&#39;click&#39;,handlers3);   
+</code></pre><h1 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h1><ol>
 <li>兼容触发DOM上的某个事件时，会产生一个事件对象event，这个对象中包含了所有与事件有关的信息，比如导致事件的元素target，事件的类型，及其他特定的相关信息。例如鼠标操作导致的事件对象中会包含鼠标的位置，单双击等，而键盘操作导致的事件对象会包含按下的键等信息；   </li>
 <li>事件被触发时，会默认给事件处理程序传入一个参数e , 表示事件对象；通过e，我们可以获得其中包含的与事件有关的信息；   </li>
 <li>只有在事件处理程序执行期间，event对象才会存在，一旦事件处理程序执行完毕，event对象就会被销毁；   </li>
-<li>Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。事件通常与函数结合使用，函数不会在事件发生前被执行！   <h2 id="DOM事件"><a href="#DOM事件" class="headerlink" title="DOM事件"></a>DOM事件</h2></li>
+<li>Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。事件通常与函数结合使用，函数不会在事件发生前被执行！   </li>
+</ol>
+<h2 id="DOM事件"><a href="#DOM事件" class="headerlink" title="DOM事件"></a>DOM事件</h2><ol>
 <li>兼容DOM的浏览器会自动将一个事件对象event传递给事件处理程序。<br>注：关于事件对象中的this，target，currentTarget,看个例子：（注：event.target不支持IE浏览器，应该用event.srcElement；还有 IE中通过attachment添加的事件是运行在全局作用域中的，this===window）</li>
 <li>在事件处理程序内部，对象this始终等于currentTarget的值，而target只包含时间的实际目标。如果直接将事件处理程序指给了实际目标，this与两者是相等的。如果事件处理程序指给了父元素，则this与currentTarget都是父节点。（事件冒泡到了父节点）。   </li>
 <li><p>（ 当事件绑定在真正的目标元素上时，this===target===currentTarget，而且绑定事件时是否捕获结果都是一样的，此时eventParse==2）   </p>
@@ -1179,58 +1188,63 @@ btn5.onclick = function() {
  }, true);
 
  //输出结果是d1   
-</code></pre><h2 id="IE中的事件对象"><a href="#IE中的事件对象" class="headerlink" title="IE中的事件对象"></a>IE中的事件对象</h2><p>IE中event参数是未定的，事件对象是作为window的一个属性存在的，因此可以通过window.event来访问event对象，不同于DOM级中event是作为参数直接传入和返回。<br>属性上与DOM也有不同：<br> <img src="/事件属性.jpg" alt="事件属性"><br>标准event方法：<br> <img src="/标准event方法.jpg" alt="标准event方法">   </p>
-<h2 id="跨浏览器的事件对象"><a href="#跨浏览器的事件对象" class="headerlink" title="跨浏览器的事件对象"></a>跨浏览器的事件对象</h2><p> //前文跨浏览器的事件处理程序已经作了描述，重点在于获取事件以及之后的兼容方法描述<br> var EventUtil = {</p>
-<pre><code> addHandlers: function (element, type, handler) {
-     if (element,addEventListener){
-         element.addEventListener(type, handler, false);
-     } else if (element.attachEvent) {   
-         element.attachEvent(&#39;on&#39; + type, handler);
-     } else {
-         element[&quot;on&quot; + type] = handler;
-     }
- },
+</code></pre></li>
+</ol>
+<h2 id="IE中的事件对象"><a href="#IE中的事件对象" class="headerlink" title="IE中的事件对象"></a>IE中的事件对象</h2><p>IE中event参数是未定的，事件对象是作为window的一个属性存在的，因此可以通过window.event来访问event对象，不同于DOM级中event是作为参数直接传入和返回。<br>属性上与DOM也有不同：<br>    <img src="/2018/12/26/JS事件及事件处理/事件属性.jpg" alt="事件属性"><br>标准event方法：<br>    <img src="/2018/12/26/JS事件及事件处理/标准event方法.jpg" alt="标准event方法">   </p>
+<h2 id="跨浏览器的事件对象"><a href="#跨浏览器的事件对象" class="headerlink" title="跨浏览器的事件对象"></a>跨浏览器的事件对象</h2><pre><code>//前文跨浏览器的事件处理程序已经作了描述，重点在于获取事件以及之后的兼容方法描述
+var EventUtil = {
+    addHandlers: function (element, type, handler) {
+        if (element,addEventListener){
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent) {   
+            element.attachEvent(&#39;on&#39; + type, handler);
+        } else {
+            element[&quot;on&quot; + type] = handler;
+        }
+    },
 
- removeHandlers: function(element, type, handler) {
-     if (element,removeEventListener){
-         element.removeEventListener(type, handler, false);
-     } else if (element.detachEvent) {   
-         element.detachEvent(&#39;on&#39; + type, handler);
-     } else {
-         element[&quot;on&quot; + type] = null;
-     }
- },
+    removeHandlers: function(element, type, handler) {
+        if (element,removeEventListener){
+            element.removeEventListener(type, handler, false);
+        } else if (element.detachEvent) {   
+            element.detachEvent(&#39;on&#39; + type, handler);
+        } else {
+            element[&quot;on&quot; + type] = null;
+        }
+    },
 
- getEvent: function (e) {
-     return e?e:e.which;
- },
+    getEvent: function (e) {
+        return e?e:e.which;
+    },
 
- getTarget: function (e) {
-     return e.target || event.srcElement;
- },
+    getTarget: function (e) {
+        return e.target || event.srcElement;
+    },
 
- //阻止默认行为
- preventDefault: function (e) {
-     if (e.preventDefault){
-         e.preventDefault();
-     } else {
-         e.returnValue = false;
-     }
- },
+    //阻止默认行为
+    preventDefault: function (e) {
+        if (e.preventDefault){
+            e.preventDefault();
+        } else {
+            e.returnValue = false;
+        }
+    },
 
- //阻止冒泡
- stopPropagation: function (e) {
-     if (e.stopPropagation){
-         e.stopPropagation();
-     } else {
-         e.cancelBubble = true;
-     }
- }
-</code></pre><p> };<br> var myBtn=document.getElementById(‘my-btn’);<br> btn.onclick=function(event){</p>
-<pre><code> event=EventUtil.getEvent(event);
- EventUtil.preventDefault(event);
-</code></pre><p> };   </p>
-<h1 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h1></li>
+    //阻止冒泡
+    stopPropagation: function (e) {
+        if (e.stopPropagation){
+            e.stopPropagation();
+        } else {
+            e.cancelBubble = true;
+        }
+    }
+};
+var myBtn=document.getElementById(&#39;my-btn&#39;);
+btn.onclick=function(event){
+    event=EventUtil.getEvent(event);
+    EventUtil.preventDefault(event);
+};   
+</code></pre><h1 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h1><ol>
 <li>每当将事件处理程序制定给元素时，运行中的浏览器代码与支持页面交互的JS代码之间就会建立一个连接，而这种连接越多，页面执行起来就越慢。考虑内存和性能问题，为了解决事件处理程序过多的问题，采用事件委托变得很有必要。（考虑到内存，也应该尽量减少不必要的事件处理程序，并且，对于内存中过时不用（删除了目标元素，但是相应的事件处理程序并没有移除）的“空事件处理程序”，也是很有必要将其移除的）   </li>
 <li>因为冒泡机制，比如既然点击子元素，也会触发父元素的点击事件，那我们完全可以将子元素的事件要做的事写到父元素的事件里，也就是将子元素的事件处理程序写到父元素的事件处理程序中，这就是事件委托；利用事件委托，只指定一个事件处理程序，就可以管理某一个类型的所有事件。   </li>
 <li><p>因为把事件绑定到了父节点上，因此省了绑定事件。就算后面新增的子节点也有了相关事件，删除部分子节点不用去销毁对应节点上绑定的事件。<br>父节点是通过event.target来找对应的子节点的。（事件处理程序中的this值始终等于currentTarget的值，指向的是绑定到的那个元素）<br>如： </p>
@@ -2252,8 +2266,8 @@ for(i=0;i&lt;10;i++) {
 </li>
 </ul>
 <!-- /TOC -->
-<h1 id="vue-js-2-0-生命周期钩子"><a href="#vue-js-2-0-生命周期钩子" class="headerlink" title="vue.js 2.0 生命周期钩子"></a>vue.js 2.0 生命周期钩子</h1><p>每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。<br><img src="/生命周期流程图.png" alt="生命周期图示">   </p>
-<h2 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h2><p><img src="/生命周期钩子函数报表.png" alt="生命周期钩子函数">   </p>
+<h1 id="vue-js-2-0-生命周期钩子"><a href="#vue-js-2-0-生命周期钩子" class="headerlink" title="vue.js 2.0 生命周期钩子"></a>vue.js 2.0 生命周期钩子</h1><p>每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。<br><img src="/2018/11/19/Vue2.0生命周期/生命周期流程图.png" alt="生命周期图示">   </p>
+<h2 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h2><p><img src="/2018/11/19/Vue2.0生命周期/生命周期钩子函数报表.png" alt="生命周期钩子函数">   </p>
 <h2 id="生命周期探究"><a href="#生命周期探究" class="headerlink" title="生命周期探究"></a>生命周期探究</h2><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -2331,9 +2345,9 @@ var app = new Vue({
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;   
-</code></pre><h3 id="数据挂载完成"><a href="#数据挂载完成" class="headerlink" title="数据挂载完成"></a>数据挂载完成</h3><p><img src="/生命周期挂载结束.png" alt="数据挂载完成">   </p>
-<h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p><img src="/生命周期数据更新.png" alt="数据更新">   </p>
-<h3 id="销毁实例"><a href="#销毁实例" class="headerlink" title="销毁实例"></a>销毁实例</h3><p><img src="/生命周期销毁.png" alt="销毁实例"> </p>
+</code></pre><h3 id="数据挂载完成"><a href="#数据挂载完成" class="headerlink" title="数据挂载完成"></a>数据挂载完成</h3><p><img src="/2018/11/19/Vue2.0生命周期/生命周期挂载结束.png" alt="数据挂载完成">   </p>
+<h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p><img src="/2018/11/19/Vue2.0生命周期/生命周期数据更新.png" alt="数据更新">   </p>
+<h3 id="销毁实例"><a href="#销毁实例" class="headerlink" title="销毁实例"></a>销毁实例</h3><p><img src="/2018/11/19/Vue2.0生命周期/生命周期销毁.png" alt="销毁实例"> </p>
 <h3 id="create和mounted相关"><a href="#create和mounted相关" class="headerlink" title="create和mounted相关"></a>create和mounted相关</h3><ol>
 <li>beforeCreated: el和data并未初始化   </li>
 <li>created：完成了data数据的初始化，el并没有初始化   </li>
@@ -2570,7 +2584,7 @@ var app = new Vue({
 <li>部分怪异（近乎标准）模式   除了实施一种表单元格尺寸的怪异行为，其他符合标准<br>注：一个不含任何DOCTYPE的网页将会以怪异模式渲染。   <h1 id="DOM结构"><a href="#DOM结构" class="headerlink" title="DOM结构"></a>DOM结构</h1>DOM：Document Object Module，文档对象模型。   <h2 id="W3C-DOM标准"><a href="#W3C-DOM标准" class="headerlink" title="W3C DOM标准"></a>W3C DOM标准</h2></li>
 <li>核心DOM - 针对任何结构化文档的标准模型   </li>
 <li>XML DOM - 针对XML文档的标准模型   </li>
-<li>HTML DOM - 针对HTML文档的标准模型   <h2 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h2>根据W3C的HTML DOM标准，HTML文档中的所有内容都是节点<br>文档节点、元素节点、属性节点、文本节点、注释节点等。   <h2 id="HTML-DOM节点树"><a href="#HTML-DOM节点树" class="headerlink" title="HTML DOM节点树"></a>HTML DOM节点树</h2>HTML文本会被解析为DOM树，树中的所有节点均可通过JavaScript进行访问。所有HTML元素（节点）均可被修改，也可以创建或删除节点。<br><img src="DOM节点树.png" alt="DOM节点树">   <h2 id="节点的关系"><a href="#节点的关系" class="headerlink" title="节点的关系"></a>节点的关系</h2>父、子、同胞等术语用于描述这些关系。节点树中，顶端节点被称为根；每个节点都有父节点，除了根；一个节点可以拥有任意数量的子，同胞拥有相同的根。<br><img src="DOM节点.png" alt="DOM节点">   <h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1>每个元素都是一个矩形盒子，盒模型是元素大小的呈现方式。每个盒子有四个边：外边距边，边匡边，内填充边与内容边。<br><img src="盒模型.png" alt="盒模型"><br>盒子模型分为两种，一种是W3C标准盒模型，一种是IE盒模型。</li>
+<li>HTML DOM - 针对HTML文档的标准模型   <h2 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h2>根据W3C的HTML DOM标准，HTML文档中的所有内容都是节点<br>文档节点、元素节点、属性节点、文本节点、注释节点等。   <h2 id="HTML-DOM节点树"><a href="#HTML-DOM节点树" class="headerlink" title="HTML DOM节点树"></a>HTML DOM节点树</h2>HTML文本会被解析为DOM树，树中的所有节点均可通过JavaScript进行访问。所有HTML元素（节点）均可被修改，也可以创建或删除节点。<br><img src="/2018/11/19/零碎知识/DOM节点树.png" alt="DOM节点树">   <h2 id="节点的关系"><a href="#节点的关系" class="headerlink" title="节点的关系"></a>节点的关系</h2>父、子、同胞等术语用于描述这些关系。节点树中，顶端节点被称为根；每个节点都有父节点，除了根；一个节点可以拥有任意数量的子，同胞拥有相同的根。<br><img src="/2018/11/19/零碎知识/DOM节点.png" alt="DOM节点">   <h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1>每个元素都是一个矩形盒子，盒模型是元素大小的呈现方式。每个盒子有四个边：外边距边，边匡边，内填充边与内容边。<br><img src="/2018/11/19/零碎知识/盒模型.png" alt="盒模型"><br>盒子模型分为两种，一种是W3C标准盒模型，一种是IE盒模型。</li>
 <li>content-box （标准盒模型）<br>width = content宽度<br>height = content高度  </li>
 <li>border-box （IE盒模型）<br>width = border + padding + content宽度<br>height = border + padding + content高度<br>以上两者可以通过<code>box-sizing</code>属性自由转换，默认为<code>content-box</code>。   <h2 id="JavaScript如何设置获取盒模型对应的宽和高"><a href="#JavaScript如何设置获取盒模型对应的宽和高" class="headerlink" title="JavaScript如何设置获取盒模型对应的宽和高"></a>JavaScript如何设置获取盒模型对应的宽和高</h2></li>
 <li>dom.style.width/height 只能取到行内样式的宽和高，style标签中和link外链的样式取不到。   </li>
