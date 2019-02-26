@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="jhchen の BLOG">
 <meta property="og:description" content="reduxreact组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-26T02:16:57.282Z">
+<meta property="og:updated_time" content="2019-02-26T02:29:39.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redux">
 <meta name="twitter:description" content="reduxreact组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过s">
@@ -365,7 +365,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -463,26 +463,55 @@ const minusNumber = counterActionGenerator(DECREMENT, null)
 <li>unsubscribe</li>
 </ul>
 </li>
-<li><p>createStore</p>
-<ul>
+<li>createStore<ul>
 <li>reducer</li>
-<li><p>defaultState<br>getState方法是用来获取当前存储中的状态数据。<br>dispatch是具体讲传入的action操作执行并触发listeners时间监听器的地方。<br>subscribe用来添加listener的方法，同时会返回一个unsubscribe的方法用来取消listener。listener是当状态数据改变时会自动触发的事件。     </p>
-<p>const counter = (state = 0, action) =&gt; {<br>switch (action.type) {<br>  case ‘INCREMENT’:<br>  return state + 1;<br>  case ‘DECREMENT’:<br>  return state - 1;<br>  default:<br>  return state;<br>}<br>}<br>// 这里使用的是ES6的解构赋值的方法<br>const { createStore } = Redux;<br>// import { createStore } from ‘redux’;</p>
-<p>const store = createStore(counter);<br>console.log(store.getState());</p>
-<p>/<em> document.addEventListener(‘click’, () =&gt; {<br>store.dispatch({ type: ‘INCREMENT’ });<br>}); </em>/</p>
-<p>const render = () =&gt; {<br>document.getElementById(‘root’).innerText = store.getState();<br>};</p>
-<p>store.subscribe(() =&gt; { console.log(store.getState()) })<br>let unsubscribe = store.subscribe(render);</p>
-<p>render();</p>
-<p>document.getElementById(‘increment’).addEventListener(‘click’,function() {<br>store.dispatch({ type: ‘INCREMENT’ });<br>})</p>
-<p>document.getElementById(‘decrement’).addEventListener(‘click’,function() {<br>store.dispatch({ type: ‘DECREMENT’ });<br>})</p>
-<p>document.getElementById(‘unsubscribe’).addEventListener(‘click’,function() {<br>unsubscribe()<br>console.log(‘unsubscribed!’)<br>})   </p>
-<h1 id="middleware"><a href="#middleware" class="headerlink" title="middleware"></a>middleware</h1><p>一般意义下可以译为中间件，如用作处理登录验证的模块。<br>在redux应用中，运用middleware可以不更改redux原生方法就能观察到action被触发以及应用状态前后的变化。   </p>
+<li>defaultState   </li>
+</ul>
+</li>
+</ul>
+<p>getState方法是用来获取当前存储中的状态数据。<br>dispatch是具体讲传入的action操作执行并触发listeners时间监听器的地方。<br>subscribe用来添加listener的方法，同时会返回一个unsubscribe的方法用来取消listener。listener是当状态数据改变时会自动触发的事件。     </p>
+<pre><code>const counter = (state = 0, action) =&gt; {
+    switch (action.type) {
+        case &#39;INCREMENT&#39;:
+        return state + 1;
+        case &#39;DECREMENT&#39;:
+        return state - 1;
+        default:
+        return state;
+    }
+}
+// 这里使用的是ES6的解构赋值的方法
+const { createStore } = Redux;
+// import { createStore } from &#39;redux&#39;;
+const store = createStore(counter);
+console.log(store.getState());
+
+/* document.addEventListener(&#39;click&#39;, () =&gt; {
+    store.dispatch({ type: &#39;INCREMENT&#39; });
+}); */
+
+const render = () =&gt; {
+    document.getElementById(&#39;root&#39;).innerText = store.getState();
+};
+
+store.subscribe(() =&gt; { console.log(store.getState()) })
+let unsubscribe = store.subscribe(render);
+
+render();
+
+document.getElementById(&#39;increment&#39;).addEventListener(&#39;click&#39;,function() {
+    store.dispatch({ type: &#39;INCREMENT&#39; });
+})
+document.getElementById(&#39;decrement&#39;).addEventListener(&#39;click&#39;,function() {
+    store.dispatch({ type: &#39;DECREMENT&#39; });
+})
+document.getElementById(&#39;unsubscribe&#39;).addEventListener(&#39;click&#39;,function() {
+    unsubscribe()
+    console.log(&#39;unsubscribed!&#39;)
+})    
+</code></pre><h1 id="middleware"><a href="#middleware" class="headerlink" title="middleware"></a>middleware</h1><p>一般意义下可以译为中间件，如用作处理登录验证的模块。<br>在redux应用中，运用middleware可以不更改redux原生方法就能观察到action被触发以及应用状态前后的变化。   </p>
 <h1 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h1><h2 id="provider"><a href="#provider" class="headerlink" title="provider"></a>provider</h2><p>provider的作用向应用传递store的一个容器组件，一般都会放在应用组件的最外层。   </p>
 <h2 id="connect"><a href="#connect" class="headerlink" title="connect()"></a>connect()</h2><p>connect方法可以根据现有的展示组件自动生成一个容器组件。</p>
-</li>
-</ul>
-</li>
-</ul>
 
       
     </div>
@@ -705,7 +734,7 @@ const minusNumber = counterActionGenerator(DECREMENT, null)
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.1k</span>
+    <span title="Site words total count">14.2k</span>
   
 
 </div>
