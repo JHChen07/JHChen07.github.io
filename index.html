@@ -937,7 +937,7 @@ document.getElementById(&#39;unsubscribe&#39;).addEventListener(&#39;click&#39;,
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/26/JS事件及事件处理/" itemprop="url">js事件及事件处理</a></h1>
+                <a class="post-title-link" href="/2018/12/26/JS事件及事件处理/" itemprop="url">JS事件及事件处理</a></h1>
         
 
         <div class="post-meta">
@@ -1451,8 +1451,10 @@ btn.onclick=function(event){
 <li>m: 表示多行（multiline）模式，即在到达一行末尾时还会继续查找下一行中是否存在与模式匹配的项。   </li>
 </ol>
 <p>正则表达式中的元字符包括：<code>([{\^$|?*+.}])</code>，因此，如果想要匹配这些字符串，pattern中的所有元字符都必须转义。   </p>
-<h2 id="正则表达式的定义"><a href="#正则表达式的定义" class="headerlink" title="正则表达式的定义"></a>正则表达式的定义</h2><h3 id="字面量形式"><a href="#字面量形式" class="headerlink" title="字面量形式"></a>字面量形式</h3><p>var expression1 = /pattern/flags;   </p>
-<h3 id="构造函数形式"><a href="#构造函数形式" class="headerlink" title="构造函数形式"></a>构造函数形式</h3><p>RegExp的构造函数接收两个参数，一个是要匹配的字符串模式，另一个是可选的标志字符串。<br>var expression2 = new RegExp(‘[bc]at’, ‘i’);<br>以上，expression1和expression2是完全等价的正则表达式，但是传递给RegExp构造函数的两个参数都是字符串。（注意元字符的双重转义）<br>但是，字面量形式的正则表达式始终共享一个RegExp实例，实例属性不会重置，而构造函数创建的正则表达式，每一个新RegExp都是一个新实例，所以，第二种方法能循环调用实例属性，而第一种方法则不能。   </p>
+<h2 id="正则表达式的定义"><a href="#正则表达式的定义" class="headerlink" title="正则表达式的定义"></a>正则表达式的定义</h2><h3 id="字面量形式"><a href="#字面量形式" class="headerlink" title="字面量形式"></a>字面量形式</h3><pre><code>var expression1 = /pattern/flags;   
+</code></pre><h3 id="构造函数形式"><a href="#构造函数形式" class="headerlink" title="构造函数形式"></a>构造函数形式</h3><p>RegExp的构造函数接收两个参数，一个是要匹配的字符串模式，另一个是可选的标志字符串。   </p>
+<pre><code>var expression2 = new RegExp(&#39;[bc]at&#39;, &#39;i&#39;);   
+</code></pre><p>以上，expression1和expression2是完全等价的正则表达式，但是传递给RegExp构造函数的两个参数都是字符串。（注意元字符的双重转义）<br>但是，字面量形式的正则表达式始终共享一个RegExp实例，实例属性不会重置，而构造函数创建的正则表达式，每一个新RegExp都是一个新实例，所以，第二种方法能循环调用实例属性，而第一种方法则不能。   </p>
 <pre><code>var re = null;
     i;
 for(i=0; i&lt;10; i++) {
@@ -1644,7 +1646,7 @@ for(i=0;i&lt;10;i++) {
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.9k
+                  2k
                 </span>
               
 
@@ -1660,7 +1662,7 @@ for(i=0;i&lt;10;i++) {
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  8
                 </span>
               
             </div>
@@ -1706,149 +1708,162 @@ for(i=0;i&lt;10;i++) {
 <li>正确的标签做正确的事；</li>
 <li>页面内容结构化；</li>
 <li>无CSS也容易阅读，便于阅读维护和理解；</li>
-<li><p>便于浏览器、搜索引擎解析。利于爬虫标记、利于SEO。   </p>
-<h2 id="HTML语义化标签"><a href="#HTML语义化标签" class="headerlink" title="HTML语义化标签"></a>HTML语义化标签</h2><p>对于HTML体系而言，web语义化是指使用语义恰当的标签，使页面具有良好的结构，让元素有含义。<br>HTML语义化标签包括body、article、nav、aside、section、header、footer、hgroup，还有h1-h6、address等。<br>代码示例：   </p>
-<p> <html></html></p>
-<pre><code> &lt;body&gt;
-     &lt;article&gt;
-         &lt;header&gt;
-             &lt;h1&gt;h1 - WEB 语义化&lt;/h1&gt;
-         &lt;/header&gt;
-         &lt;nav&gt;
-             &lt;ul&gt;
-                 &lt;li&gt;nav1 - HTML语义化&lt;/li&gt;
-                 &lt;li&gt;nav2 - CSS语义化&lt;/li&gt;
-             &lt;/ul&gt;
-         &lt;/nav&gt;
-         &lt;section&gt;
-             section1 - HTML语义化
-         &lt;/section&gt;
-         &lt;section&gt;
-             section2 - CSS语义化
-         &lt;/section&gt;
-         &lt;time datetime=&quot;2018-03-23&quot; pubdate&gt;time - 2018年03月23日&lt;/time&gt;
-         &lt;footer&gt; footer - by 小维&lt;/footer&gt;
-     &lt;/article&gt;
- &lt;/body&gt;
-</code></pre><p> </p>
-<h3 id="header元素"><a href="#header元素" class="headerlink" title="header元素"></a>header元素</h3><p>header代表“网页”或者“section”的页眉，通常包含h1-h6 元素或者hgroup, 作为整个页面或者一个内容快的标题。也可以包裹一节的目录部分，一个搜索框，一个nav，或者相关logo。   </p>
-<p> <header></header></p>
-<pre><code> &lt;hgroup&gt;
-     &lt;h1&gt;网站标题&lt;h1&gt;
-     &lt;h2&gt;网站副标题&lt;/h2&gt;
- &lt;/hgroup&gt;
-</code></pre><p> <header><br>注意：    </header></p>
-</li>
-<li><p>不限于“网页”头部   </p>
-</li>
-<li>没有个数限制   </li>
-<li><p>hgroup、h1-h6可以替代header   </p>
-<h3 id="hgroup元素"><a href="#hgroup元素" class="headerlink" title="hgroup元素"></a>hgroup元素</h3><p>hgroup元素代表“网页”或“section”的标题，当元素有多个层级时，该元素可以将h1到h6元素放在其内，譬如文章的主标题和副标题组合。   </p>
-<p> <hgroup></hgroup></p>
-<pre><code> &lt;h1&gt;这是一个主标题&lt;/h1&gt;
- &lt;h2&gt;这是一个副标题&lt;/h2&gt;
-</code></pre><p> <br>注意：   </p>
-</li>
-<li><p>只需要一个h1-h6不需要hgroup，连续多个就用   </p>
-</li>
-<li><p>如果有连续多个标题和其他文章数据，h1-h6标签就用hgroup包住，和其他文章元数据一起放入header标签   </p>
-<h3 id="footer元素"><a href="#footer元素" class="headerlink" title="footer元素"></a>footer元素</h3><p>footer元素代表“网页”或任意“section”的页脚，通常含有该节的一些基本信息，譬如：作者，相关文档链接，版权资料。如果footer元素包含了整个节，那么它们就代表附录，索引，提拔，许可协议，标签，类别等一些其他类似信息。  </p>
-<p> <footer></footer></p>
-<pre><code> COPYRGHT@。。。
-</code></pre><p> <br>没有个数限制，除了内容不一样，其他跟header类似   </p>
-<h3 id="nav元素"><a href="#nav元素" class="headerlink" title="nav元素"></a>nav元素</h3><p>nav元素代表页面的导航链接区域。用于定义页面的主要导航部分。  </p>
-<p> <nav></nav></p>
-<pre><code> &lt;ul&gt;
-     &lt;li&gt;HTML语义化&lt;/li&gt;
-     &lt;li&gt;CSS 语义化&lt;/li&gt;
- &lt;/ul&gt;
-</code></pre><p> <br>仅代表整个页面的主要导航部分   </p>
-<h3 id="article元素"><a href="#article元素" class="headerlink" title="article元素"></a>article元素</h3><p>article代表一个在文档，页面或者网站中自成一体的内容，其目的是为了让开发这独立开发或重用。除了内容，article会有一个标题、一个footer页脚。article还可以嵌套。   </p>
-<p> <article></article></p>
-<pre><code> &lt;h1&gt;你好，我是这边文章的标题&lt;/h1&gt;
- &lt;p&gt;你好，我是文章的内容&lt;/p&gt;
- &lt;footer&gt;
-     &lt;p&gt;最终解释权归XXX所有&lt;/p&gt;
- &lt;/footer&gt;
-</code></pre><p> <br>嵌套article：   </p>
-<p> <article></article></p>
-<pre><code> &lt;header&gt;
-     &lt;h1&gt;web 语义化&lt;/h1&gt;
-     &lt;p&gt;&lt;time pubdate datetime=&quot;2018-03-23&quot;&gt;2018-03-23&lt;/time&gt;&lt;/p&gt;
- &lt;/header&gt;
- &lt;p&gt;文章内容..&lt;/p&gt;
- &lt;article&gt;
-     &lt;h2&gt;评论&lt;/h2&gt;
-     &lt;article&gt;
-         &lt;header&gt;
-             &lt;h3&gt;评论者: 专业水军&lt;/h3&gt;
-             &lt;p&gt;&lt;time pubdate datetime=&quot;2018-03-23T15:10-08:00&quot;&gt;~1 min ago&lt;/time&gt;&lt;/p&gt;
-         &lt;/header&gt;
-         &lt;p&gt;还行&lt;/p&gt;
-     &lt;/article&gt;
-     &lt;article&gt;
-         &lt;header&gt;
-             &lt;h3&gt;评论者: 大水怪&lt;/h3&gt;
-             &lt;p&gt;&lt;time pubdate datetime=&quot;2018-03-23T15:10-08:00&quot;&gt;~1 hour ago&lt;/time&gt;&lt;/p&gt;
-         &lt;/header&gt;
-         &lt;p&gt;楼上说的对&lt;/p&gt;
-     &lt;/article&gt;
- &lt;/article&gt;
-</code></pre><p> <br>嵌套section：</p>
- <article>
-
-<pre><code> &lt;h1&gt;web语义化&lt;/h1&gt;
- &lt;p&gt;什么是语义化？&lt;/p&gt;
-
- &lt;section&gt;
-     &lt;h2&gt;语义化详解&lt;/h2&gt;
-     &lt;p&gt;语义化就是。。。&lt;/p&gt;
- &lt;/section&gt;
-
- &lt;section&gt;
-     &lt;h2&gt;语义化特点&lt;/h2&gt;
-     &lt;p&gt;语义化特点就是。。。&lt;/p&gt;
- &lt;/section&gt;
-</code></pre><p> </p></article><br>注意：section囊括的是相关内容，没有语义的可以用div   <p></p>
-<h3 id="section元素"><a href="#section元素" class="headerlink" title="section元素"></a>section元素</h3><p>section 元素代表文档中的“节”或“段”，“段”可以是指一片文章里按照主题的分段；“节”可以是指一个页面里的分组。section通常还带标题，虽然html5中section会自动给标题h1-h6降级，但是最好手动给他们降级。<br>示例：   </p>
-<p> <section></section></p>
-<pre><code> &lt;h1&gt;section是啥？&lt;/h1&gt;
- &lt;article&gt;
-     &lt;h2&gt;关于section&lt;/h2&gt;
-     &lt;p&gt;section的介绍&lt;/p&gt;
-     &lt;section&gt;
-         &lt;h3&gt;关于其他&lt;/h3&gt;
-         &lt;p&gt;关于其他section的介绍&lt;/p&gt;
-     &lt;/section&gt;
- &lt;/article&gt;
-</code></pre><p> <br>注意：     </p>
-</li>
-<li><p>一张页面可以用section划分为简介、文章条目和联系信息。不过在文章内页，最好用article。section不是一般意义上的容器元素，如果想作为样式展示和脚本的便利，可以用div。   </p>
-</li>
-<li>可以表示文档中的节或者段。   </li>
-<li><p>acticle、nav、aside可以理解为特殊的section，如果可以用article、nav、aside就不要用section，没有实际意义的就用div   </p>
-<h3 id="aside元素"><a href="#aside元素" class="headerlink" title="aside元素"></a>aside元素</h3><p>aside 元素被包含在article元素中作为主要内容的附属信息部分，其中的内容可以是与当前文章有关的相关资料，标签，名词解释等。<br>在article元素之外使用作为页面或站点全局的附属信息部分。最典型的是侧边栏，其中的内容可以是日志串连，其他组的导航，甚至广告，这些内容相关的页面<br>代码示例：   </p>
-<p> <article></article></p>
-<pre><code> &lt;p&gt;内容&lt;/p&gt;
- &lt;aside&gt;
-     &lt;h1&gt;作者简介&lt;/h1&gt;
-     &lt;p&gt;小维,哈哈哈&lt;/p&gt;
- &lt;/aside&gt;
-</code></pre><p> <br>注意：   </p>
-</li>
-<li><p>aside 在 article 内表示主要内容的附属信息。   </p>
-</li>
-<li>在article之外侧可以做侧边栏，没有article与之对应，最好不用   </li>
-<li><p>如果是广告，其他日志链接或者其他分类导航也可以用。<br>最后，IE8以下需要考虑HTML5的标签兼容性解决方案。   </p>
-<h2 id="CSS语义化"><a href="#CSS语义化" class="headerlink" title="CSS语义化"></a>CSS语义化</h2><p>CSS语义就是class和ID命名的语义。class属性作为HTML与CSS衔接的纽带，其本意是用来描述元素内容的。指用易于理解的名称对html标签附加的class或id命名。如果说HTML语义化标签是给机器看的，那么CSS命名的语义化就是给人看的。良好的CSS命名方式减少沟通调试成本，易于理解。<br>CSS命名首先要满足W3C的命名规范和团队的命名规范。其次是高效和可重用性。<br>示例：   </p>
- <!-- 以表现为中心 -->
-<p> <div class="ft margin10"></div></p>
-<pre><code> &lt;span&gt;用户名：小维&lt;/span&gt;
-</code></pre><p> </p>
- <!-- 以信息为中心 -->
- <p class="user_info"><br>     <em>用户名:小维</em><br> </p> </li>
+<li>便于浏览器、搜索引擎解析。利于爬虫标记、利于SEO。   </li>
 </ol>
+<h2 id="HTML语义化标签"><a href="#HTML语义化标签" class="headerlink" title="HTML语义化标签"></a>HTML语义化标签</h2><p>对于HTML体系而言，web语义化是指使用语义恰当的标签，使页面具有良好的结构，让元素有含义。<br>HTML语义化标签包括body、article、nav、aside、section、header、footer、hgroup，还有h1-h6、address等。<br>代码示例：   </p>
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;article&gt;
+            &lt;header&gt;
+                &lt;h1&gt;h1 - WEB 语义化&lt;/h1&gt;
+            &lt;/header&gt;
+            &lt;nav&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;nav1 - HTML语义化&lt;/li&gt;
+                    &lt;li&gt;nav2 - CSS语义化&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/nav&gt;
+            &lt;section&gt;
+                section1 - HTML语义化
+            &lt;/section&gt;
+            &lt;section&gt;
+                section2 - CSS语义化
+            &lt;/section&gt;
+            &lt;time datetime=&quot;2018-03-23&quot; pubdate&gt;time - 2018年03月23日&lt;/time&gt;
+            &lt;footer&gt; footer - by 小维&lt;/footer&gt;
+        &lt;/article&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3 id="header元素"><a href="#header元素" class="headerlink" title="header元素"></a>header元素</h3><p>header代表“网页”或者“section”的页眉，通常包含h1-h6 元素或者hgroup, 作为整个页面或者一个内容快的标题。也可以包裹一节的目录部分，一个搜索框，一个nav，或者相关logo。   </p>
+<pre><code>&lt;header&gt;
+    &lt;hgroup&gt;
+        &lt;h1&gt;网站标题&lt;h1&gt;
+        &lt;h2&gt;网站副标题&lt;/h2&gt;
+    &lt;/hgroup&gt;
+&lt;header&gt;   
+</code></pre><p>注意：    </p>
+<ol>
+<li>不限于“网页”头部   </li>
+<li>没有个数限制   </li>
+<li>hgroup、h1-h6可以替代header   </li>
+</ol>
+<h3 id="hgroup元素"><a href="#hgroup元素" class="headerlink" title="hgroup元素"></a>hgroup元素</h3><p>hgroup元素代表“网页”或“section”的标题，当元素有多个层级时，该元素可以将h1到h6元素放在其内，譬如文章的主标题和副标题组合。   </p>
+<pre><code>&lt;hgroup&gt;
+    &lt;h1&gt;这是一个主标题&lt;/h1&gt;
+    &lt;h2&gt;这是一个副标题&lt;/h2&gt;
+&lt;/hgroup&gt;   
+</code></pre><p>注意：   </p>
+<ol>
+<li>只需要一个h1-h6不需要hgroup，连续多个就用   </li>
+<li>如果有连续多个标题和其他文章数据，h1-h6标签就用hgroup包住，和其他文章元数据一起放入header标签   </li>
+</ol>
+<h3 id="footer元素"><a href="#footer元素" class="headerlink" title="footer元素"></a>footer元素</h3><p>footer元素代表“网页”或任意“section”的页脚，通常含有该节的一些基本信息，譬如：作者，相关文档链接，版权资料。如果footer元素包含了整个节，那么它们就代表附录，索引，提拔，许可协议，标签，类别等一些其他类似信息。  </p>
+<pre><code>&lt;footer&gt;
+    COPYRGHT@。。。
+&lt;/footer&gt;   
+</code></pre><p>没有个数限制，除了内容不一样，其他跟header类似   </p>
+<h3 id="nav元素"><a href="#nav元素" class="headerlink" title="nav元素"></a>nav元素</h3><p>nav元素代表页面的导航链接区域。用于定义页面的主要导航部分。  </p>
+<pre><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;HTML语义化&lt;/li&gt;
+        &lt;li&gt;CSS 语义化&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;   
+</code></pre><p>仅代表整个页面的主要导航部分   </p>
+<h3 id="article元素"><a href="#article元素" class="headerlink" title="article元素"></a>article元素</h3><p>article代表一个在文档，页面或者网站中自成一体的内容，其目的是为了让开发这独立开发或重用。除了内容，article会有一个标题、一个footer页脚。article还可以嵌套。   </p>
+<pre><code>&lt;article&gt;
+    &lt;h1&gt;你好，我是这边文章的标题&lt;/h1&gt;
+    &lt;p&gt;你好，我是文章的内容&lt;/p&gt;
+    &lt;footer&gt;
+        &lt;p&gt;最终解释权归XXX所有&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/article&gt;   
+</code></pre><p>嵌套article：   </p>
+<pre><code>&lt;article&gt;
+    &lt;header&gt;
+        &lt;h1&gt;web 语义化&lt;/h1&gt;
+        &lt;p&gt;&lt;time pubdate datetime=&quot;2018-03-23&quot;&gt;2018-03-23&lt;/time&gt;&lt;/p&gt;
+    &lt;/header&gt;
+    &lt;p&gt;文章内容..&lt;/p&gt;
+    &lt;article&gt;
+        &lt;h2&gt;评论&lt;/h2&gt;
+        &lt;article&gt;
+            &lt;header&gt;
+                &lt;h3&gt;评论者: 专业水军&lt;/h3&gt;
+                &lt;p&gt;&lt;time pubdate datetime=&quot;2018-03-23T15:10-08:00&quot;&gt;~1 min ago&lt;/time&gt;&lt;/p&gt;
+            &lt;/header&gt;
+            &lt;p&gt;还行&lt;/p&gt;
+        &lt;/article&gt;
+        &lt;article&gt;
+            &lt;header&gt;
+                &lt;h3&gt;评论者: 大水怪&lt;/h3&gt;
+                &lt;p&gt;&lt;time pubdate datetime=&quot;2018-03-23T15:10-08:00&quot;&gt;~1 hour ago&lt;/time&gt;&lt;/p&gt;
+            &lt;/header&gt;
+            &lt;p&gt;楼上说的对&lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/article&gt;
+&lt;/article&gt;
+</code></pre><p>嵌套section：</p>
+<pre><code>&lt;article&gt;
 
+    &lt;h1&gt;web语义化&lt;/h1&gt;
+    &lt;p&gt;什么是语义化？&lt;/p&gt;
+
+    &lt;section&gt;
+        &lt;h2&gt;语义化详解&lt;/h2&gt;
+        &lt;p&gt;语义化就是。。。&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+        &lt;h2&gt;语义化特点&lt;/h2&gt;
+        &lt;p&gt;语义化特点就是。。。&lt;/p&gt;
+    &lt;/section&gt;
+
+&lt;/article&gt;   
+</code></pre><p>注意：section囊括的是相关内容，没有语义的可以用div   </p>
+<h3 id="section元素"><a href="#section元素" class="headerlink" title="section元素"></a>section元素</h3><p>section 元素代表文档中的“节”或“段”，“段”可以是指一片文章里按照主题的分段；“节”可以是指一个页面里的分组。section通常还带标题，虽然html5中section会自动给标题h1-h6降级，但是最好手动给他们降级。<br>示例：   </p>
+<pre><code>&lt;section&gt;
+    &lt;h1&gt;section是啥？&lt;/h1&gt;
+    &lt;article&gt;
+        &lt;h2&gt;关于section&lt;/h2&gt;
+        &lt;p&gt;section的介绍&lt;/p&gt;
+        &lt;section&gt;
+            &lt;h3&gt;关于其他&lt;/h3&gt;
+            &lt;p&gt;关于其他section的介绍&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/article&gt;
+&lt;/section&gt;   
+</code></pre><p>注意：     </p>
+<ol>
+<li>一张页面可以用section划分为简介、文章条目和联系信息。不过在文章内页，最好用article。section不是一般意义上的容器元素，如果想作为样式展示和脚本的便利，可以用div。   </li>
+<li>可以表示文档中的节或者段。   </li>
+<li>acticle、nav、aside可以理解为特殊的section，如果可以用article、nav、aside就不要用section，没有实际意义的就用div   </li>
+</ol>
+<h3 id="aside元素"><a href="#aside元素" class="headerlink" title="aside元素"></a>aside元素</h3><p>aside 元素被包含在article元素中作为主要内容的附属信息部分，其中的内容可以是与当前文章有关的相关资料，标签，名词解释等。<br>在article元素之外使用作为页面或站点全局的附属信息部分。最典型的是侧边栏，其中的内容可以是日志串连，其他组的导航，甚至广告，这些内容相关的页面<br>代码示例：   </p>
+<pre><code>&lt;article&gt;
+    &lt;p&gt;内容&lt;/p&gt;
+    &lt;aside&gt;
+        &lt;h1&gt;作者简介&lt;/h1&gt;
+        &lt;p&gt;小维,哈哈哈&lt;/p&gt;
+    &lt;/aside&gt;
+&lt;/article&gt;   
+</code></pre><p>注意：   </p>
+<ol>
+<li>aside 在 article 内表示主要内容的附属信息。   </li>
+<li>在article之外侧可以做侧边栏，没有article与之对应，最好不用   </li>
+<li>如果是广告，其他日志链接或者其他分类导航也可以用。 </li>
+</ol>
+<p>最后，IE8以下需要考虑HTML5的标签兼容性解决方案。   </p>
+<h2 id="CSS语义化"><a href="#CSS语义化" class="headerlink" title="CSS语义化"></a>CSS语义化</h2><p>CSS语义就是class和ID命名的语义。class属性作为HTML与CSS衔接的纽带，其本意是用来描述元素内容的。指用易于理解的名称对html标签附加的class或id命名。如果说HTML语义化标签是给机器看的，那么CSS命名的语义化就是给人看的。良好的CSS命名方式减少沟通调试成本，易于理解。<br>CSS命名首先要满足W3C的命名规范和团队的命名规范。其次是高效和可重用性。<br>示例：   </p>
+<pre><code>&lt;!-- 以表现为中心 --&gt;
+&lt;div class=&quot;ft margin10&quot;&gt;
+    &lt;span&gt;用户名：小维&lt;/span&gt;
+&lt;/div&gt;
+&lt;!-- 以信息为中心 --&gt;
+&lt;p class=&quot;user_info&quot;&gt;
+    &lt;em&gt;用户名:小维&lt;/em&gt;
+&lt;/p&gt; 
+</code></pre>
           
         
       
@@ -2032,7 +2047,9 @@ for(i=0;i&lt;10;i++) {
 <li>0.1 + 0.2 &gt; 0.3的输出结果是什么，如果想要输出正确的结果，应该如何操作</li>
 <li>同源策略是什么，这样做有什么目的，前端独立解决接口跨域的方法</li>
 <li>类数组对象是什么，数据结构是什么样的，怎么转换</li>
-<li>ES6中模块与AMD、Command JS有什么区别<h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1></li>
+<li>ES6中模块与AMD、Command JS有什么区别   </li>
+</ol>
+<h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1><ol>
 <li><p>以下代码输出的是什么，如果要输出’bytedance‘，至少说出两种方法，如果要简洁地输出，要怎么做？   </p>
 <pre><code> let obj = {   
      name: &#39;bytedance&#39;,   
@@ -2057,11 +2074,12 @@ for(i=0;i&lt;10;i++) {
      .start();
  }    
 </code></pre></li>
-<li><p>给定一个升序数组如[0,1,2,4,5,7,13,15,16]，找出数组中连续升序的数，如[‘0-&gt;2’,’4-&gt;5’,’7’,’13’,’15-&gt;16’]   </p>
-<pre><code> function find(arr) {   
-     // your code
- }    
-</code></pre><h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1></li>
+<li>给定一个升序数组如[0,1,2,4,5,7,13,15,16]，找出数组中连续升序的数，如[‘0-&gt;2’,’4-&gt;5’,’7’,’13’,’15-&gt;16’]   </li>
+</ol>
+<pre><code>    function find(arr) {   
+        // your code
+    }    
+</code></pre><h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><ol>
 <li>盒模型</li>
 <li>基本引用类型</li>
 <li>function为什么能调用call等函数</li>
@@ -2126,7 +2144,7 @@ for(i=0;i&lt;10;i++) {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/Vue2.0生命周期/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/Vue生命周期/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JHChen">
@@ -2145,7 +2163,7 @@ for(i=0;i&lt;10;i++) {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/19/Vue2.0生命周期/" itemprop="url">Vue2.0生命周期</a></h1>
+                <a class="post-title-link" href="/2018/11/19/Vue生命周期/" itemprop="url">Vue2.0生命周期</a></h1>
         
 
         <div class="post-meta">
@@ -2266,8 +2284,8 @@ for(i=0;i&lt;10;i++) {
 </li>
 </ul>
 <!-- /TOC -->
-<h1 id="vue-js-2-0-生命周期钩子"><a href="#vue-js-2-0-生命周期钩子" class="headerlink" title="vue.js 2.0 生命周期钩子"></a>vue.js 2.0 生命周期钩子</h1><p>每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。<br><img src="/2018/11/19/Vue2.0生命周期/生命周期流程图.png" alt="生命周期图示">   </p>
-<h2 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h2><p><img src="/2018/11/19/Vue2.0生命周期/生命周期钩子函数报表.png" alt="生命周期钩子函数">   </p>
+<h1 id="vue-js-2-0-生命周期钩子"><a href="#vue-js-2-0-生命周期钩子" class="headerlink" title="vue.js 2.0 生命周期钩子"></a>vue.js 2.0 生命周期钩子</h1><p>每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。<br><img src="/2018/11/19/Vue生命周期/生命周期流程图.png" alt="生命周期图示">   </p>
+<h2 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h2><p><img src="/2018/11/19/Vue生命周期/生命周期钩子函数报表.png" alt="生命周期钩子函数">   </p>
 <h2 id="生命周期探究"><a href="#生命周期探究" class="headerlink" title="生命周期探究"></a>生命周期探究</h2><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -2345,9 +2363,9 @@ var app = new Vue({
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;   
-</code></pre><h3 id="数据挂载完成"><a href="#数据挂载完成" class="headerlink" title="数据挂载完成"></a>数据挂载完成</h3><p><img src="/2018/11/19/Vue2.0生命周期/生命周期挂载结束.png" alt="数据挂载完成">   </p>
-<h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p><img src="/2018/11/19/Vue2.0生命周期/生命周期数据更新.png" alt="数据更新">   </p>
-<h3 id="销毁实例"><a href="#销毁实例" class="headerlink" title="销毁实例"></a>销毁实例</h3><p><img src="/2018/11/19/Vue2.0生命周期/生命周期销毁.png" alt="销毁实例"> </p>
+</code></pre><h3 id="数据挂载完成"><a href="#数据挂载完成" class="headerlink" title="数据挂载完成"></a>数据挂载完成</h3><p><img src="/2018/11/19/Vue生命周期/生命周期挂载结束.png" alt="数据挂载完成">   </p>
+<h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p><img src="/2018/11/19/Vue生命周期/生命周期数据更新.png" alt="数据更新">   </p>
+<h3 id="销毁实例"><a href="#销毁实例" class="headerlink" title="销毁实例"></a>销毁实例</h3><p><img src="/2018/11/19/Vue生命周期/生命周期销毁.png" alt="销毁实例"> </p>
 <h3 id="create和mounted相关"><a href="#create和mounted相关" class="headerlink" title="create和mounted相关"></a>create和mounted相关</h3><ol>
 <li>beforeCreated: el和data并未初始化   </li>
 <li>created：完成了data数据的初始化，el并没有初始化   </li>
@@ -3057,7 +3075,7 @@ var app = new Vue({
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.2k</span>
+    <span title="Site words total count">14.3k</span>
   
 
 </div>

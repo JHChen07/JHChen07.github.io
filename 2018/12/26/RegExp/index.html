@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="jhchen の BLOG">
 <meta property="og:description" content="正则表达式的定义 字面量形式 构造函数形式 RegExp实例属性 RegExp实例方法 exec() test()   RegExp构造函数属性     模式的局限性   正则表达式是用于匹配字符串中字符组合的模式。在JS中，正则表达式也是对象。正则表达式中，可以进行“分组”，用一对圆括号（捕获括号）括起来的表达式就是一个分组，分组之后可以将各组子表达式的匹配结果分别处理。正则表达式的匹配模式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-26T13:07:08.887Z">
+<meta property="og:updated_time" content="2019-02-26T02:54:51.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RegExp">
 <meta name="twitter:description" content="正则表达式的定义 字面量形式 构造函数形式 RegExp实例属性 RegExp实例方法 exec() test()   RegExp构造函数属性     模式的局限性   正则表达式是用于匹配字符串中字符组合的模式。在JS中，正则表达式也是对象。正则表达式中，可以进行“分组”，用一对圆括号（捕获括号）括起来的表达式就是一个分组，分组之后可以将各组子表达式的匹配结果分别处理。正则表达式的匹配模式">
@@ -390,8 +390,10 @@
 <li>m: 表示多行（multiline）模式，即在到达一行末尾时还会继续查找下一行中是否存在与模式匹配的项。   </li>
 </ol>
 <p>正则表达式中的元字符包括：<code>([{\^$|?*+.}])</code>，因此，如果想要匹配这些字符串，pattern中的所有元字符都必须转义。   </p>
-<h2 id="正则表达式的定义"><a href="#正则表达式的定义" class="headerlink" title="正则表达式的定义"></a>正则表达式的定义</h2><h3 id="字面量形式"><a href="#字面量形式" class="headerlink" title="字面量形式"></a>字面量形式</h3><p>var expression1 = /pattern/flags;   </p>
-<h3 id="构造函数形式"><a href="#构造函数形式" class="headerlink" title="构造函数形式"></a>构造函数形式</h3><p>RegExp的构造函数接收两个参数，一个是要匹配的字符串模式，另一个是可选的标志字符串。<br>var expression2 = new RegExp(‘[bc]at’, ‘i’);<br>以上，expression1和expression2是完全等价的正则表达式，但是传递给RegExp构造函数的两个参数都是字符串。（注意元字符的双重转义）<br>但是，字面量形式的正则表达式始终共享一个RegExp实例，实例属性不会重置，而构造函数创建的正则表达式，每一个新RegExp都是一个新实例，所以，第二种方法能循环调用实例属性，而第一种方法则不能。   </p>
+<h2 id="正则表达式的定义"><a href="#正则表达式的定义" class="headerlink" title="正则表达式的定义"></a>正则表达式的定义</h2><h3 id="字面量形式"><a href="#字面量形式" class="headerlink" title="字面量形式"></a>字面量形式</h3><pre><code>var expression1 = /pattern/flags;   
+</code></pre><h3 id="构造函数形式"><a href="#构造函数形式" class="headerlink" title="构造函数形式"></a>构造函数形式</h3><p>RegExp的构造函数接收两个参数，一个是要匹配的字符串模式，另一个是可选的标志字符串。   </p>
+<pre><code>var expression2 = new RegExp(&#39;[bc]at&#39;, &#39;i&#39;);   
+</code></pre><p>以上，expression1和expression2是完全等价的正则表达式，但是传递给RegExp构造函数的两个参数都是字符串。（注意元字符的双重转义）<br>但是，字面量形式的正则表达式始终共享一个RegExp实例，实例属性不会重置，而构造函数创建的正则表达式，每一个新RegExp都是一个新实例，所以，第二种方法能循环调用实例属性，而第一种方法则不能。   </p>
 <pre><code>var re = null;
     i;
 for(i=0; i&lt;10; i++) {
@@ -516,8 +518,8 @@ for(i=0;i&lt;10;i++) {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/26/JS事件及事件处理/" rel="prev" title="js事件及事件处理">
-                js事件及事件处理 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/26/JS事件及事件处理/" rel="prev" title="JS事件及事件处理">
+                JS事件及事件处理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -687,7 +689,7 @@ for(i=0;i&lt;10;i++) {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.2k</span>
+    <span title="Site words total count">14.3k</span>
   
 
 </div>

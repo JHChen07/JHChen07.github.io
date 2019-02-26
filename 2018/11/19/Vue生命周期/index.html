@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="React生态系统,">
+  <meta name="keywords" content="Vue,">
 
 
 
@@ -86,18 +86,24 @@
 
 
 
-<meta name="description" content="reduxreact组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过s">
-<meta name="keywords" content="React生态系统">
+<meta name="description" content="vue.js 2.0 生命周期钩子 生命周期钩子函数 生命周期探究 数据挂载完成 数据更新 销毁实例 create和mounted相关 destroy相关       vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    生命">
+<meta name="keywords" content="Vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redux">
-<meta property="og:url" content="http://yoursite.com/2019/02/26/Redux/index.html">
+<meta property="og:title" content="Vue2.0生命周期">
+<meta property="og:url" content="http://yoursite.com/2018/11/19/Vue生命周期/index.html">
 <meta property="og:site_name" content="jhchen の BLOG">
-<meta property="og:description" content="reduxreact组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过s">
+<meta property="og:description" content="vue.js 2.0 生命周期钩子 生命周期钩子函数 生命周期探究 数据挂载完成 数据更新 销毁实例 create和mounted相关 destroy相关       vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    生命">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-26T02:29:39.746Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期流程图.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期钩子函数报表.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期挂载结束.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期数据更新.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期销毁.png">
+<meta property="og:updated_time" content="2019-02-26T03:03:44.572Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redux">
-<meta name="twitter:description" content="reduxreact组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过s">
+<meta name="twitter:title" content="Vue2.0生命周期">
+<meta name="twitter:description" content="vue.js 2.0 生命周期钩子 生命周期钩子函数 生命周期探究 数据挂载完成 数据更新 销毁实例 create和mounted相关 destroy相关       vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    生命">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期流程图.png">
 
 
 
@@ -127,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/26/Redux/">
+  <link rel="canonical" href="http://yoursite.com/2018/11/19/Vue生命周期/">
 
 
 
 
 
-  <title>Redux | jhchen の BLOG</title>
+  <title>Vue2.0生命周期 | jhchen の BLOG</title>
   
 
 
@@ -266,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/26/Redux/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/Vue生命周期/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JHChen">
@@ -283,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Redux</h1>
+          <h1 class="post-title" itemprop="name headline">Vue2.0生命周期</h1>
         
 
         <div class="post-meta">
@@ -295,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-26T10:13:36+08:00">
-                2019-02-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-19T16:54:30+08:00">
+                2018-11-19
               </time>
             
 
@@ -349,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k
+                  953
                 </span>
               
 
@@ -365,7 +371,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  4
                 </span>
               
             </div>
@@ -386,132 +392,115 @@
       
 
       
-        <h1 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h1><p>react组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。<br>redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过store对象来负责执行action动作，获取state应用状态、订阅状态改变时触发的事件。<br>redux提供的是一种应用状态管理问题的解决思路。    </p>
-<h1 id="action"><a href="#action" class="headerlink" title="action"></a>action</h1><ul>
-<li>action   <ul>
-<li>action type   </li>
-<li>action payload   </li>
+        <!-- TOC -->
+<ul>
+<li><a href="#vuejs-20-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90">vue.js 2.0 生命周期钩子</a><ul>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0">生命周期钩子函数</a></li>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%8E%A2%E7%A9%B6">生命周期探究</a><ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%8C%82%E8%BD%BD%E5%AE%8C%E6%88%90">数据挂载完成</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0">数据更新</a></li>
+<li><a href="#%E9%94%80%E6%AF%81%E5%AE%9E%E4%BE%8B">销毁实例</a></li>
+<li><a href="#create%E5%92%8Cmounted%E7%9B%B8%E5%85%B3">create和mounted相关</a></li>
+<li><a href="#destroy%E7%9B%B8%E5%85%B3">destroy相关</a></li>
 </ul>
 </li>
-<li>action Creator   </li>
-<li>action Creator Generator      </li>
 </ul>
-<p>在形式上，action就是带有type属性的JS对象。在redux的约定中，将所有改变应用状态的操作规范为一个个action，在action中，也可以附上要用来修改应用状态state的数据：   </p>
-<pre><code>{
-    type: &#39;DD_TODO&#39;,
-    text: &#39;use redux&#39;
-}
-{
-    type: &#39;LOAD_ARTICLE&#39;,
-    response: { ... }
-}   
-</code></pre><p>action有两个作用，一是定义应用可以进行的动作或操作的类型，另一个是传递改变应用状态的数据。在redux的约定中，action必须包含type属性。附Flux Standard Action标准：   </p>
-<pre><code>{
-    // action 类型
-    type: &#39;INCREMENT&#39;,
-    // payload 中返回我们要传递的数据，用来修改应用 state
-    payload: {
-        num: 1  
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="vue-js-2-0-生命周期钩子"><a href="#vue-js-2-0-生命周期钩子" class="headerlink" title="vue.js 2.0 生命周期钩子"></a>vue.js 2.0 生命周期钩子</h1><p>每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。<br><img src="/2018/11/19/Vue生命周期/生命周期流程图.png" alt="生命周期图示">   </p>
+<h2 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h2><p><img src="/2018/11/19/Vue生命周期/生命周期钩子函数报表.png" alt="生命周期钩子函数">   </p>
+<h2 id="生命周期探究"><a href="#生命周期探究" class="headerlink" title="生命周期探究"></a>生命周期探究</h2><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.jsdelivr.net/vue/2.1.3/vue.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id=&quot;app&quot;&gt;
+    &lt;p&gt;{{ message }}&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+
+var app = new Vue({
+    el: &#39;#app&#39;,
+    data: {
+        message : &quot;xuxiao is boy&quot; 
     },
-    // payload 数据未获取成功时返回 true
-    error: false,
-    // 一些不必要在 payload 中传递的其他数据
-    meta: {
-        success: true
-    }
-}   
-</code></pre><p>根据Flux标准，action必须为JS对象，必须包含type属性，可以有其他几个属性。除此之外不允许有其他属性。    </p>
-<h1 id="action-creator创建action"><a href="#action-creator创建action" class="headerlink" title="action creator创建action"></a>action creator创建action</h1><p>示例：   </p>
-<pre><code>function addNumber(num) {
-    return { type: &#39;INCREMENT&#39;, num }
-}
-
-function minusNumber(num) {
-    return { type: &#39;DECREMENT&#39;, num }
-}
-
-...
-
-increment = () =&gt; {
-    this.dispatch(addNumber(1));
-};
-
-decrement = () =&gt; {
-    this.dispatch(minusNumber(-1));
-};    
-</code></pre><p>还可以使用generator：   </p>
-<pre><code>// actionTypes.js
-export const INCREMENT = &#39;INCREMENT&#39;
-export const DECREMENT = &#39;DECREMENT&#39;
-
-// action.js
-import { INCREMENT, DECREMENT } from &#39;./actionTypes&#39;
-
-const counterActionGenerator = (type, num) =&gt; (num) =&gt; {
-    let action = { type, num : num }
-    return action
-}
-
-const addNumber = counterActionGenerator(INCREMENT, null)
-const minusNumber = counterActionGenerator(DECREMENT, null)   
-</code></pre><h1 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h1><p>在redux中，根据应用状态和触发的action返回新的状态的函数成为reducer。命名的由来是因为这种函数与被传入Array.prototype.reduce(reducer, ?initialValue)的回调函数属于相同的类型。在JS中，reduce属于高阶函数，它能将其中的回调函数reducer递归应用到数组的所有元素上并返回一个独立的值。<br>值得注意的是，reducer的模型，它只是根据传入的状态数据state和action老判断返回一个新的state，reducer必须死一个纯函数，纯函数主要含义就是她不可以修改影响输入值，并且没有副作用，副作用指的是例如函数中一些一部调用或者会影响函数作用域之外的变量一类的操作。使用react技术栈时尤其要注意：保证数据的不可变性（immutability）。<br>保证reducer返回的是一个新的state数据，而不能直接修改传入的数值，首先，数据发生改变，在react应用当中，届满也要跟着相应改变重新渲染，这一步之间需要有一个比较差异的diff操作，因此改变之前和改变之后的数据都需要使用到。另外使用redux也能实现一些诸如时间旅行的功能，这些功能也需要依赖不可变的数据来实现。    </p>
-<h1 id="store"><a href="#store" class="headerlink" title="store"></a>store</h1><ul>
-<li>store   <ul>
-<li>getState</li>
-<li>disPatch</li>
-<li>subscribe</li>
-<li>unsubscribe</li>
-</ul>
+    beforeCreate: function () {
+                console.group(&#39;beforeCreate 创建前状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot; , &quot;el     : &quot; + this.$el); //undefined
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //undefined 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message)  
+        },
+        created: function () {
+            console.group(&#39;created 创建完毕状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el); //undefined
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化
+        },
+        beforeMount: function () {
+            console.group(&#39;beforeMount 挂载前状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + (this.$el)); //已被初始化
+            console.log(this.$el);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化  
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化  
+        },
+        mounted: function () {
+            console.group(&#39;mounted 挂载结束状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el); //已被初始化
+            console.log(this.$el);    
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化 
+        },
+        beforeUpdate: function () {
+            console.group(&#39;beforeUpdate 更新前状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
+            console.log(this.$el);   
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
+        },
+        updated: function () {
+            console.group(&#39;updated 更新完成状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
+            console.log(this.$el); 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
+        },
+        beforeDestroy: function () {
+            console.group(&#39;beforeDestroy 销毁前状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
+            console.log(this.$el);    
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
+        },
+        destroyed: function () {
+            console.group(&#39;destroyed 销毁完成状态===============》&#39;);
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
+            console.log(this.$el);  
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
+            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message)
+        }
+    })
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;   
+</code></pre><h3 id="数据挂载完成"><a href="#数据挂载完成" class="headerlink" title="数据挂载完成"></a>数据挂载完成</h3><p><img src="/2018/11/19/Vue生命周期/生命周期挂载结束.png" alt="数据挂载完成">   </p>
+<h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p><img src="/2018/11/19/Vue生命周期/生命周期数据更新.png" alt="数据更新">   </p>
+<h3 id="销毁实例"><a href="#销毁实例" class="headerlink" title="销毁实例"></a>销毁实例</h3><p><img src="/2018/11/19/Vue生命周期/生命周期销毁.png" alt="销毁实例"> </p>
+<h3 id="create和mounted相关"><a href="#create和mounted相关" class="headerlink" title="create和mounted相关"></a>create和mounted相关</h3><ol>
+<li>beforeCreated: el和data并未初始化   </li>
+<li>created：完成了data数据的初始化，el并没有初始化   </li>
+<li>beforeMounted：完成了el和data的初始化   </li>
+<li>mounted：完成挂载   </li>
+<li>beforeMounted钩子处，el并没有渲染新的值，这就是Virtual DOM，先把坑占住了。到后面mounted挂载的时候再把值渲染进去   </li>
+<li><p>update相关   </p>
+<p> e.g. app.message = ‘yes !! i do’<br>当data里的值被修改后，将会出发update的操作   </p>
+<h3 id="destroy相关"><a href="#destroy相关" class="headerlink" title="destroy相关"></a>destroy相关</h3><p> app.$destroy();<br>销毁完成后，我们再重新改变message的值，vue不在对此动作进行响应了。但是原先生成的DOM元素还在，相当于销毁后就不再受vue控制了。</p>
 </li>
-<li>createStore<ul>
-<li>reducer</li>
-<li>defaultState   </li>
-</ul>
-</li>
-</ul>
-<p>getState方法是用来获取当前存储中的状态数据。<br>dispatch是具体讲传入的action操作执行并触发listeners时间监听器的地方。<br>subscribe用来添加listener的方法，同时会返回一个unsubscribe的方法用来取消listener。listener是当状态数据改变时会自动触发的事件。     </p>
-<pre><code>const counter = (state = 0, action) =&gt; {
-    switch (action.type) {
-        case &#39;INCREMENT&#39;:
-        return state + 1;
-        case &#39;DECREMENT&#39;:
-        return state - 1;
-        default:
-        return state;
-    }
-}
-// 这里使用的是ES6的解构赋值的方法
-const { createStore } = Redux;
-// import { createStore } from &#39;redux&#39;;
-const store = createStore(counter);
-console.log(store.getState());
-
-/* document.addEventListener(&#39;click&#39;, () =&gt; {
-    store.dispatch({ type: &#39;INCREMENT&#39; });
-}); */
-
-const render = () =&gt; {
-    document.getElementById(&#39;root&#39;).innerText = store.getState();
-};
-
-store.subscribe(() =&gt; { console.log(store.getState()) })
-let unsubscribe = store.subscribe(render);
-
-render();
-
-document.getElementById(&#39;increment&#39;).addEventListener(&#39;click&#39;,function() {
-    store.dispatch({ type: &#39;INCREMENT&#39; });
-})
-document.getElementById(&#39;decrement&#39;).addEventListener(&#39;click&#39;,function() {
-    store.dispatch({ type: &#39;DECREMENT&#39; });
-})
-document.getElementById(&#39;unsubscribe&#39;).addEventListener(&#39;click&#39;,function() {
-    unsubscribe()
-    console.log(&#39;unsubscribed!&#39;)
-})    
-</code></pre><h1 id="middleware"><a href="#middleware" class="headerlink" title="middleware"></a>middleware</h1><p>一般意义下可以译为中间件，如用作处理登录验证的模块。<br>在redux应用中，运用middleware可以不更改redux原生方法就能观察到action被触发以及应用状态前后的变化。   </p>
-<h1 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h1><h2 id="provider"><a href="#provider" class="headerlink" title="provider"></a>provider</h2><p>provider的作用向应用传递store的一个容器组件，一般都会放在应用组件的最外层。   </p>
-<h2 id="connect"><a href="#connect" class="headerlink" title="connect()"></a>connect()</h2><p>connect方法可以根据现有的展示组件自动生成一个容器组件。</p>
+</ol>
 
       
     </div>
@@ -540,7 +529,7 @@ document.getElementById(&#39;unsubscribe&#39;).addEventListener(&#39;click&#39;,
       
         <div class="post-tags">
           
-            <a href="/tags/React生态系统/" rel="tag"><i class="fa fa-tag"></i> React生态系统</a>
+            <a href="/tags/Vue/" rel="tag"><i class="fa fa-tag"></i> Vue</a>
           
         </div>
       
@@ -553,8 +542,8 @@ document.getElementById(&#39;unsubscribe&#39;).addEventListener(&#39;click&#39;,
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/26/JS定时器/" rel="next" title="JS定时器">
-                <i class="fa fa-chevron-left"></i> JS定时器
+              <a href="/2018/11/19/零碎知识/" rel="next" title="零碎知识">
+                <i class="fa fa-chevron-left"></i> 零碎知识
               </a>
             
           </div>
@@ -563,8 +552,8 @@ document.getElementById(&#39;unsubscribe&#39;).addEventListener(&#39;click&#39;,
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/26/ES6标准入门学习笔记/" rel="prev" title="ES6标准入门学习笔记">
-                ES6标准入门学习笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/11/19/头条面试题/" rel="prev" title="头条面试题">
+                头条面试题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -699,7 +688,7 @@ document.getElementById(&#39;unsubscribe&#39;).addEventListener(&#39;click&#39;,
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redux"><span class="nav-number">1.</span> <span class="nav-text">redux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#action"><span class="nav-number">2.</span> <span class="nav-text">action</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#action-creator创建action"><span class="nav-number">3.</span> <span class="nav-text">action creator创建action</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reducer"><span class="nav-number">4.</span> <span class="nav-text">reducer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#store"><span class="nav-number">5.</span> <span class="nav-text">store</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#middleware"><span class="nav-number">6.</span> <span class="nav-text">middleware</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#react-redux"><span class="nav-number">7.</span> <span class="nav-text">react-redux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#provider"><span class="nav-number">7.1.</span> <span class="nav-text">provider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#connect"><span class="nav-number">7.2.</span> <span class="nav-text">connect()</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-js-2-0-生命周期钩子"><span class="nav-number">1.</span> <span class="nav-text">vue.js 2.0 生命周期钩子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期钩子函数"><span class="nav-number">1.1.</span> <span class="nav-text">生命周期钩子函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期探究"><span class="nav-number">1.2.</span> <span class="nav-text">生命周期探究</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据挂载完成"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据挂载完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据更新"><span class="nav-number">1.2.2.</span> <span class="nav-text">数据更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#销毁实例"><span class="nav-number">1.2.3.</span> <span class="nav-text">销毁实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#create和mounted相关"><span class="nav-number">1.2.4.</span> <span class="nav-text">create和mounted相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#destroy相关"><span class="nav-number">1.2.5.</span> <span class="nav-text">destroy相关</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
