@@ -347,7 +347,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  837
+                  870
                 </span>
               
 
@@ -386,7 +386,19 @@
       
         
           
-            <h1 id="CSS常用布局"><a href="#CSS常用布局" class="headerlink" title="CSS常用布局"></a>CSS常用布局</h1><h2 id="1-两栏布局"><a href="#1-两栏布局" class="headerlink" title="1.两栏布局"></a>1.两栏布局</h2><p>   一栏定宽，一栏自适应。</p>
+            <!-- TOC -->
+<ul>
+<li><a href="#css常用布局">CSS常用布局</a><ul>
+<li><a href="#1两栏布局">1.两栏布局</a></li>
+<li><a href="#2三栏布局">2.三栏布局</a></li>
+<li><a href="#3水平居中">3.水平居中</a></li>
+<li><a href="#4水平居中及垂直居中">4.水平居中及垂直居中</a></li>
+</ul>
+</li>
+<li><a href="#flex布局">flex布局</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="CSS常用布局"><a href="#CSS常用布局" class="headerlink" title="CSS常用布局"></a>CSS常用布局</h1><h2 id="1-两栏布局"><a href="#1-两栏布局" class="headerlink" title="1.两栏布局"></a>1.两栏布局</h2><p>   一栏定宽，一栏自适应。</p>
 <h3 id="实现方式有两种："><a href="#实现方式有两种：" class="headerlink" title="实现方式有两种："></a>实现方式有两种：</h3><ol>
 <li><code>float</code>+<code>margin</code></li>
 <li><code>position：absolute</code>   </li>
@@ -401,9 +413,18 @@
 <h2 id="3-水平居中"><a href="#3-水平居中" class="headerlink" title="3.水平居中"></a>3.水平居中</h2><ol>
 <li><code>margin：0 auto</code>；</li>
 <li><code>text-align</code>和<code>inline-block</code>的结合（父元素的<code>text-align</code>为<code>center</code>）</li>
-<li><p><code>position</code>绝对定位来实现居中布局，适用于块级元素不给出宽高的情况下（需要借助<code>transform</code>的translateX方法）。   </p>
-<p>#parent {<br>  position: relative;<br>}<br>#child {<br>  position: absolute;<br>  top: 0;<br>  left: 50%;<br>  transform: translateX(-50%);<br>}</p>
-</li>
+<li><code>position</code>绝对定位来实现居中布局，适用于块级元素不给出宽高的情况下（需要借助<code>transform</code>的translateX方法）。   </li>
+</ol>
+<pre><code>#parent {
+    position: relative;
+}
+#child {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+</code></pre><ol start="4">
 <li><code>flex</code>   </li>
 </ol>
 <pre><code>#parent {
@@ -588,7 +609,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.2k
                 </span>
               
 
@@ -627,7 +648,40 @@
       
         
           
-            <h1 id="返回结果HTTP状态码"><a href="#返回结果HTTP状态码" class="headerlink" title="返回结果HTTP状态码"></a>返回结果HTTP状态码</h1><p>HTTP状态码负责表示客户端的HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。<br>数字中的第一位指定了相应类别，后两位无分类。响应的类别有以下5种：   </p>
+            <!-- TOC -->
+<ul>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9Chttp%E7%8A%B6%E6%80%81%E7%A0%81">返回结果HTTP状态码</a><ul>
+<li><a href="#2xx-%E6%88%90%E5%8A%9F">2xx 成功</a><ul>
+<li><a href="#200-ok">200 OK</a></li>
+<li><a href="#204-no-content">204 No Content</a></li>
+<li><a href="#206-partial-content">206 Partial Content</a></li>
+</ul>
+</li>
+<li><a href="#3xx-%E9%87%8D%E5%AE%9A%E5%90%91">3xx 重定向</a><ul>
+<li><a href="#301-moved-permanently">301 Moved Permanently</a></li>
+<li><a href="#302-found">302 Found</a></li>
+<li><a href="#303-see-other">303 See Other</a></li>
+<li><a href="#304-not-modified">304 Not Modified</a></li>
+<li><a href="#307-temperorary-redirect">307 Temperorary Redirect</a></li>
+</ul>
+</li>
+<li><a href="#4xx-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF">4xx 客户端错误</a><ul>
+<li><a href="#400-bad-request">400 Bad Request</a></li>
+<li><a href="#401-unauthrized">401 Unauthrized</a></li>
+<li><a href="#403-forbidden">403 Forbidden</a></li>
+<li><a href="#403-not-found">403 Not Found</a></li>
+</ul>
+</li>
+<li><a href="#5xx-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%94%99%E8%AF%AF">5xx 服务器错误</a><ul>
+<li><a href="#501-internal-server-error">501 Internal Server Error</a></li>
+<li><a href="#503-service-unavailable">503 Service Unavailable</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="返回结果HTTP状态码"><a href="#返回结果HTTP状态码" class="headerlink" title="返回结果HTTP状态码"></a>返回结果HTTP状态码</h1><p>HTTP状态码负责表示客户端的HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。<br>数字中的第一位指定了相应类别，后两位无分类。响应的类别有以下5种：   </p>
 <table>
 <thead>
 <tr>
@@ -1018,7 +1072,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.3k</span>
+    <span title="Site words total count">14.4k</span>
   
 
 </div>

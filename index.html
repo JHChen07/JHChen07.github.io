@@ -541,7 +541,7 @@ let bar = 9;
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k
+                  1.3k
                 </span>
               
 
@@ -580,7 +580,22 @@ let bar = 9;
       
         
           
-            <h1 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h1><p>react组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。<br>redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过store对象来负责执行action动作，获取state应用状态、订阅状态改变时触发的事件。<br>redux提供的是一种应用状态管理问题的解决思路。    </p>
+            <!-- TOC -->
+<ul>
+<li><a href="#redux">redux</a></li>
+<li><a href="#action">action</a></li>
+<li><a href="#action-creator%E5%88%9B%E5%BB%BAaction">action creator创建action</a></li>
+<li><a href="#reducer">reducer</a></li>
+<li><a href="#store">store</a></li>
+<li><a href="#middleware">middleware</a></li>
+<li><a href="#react-redux">react-redux</a><ul>
+<li><a href="#provider">provider</a></li>
+<li><a href="#connect">connect()</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h1><p>react组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。<br>redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过store对象来负责执行action动作，获取state应用状态、订阅状态改变时触发的事件。<br>redux提供的是一种应用状态管理问题的解决思路。    </p>
 <h1 id="action"><a href="#action" class="headerlink" title="action"></a>action</h1><ul>
 <li>action   <ul>
 <li>action type   </li>
@@ -3205,7 +3220,7 @@ if (typeof callback === &#39;string&#39; &amp;&amp; callback.length !== 0) {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.3k</span>
+    <span title="Site words total count">14.4k</span>
   
 
 </div>

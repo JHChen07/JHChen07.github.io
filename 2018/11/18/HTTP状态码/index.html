@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="返回结果HTTP状态码HTTP状态码负责表示客户端的HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。数字中的第一位指定了相应类别，后两位无分类。响应的类别有以下5种：       代码 类别 原因短语     1xx informational (信息性状态码) 接收的请求正在处理   2xx success (成功状态码) 请求正常处理完毕   3xx redirect">
+<meta name="description" content="返回结果HTTP状态码 2xx 成功 200 OK 204 No Content 206 Partial Content   3xx 重定向 301 Moved Permanently 302 Found 303 See Other 304 Not Modified 307 Temperorary Redirect   4xx 客户端错误 400 Bad Request 401 Unauthr">
 <meta name="keywords" content="HTTP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP状态码">
 <meta property="og:url" content="http://yoursite.com/2018/11/18/HTTP状态码/index.html">
 <meta property="og:site_name" content="jhchen の BLOG">
-<meta property="og:description" content="返回结果HTTP状态码HTTP状态码负责表示客户端的HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。数字中的第一位指定了相应类别，后两位无分类。响应的类别有以下5种：       代码 类别 原因短语     1xx informational (信息性状态码) 接收的请求正在处理   2xx success (成功状态码) 请求正常处理完毕   3xx redirect">
+<meta property="og:description" content="返回结果HTTP状态码 2xx 成功 200 OK 204 No Content 206 Partial Content   3xx 重定向 301 Moved Permanently 302 Found 303 See Other 304 Not Modified 307 Temperorary Redirect   4xx 客户端错误 400 Bad Request 401 Unauthr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-18T09:29:47.193Z">
+<meta property="og:updated_time" content="2019-02-26T03:27:25.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP状态码">
-<meta name="twitter:description" content="返回结果HTTP状态码HTTP状态码负责表示客户端的HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。数字中的第一位指定了相应类别，后两位无分类。响应的类别有以下5种：       代码 类别 原因短语     1xx informational (信息性状态码) 接收的请求正在处理   2xx success (成功状态码) 请求正常处理完毕   3xx redirect">
+<meta name="twitter:description" content="返回结果HTTP状态码 2xx 成功 200 OK 204 No Content 206 Partial Content   3xx 重定向 301 Moved Permanently 302 Found 303 See Other 304 Not Modified 307 Temperorary Redirect   4xx 客户端错误 400 Bad Request 401 Unauthr">
 
 
 
@@ -349,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.2k
                 </span>
               
 
@@ -386,7 +386,40 @@
       
 
       
-        <h1 id="返回结果HTTP状态码"><a href="#返回结果HTTP状态码" class="headerlink" title="返回结果HTTP状态码"></a>返回结果HTTP状态码</h1><p>HTTP状态码负责表示客户端的HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。<br>数字中的第一位指定了相应类别，后两位无分类。响应的类别有以下5种：   </p>
+        <!-- TOC -->
+<ul>
+<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9Chttp%E7%8A%B6%E6%80%81%E7%A0%81">返回结果HTTP状态码</a><ul>
+<li><a href="#2xx-%E6%88%90%E5%8A%9F">2xx 成功</a><ul>
+<li><a href="#200-ok">200 OK</a></li>
+<li><a href="#204-no-content">204 No Content</a></li>
+<li><a href="#206-partial-content">206 Partial Content</a></li>
+</ul>
+</li>
+<li><a href="#3xx-%E9%87%8D%E5%AE%9A%E5%90%91">3xx 重定向</a><ul>
+<li><a href="#301-moved-permanently">301 Moved Permanently</a></li>
+<li><a href="#302-found">302 Found</a></li>
+<li><a href="#303-see-other">303 See Other</a></li>
+<li><a href="#304-not-modified">304 Not Modified</a></li>
+<li><a href="#307-temperorary-redirect">307 Temperorary Redirect</a></li>
+</ul>
+</li>
+<li><a href="#4xx-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF">4xx 客户端错误</a><ul>
+<li><a href="#400-bad-request">400 Bad Request</a></li>
+<li><a href="#401-unauthrized">401 Unauthrized</a></li>
+<li><a href="#403-forbidden">403 Forbidden</a></li>
+<li><a href="#403-not-found">403 Not Found</a></li>
+</ul>
+</li>
+<li><a href="#5xx-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%94%99%E8%AF%AF">5xx 服务器错误</a><ul>
+<li><a href="#501-internal-server-error">501 Internal Server Error</a></li>
+<li><a href="#503-service-unavailable">503 Service Unavailable</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="返回结果HTTP状态码"><a href="#返回结果HTTP状态码" class="headerlink" title="返回结果HTTP状态码"></a>返回结果HTTP状态码</h1><p>HTTP状态码负责表示客户端的HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。<br>数字中的第一位指定了相应类别，后两位无分类。响应的类别有以下5种：   </p>
 <table>
 <thead>
 <tr>
@@ -661,7 +694,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.3k</span>
+    <span title="Site words total count">14.4k</span>
   
 
 </div>
