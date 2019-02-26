@@ -2600,23 +2600,44 @@ var app = new Vue({
 <h2 id="浏览器解析HTML方式"><a href="#浏览器解析HTML方式" class="headerlink" title="浏览器解析HTML方式"></a>浏览器解析HTML方式</h2><ol>
 <li>非怪异（标准）模式   页面按照HTML和CSS的定义渲染   </li>
 <li>怪异模式   尝试模拟旧浏览器的行为   </li>
-<li>部分怪异（近乎标准）模式   除了实施一种表单元格尺寸的怪异行为，其他符合标准<br>注：一个不含任何DOCTYPE的网页将会以怪异模式渲染。   <h1 id="DOM结构"><a href="#DOM结构" class="headerlink" title="DOM结构"></a>DOM结构</h1>DOM：Document Object Module，文档对象模型。   <h2 id="W3C-DOM标准"><a href="#W3C-DOM标准" class="headerlink" title="W3C DOM标准"></a>W3C DOM标准</h2></li>
+<li>部分怪异（近乎标准）模式   除了实施一种表单元格尺寸的怪异行为，其他符合标准  </li>
+</ol>
+<p>注：一个不含任何DOCTYPE的网页将会以怪异模式渲染。   </p>
+<h1 id="DOM结构"><a href="#DOM结构" class="headerlink" title="DOM结构"></a>DOM结构</h1><p>DOM：Document Object Module，文档对象模型。   </p>
+<h2 id="W3C-DOM标准"><a href="#W3C-DOM标准" class="headerlink" title="W3C DOM标准"></a>W3C DOM标准</h2><ol>
 <li>核心DOM - 针对任何结构化文档的标准模型   </li>
 <li>XML DOM - 针对XML文档的标准模型   </li>
-<li>HTML DOM - 针对HTML文档的标准模型   <h2 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h2>根据W3C的HTML DOM标准，HTML文档中的所有内容都是节点<br>文档节点、元素节点、属性节点、文本节点、注释节点等。   <h2 id="HTML-DOM节点树"><a href="#HTML-DOM节点树" class="headerlink" title="HTML DOM节点树"></a>HTML DOM节点树</h2>HTML文本会被解析为DOM树，树中的所有节点均可通过JavaScript进行访问。所有HTML元素（节点）均可被修改，也可以创建或删除节点。<br><img src="/2018/11/19/零碎知识/DOM节点树.png" alt="DOM节点树">   <h2 id="节点的关系"><a href="#节点的关系" class="headerlink" title="节点的关系"></a>节点的关系</h2>父、子、同胞等术语用于描述这些关系。节点树中，顶端节点被称为根；每个节点都有父节点，除了根；一个节点可以拥有任意数量的子，同胞拥有相同的根。<br><img src="/2018/11/19/零碎知识/DOM节点.png" alt="DOM节点">   <h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1>每个元素都是一个矩形盒子，盒模型是元素大小的呈现方式。每个盒子有四个边：外边距边，边匡边，内填充边与内容边。<br><img src="/2018/11/19/零碎知识/盒模型.png" alt="盒模型"><br>盒子模型分为两种，一种是W3C标准盒模型，一种是IE盒模型。</li>
+<li>HTML DOM - 针对HTML文档的标准模型   </li>
+</ol>
+<h2 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h2><p>根据W3C的HTML DOM标准，HTML文档中的所有内容都是节点<br>文档节点、元素节点、属性节点、文本节点、注释节点等。   </p>
+<h2 id="HTML-DOM节点树"><a href="#HTML-DOM节点树" class="headerlink" title="HTML DOM节点树"></a>HTML DOM节点树</h2><p>HTML文本会被解析为DOM树，树中的所有节点均可通过JavaScript进行访问。所有HTML元素（节点）均可被修改，也可以创建或删除节点。<br><img src="/2018/11/19/零碎知识/DOM节点树.png" alt="DOM节点树">   </p>
+<h2 id="节点的关系"><a href="#节点的关系" class="headerlink" title="节点的关系"></a>节点的关系</h2><p>父、子、同胞等术语用于描述这些关系。节点树中，顶端节点被称为根；每个节点都有父节点，除了根；一个节点可以拥有任意数量的子，同胞拥有相同的根。<br><img src="/2018/11/19/零碎知识/DOM节点.png" alt="DOM节点">   </p>
+<h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1><p>每个元素都是一个矩形盒子，盒模型是元素大小的呈现方式。每个盒子有四个边：外边距边，边匡边，内填充边与内容边。<br><img src="/2018/11/19/零碎知识/盒模型.png" alt="盒模型"><br>盒子模型分为两种，一种是W3C标准盒模型，一种是IE盒模型。</p>
+<ol>
 <li>content-box （标准盒模型）<br>width = content宽度<br>height = content高度  </li>
-<li>border-box （IE盒模型）<br>width = border + padding + content宽度<br>height = border + padding + content高度<br>以上两者可以通过<code>box-sizing</code>属性自由转换，默认为<code>content-box</code>。   <h2 id="JavaScript如何设置获取盒模型对应的宽和高"><a href="#JavaScript如何设置获取盒模型对应的宽和高" class="headerlink" title="JavaScript如何设置获取盒模型对应的宽和高"></a>JavaScript如何设置获取盒模型对应的宽和高</h2></li>
+<li>border-box （IE盒模型）<br>width = border + padding + content宽度<br>height = border + padding + content高度   </li>
+</ol>
+<p>以上两者可以通过<code>box-sizing</code>属性自由转换，默认为<code>content-box</code>。   </p>
+<h2 id="JavaScript如何设置获取盒模型对应的宽和高"><a href="#JavaScript如何设置获取盒模型对应的宽和高" class="headerlink" title="JavaScript如何设置获取盒模型对应的宽和高"></a>JavaScript如何设置获取盒模型对应的宽和高</h2><ol>
 <li>dom.style.width/height 只能取到行内样式的宽和高，style标签中和link外链的样式取不到。   </li>
 <li>dom.currentStyle.width/height 取到的是最终渲染后的宽和高，只有IE支持此属性。   </li>
 <li>window.getComputedStyle(dom).width/height 同（2）但是多浏览器支持，IE9以上支持。   </li>
-<li>dom.getBoundingClientRect().width/height 也是得到渲染后的宽和高，大多浏览器支持。IE9以上支持，除此外还可以取到相对于视窗的上下左右的距离  <h2 id="外边距重叠"><a href="#外边距重叠" class="headerlink" title="外边距重叠"></a>外边距重叠</h2>当两个或更多个垂直边距相遇时，它们将形成一个外边距。这个外边距的高度等于两个发生叠加的外边距的高度中的较大者。但是只有普通文档流中的快款的垂直外边距才会发生外边距叠加。行内框、浮动框或绝对定位框之间的外边距不会叠加。<br>垂直外边距叠加有三种情况：   </li>
+<li>dom.getBoundingClientRect().width/height 也是得到渲染后的宽和高，大多浏览器支持。IE9以上支持，除此外还可以取到相对于视窗的上下左右的距离   </li>
+</ol>
+<h2 id="外边距重叠"><a href="#外边距重叠" class="headerlink" title="外边距重叠"></a>外边距重叠</h2><p>当两个或更多个垂直边距相遇时，它们将形成一个外边距。这个外边距的高度等于两个发生叠加的外边距的高度中的较大者。但是只有普通文档流中的快款的垂直外边距才会发生外边距叠加。行内框、浮动框或绝对定位框之间的外边距不会叠加。<br>垂直外边距叠加有三种情况：   </p>
+<ol>
 <li>元素自身叠加。当元素没有内容、内边距、边框时，它的上下边距就相遇了，即会在垂直方向产生叠加。当添加上述任何一项，叠加就会取消。   </li>
 <li>相邻元素叠加。   </li>
-<li>包含（父子）元素叠加。包含元素的外边距隔着父元素的内边距和边框，当这两项都不存在时，父子元素垂直外边距相邻，产生叠加。添加任何一项就会取消叠加。   <h1 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h1>BFC（Block Formatting Context）：块格式化上下文。<br>BFC决定了元素如何对其内容进行定位，以及与其他元素的关系和相互作用。当设计到可视化布局时，BFC提供了一个环境，HTML元素在这个环境按照一定的规则进行布局。一个环境中的元素不会影响到其它环境中的布局。   <h2 id="BFC原理（渲染规则）"><a href="#BFC原理（渲染规则）" class="headerlink" title="BFC原理（渲染规则）"></a>BFC原理（渲染规则）</h2></li>
+<li>包含（父子）元素叠加。包含元素的外边距隔着父元素的内边距和边框，当这两项都不存在时，父子元素垂直外边距相邻，产生叠加。添加任何一项就会取消叠加。   </li>
+</ol>
+<h1 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h1><p>BFC（Block Formatting Context）：块格式化上下文。<br>BFC决定了元素如何对其内容进行定位，以及与其他元素的关系和相互作用。当设计到可视化布局时，BFC提供了一个环境，HTML元素在这个环境按照一定的规则进行布局。一个环境中的元素不会影响到其它环境中的布局。   </p>
+<h2 id="BFC原理（渲染规则）"><a href="#BFC原理（渲染规则）" class="headerlink" title="BFC原理（渲染规则）"></a>BFC原理（渲染规则）</h2><ol>
 <li>BFC元素垂直方向的边距会发生重叠。属于不同BFC外边距不会发生重叠。   </li>
 <li>BFC的区域不会与浮动元素的布局重叠。   </li>
 <li>BFC元素是一个独立的容器，外面的元素不会影响里面的元素。反之亦然。   </li>
-<li>计算BFC高度时，浮动元素也会参与计算（清除浮动）   <h2 id="如何创建BFC"><a href="#如何创建BFC" class="headerlink" title="如何创建BFC"></a>如何创建BFC</h2></li>
+<li>计算BFC高度时，浮动元素也会参与计算（清除浮动）   </li>
+</ol>
+<h2 id="如何创建BFC"><a href="#如何创建BFC" class="headerlink" title="如何创建BFC"></a>如何创建BFC</h2><ol>
 <li>根元素或包含根元素的元素   </li>
 <li>浮动元素（元素的 <code>float</code> 不是 <code>none</code>）   </li>
 <li>绝对定位元素（元素的 <code>position</code> 为 <code>absolute</code> 或 <code>fixed</code>）   </li>
@@ -2629,44 +2650,149 @@ var app = new Vue({
 <li><code>contain</code> 值为 <code>layout</code>、<code>content</code> 或 <code>strict</code> 的元素   </li>
 <li>弹性元素（<code>display</code>为 <code>flex</code> 或 <code>inline-flex</code> 元素的直接子元素）   </li>
 <li>网格元素（<code>display</code> 为 <code>grid</code> 或 <code>inline-grid</code> 元素的直接子元素）   </li>
-<li>多列容器（元素的 <code>column-count</code> 或 <code>column-width</code> 不为 <code>auto</code>，包括 <code>column-count</code> 为 <code>1</code>）<br><code>column-span</code> 为 <code>all</code> 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（标准变更，Chrome bug）<br>注：块格式化上下文包含创建它的元素内部的所有内容。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其他BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（Margin Collapsing）也只会发生在属于同一BFC的块级元素之间。   <h1 id="CSS普通流（文档流）"><a href="#CSS普通流（文档流）" class="headerlink" title="CSS普通流（文档流）"></a>CSS普通流（文档流）</h1>元素按照其在HTML中的位置顺序决定排布的过程。<h2 id="调节普通流元素位置"><a href="#调节普通流元素位置" class="headerlink" title="调节普通流元素位置"></a>调节普通流元素位置</h2>一般使用margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。margin用于布局分开元素使元素与元素互不相干；padding用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段“距离”。<br><code>注：只要不是float和绝对定位方式布局的，都在普通流里面。</code>   <h1 id="变量对象"><a href="#变量对象" class="headerlink" title="变量对象"></a>变量对象</h1><h2 id="JavaScript的基本类型"><a href="#JavaScript的基本类型" class="headerlink" title="JavaScript的基本类型"></a>JavaScript的基本类型</h2></li>
+<li>多列容器（元素的 <code>column-count</code> 或 <code>column-width</code> 不为 <code>auto</code>，包括 <code>column-count</code> 为 <code>1</code>）<br><code>column-span</code> 为 <code>all</code> 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（标准变更，Chrome bug）  </li>
+</ol>
+<p>注：块格式化上下文包含创建它的元素内部的所有内容。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其他BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（Margin Collapsing）也只会发生在属于同一BFC的块级元素之间。   </p>
+<h1 id="CSS普通流（文档流）"><a href="#CSS普通流（文档流）" class="headerlink" title="CSS普通流（文档流）"></a>CSS普通流（文档流）</h1><p>元素按照其在HTML中的位置顺序决定排布的过程。</p>
+<h2 id="调节普通流元素位置"><a href="#调节普通流元素位置" class="headerlink" title="调节普通流元素位置"></a>调节普通流元素位置</h2><p>一般使用margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。margin用于布局分开元素使元素与元素互不相干；padding用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段“距离”。<br><code>注：只要不是float和绝对定位方式布局的，都在普通流里面。</code>   </p>
+<h1 id="变量对象"><a href="#变量对象" class="headerlink" title="变量对象"></a>变量对象</h1><h2 id="JavaScript的基本类型"><a href="#JavaScript的基本类型" class="headerlink" title="JavaScript的基本类型"></a>JavaScript的基本类型</h2><ol>
 <li>Number   </li>
 <li>String   </li>
 <li>Boolean   </li>
 <li>Undefined   </li>
 <li>Null   </li>
-<li>Object<br>五种基本类型保存在内存的栈中，值固定，复制其变量时会创建这个值得一个副本。使用<code>typeof</code>区分。前五中没有原型没有构造函数。   <h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2>引用类型的值是对象，保存在堆中。引用类型的变量实际上是一个指针，他保存在栈中，指向堆内存中的对象。复制引用类型变量实际是复制该指针，所以他们都指向同一个对象，用<code>instanceof</code>确定哪一个值是哪种引用类型。   <h2 id="内置对象、原生对象及宿主对象"><a href="#内置对象、原生对象及宿主对象" class="headerlink" title="内置对象、原生对象及宿主对象"></a>内置对象、原生对象及宿主对象</h2>内置对象和元素对象是被ECMAScript规范定义和实现的，两者之间的差异微不足道。所有ECMAScript实现的对象都是原生对象（其中一些是内置对象、一些在程序执行的时候创建，例如用户自定义对象）。内置对象是原生对象的一个子集、是在程序开始之前内置到ECMAScript里的（例如，parseInt, Match等）。所有的宿主对象是由宿主环境提供的，通常是浏览器，并可能包括如window、alert等。<br>注意，宿主对象可能是ES自身实现的，完全符合规范的语义。从这点来说，他们能称为“原生宿主”对象（尽快很理论），不过规范没有定义“原生宿主”对象的概念。   <h2 id="特殊包装类"><a href="#特殊包装类" class="headerlink" title="特殊包装类"></a>特殊包装类</h2></li>
+<li>Object   </li>
+</ol>
+<p>五种基本类型保存在内存的栈中，值固定，复制其变量时会创建这个值得一个副本。使用<code>typeof</code>区分。前五中没有原型没有构造函数。   </p>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>引用类型的值是对象，保存在堆中。引用类型的变量实际上是一个指针，他保存在栈中，指向堆内存中的对象。复制引用类型变量实际是复制该指针，所以他们都指向同一个对象，用<code>instanceof</code>确定哪一个值是哪种引用类型。   </p>
+<h2 id="内置对象、原生对象及宿主对象"><a href="#内置对象、原生对象及宿主对象" class="headerlink" title="内置对象、原生对象及宿主对象"></a>内置对象、原生对象及宿主对象</h2><p>内置对象和元素对象是被ECMAScript规范定义和实现的，两者之间的差异微不足道。所有ECMAScript实现的对象都是原生对象（其中一些是内置对象、一些在程序执行的时候创建，例如用户自定义对象）。内置对象是原生对象的一个子集、是在程序开始之前内置到ECMAScript里的（例如，parseInt, Match等）。所有的宿主对象是由宿主环境提供的，通常是浏览器，并可能包括如window、alert等。<br>注意，宿主对象可能是ES自身实现的，完全符合规范的语义。从这点来说，他们能称为“原生宿主”对象（尽快很理论），不过规范没有定义“原生宿主”对象的概念。   </p>
+<h2 id="特殊包装类"><a href="#特殊包装类" class="headerlink" title="特殊包装类"></a>特殊包装类</h2><ol>
 <li>Boolean: 布尔对象   </li>
 <li>String: 字符串对象   </li>
-<li><p>Number：数字对象<br>这些对象的创建，是通过相应的内置构造器创建，并且包含原生值作为其内部属性，这些对象可以转换成原始值，反之亦然。   </p>
-<pre><code> var c = new Boolean(true);
- var d = new String(&#39;test&#39;);
- var e = new Number(10);
+<li>Number：数字对象   </li>
+</ol>
+<p>这些对象的创建，是通过相应的内置构造器创建，并且包含原生值作为其内部属性，这些对象可以转换成原始值，反之亦然。   </p>
+<pre><code>    var c = new Boolean(true);
+    var d = new String(&#39;test&#39;);
+    var e = new Number(10);
 
- // 转换成原始值
- // 使用不带new关键字的函数
- с = Boolean(c);
- d = String(d);
- e = Number(e);
+    // 转换成原始值
+    // 使用不带new关键字的函数
+    с = Boolean(c);
+    d = String(d);
+    e = Number(e);
 
- // 重新转换成对象
- с = Object(c);
- d = Object(d);
- e = Object(e);   
-</code></pre><h2 id="typeof返回值"><a href="#typeof返回值" class="headerlink" title="typeof返回值"></a>typeof返回值</h2><p>实际是用来检测一个对象是否已经定义或者是否已经赋值。<br>| Value              | Class     | Type                          |<br>| —————— | ——— | —————————– |<br>| “foo”              | String    | string                        |<br>| 1.2                | Number    | number                        |<br>| true               | Boolean   | boolean                       |<br>| undefined          | Undefined | undefined                     |<br>| new Function(“”)   | Function  | function                      |<br>| new String(“foo”)  | String    | object                        |<br>| new Number(1.2)    | Number    | object                        |<br>| new Boolean(true)  | Boolean   | object                        |<br>| new Date()         | Date      | object                        |<br>| new Error()        | Error     | object                        |<br>| [1,2,3]            | Array     | object                        |<br>| new Array(1, 2, 3) | Array     | object                        |<br>| /abc/g             | RegExp    | object (function in Nitro/V8) |<br>| new RegExp(“meow”) | RegExp    | object (function in Nitro/V8) |<br>| {}                 | Object    | object                        |<br>| new Object()       | Object    | object                        |<br>返回的类型只有6种：   </p>
-</li>
+    // 重新转换成对象
+    с = Object(c);
+    d = Object(d);
+    e = Object(e);   
+</code></pre><h2 id="typeof返回值"><a href="#typeof返回值" class="headerlink" title="typeof返回值"></a>typeof返回值</h2><p>实际是用来检测一个对象是否已经定义或者是否已经赋值。   </p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Class</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“foo”</td>
+<td>String</td>
+<td>string</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Number</td>
+<td>number</td>
+</tr>
+<tr>
+<td>true</td>
+<td>Boolean</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>undefined</td>
+<td>Undefined</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>new Function(“”)</td>
+<td>Function</td>
+<td>function</td>
+</tr>
+<tr>
+<td>new String(“foo”)</td>
+<td>String</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new Number(1.2)</td>
+<td>Number</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new Boolean(true)</td>
+<td>Boolean</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new Date()</td>
+<td>Date</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new Error()</td>
+<td>Error</td>
+<td>object</td>
+</tr>
+<tr>
+<td>[1,2,3]</td>
+<td>Array</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new Array(1, 2, 3)</td>
+<td>Array</td>
+<td>object</td>
+</tr>
+<tr>
+<td>/abc/g</td>
+<td>RegExp</td>
+<td>object (function in Nitro/V8)</td>
+</tr>
+<tr>
+<td>new RegExp(“meow”)</td>
+<td>RegExp</td>
+<td>object (function in Nitro/V8)</td>
+</tr>
+<tr>
+<td>{}</td>
+<td>Object</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new Object()</td>
+<td>Object</td>
+<td>object</td>
+</tr>
+</tbody>
+</table>
+<p>返回的类型只有6种：   </p>
+<ol>
 <li>string   </li>
 <li>number   </li>
 <li>boolean   </li>
 <li>undefined   </li>
 <li>object   </li>
-<li><p>function   </p>
+<li>function   </li>
+</ol>
 <h2 id="instanceof-操作符"><a href="#instanceof-操作符" class="headerlink" title="instanceof 操作符"></a>instanceof 操作符</h2><p>instanceof 操作符用来比较两个操作数的构造函数。只有在比较自定义的对象时才有意义。如果用来比较内置类型，将会和 typeof 操作符 一样用处不大。   </p>
 <h2 id="Object-prototype-toString获取对象类型"><a href="#Object-prototype-toString获取对象类型" class="headerlink" title="Object.prototype.toString获取对象类型"></a>Object.prototype.toString获取对象类型</h2><p>检测一个对象的类型，强烈推荐使用 Object.prototype.toString 方法； 因为这是唯一一个可依赖的方式。typeof 的一些返回值在标准文档中并未定义， 因此不同的引擎实现可能不同。 我们使用Object.prototype.toString方法:    </p>
-<p> Object.prototype.toString.call([])    // “[object Array]”<br> Object.prototype.toString.call({})    // “[object Object]”<br> Object.prototype.toString.call(2)    // “[object Number]”</p>
-</li>
-</ol>
-
+<pre><code>Object.prototype.toString.call([])    // &quot;[object Array]&quot;
+Object.prototype.toString.call({})    // &quot;[object Object]&quot;
+Object.prototype.toString.call(2)    // &quot;[object Number]&quot;
+</code></pre>
           
         
       
@@ -2867,7 +2993,9 @@ var app = new Vue({
 <ol>
 <li>使用<code>JSONP</code>    </li>
 <li>服务端代理   </li>
-<li>服务端设置<code>Request Header</code>头中<code>Access-Control-Allow-Origin</code>未指定可获取数据的域名   <h2 id="JSONP的解决方式"><a href="#JSONP的解决方式" class="headerlink" title="JSONP的解决方式"></a>JSONP的解决方式</h2></li>
+<li>服务端设置<code>Request Header</code>头中<code>Access-Control-Allow-Origin</code>未指定可获取数据的域名   </li>
+</ol>
+<h2 id="JSONP的解决方式"><a href="#JSONP的解决方式" class="headerlink" title="JSONP的解决方式"></a>JSONP的解决方式</h2><ol>
 <li>原理<br>JSONP解决跨域问题的原理是，浏览器的<code>script</code>标签是不受同源策略限制（可以在网页中设置<code>script</code>的<code>src</code>属性为<code>cdn</code>服务器中静态文件的路径），这样就可以使用<code>script</code>标签从服务器获取数据，请求时添加一个参数为<code>callback=？</code>，？号是要执行的回调方法。   </li>
 <li><p>前端实现<br>以jQuery2.1.3的ajax方法为例：   </p>
 <pre><code> $.ajax({
@@ -2881,30 +3009,31 @@ var app = new Vue({
  })   
 </code></pre><p>仅仅是客户端使用<code>jsonp</code>请求数据是不行的，因为<code>jsonp</code>的请求是放在<code>script</code>标签中的，和普通请求不同的地方在于，它请求到的是一段js代码，如果服务端返回了<code>json</code>字符串，那么浏览器就会报错。所以jsonp返回数据需要服务端做一些处理。   </p>
 </li>
-<li><p>服务端返回数据处理<br>要获取请求到的数据，就需要服务端做一些判断，当参数中带有<code>callback</code>属性时，返回的<code>type</code>要为a<code>pplication/javascript</code>，把数据作为<code>callback</code>的参数执行。示例：   </p>
-<pre><code> /**/ typeof jQuery21307270454438403249_1428044213638 === &#39;function&#39; &amp;&amp; jQuery21307270454438403249_1428044213638({&quot;code&quot;:1,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;test&quot;:&quot;test&quot;}});   
-</code></pre><p><code>express4.12.3</code>关于<code>JSONP</code>的实现代码：   </p>
-<pre><code> // jsonp
- if (typeof callback === &#39;string&#39; &amp;&amp; callback.length !== 0) {
-     this.charset = &#39;utf-8&#39;;
-     this.set(&#39;X-Content-Type-Options&#39;, &#39;nosniff&#39;);
-     this.set(&#39;Content-Type&#39;, &#39;text/javascript&#39;);
-
-     // restrict callback charset
-     callback = callback.replace(/[^\[\]\w$.]/g, &#39;&#39;);
-
-     // replace chars not allowed in JavaScript that are in JSON
-     body = body
-     .replace(/\u2028/g, &#39;\\u2028&#39;)
-     .replace(/\u2029/g, &#39;\\u2029&#39;);
-
-     // the /**/ is a specific security mitigation for &quot;Rosetta Flash JSONP abuse&quot;
-     // the typeof check is just to reduce client error noise
-     body = &#39;/**/ typeof &#39; + callback + &#39; === \&#39;function\&#39; &amp;&amp; &#39; + callback + &#39;(&#39; + body + &#39;);&#39;;   
-     }   
-</code></pre></li>
+<li>服务端返回数据处理   </li>
 </ol>
-<h2 id="服务端设置Access-Control-Allow-Origin"><a href="#服务端设置Access-Control-Allow-Origin" class="headerlink" title="服务端设置Access-Control-Allow-Origin"></a>服务端设置<code>Access-Control-Allow-Origin</code></h2><ol>
+<p>要获取请求到的数据，就需要服务端做一些判断，当参数中带有<code>callback</code>属性时，返回的<code>type</code>要为<code>pplication/javascript</code>，把数据作为<code>callback</code>的参数执行。示例：   </p>
+<pre><code>/**/ typeof jQuery21307270454438403249_1428044213638 === &#39;function&#39; &amp;&amp;
+    jQuery21307270454438403249_1428044213638({&quot;code&quot;:1,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;test&quot;:&quot;test&quot;});   
+</code></pre><p><code>express4.12.3</code>关于<code>JSONP</code>的实现代码：   </p>
+<pre><code>// jsonp
+if (typeof callback === &#39;string&#39; &amp;&amp; callback.length !== 0) {
+    this.charset = &#39;utf-8&#39;;
+    this.set(&#39;X-Content-Type-Options&#39;, &#39;nosniff&#39;);
+    this.set(&#39;Content-Type&#39;, &#39;text/javascript&#39;);
+
+    // restrict callback charset
+    callback = callback.replace(/[^\[\]\w$.]/g, &#39;&#39;);
+
+    // replace chars not allowed in JavaScript that are in JSON
+    body = body
+    .replace(/\u2028/g, &#39;\\u2028&#39;)
+    .replace(/\u2029/g, &#39;\\u2029&#39;);
+
+    // the /**/ is a specific security mitigation for &quot;Rosetta Flash JSONP abuse&quot;
+    // the typeof check is just to reduce client error noise
+    body = &#39;/**/ typeof &#39; + callback + &#39; === \&#39;function\&#39; &amp;&amp; &#39; + callback + &#39;(&#39; + body + &#39;);&#39;;   
+}   
+</code></pre><h2 id="服务端设置Access-Control-Allow-Origin"><a href="#服务端设置Access-Control-Allow-Origin" class="headerlink" title="服务端设置Access-Control-Allow-Origin"></a>服务端设置<code>Access-Control-Allow-Origin</code></h2><ol>
 <li>这种方式只要服务端把<code>response</code>的<code>header</code>头中设置<code>Access-Control-Allow-Origin</code>为制定可请求当前域名下数据的域名即可。一般情况下设为即可。这样客户端就不需要使用jsonp来获取数据。<br>关于<code>Access-Control-Allow-Origin</code>是否安全，有待讨论。   </li>
 <li>浏览器支持：<code>Access-Control-Allow-Origin</code>是<code>HTML5</code>新增的一想标准，IE10以下是不支持的，所以如果产品面向的是PC端，就要使用服务端代理或者<code>JSONP</code>。</li>
 </ol>

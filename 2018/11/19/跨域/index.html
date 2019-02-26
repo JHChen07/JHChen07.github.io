@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="jhchen の BLOG">
 <meta property="og:description" content="产生跨域的原因 同源策略 定义 同源策略用意   解决跨域问题 JSONP的解决方式 服务端设置Access-Control-Allow-Origin     产生跨域的原因跨域问题是浏览器同源策略限制，当前域名的js只能读取同域下的窗口属性 同源策略定义如果两个页面拥有相同的协议（protocol），端口和主机，那么这两个页面就属于同一个源（origin）一个网站的网址组成包括协议名，子域名">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-19T08:52:30.552Z">
+<meta property="og:updated_time" content="2019-02-26T03:20:01.174Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨域">
 <meta name="twitter:description" content="产生跨域的原因 同源策略 定义 同源策略用意   解决跨域问题 JSONP的解决方式 服务端设置Access-Control-Allow-Origin     产生跨域的原因跨域问题是浏览器同源策略限制，当前域名的js只能读取同域下的窗口属性 同源策略定义如果两个页面拥有相同的协议（protocol），端口和主机，那么这两个页面就属于同一个源（origin）一个网站的网址组成包括协议名，子域名">
@@ -408,7 +408,9 @@
 <ol>
 <li>使用<code>JSONP</code>    </li>
 <li>服务端代理   </li>
-<li>服务端设置<code>Request Header</code>头中<code>Access-Control-Allow-Origin</code>未指定可获取数据的域名   <h2 id="JSONP的解决方式"><a href="#JSONP的解决方式" class="headerlink" title="JSONP的解决方式"></a>JSONP的解决方式</h2></li>
+<li>服务端设置<code>Request Header</code>头中<code>Access-Control-Allow-Origin</code>未指定可获取数据的域名   </li>
+</ol>
+<h2 id="JSONP的解决方式"><a href="#JSONP的解决方式" class="headerlink" title="JSONP的解决方式"></a>JSONP的解决方式</h2><ol>
 <li>原理<br>JSONP解决跨域问题的原理是，浏览器的<code>script</code>标签是不受同源策略限制（可以在网页中设置<code>script</code>的<code>src</code>属性为<code>cdn</code>服务器中静态文件的路径），这样就可以使用<code>script</code>标签从服务器获取数据，请求时添加一个参数为<code>callback=？</code>，？号是要执行的回调方法。   </li>
 <li><p>前端实现<br>以jQuery2.1.3的ajax方法为例：   </p>
 <pre><code> $.ajax({
@@ -422,30 +424,31 @@
  })   
 </code></pre><p>仅仅是客户端使用<code>jsonp</code>请求数据是不行的，因为<code>jsonp</code>的请求是放在<code>script</code>标签中的，和普通请求不同的地方在于，它请求到的是一段js代码，如果服务端返回了<code>json</code>字符串，那么浏览器就会报错。所以jsonp返回数据需要服务端做一些处理。   </p>
 </li>
-<li><p>服务端返回数据处理<br>要获取请求到的数据，就需要服务端做一些判断，当参数中带有<code>callback</code>属性时，返回的<code>type</code>要为a<code>pplication/javascript</code>，把数据作为<code>callback</code>的参数执行。示例：   </p>
-<pre><code> /**/ typeof jQuery21307270454438403249_1428044213638 === &#39;function&#39; &amp;&amp; jQuery21307270454438403249_1428044213638({&quot;code&quot;:1,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;test&quot;:&quot;test&quot;}});   
-</code></pre><p><code>express4.12.3</code>关于<code>JSONP</code>的实现代码：   </p>
-<pre><code> // jsonp
- if (typeof callback === &#39;string&#39; &amp;&amp; callback.length !== 0) {
-     this.charset = &#39;utf-8&#39;;
-     this.set(&#39;X-Content-Type-Options&#39;, &#39;nosniff&#39;);
-     this.set(&#39;Content-Type&#39;, &#39;text/javascript&#39;);
-
-     // restrict callback charset
-     callback = callback.replace(/[^\[\]\w$.]/g, &#39;&#39;);
-
-     // replace chars not allowed in JavaScript that are in JSON
-     body = body
-     .replace(/\u2028/g, &#39;\\u2028&#39;)
-     .replace(/\u2029/g, &#39;\\u2029&#39;);
-
-     // the /**/ is a specific security mitigation for &quot;Rosetta Flash JSONP abuse&quot;
-     // the typeof check is just to reduce client error noise
-     body = &#39;/**/ typeof &#39; + callback + &#39; === \&#39;function\&#39; &amp;&amp; &#39; + callback + &#39;(&#39; + body + &#39;);&#39;;   
-     }   
-</code></pre></li>
+<li>服务端返回数据处理   </li>
 </ol>
-<h2 id="服务端设置Access-Control-Allow-Origin"><a href="#服务端设置Access-Control-Allow-Origin" class="headerlink" title="服务端设置Access-Control-Allow-Origin"></a>服务端设置<code>Access-Control-Allow-Origin</code></h2><ol>
+<p>要获取请求到的数据，就需要服务端做一些判断，当参数中带有<code>callback</code>属性时，返回的<code>type</code>要为<code>pplication/javascript</code>，把数据作为<code>callback</code>的参数执行。示例：   </p>
+<pre><code>/**/ typeof jQuery21307270454438403249_1428044213638 === &#39;function&#39; &amp;&amp;
+    jQuery21307270454438403249_1428044213638({&quot;code&quot;:1,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;test&quot;:&quot;test&quot;});   
+</code></pre><p><code>express4.12.3</code>关于<code>JSONP</code>的实现代码：   </p>
+<pre><code>// jsonp
+if (typeof callback === &#39;string&#39; &amp;&amp; callback.length !== 0) {
+    this.charset = &#39;utf-8&#39;;
+    this.set(&#39;X-Content-Type-Options&#39;, &#39;nosniff&#39;);
+    this.set(&#39;Content-Type&#39;, &#39;text/javascript&#39;);
+
+    // restrict callback charset
+    callback = callback.replace(/[^\[\]\w$.]/g, &#39;&#39;);
+
+    // replace chars not allowed in JavaScript that are in JSON
+    body = body
+    .replace(/\u2028/g, &#39;\\u2028&#39;)
+    .replace(/\u2029/g, &#39;\\u2029&#39;);
+
+    // the /**/ is a specific security mitigation for &quot;Rosetta Flash JSONP abuse&quot;
+    // the typeof check is just to reduce client error noise
+    body = &#39;/**/ typeof &#39; + callback + &#39; === \&#39;function\&#39; &amp;&amp; &#39; + callback + &#39;(&#39; + body + &#39;);&#39;;   
+}   
+</code></pre><h2 id="服务端设置Access-Control-Allow-Origin"><a href="#服务端设置Access-Control-Allow-Origin" class="headerlink" title="服务端设置Access-Control-Allow-Origin"></a>服务端设置<code>Access-Control-Allow-Origin</code></h2><ol>
 <li>这种方式只要服务端把<code>response</code>的<code>header</code>头中设置<code>Access-Control-Allow-Origin</code>为制定可请求当前域名下数据的域名即可。一般情况下设为即可。这样客户端就不需要使用jsonp来获取数据。<br>关于<code>Access-Control-Allow-Origin</code>是否安全，有待讨论。   </li>
 <li>浏览器支持：<code>Access-Control-Allow-Origin</code>是<code>HTML5</code>新增的一想标准，IE10以下是不支持的，所以如果产品面向的是PC端，就要使用服务端代理或者<code>JSONP</code>。</li>
 </ol>
