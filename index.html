@@ -386,234 +386,38 @@
       
         
           
-            <!-- TOC -->
-<ul>
-<li><a href="#事件以及事件流">事件以及事件流</a><ul>
-<li><a href="#dom事件流">DOM事件流</a></li>
-</ul>
-</li>
-<li><a href="#事件处理程序">事件处理程序</a><ul>
-<li><a href="#html事件处理程序">HTML事件处理程序</a></li>
-<li><a href="#dom0级事件处理程序">DOM0级事件处理程序</a></li>
-<li><a href="#dom2级事件处理程序">DOM2级事件处理程序</a></li>
-<li><a href="#ie事件处理程序">IE事件处理程序</a></li>
-<li><a href="#跨浏览器的事件处理程序">跨浏览器的事件处理程序</a></li>
-</ul>
-</li>
-<li><a href="#事件对象">事件对象</a><ul>
-<li><a href="#dom事件">DOM事件</a></li>
-<li><a href="#ie中的事件对象">IE中的事件对象</a></li>
-<li><a href="#跨浏览器的事件对象">跨浏览器的事件对象</a></li>
-</ul>
-</li>
-<li><a href="#事件委托">事件委托</a></li>
-</ul>
-<!-- /TOC -->
-<h1 id="事件以及事件流"><a href="#事件以及事件流" class="headerlink" title="事件以及事件流"></a>事件以及事件流</h1><p>事件，就是文档或浏览器窗口中发生的一些交互瞬间（用户或浏览器本身执行的某种动作）。事件流描述的是从页面中接收事件的顺序。   </p>
-<ol>
-<li>IE浏览器中规定的是事件冒泡流，事件冒泡即事件最开始由最具体的元素（文档中嵌套层次最深的节点）接收，然后逐级向上传播至最不具体的节点（文档）;   </li>
-<li>Netscape浏览器中规定的是事件捕获流，事件捕获指不太具体的节点应该更早接收到事件，而最具体的节点最后接收到事件。事件捕获的用意在于事件到达预定节点之前捕获它。<br>为了兼容更多的浏览器，非特殊情况一般我们都是把事件添加到在事件冒泡阶段。   <h2 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h2>“DOM2级事件”规定的事件流包括3个阶段，事件捕获阶段、处于目标阶段和事件冒泡阶段。其中，事件捕获为事件截获提供机会；处于目标阶段时实际的目标接收事件；冒泡阶段能对事件作出响应。实际上，捕获阶段中事件并未到达目标，下一个阶段才能到达目标，并且，目标被当做是事件冒泡阶段的一部分。   </li>
-</ol>
-<h1 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h1><h2 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h2><p>将事件处理程序直接内嵌在HTML文档结构中，此种做法导致结构层和行为层耦合，代码维护不便。（还有时差问题等）<br>如：   </p>
-<pre><code>&lt;h1 onclick=&quot;this.innerHTML=&#39;谢谢!&#39;&quot;&gt;请点击该文本&lt;/h1&gt;
-&lt;button onclick=&quot;displayDate()&quot;&gt;点击这里&lt;/button&gt;   
-</code></pre><h2 id="DOM0级事件处理程序"><a href="#DOM0级事件处理程序" class="headerlink" title="DOM0级事件处理程序"></a>DOM0级事件处理程序</h2><p>把事件处理函数赋值给一个事件的句柄，优点是此种做法较简易，可以跨浏览器，而且行为层并未与结构层耦合。   </p>
-<pre><code>var btn5 = document.getElementById(&#39;btn5&#39;); // 获取文档对象
-btn5.onclick = function() {
-    console.log(this.id); //btn5 4 
-}; // onclick属性的值是一个包含在同名HTML特性中指定的代码的函数   
-</code></pre><ol>
-<li>基于DOM0的事件，对于同一个dom节点而言，只能注册一个，之后注册的同种事件会覆盖之前注册的。利用这个原理我们可以解除事件：btn5.onclick＝null；其中this就是绑定事件的那个元素。   </li>
-<li>以这种方式添加的事件处理程序会在事件流的冒泡阶段被处理。   </li>
-</ol>
-<h2 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h2><ol>
-<li>DOM2支持同一dom元素注册多个同种事件，事件发生的顺序按照添加的顺序依次触发（IE是相反的）；DOM2事件通过addEventListener和removeEventListener管理。   </li>
-<li>addEventListener(eventName,handlers,boolean)；removeEventListener()，两个方法都一样接收三个参数，第一个是要处理的事件名（事件句柄的引用e.g click），第二个是事件处理程序，第三个值为false时表示在事件冒泡阶段调用事件处理程序，一般建议在冒泡阶段使用，这样可以兼容更多的浏览器，特殊情况才在捕获阶段；   </li>
-<li><p>注意：通过addEventListener()添加的事件处理程序只能用removeEventListener()来移除，并且移除时传入的参数必须与添加时传入的参数（包括事件处理函数）一样。   </p>
-<pre><code> var btn2 = document.getElementById(&#39;btn2&#39;);
- var handlers = function () {
-     console.log(this.id);
- }; // 函数引用
- // 确保了传入的事件处理函数是同一个函数对象
- btn2.addEventListener(&#39;click&#39;,handlers,false);
- btn2.removeEventListener(&#39;click&#39;,handlers.false);   
-</code></pre></li>
-</ol>
-<h2 id="IE事件处理程序"><a href="#IE事件处理程序" class="headerlink" title="IE事件处理程序"></a>IE事件处理程序</h2><ol>
-<li>IE用了attachEvent()，detachEvent()，接收两个参数，事件名称（和DOM2级稍有不同）和事件处理程序，通过attachEvent()添加的事件处理程序都会被添加到冒泡阶段，IE8及以前只支持事件冒泡。与addEventListener（）一样，attachEvent（）也可以添加多个事件处理程序。但是执行顺序却是与添加的顺序相反的顺序。   </li>
-<li>IE事件处理与DOM0级方法的主要区别在于事件处理程序的作用域。后者是在其所属元素的作用域内运行，而前者则是会在全局作用域中进行，因此，此时的this为window。   </li>
-</ol>
-<h2 id="跨浏览器的事件处理程序"><a href="#跨浏览器的事件处理程序" class="headerlink" title="跨浏览器的事件处理程序"></a>跨浏览器的事件处理程序</h2><p>在同一个对象上注册事件，并不一定按照注册顺序执行，冒泡或捕获模式会影响其被接触的顺序。   </p>
-<pre><code>//创建的方法是addHandlers(),removeHandlers(),这两个方法属于一个叫EventUtil的对象
-var EventUtil = {
-    // 视情况分别使用DOM2级、IE方法、DOM0级方法添加事件，注意DOM0级对每个事件只支持一个事件处理函数
-    addHandlers: function (element, type, handler) {
-        if (element,addEventListener){
-            element.addEventListener(type, handler, false);
-        } else if (element.attachEvent) {   
-            element.attachEvent(&#39;on&#39; + type, handler);
-        } else {
-            element[&quot;on&quot; + type] = handler;
-        }
-    },
-
-    removeHandlers: function(element, type, handler) {
-        if (element,removeEventListener){
-            element.removeEventListener(type, handler, false);
-        } else if (element.detachEvent) {   
-            element.detachEvent(&#39;on&#39; + type, handler);
-        } else {
-            element[&quot;on&quot; + type] = null;
-        }
-    },
-    // 获取事件对象
-    getEvent: function (e) {
-        return e?e:e.which;
-    },
-    // 获取事件的实际目标
-    getTarget: function (e) {
-        return e.target || event.srcElement;
-    },
-    //阻止默认行为
-    preventDefault: function (e) {
-        if (e.preventDefault){
-            e.preventDefault();
-        } else {
-            e.returnValue = false;
-        }
-    },
-    //阻止冒泡
-    stopPropagation: function (e) {
-        if (e.stopPropagation){
-            e.stopPropagation();
-        } else {
-            e.cancelBubble = true;
-        }
-    }
-}
-var btn4=document.getElementById(&#39;btn4&#39;);
-var handlers3=function(){
-    console.log(&#39;123&#39;)
-};
-EventUtil.addHandlers(btn4,&#39;click&#39;,handlers3);
-EventUtil.removeHandlers(btn4,&#39;click&#39;,handlers3);   
-</code></pre><h1 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h1><ol>
-<li>兼容触发DOM上的某个事件时，会产生一个事件对象event，这个对象中包含了所有与事件有关的信息，比如导致事件的元素target，事件的类型，及其他特定的相关信息。例如鼠标操作导致的事件对象中会包含鼠标的位置，单双击等，而键盘操作导致的事件对象会包含按下的键等信息；   </li>
-<li>事件被触发时，会默认给事件处理程序传入一个参数e , 表示事件对象；通过e，我们可以获得其中包含的与事件有关的信息；   </li>
-<li>只有在事件处理程序执行期间，event对象才会存在，一旦事件处理程序执行完毕，event对象就会被销毁；   </li>
-<li>Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。事件通常与函数结合使用，函数不会在事件发生前被执行！   </li>
-</ol>
-<h2 id="DOM事件"><a href="#DOM事件" class="headerlink" title="DOM事件"></a>DOM事件</h2><ol>
-<li>兼容DOM的浏览器会自动将一个事件对象event传递给事件处理程序。<br>注：关于事件对象中的this，target，currentTarget,看个例子：（注：event.target不支持IE浏览器，应该用event.srcElement；还有 IE中通过attachment添加的事件是运行在全局作用域中的，this===window）</li>
-<li>在事件处理程序内部，对象this始终等于currentTarget的值，而target只包含时间的实际目标。如果直接将事件处理程序指给了实际目标，this与两者是相等的。如果事件处理程序指给了父元素，则this与currentTarget都是父节点。（事件冒泡到了父节点）。   </li>
-<li><p>（ 当事件绑定在真正的目标元素上时，this===target===currentTarget，而且绑定事件时是否捕获结果都是一样的，此时eventParse==2）   </p>
-<pre><code> // this,target,currentTarget,this===currentTarget
- $(&#39;#outer&#39;).on(&#39;click&#39;,&#39;#center&#39;,function(e){
- console.log(this.id);      //on()中间的参数是个过滤器,相当于将事件绑定到了#center上;此时点击#center将不会触发事件
- console.log(e.target.id);
- console.log(e.currentTarget.id);
- });
-
- $(&#39;#outer&#39;).on(&#39;click&#39;,function(e){
- console.log(this.id);
- console.log(e.target.id);
- console.log(e.currentTarget.id);
- });
-
- event.stopPropagation()   // 不能简单说阻止了事件的冒泡，其实也阻止了事件的继续捕获，确切的说应该是阻止事件的进一步传播
- var d1 = document.getElementById(&#39;d1&#39;);
- d1.addEventListener(&#39;click&#39;, function (evt) {
-     console.log(&#39;d1&#39;);
-     evt.stopPropagation();
- }, true);
- var d2 = document.getElementById(&#39;d2&#39;);
- d2.addEventListener(&#39;click&#39;, function () {
-     console.log(&#39;d2&#39;);
- }, true);
-
- //输出结果是d1   
-</code></pre></li>
-</ol>
-<h2 id="IE中的事件对象"><a href="#IE中的事件对象" class="headerlink" title="IE中的事件对象"></a>IE中的事件对象</h2><p>IE中event参数是未定的，事件对象是作为window的一个属性存在的，因此可以通过window.event来访问event对象，不同于DOM级中event是作为参数直接传入和返回。<br>属性上与DOM也有不同：<br>    <img src="/2019/02/26/JS事件处理/事件属性.jpg" alt="事件属性"><br>标准event方法：<br>    <img src="/2019/02/26/JS事件处理/标准event方法.jpg" alt="标准event方法">   </p>
-<h2 id="跨浏览器的事件对象"><a href="#跨浏览器的事件对象" class="headerlink" title="跨浏览器的事件对象"></a>跨浏览器的事件对象</h2><pre><code>//前文跨浏览器的事件处理程序已经作了描述，重点在于获取事件以及之后的兼容方法描述
-var EventUtil = {
-    addHandlers: function (element, type, handler) {
-        if (element,addEventListener){
-            element.addEventListener(type, handler, false);
-        } else if (element.attachEvent) {   
-            element.attachEvent(&#39;on&#39; + type, handler);
-        } else {
-            element[&quot;on&quot; + type] = handler;
-        }
-    },
-
-    removeHandlers: function(element, type, handler) {
-        if (element,removeEventListener){
-            element.removeEventListener(type, handler, false);
-        } else if (element.detachEvent) {   
-            element.detachEvent(&#39;on&#39; + type, handler);
-        } else {
-            element[&quot;on&quot; + type] = null;
-        }
-    },
-
-    getEvent: function (e) {
-        return e?e:e.which;
-    },
-
-    getTarget: function (e) {
-        return e.target || event.srcElement;
-    },
-
-    //阻止默认行为
-    preventDefault: function (e) {
-        if (e.preventDefault){
-            e.preventDefault();
-        } else {
-            e.returnValue = false;
-        }
-    },
-
-    //阻止冒泡
-    stopPropagation: function (e) {
-        if (e.stopPropagation){
-            e.stopPropagation();
-        } else {
-            e.cancelBubble = true;
-        }
-    }
-};
-var myBtn=document.getElementById(&#39;my-btn&#39;);
-btn.onclick=function(event){
-    event=EventUtil.getEvent(event);
-    EventUtil.preventDefault(event);
-};   
-</code></pre><h1 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h1><ol>
-<li>每当将事件处理程序制定给元素时，运行中的浏览器代码与支持页面交互的JS代码之间就会建立一个连接，而这种连接越多，页面执行起来就越慢。考虑内存和性能问题，为了解决事件处理程序过多的问题，采用事件委托变得很有必要。（考虑到内存，也应该尽量减少不必要的事件处理程序，并且，对于内存中过时不用（删除了目标元素，但是相应的事件处理程序并没有移除）的“空事件处理程序”，也是很有必要将其移除的）   </li>
-<li>因为冒泡机制，比如既然点击子元素，也会触发父元素的点击事件，那我们完全可以将子元素的事件要做的事写到父元素的事件里，也就是将子元素的事件处理程序写到父元素的事件处理程序中，这就是事件委托；利用事件委托，只指定一个事件处理程序，就可以管理某一个类型的所有事件。   </li>
-<li><p>因为把事件绑定到了父节点上，因此省了绑定事件。就算后面新增的子节点也有了相关事件，删除部分子节点不用去销毁对应节点上绑定的事件。<br>父节点是通过event.target来找对应的子节点的。（事件处理程序中的this值始终等于currentTarget的值，指向的是绑定到的那个元素）<br>如： </p>
-<pre><code> var myLinks=document.getElementById(&#39;my-links&#39;);
- myHandlers=function(event){
-     event=EventUtil.getEvent(event);
-     var target=EventUtil.getTarget(event);
-
-     switch(target.id){
-         case &#39;item-1&#39;:
-             location.href=&#39;http://xxxxxx/&#39;;
-             break;
-         case &#39;item-2&#39;:
-             document.title=&#39;event&#39;;
-             break;
-         case &#39;item-3&#39;:
-             console.log(&#39;hi&#39;);
-             break;
-     }
- };
- EventUtil.addHandler(myLinks,&#39;click&#39;,myHandlers);
-</code></pre></li>
-</ol>
-
           
+
+事件以及事件流
+DOM事件流
+
+
+事件处理程序
+HTML事件处理程序
+DOM0级事件处理程序
+DOM2级事件处理程序
+IE事件处理程序
+跨浏览器的事件处理程序
+
+
+事件对象
+DOM事件
+IE中的事件对象
+跨浏览器的事件对象
+
+
+事件委托
+
+
+事件以及事件流事件，就是文档或浏览器窗口中发生的一些交
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/26/JS事件处理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -791,23 +595,15 @@ btn.onclick=function(event){
       
         
           
-            <h1 id="第一章-ECMAScript-6简介"><a href="#第一章-ECMAScript-6简介" class="headerlink" title="第一章 ECMAScript 6简介"></a>第一章 ECMAScript 6简介</h1><p>ECMAScript和JavaScript的关系是，前者是后者的规格（标准），后者是前者的一种实现。<br>ES6是一个历史名词，也是泛指。含义是5.1版本以后的JavaScript的下一代标准，涵盖了ES2015、ES2016、ES2017等，而ES2015则是正式名称，特指当年发布的正式版本的语言标准。<br>Node是JavaScript语言的服务器运行环境（runtime）。<br>Babel（babeljs.io/）是一个广为使用的ES6转码器，可以将ES6代码转为ES5代码，从而在浏览器或其他环境执行。   </p>
-<h1 id="第二章-let和const命令"><a href="#第二章-let和const命令" class="headerlink" title="第二章 let和const命令"></a>第二章 let和const命令</h1><h2 id="let命令"><a href="#let命令" class="headerlink" title="let命令"></a>let命令</h2><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>示例：   </p>
-<pre><code>for(let i = 0; i &lt; 3; i++) {
-    let i = &#39;abc&#39;;
-    console.log(i);
-}
-// abc
-// abc
-// abc
-</code></pre><p>for循环有个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内是一个单独的子作用域。   </p>
-<h3 id="不存在变量提升"><a href="#不存在变量提升" class="headerlink" title="不存在变量提升"></a>不存在变量提升</h3><p>var命令会发生“变量提升”的现象，即变量可以在声明之前使用，值为undefined。而let不存在此种情况。   </p>
-<pre><code>console.log(foo); // 输出undefined
-var foor = 2;
-console.log(bar); // 报错ReferenceError
-let bar = 9;
-</code></pre>
-          
+          第一章 ECMAScript 6简介ECMAScript和JavaScript的关系是，前者是后者的规格（标准），后者是前者的一种实现。ES6是一个历史名词，也是泛指。含义是5.1版本以后的JavaScript的下一代标准，涵盖了ES2015、ES2016、ES2017等，而ES2015则是正式名称
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/26/ES6标准入门学习笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -985,149 +781,30 @@ let bar = 9;
       
         
           
-            <!-- TOC -->
-<ul>
-<li><a href="#redux">redux</a></li>
-<li><a href="#action">action</a></li>
-<li><a href="#action-creator%E5%88%9B%E5%BB%BAaction">action creator创建action</a></li>
-<li><a href="#reducer">reducer</a></li>
-<li><a href="#store">store</a></li>
-<li><a href="#middleware">middleware</a></li>
-<li><a href="#react-redux">react-redux</a><ul>
-<li><a href="#provider">provider</a></li>
-<li><a href="#connect">connect()</a></li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-<h1 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h1><p>react组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，context知识实验性质的一种传递数据的方式。react本身并没有很好地提供应用状态管理的结局方案。<br>redux把应用的数据统一存储在一个全局对象中。把应用所有的数据交互和状态改变，统一用固定形式的action动作对象来描述。经由名为reducer的方法来判断不同的动作如何改变应用状态。最后，通过store对象来负责执行action动作，获取state应用状态、订阅状态改变时触发的事件。<br>redux提供的是一种应用状态管理问题的解决思路。    </p>
-<h1 id="action"><a href="#action" class="headerlink" title="action"></a>action</h1><ul>
-<li>action   <ul>
-<li>action type   </li>
-<li>action payload   </li>
-</ul>
-</li>
-<li>action Creator   </li>
-<li>action Creator Generator      </li>
-</ul>
-<p>在形式上，action就是带有type属性的JS对象。在redux的约定中，将所有改变应用状态的操作规范为一个个action，在action中，也可以附上要用来修改应用状态state的数据：   </p>
-<pre><code>{
-    type: &#39;DD_TODO&#39;,
-    text: &#39;use redux&#39;
-}
-{
-    type: &#39;LOAD_ARTICLE&#39;,
-    response: { ... }
-}   
-</code></pre><p>action有两个作用，一是定义应用可以进行的动作或操作的类型，另一个是传递改变应用状态的数据。在redux的约定中，action必须包含type属性。附Flux Standard Action标准：   </p>
-<pre><code>{
-    // action 类型
-    type: &#39;INCREMENT&#39;,
-    // payload 中返回我们要传递的数据，用来修改应用 state
-    payload: {
-        num: 1  
-    },
-    // payload 数据未获取成功时返回 true
-    error: false,
-    // 一些不必要在 payload 中传递的其他数据
-    meta: {
-        success: true
-    }
-}   
-</code></pre><p>根据Flux标准，action必须为JS对象，必须包含type属性，可以有其他几个属性。除此之外不允许有其他属性。    </p>
-<h1 id="action-creator创建action"><a href="#action-creator创建action" class="headerlink" title="action creator创建action"></a>action creator创建action</h1><p>示例：   </p>
-<pre><code>function addNumber(num) {
-    return { type: &#39;INCREMENT&#39;, num }
-}
-
-function minusNumber(num) {
-    return { type: &#39;DECREMENT&#39;, num }
-}
-
-...
-
-increment = () =&gt; {
-    this.dispatch(addNumber(1));
-};
-
-decrement = () =&gt; {
-    this.dispatch(minusNumber(-1));
-};    
-</code></pre><p>还可以使用generator：   </p>
-<pre><code>// actionTypes.js
-export const INCREMENT = &#39;INCREMENT&#39;
-export const DECREMENT = &#39;DECREMENT&#39;
-
-// action.js
-import { INCREMENT, DECREMENT } from &#39;./actionTypes&#39;
-
-const counterActionGenerator = (type, num) =&gt; (num) =&gt; {
-    let action = { type, num : num }
-    return action
-}
-
-const addNumber = counterActionGenerator(INCREMENT, null)
-const minusNumber = counterActionGenerator(DECREMENT, null)   
-</code></pre><h1 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h1><p>在redux中，根据应用状态和触发的action返回新的状态的函数成为reducer。命名的由来是因为这种函数与被传入Array.prototype.reduce(reducer, ?initialValue)的回调函数属于相同的类型。在JS中，reduce属于高阶函数，它能将其中的回调函数reducer递归应用到数组的所有元素上并返回一个独立的值。<br>值得注意的是，reducer的模型，它只是根据传入的状态数据state和action老判断返回一个新的state，reducer必须死一个纯函数，纯函数主要含义就是她不可以修改影响输入值，并且没有副作用，副作用指的是例如函数中一些一部调用或者会影响函数作用域之外的变量一类的操作。使用react技术栈时尤其要注意：保证数据的不可变性（immutability）。<br>保证reducer返回的是一个新的state数据，而不能直接修改传入的数值，首先，数据发生改变，在react应用当中，届满也要跟着相应改变重新渲染，这一步之间需要有一个比较差异的diff操作，因此改变之前和改变之后的数据都需要使用到。另外使用redux也能实现一些诸如时间旅行的功能，这些功能也需要依赖不可变的数据来实现。    </p>
-<h1 id="store"><a href="#store" class="headerlink" title="store"></a>store</h1><ul>
-<li>store   <ul>
-<li>getState</li>
-<li>disPatch</li>
-<li>subscribe</li>
-<li>unsubscribe</li>
-</ul>
-</li>
-<li>createStore<ul>
-<li>reducer</li>
-<li>defaultState   </li>
-</ul>
-</li>
-</ul>
-<p>getState方法是用来获取当前存储中的状态数据。<br>dispatch是具体讲传入的action操作执行并触发listeners时间监听器的地方。<br>subscribe用来添加listener的方法，同时会返回一个unsubscribe的方法用来取消listener。listener是当状态数据改变时会自动触发的事件。     </p>
-<pre><code>const counter = (state = 0, action) =&gt; {
-    switch (action.type) {
-        case &#39;INCREMENT&#39;:
-        return state + 1;
-        case &#39;DECREMENT&#39;:
-        return state - 1;
-        default:
-        return state;
-    }
-}
-// 这里使用的是ES6的解构赋值的方法
-const { createStore } = Redux;
-// import { createStore } from &#39;redux&#39;;
-const store = createStore(counter);
-console.log(store.getState());
-
-/* document.addEventListener(&#39;click&#39;, () =&gt; {
-    store.dispatch({ type: &#39;INCREMENT&#39; });
-}); */
-
-const render = () =&gt; {
-    document.getElementById(&#39;root&#39;).innerText = store.getState();
-};
-
-store.subscribe(() =&gt; { console.log(store.getState()) })
-let unsubscribe = store.subscribe(render);
-
-render();
-
-document.getElementById(&#39;increment&#39;).addEventListener(&#39;click&#39;,function() {
-    store.dispatch({ type: &#39;INCREMENT&#39; });
-})
-document.getElementById(&#39;decrement&#39;).addEventListener(&#39;click&#39;,function() {
-    store.dispatch({ type: &#39;DECREMENT&#39; });
-})
-document.getElementById(&#39;unsubscribe&#39;).addEventListener(&#39;click&#39;,function() {
-    unsubscribe()
-    console.log(&#39;unsubscribed!&#39;)
-})    
-</code></pre><h1 id="middleware"><a href="#middleware" class="headerlink" title="middleware"></a>middleware</h1><p>一般意义下可以译为中间件，如用作处理登录验证的模块。<br>在redux应用中，运用middleware可以不更改redux原生方法就能观察到action被触发以及应用状态前后的变化。   </p>
-<h1 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h1><h2 id="provider"><a href="#provider" class="headerlink" title="provider"></a>provider</h2><p>provider的作用向应用传递store的一个容器组件，一般都会放在应用组件的最外层。   </p>
-<h2 id="connect"><a href="#connect" class="headerlink" title="connect()"></a>connect()</h2><p>connect方法可以根据现有的展示组件自动生成一个容器组件。</p>
-
           
+
+redux
+action
+action creator创建action
+reducer
+store
+middleware
+react-redux
+provider
+connect()
+
+
+
+
+reduxreact组件可以分为有状态和无状态组件，只有state和props来管理应用数据的状态，co
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/26/Redux/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1283,71 +960,28 @@ document.getElementById(&#39;unsubscribe&#39;).addEventListener(&#39;click&#39;,
       
         
           
-            <!-- TOC -->
-<ul>
-<li><a href="#%E5%AE%9A%E6%97%B6%E5%99%A8">定时器</a><ul>
-<li><a href="#settimeout">setTimeout</a></li>
-<li><a href="#setinterval">setInterval</a></li>
-<li><a href="#setimmediate">setImmediate</a></li>
-<li><a href="#requestanimationframe">requestAnimationFrame</a></li>
-</ul>
-</li>
-<li><a href="#%E6%B3%A8%E6%84%8F">注意</a></li>
-</ul>
-<!-- /TOC -->
-<p>参考链接:<a href="http://caibaojian.com/javascript-timer.html" target="_blank" rel="noopener">http://caibaojian.com/javascript-timer.html</a>   </p>
-<h1 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h1><p>JavaScript提供了一些原生的方法去延时去执行一段代码。指定的时间间隔表示何时将定时器的代码添加到队列，而不是何时执行代码。定时器有四种形式。   </p>
-<h2 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h2><p>设置一个定时器，在定时器到期后执行一次函数或代码段。  </p>
-<pre><code>var timeoutId = window.setTimeout(func[, delay, param1, param2, ...]);
-var timeoutId = window.setTimeout(code[, delay]);   
-</code></pre><p>参数说明：   </p>
-<ol>
-<li>timeoutId: 定时器 ID   </li>
-<li>func: 延迟后执行的函数   </li>
-<li>code: 延迟后执行的代码字符串，不推荐使用原理类似 eval()   </li>
-<li>delay: 延迟的时间（单位：毫秒），默认值为 0   </li>
-<li>param1,param2: 向延迟函数传递而外的参数，IE9 以上支持   </li>
-</ol>
-<h2 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h2><p>以固定的时间间隔重复调用一个函数或者代码段    </p>
-<pre><code>var intervalId = window.setInterval(func, delay[, param1, param2, ...]);
-var intervalId = window.setInterval(code, delay);
-</code></pre><ol>
-<li>intervalId: 重复操作的 ID   </li>
-<li>func: 延迟调用的函数   </li>
-<li>code：代码段   </li>
-<li>delay：延迟时间，没有默认值   </li>
-</ol>
-<p>当使用 setInterval 时， 仅当没有该定时器的其他任何代码实例时，才将定时器的代码添加到队列中。这确保了定时器代码加入到队列中的最小时间间隔为指定时间间隔。<br>这种重复定时器的规则有两个问题：（1）某些时间间隔会被跳过；（2）多个定时器的代码执行之间的间隔可能会比预期的小。假设，onclick 事件处理程序使用 setInterval() 设置了一个 200ms 的间隔重复定时器。如果事件处理程序花了 200ms 多一点的事件完成，此时，将定时器添加到队列中，然后定时器代码也花了超过 200ms 的时间，重复定时器代码副本再次添加到队列中去。但此时，队列中已经有了另一个定时器代码的实例，这时就会出现跳过 605ms 添加的定时器代码并且连续执行 405ms 定时器代码的情况。如图所示。<br><img src="/2019/02/26/定时器/重复定时器.PNG" alt="重复定时器"><br>为了避免 setInterval() 设置的重复定时器的这2个缺点，可以使用 setTimeout() 进行链式调用：   </p>
-<pre><code>setTimeout(function() {
-    //处理中   
-    setTimeout(arguments.calle, interval);
-}, interval);   
-</code></pre><p>这段代码的作用是，每次函数执行的时候都会创建一个新的定时器。第二个 setTimeout() 调用使用了 arguments.calle 来获取对当前执行函数的引用，并为其设置一个新的定时器。因此，在前一个定时器代码执行完毕之前，不会向队列插入新的定时器代码，确保不会有任何缺失的间隔。而且，它可以保证，在下一次定时器代码执行之前，至少等待指定的间隔，避免了连续执行。这模式主要用于重复定时器。   </p>
-<pre><code>setTimeout(function() {
-    var div = document.getElementById(&#39;myDiv&#39;);
-    left = parseInt(div.style.left) + 5;
-    div.style.left = left + &#39;px&#39;;
-    if(left &lt; 200) {
-        setTimeout(arguments.calle, 50)
-    })
-}, 50);
-</code></pre><h2 id="setImmediate"><a href="#setImmediate" class="headerlink" title="setImmediate"></a>setImmediate</h2><p>在浏览器完全结束当前运行的操作后立即执行指定的函数（仅 IE10 和 node 0.10<br>+中有实现），类似 setTimeout(func, 0)    </p>
-<pre><code>var immediateId = setImmediate(func[, param1, param2, ...]);
-var immediateId = setImmediate(func);   
-</code></pre><ol>
-<li>immediateId：定时器ID   </li>
-<li>func：回调   </li>
-</ol>
-<h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h2><p>专门为实现高性能的帧动画而设计的API，但是不能指定延迟时间，而是根据浏览器的刷新频率而定（帧）   </p>
-<pre><code>var requestId = window.requestAnimationFrame(func);   
-</code></pre><h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
-<li>setTimeout 有最小时间间隔限制，HTML5 标准为 4ms，小于 4ms 按照 4ms 处理，但是每个浏览器实现的最小间隔都不同   </li>
-<li>因为 JS 引擎只有一个线程，所以它将会强制异步事件排队执行    </li>
-<li>如果 setInterval 的回调执行时间长于指定的延迟，setInterval 将无间隔的一个接一个执行   </li>
-<li>this 的指向问题可以通过 bind 函数、定义变量、箭头函数的方式来解决</li>
-</ol>
-
           
+
+定时器
+setTimeout
+setInterval
+setImmediate
+requestAnimationFrame
+
+
+注意
+
+
+参考链接:http://caibaojian.com/javascript-timer.html   
+定时器JavaScript提供了一些原生的方法去延时去
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/26/定时器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1503,111 +1137,34 @@ var immediateId = setImmediate(func);
       
         
           
-            <!-- TOC -->
-<ul>
-<li><a href="#正则表达式的定义">正则表达式的定义</a><ul>
-<li><a href="#字面量形式">字面量形式</a></li>
-<li><a href="#构造函数形式">构造函数形式</a><ul>
-<li><a href="#regexp实例属性">RegExp实例属性</a></li>
-<li><a href="#regexp实例方法">RegExp实例方法</a><ul>
-<li><a href="#exec">exec()</a></li>
-<li><a href="#test">test()</a></li>
-</ul>
-</li>
-<li><a href="#regexp构造函数属性">RegExp构造函数属性</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#模式的局限性">模式的局限性</a></li>
-</ul>
-<!-- /TOC -->
-<p>正则表达式是用于匹配字符串中字符组合的模式。在JS中，正则表达式也是对象。<br>正则表达式中，可以进行“分组”，用一对圆括号（捕获括号）括起来的表达式就是一个分组，分组之后可以将各组子表达式的匹配结果分别处理。<br>正则表达式的匹配模式支持以下3个标志：   </p>
-<ol>
-<li>g: 表示全局（global）模式，模式将被应用于多有字符串，发现第一个匹配项后不会停止；   </li>
-<li>i: 表示不区分大小写（case-insestive）模式；   </li>
-<li>m: 表示多行（multiline）模式，即在到达一行末尾时还会继续查找下一行中是否存在与模式匹配的项。   </li>
-</ol>
-<p>正则表达式中的元字符包括：<code>([{\^$|?*+.}])</code>，因此，如果想要匹配这些字符串，pattern中的所有元字符都必须转义。   </p>
-<h2 id="正则表达式的定义"><a href="#正则表达式的定义" class="headerlink" title="正则表达式的定义"></a>正则表达式的定义</h2><h3 id="字面量形式"><a href="#字面量形式" class="headerlink" title="字面量形式"></a>字面量形式</h3><pre><code>var expression1 = /pattern/flags;   
-</code></pre><h3 id="构造函数形式"><a href="#构造函数形式" class="headerlink" title="构造函数形式"></a>构造函数形式</h3><p>RegExp的构造函数接收两个参数，一个是要匹配的字符串模式，另一个是可选的标志字符串。   </p>
-<pre><code>var expression2 = new RegExp(&#39;[bc]at&#39;, &#39;i&#39;);   
-</code></pre><p>以上，expression1和expression2是完全等价的正则表达式，但是传递给RegExp构造函数的两个参数都是字符串。（注意元字符的双重转义）<br>但是，字面量形式的正则表达式始终共享一个RegExp实例，实例属性不会重置，而构造函数创建的正则表达式，每一个新RegExp都是一个新实例，所以，第二种方法能循环调用实例属性，而第一种方法则不能。   </p>
-<pre><code>var re = null;
-    i;
-for(i=0; i&lt;10; i++) {
-    re = /cat/g;
-    re.test(&#39;catastrongophe&#39;);
-}
-for(i=0;i&lt;10;i++) {
-    re = new RegExp(&#39;cat&#39;, &#39;g&#39;);
-    re.test(&#39;catastrongophe&#39;);
-}   
-</code></pre><h4 id="RegExp实例属性"><a href="#RegExp实例属性" class="headerlink" title="RegExp实例属性"></a>RegExp实例属性</h4><ol>
-<li>global：布尔值，表示是否设置了g标志；   </li>
-<li>ignoreCase：布尔值，表示是否设置了i标志；   </li>
-<li>lastIndex：整数，表示开始搜索下一个匹配项的字符位置；   </li>
-<li>multiline：布尔值，表示是否设置了m标志；   </li>
-<li>source：正则表达式的字符串表示，按照字面量形式而传入构造函数中的字符串模式返回；   </li>
-</ol>
-<h4 id="RegExp实例方法"><a href="#RegExp实例方法" class="headerlink" title="RegExp实例方法"></a>RegExp实例方法</h4><h5 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h5><p>exec()是专门为捕获组而设计的，接收一个参数，即要应用模式的字符串，返回包含第一的匹配项信息的数组，或者null；返回的数组虽然是Array的实例，但是有index和input属性，前者表示匹配项在字符串中的位置，后者表示应用模式的字符串。在返回的数组中，第一项是与整个模式匹配的字符串，其他项是与模式中捕获组匹配的字符串。若无捕获组则该数组只有第一项或为null。并且，该方法忽略g标志，但是每次匹配lastIndex属性会相应改变。   </p>
-<h5 id="test"><a href="#test" class="headerlink" title="test()"></a>test()</h5><p>test()接收字符串作为唯一的一个参数，返回true或false。适用于仅判断目标字符串与某个模式是否匹配。（验证输入等）   </p>
-<h4 id="RegExp构造函数属性"><a href="#RegExp构造函数属性" class="headerlink" title="RegExp构造函数属性"></a>RegExp构造函数属性</h4><table>
-<thead>
-<tr>
-<th>长属性名</th>
-<th>短属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>input</td>
-<td>$_</td>
-<td>最近一次要匹配的字符串</td>
-</tr>
-<tr>
-<td>lastMatch</td>
-<td>$&amp;</td>
-<td>最近一次的匹配项</td>
-</tr>
-<tr>
-<td>lastParen</td>
-<td>$+</td>
-<td>最近一次匹配的捕获组</td>
-</tr>
-<tr>
-<td>leftContext</td>
-<td>$`</td>
-<td>input字符串中lastMatch之前的文本</td>
-</tr>
-<tr>
-<td>multiline</td>
-<td>$*</td>
-<td>布尔值，标志是否所有的表达式都使用多行模式</td>
-</tr>
-<tr>
-<td>rightContext</td>
-<td>$’</td>
-<td>input字符串中lastMatch之后的文本</td>
-</tr>
-</tbody>
-</table>
-<p>注意：短属性名必须通过方括号访问：RegExp.[‘$&amp;’]，另外还有9个用于存储不厚重的构造函数属性，RegExp.$1、…RegExp.$9，分别用于存储第1到第9个捕获组。   </p>
-<h2 id="模式的局限性"><a href="#模式的局限性" class="headerlink" title="模式的局限性"></a>模式的局限性</h2><p>下面列举了ECMAScript正则表达式不支持的特性：   </p>
-<ol>
-<li>匹配字符串开始和结尾的锚（但支持以插入^\&amp;来匹配字符串的开始和结尾）；   </li>
-<li>向后查找（完全支持向前查找）；  </li>
-<li>并集和交集；   </li>
-<li>原子组；   </li>
-<li>Unicode支持（除单个字符外，如\uffff；   </li>
-<li>命名的捕获组（但支持编号的捕获组）；   </li>
-<li>s(single，单行)和x（free-spacing，无间隔）匹配模式；   </li>
-<li>条件匹配；   </li>
-<li>正则表达式注释。</li>
-</ol>
-
           
+
+正则表达式的定义
+字面量形式
+构造函数形式
+RegExp实例属性
+RegExp实例方法
+exec()
+test()
+
+
+RegExp构造函数属性
+
+
+
+
+模式的局限性
+
+
+正则表达式是用于匹配字符串中字符组合的模式。在JS中，正则表达式也是对象。正则表达式中，可以进行“分组”，用一对圆括号（捕获
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/26/RegExp/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1763,186 +1320,33 @@ for(i=0;i&lt;10;i++) {
       
         
           
-            <!-- TOC -->
-<ul>
-<li><a href="#%E5%BF%AB%E9%80%9F%E7%90%86%E8%A7%A3%E8%AF%AD%E4%B9%89%E5%8C%96">快速理解语义化</a><ul>
-<li><a href="#html%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE">HTML语义化标签</a><ul>
-<li><a href="#header%E5%85%83%E7%B4%A0">header元素</a></li>
-<li><a href="#hgroup%E5%85%83%E7%B4%A0">hgroup元素</a></li>
-<li><a href="#footer%E5%85%83%E7%B4%A0">footer元素</a></li>
-<li><a href="#nav%E5%85%83%E7%B4%A0">nav元素</a></li>
-<li><a href="#article%E5%85%83%E7%B4%A0">article元素</a></li>
-<li><a href="#section%E5%85%83%E7%B4%A0">section元素</a></li>
-<li><a href="#aside%E5%85%83%E7%B4%A0">aside元素</a></li>
-</ul>
-</li>
-<li><a href="#css%E8%AF%AD%E4%B9%89%E5%8C%96">CSS语义化</a></li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-<h1 id="快速理解语义化"><a href="#快速理解语义化" class="headerlink" title="快速理解语义化"></a>快速理解语义化</h1><p>语义化的含义就是用正确的标签做正确的事情，html语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析；在没有样式CCS情况下也以一种文档格式显示，并且是容易阅读的。搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于SEO（搜索引擎优化）。使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。<br>总结：   </p>
-<ol>
-<li>正确的标签做正确的事；</li>
-<li>页面内容结构化；</li>
-<li>无CSS也容易阅读，便于阅读维护和理解；</li>
-<li>便于浏览器、搜索引擎解析。利于爬虫标记、利于SEO。   </li>
-</ol>
-<h2 id="HTML语义化标签"><a href="#HTML语义化标签" class="headerlink" title="HTML语义化标签"></a>HTML语义化标签</h2><p>对于HTML体系而言，web语义化是指使用语义恰当的标签，使页面具有良好的结构，让元素有含义。<br>HTML语义化标签包括body、article、nav、aside、section、header、footer、hgroup，还有h1-h6、address等。<br>代码示例：   </p>
-<pre><code>&lt;html&gt;
-    &lt;body&gt;
-        &lt;article&gt;
-            &lt;header&gt;
-                &lt;h1&gt;h1 - WEB 语义化&lt;/h1&gt;
-            &lt;/header&gt;
-            &lt;nav&gt;
-                &lt;ul&gt;
-                    &lt;li&gt;nav1 - HTML语义化&lt;/li&gt;
-                    &lt;li&gt;nav2 - CSS语义化&lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/nav&gt;
-            &lt;section&gt;
-                section1 - HTML语义化
-            &lt;/section&gt;
-            &lt;section&gt;
-                section2 - CSS语义化
-            &lt;/section&gt;
-            &lt;time datetime=&quot;2018-03-23&quot; pubdate&gt;time - 2018年03月23日&lt;/time&gt;
-            &lt;footer&gt; footer - by 小维&lt;/footer&gt;
-        &lt;/article&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre><h3 id="header元素"><a href="#header元素" class="headerlink" title="header元素"></a>header元素</h3><p>header代表“网页”或者“section”的页眉，通常包含h1-h6 元素或者hgroup, 作为整个页面或者一个内容快的标题。也可以包裹一节的目录部分，一个搜索框，一个nav，或者相关logo。   </p>
-<pre><code>&lt;header&gt;
-    &lt;hgroup&gt;
-        &lt;h1&gt;网站标题&lt;h1&gt;
-        &lt;h2&gt;网站副标题&lt;/h2&gt;
-    &lt;/hgroup&gt;
-&lt;header&gt;   
-</code></pre><p>注意：    </p>
-<ol>
-<li>不限于“网页”头部   </li>
-<li>没有个数限制   </li>
-<li>hgroup、h1-h6可以替代header   </li>
-</ol>
-<h3 id="hgroup元素"><a href="#hgroup元素" class="headerlink" title="hgroup元素"></a>hgroup元素</h3><p>hgroup元素代表“网页”或“section”的标题，当元素有多个层级时，该元素可以将h1到h6元素放在其内，譬如文章的主标题和副标题组合。   </p>
-<pre><code>&lt;hgroup&gt;
-    &lt;h1&gt;这是一个主标题&lt;/h1&gt;
-    &lt;h2&gt;这是一个副标题&lt;/h2&gt;
-&lt;/hgroup&gt;   
-</code></pre><p>注意：   </p>
-<ol>
-<li>只需要一个h1-h6不需要hgroup，连续多个就用   </li>
-<li>如果有连续多个标题和其他文章数据，h1-h6标签就用hgroup包住，和其他文章元数据一起放入header标签   </li>
-</ol>
-<h3 id="footer元素"><a href="#footer元素" class="headerlink" title="footer元素"></a>footer元素</h3><p>footer元素代表“网页”或任意“section”的页脚，通常含有该节的一些基本信息，譬如：作者，相关文档链接，版权资料。如果footer元素包含了整个节，那么它们就代表附录，索引，提拔，许可协议，标签，类别等一些其他类似信息。  </p>
-<pre><code>&lt;footer&gt;
-    COPYRGHT@。。。
-&lt;/footer&gt;   
-</code></pre><p>没有个数限制，除了内容不一样，其他跟header类似   </p>
-<h3 id="nav元素"><a href="#nav元素" class="headerlink" title="nav元素"></a>nav元素</h3><p>nav元素代表页面的导航链接区域。用于定义页面的主要导航部分。  </p>
-<pre><code>&lt;nav&gt;
-    &lt;ul&gt;
-        &lt;li&gt;HTML语义化&lt;/li&gt;
-        &lt;li&gt;CSS 语义化&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/nav&gt;   
-</code></pre><p>仅代表整个页面的主要导航部分   </p>
-<h3 id="article元素"><a href="#article元素" class="headerlink" title="article元素"></a>article元素</h3><p>article代表一个在文档，页面或者网站中自成一体的内容，其目的是为了让开发这独立开发或重用。除了内容，article会有一个标题、一个footer页脚。article还可以嵌套。   </p>
-<pre><code>&lt;article&gt;
-    &lt;h1&gt;你好，我是这边文章的标题&lt;/h1&gt;
-    &lt;p&gt;你好，我是文章的内容&lt;/p&gt;
-    &lt;footer&gt;
-        &lt;p&gt;最终解释权归XXX所有&lt;/p&gt;
-    &lt;/footer&gt;
-&lt;/article&gt;   
-</code></pre><p>嵌套article：   </p>
-<pre><code>&lt;article&gt;
-    &lt;header&gt;
-        &lt;h1&gt;web 语义化&lt;/h1&gt;
-        &lt;p&gt;&lt;time pubdate datetime=&quot;2018-03-23&quot;&gt;2018-03-23&lt;/time&gt;&lt;/p&gt;
-    &lt;/header&gt;
-    &lt;p&gt;文章内容..&lt;/p&gt;
-    &lt;article&gt;
-        &lt;h2&gt;评论&lt;/h2&gt;
-        &lt;article&gt;
-            &lt;header&gt;
-                &lt;h3&gt;评论者: 专业水军&lt;/h3&gt;
-                &lt;p&gt;&lt;time pubdate datetime=&quot;2018-03-23T15:10-08:00&quot;&gt;~1 min ago&lt;/time&gt;&lt;/p&gt;
-            &lt;/header&gt;
-            &lt;p&gt;还行&lt;/p&gt;
-        &lt;/article&gt;
-        &lt;article&gt;
-            &lt;header&gt;
-                &lt;h3&gt;评论者: 大水怪&lt;/h3&gt;
-                &lt;p&gt;&lt;time pubdate datetime=&quot;2018-03-23T15:10-08:00&quot;&gt;~1 hour ago&lt;/time&gt;&lt;/p&gt;
-            &lt;/header&gt;
-            &lt;p&gt;楼上说的对&lt;/p&gt;
-        &lt;/article&gt;
-    &lt;/article&gt;
-&lt;/article&gt;
-</code></pre><p>嵌套section：</p>
-<pre><code>&lt;article&gt;
-
-    &lt;h1&gt;web语义化&lt;/h1&gt;
-    &lt;p&gt;什么是语义化？&lt;/p&gt;
-
-    &lt;section&gt;
-        &lt;h2&gt;语义化详解&lt;/h2&gt;
-        &lt;p&gt;语义化就是。。。&lt;/p&gt;
-    &lt;/section&gt;
-
-    &lt;section&gt;
-        &lt;h2&gt;语义化特点&lt;/h2&gt;
-        &lt;p&gt;语义化特点就是。。。&lt;/p&gt;
-    &lt;/section&gt;
-
-&lt;/article&gt;   
-</code></pre><p>注意：section囊括的是相关内容，没有语义的可以用div   </p>
-<h3 id="section元素"><a href="#section元素" class="headerlink" title="section元素"></a>section元素</h3><p>section 元素代表文档中的“节”或“段”，“段”可以是指一片文章里按照主题的分段；“节”可以是指一个页面里的分组。section通常还带标题，虽然html5中section会自动给标题h1-h6降级，但是最好手动给他们降级。<br>示例：   </p>
-<pre><code>&lt;section&gt;
-    &lt;h1&gt;section是啥？&lt;/h1&gt;
-    &lt;article&gt;
-        &lt;h2&gt;关于section&lt;/h2&gt;
-        &lt;p&gt;section的介绍&lt;/p&gt;
-        &lt;section&gt;
-            &lt;h3&gt;关于其他&lt;/h3&gt;
-            &lt;p&gt;关于其他section的介绍&lt;/p&gt;
-        &lt;/section&gt;
-    &lt;/article&gt;
-&lt;/section&gt;   
-</code></pre><p>注意：     </p>
-<ol>
-<li>一张页面可以用section划分为简介、文章条目和联系信息。不过在文章内页，最好用article。section不是一般意义上的容器元素，如果想作为样式展示和脚本的便利，可以用div。   </li>
-<li>可以表示文档中的节或者段。   </li>
-<li>acticle、nav、aside可以理解为特殊的section，如果可以用article、nav、aside就不要用section，没有实际意义的就用div   </li>
-</ol>
-<h3 id="aside元素"><a href="#aside元素" class="headerlink" title="aside元素"></a>aside元素</h3><p>aside 元素被包含在article元素中作为主要内容的附属信息部分，其中的内容可以是与当前文章有关的相关资料，标签，名词解释等。<br>在article元素之外使用作为页面或站点全局的附属信息部分。最典型的是侧边栏，其中的内容可以是日志串连，其他组的导航，甚至广告，这些内容相关的页面<br>代码示例：   </p>
-<pre><code>&lt;article&gt;
-    &lt;p&gt;内容&lt;/p&gt;
-    &lt;aside&gt;
-        &lt;h1&gt;作者简介&lt;/h1&gt;
-        &lt;p&gt;小维,哈哈哈&lt;/p&gt;
-    &lt;/aside&gt;
-&lt;/article&gt;   
-</code></pre><p>注意：   </p>
-<ol>
-<li>aside 在 article 内表示主要内容的附属信息。   </li>
-<li>在article之外侧可以做侧边栏，没有article与之对应，最好不用   </li>
-<li>如果是广告，其他日志链接或者其他分类导航也可以用。 </li>
-</ol>
-<p>最后，IE8以下需要考虑HTML5的标签兼容性解决方案。   </p>
-<h2 id="CSS语义化"><a href="#CSS语义化" class="headerlink" title="CSS语义化"></a>CSS语义化</h2><p>CSS语义就是class和ID命名的语义。class属性作为HTML与CSS衔接的纽带，其本意是用来描述元素内容的。指用易于理解的名称对html标签附加的class或id命名。如果说HTML语义化标签是给机器看的，那么CSS命名的语义化就是给人看的。良好的CSS命名方式减少沟通调试成本，易于理解。<br>CSS命名首先要满足W3C的命名规范和团队的命名规范。其次是高效和可重用性。<br>示例：   </p>
-<pre><code>&lt;!-- 以表现为中心 --&gt;
-&lt;div class=&quot;ft margin10&quot;&gt;
-    &lt;span&gt;用户名：小维&lt;/span&gt;
-&lt;/div&gt;
-&lt;!-- 以信息为中心 --&gt;
-&lt;p class=&quot;user_info&quot;&gt;
-    &lt;em&gt;用户名:小维&lt;/em&gt;
-&lt;/p&gt;
-</code></pre>
           
+
+快速理解语义化
+HTML语义化标签
+header元素
+hgroup元素
+footer元素
+nav元素
+article元素
+section元素
+aside元素
+
+
+CSS语义化
+
+
+
+
+快速理解语义化语义化的含义就是用正确的标签做正确的事情，html语义化就是让页面的内容结构化，便于对浏览器、搜索
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/26/web语义化/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2120,55 +1524,20 @@ for(i=0;i&lt;10;i++) {
       
         
           
-            <h1 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h1><ol>
-<li>用纯CSS的方式创建三角形，写出具体代码</li>
-<li>0.1 + 0.2 &gt; 0.3的输出结果是什么，如果想要输出正确的结果，应该如何操作</li>
-<li>同源策略是什么，这样做有什么目的，前端独立解决接口跨域的方法</li>
-<li>类数组对象是什么，数据结构是什么样的，怎么转换</li>
-<li>ES6中模块与AMD、Command JS有什么区别   </li>
-</ol>
-<h1 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h1><ol>
-<li><p>以下代码输出的是什么，如果要输出’bytedance‘，至少说出两种方法，如果要简洁地输出，要怎么做？   </p>
-<pre><code> let obj = {   
-     name: &#39;bytedance&#39;,   
-     getName() {   
-         return this.name;   
-     }
- };    
- let fb = obj.getName;   
- fb();   
-</code></pre></li>
-<li><p>实现一个队列，实现任务：分别在1,3,4秒打印出1,2,3    </p>
-<pre><code> new Queue() {
-     .task(1000, () =&gt; {
-         consolo.log(&#39;1&#39;);
-     });
-     .task(2000, () =&gt; {
-         consolo.log(&#39;2&#39;);
-     });
-     .task(1000, () =&gt; {
-         consolo.log(&#39;3&#39;);
-     });
-     .start();
- }    
-</code></pre></li>
-<li>给定一个升序数组如[0,1,2,4,5,7,13,15,16]，找出数组中连续升序的数，如[‘0-&gt;2’,’4-&gt;5’,’7’,’13’,’15-&gt;16’]   </li>
-</ol>
-<pre><code>    function find(arr) {   
-        // your code
-    }    
-</code></pre><h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><ol>
-<li>盒模型</li>
-<li>基本引用类型</li>
-<li>function为什么能调用call等函数</li>
-<li>队内如何存储，如何调用任务</li>
-<li>vue生命周期</li>
-<li>注重手写代码、思维逻辑等</li>
-<li>apply、call等方法的区别</li>
-<li>JSONP等跨域方法</li>
-</ol>
-
-          
+          简答题
+用纯CSS的方式创建三角形，写出具体代码
+0.1 + 0.2 &gt; 0.3的输出结果是什么，如果想要输出正确的结果，应该如何操作
+同源策略是什么，这样做有什么目的，前端独立解决接口跨域的方法
+类数组对象是什么，数据结构是什么样的，怎么转换
+ES6中模块与AMD、Command JS有什么
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/19/头条面试题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2346,118 +1715,31 @@ for(i=0;i&lt;10;i++) {
       
         
           
-            <!-- TOC -->
-<ul>
-<li><a href="#vuejs-20-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90">vue.js 2.0 生命周期钩子</a><ul>
-<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0">生命周期钩子函数</a></li>
-<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%8E%A2%E7%A9%B6">生命周期探究</a><ul>
-<li><a href="#%E6%95%B0%E6%8D%AE%E6%8C%82%E8%BD%BD%E5%AE%8C%E6%88%90">数据挂载完成</a></li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0">数据更新</a></li>
-<li><a href="#%E9%94%80%E6%AF%81%E5%AE%9E%E4%BE%8B">销毁实例</a></li>
-<li><a href="#create%E5%92%8Cmounted%E7%9B%B8%E5%85%B3">create和mounted相关</a></li>
-<li><a href="#destroy%E7%9B%B8%E5%85%B3">destroy相关</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-<h1 id="vue-js-2-0-生命周期钩子"><a href="#vue-js-2-0-生命周期钩子" class="headerlink" title="vue.js 2.0 生命周期钩子"></a>vue.js 2.0 生命周期钩子</h1><p>每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。<br><img src="/2018/11/19/Vue生命周期/生命周期流程图.png" alt="生命周期图示">   </p>
-<h2 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h2><p><img src="/2018/11/19/Vue生命周期/生命周期钩子函数报表.png" alt="生命周期钩子函数">   </p>
-<h2 id="生命周期探究"><a href="#生命周期探究" class="headerlink" title="生命周期探究"></a>生命周期探究</h2><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;&lt;/title&gt;
-    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.jsdelivr.net/vue/2.1.3/vue.js&quot;&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div id=&quot;app&quot;&gt;
-    &lt;p&gt;{{ message }}&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;script type=&quot;text/javascript&quot;&gt;
-
-var app = new Vue({
-    el: &#39;#app&#39;,
-    data: {
-        message : &quot;xuxiao is boy&quot; 
-    },
-    beforeCreate: function () {
-                console.group(&#39;beforeCreate 创建前状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot; , &quot;el     : &quot; + this.$el); //undefined
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //undefined 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message)  
-        },
-        created: function () {
-            console.group(&#39;created 创建完毕状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el); //undefined
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化
-        },
-        beforeMount: function () {
-            console.group(&#39;beforeMount 挂载前状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + (this.$el)); //已被初始化
-            console.log(this.$el);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化  
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化  
-        },
-        mounted: function () {
-            console.group(&#39;mounted 挂载结束状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el); //已被初始化
-            console.log(this.$el);    
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化 
-        },
-        beforeUpdate: function () {
-            console.group(&#39;beforeUpdate 更新前状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
-            console.log(this.$el);   
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
-        },
-        updated: function () {
-            console.group(&#39;updated 更新完成状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
-            console.log(this.$el); 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
-        },
-        beforeDestroy: function () {
-            console.group(&#39;beforeDestroy 销毁前状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
-            console.log(this.$el);    
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
-        },
-        destroyed: function () {
-            console.group(&#39;destroyed 销毁完成状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
-            console.log(this.$el);  
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message)
-        }
-    })
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;   
-</code></pre><h3 id="数据挂载完成"><a href="#数据挂载完成" class="headerlink" title="数据挂载完成"></a>数据挂载完成</h3><p><img src="/2018/11/19/Vue生命周期/生命周期挂载结束.png" alt="数据挂载完成">   </p>
-<h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p><img src="/2018/11/19/Vue生命周期/生命周期数据更新.png" alt="数据更新">   </p>
-<h3 id="销毁实例"><a href="#销毁实例" class="headerlink" title="销毁实例"></a>销毁实例</h3><p><img src="/2018/11/19/Vue生命周期/生命周期销毁.png" alt="销毁实例"> </p>
-<h3 id="create和mounted相关"><a href="#create和mounted相关" class="headerlink" title="create和mounted相关"></a>create和mounted相关</h3><ol>
-<li>beforeCreated: el和data并未初始化   </li>
-<li>created：完成了data数据的初始化，el并没有初始化   </li>
-<li>beforeMounted：完成了el和data的初始化   </li>
-<li>mounted：完成挂载   </li>
-<li>beforeMounted钩子处，el并没有渲染新的值，这就是Virtual DOM，先把坑占住了。到后面mounted挂载的时候再把值渲染进去   </li>
-<li>update相关   </li>
-</ol>
-<pre><code>e.g. app.message = &#39;yes !! i do&#39;
-</code></pre><p>当data里的值被修改后，将会出发update的操作   </p>
-<h3 id="destroy相关"><a href="#destroy相关" class="headerlink" title="destroy相关"></a>destroy相关</h3><pre><code>app.$destroy();   
-</code></pre><p>销毁完成后，我们再重新改变message的值，vue不在对此动作进行响应了。但是原先生成的DOM元素还在，相当于销毁后就不再受vue控制了。</p>
-
           
+
+vue.js 2.0 生命周期钩子
+生命周期钩子函数
+生命周期探究
+数据挂载完成
+数据更新
+销毁实例
+create和mounted相关
+destroy相关
+
+
+
+
+
+
+vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/19/Vue生命周期/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2635,243 +1917,39 @@ var app = new Vue({
       
         
           
-            <!-- TOC -->
-<ul>
-<li><a href="#doctype和浏览器渲染模式">DOCTYPE和浏览器渲染模式</a><ul>
-<li><a href="#浏览器解析html方式">浏览器解析HTML方式</a></li>
-</ul>
-</li>
-<li><a href="#dom结构">DOM结构</a><ul>
-<li><a href="#w3c-dom标准">W3C DOM标准</a></li>
-<li><a href="#dom节点">DOM节点</a></li>
-<li><a href="#html-dom节点树">HTML DOM节点树</a></li>
-<li><a href="#节点的关系">节点的关系</a></li>
-</ul>
-</li>
-<li><a href="#盒模型">盒模型</a><ul>
-<li><a href="#javascript如何设置获取盒模型对应的宽和高">JavaScript如何设置获取盒模型对应的宽和高</a></li>
-<li><a href="#外边距重叠">外边距重叠</a></li>
-</ul>
-</li>
-<li><a href="#bfc">BFC</a><ul>
-<li><a href="#bfc原理渲染规则">BFC原理（渲染规则）</a></li>
-<li><a href="#如何创建bfc">如何创建BFC</a></li>
-</ul>
-</li>
-<li><a href="#css普通流文档流">CSS普通流（文档流）</a><ul>
-<li><a href="#调节普通流元素位置">调节普通流元素位置</a></li>
-</ul>
-</li>
-<li><a href="#变量对象">变量对象</a><ul>
-<li><a href="#javascript的基本类型">JavaScript的基本类型</a></li>
-<li><a href="#引用类型">引用类型</a></li>
-<li><a href="#内置对象原生对象及宿主对象">内置对象、原生对象及宿主对象</a></li>
-<li><a href="#特殊包装类">特殊包装类</a></li>
-<li><a href="#typeof返回值">typeof返回值</a></li>
-<li><a href="#instanceof-操作符">instanceof 操作符</a></li>
-<li><a href="#objectprototypetostring获取对象类型">Object.prototype.toString获取对象类型</a></li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-<h1 id="DOCTYPE和浏览器渲染模式"><a href="#DOCTYPE和浏览器渲染模式" class="headerlink" title="DOCTYPE和浏览器渲染模式"></a>DOCTYPE和浏览器渲染模式</h1><p>一个文档类型标记是一种标准通用标记语言的文档类型声明，目的是告知通用标记语言解析器，应该是用什么文档类型定义（DTD）来解析文档。DOCTYPE还会对浏览器的渲染模式产生影响，不同的渲染模式会影响到浏览器对于CSS代码甚至是JavaScript脚本的解析，尤其是在IE系列浏览器中。因此，由DOCTYPE所决定的HTML页面的渲染模式至关重要。   </p>
-<h2 id="浏览器解析HTML方式"><a href="#浏览器解析HTML方式" class="headerlink" title="浏览器解析HTML方式"></a>浏览器解析HTML方式</h2><ol>
-<li>非怪异（标准）模式   页面按照HTML和CSS的定义渲染   </li>
-<li>怪异模式   尝试模拟旧浏览器的行为   </li>
-<li>部分怪异（近乎标准）模式   除了实施一种表单元格尺寸的怪异行为，其他符合标准  </li>
-</ol>
-<p>注：一个不含任何DOCTYPE的网页将会以怪异模式渲染。   </p>
-<h1 id="DOM结构"><a href="#DOM结构" class="headerlink" title="DOM结构"></a>DOM结构</h1><p>DOM：Document Object Module，文档对象模型。   </p>
-<h2 id="W3C-DOM标准"><a href="#W3C-DOM标准" class="headerlink" title="W3C DOM标准"></a>W3C DOM标准</h2><ol>
-<li>核心DOM - 针对任何结构化文档的标准模型   </li>
-<li>XML DOM - 针对XML文档的标准模型   </li>
-<li>HTML DOM - 针对HTML文档的标准模型   </li>
-</ol>
-<h2 id="DOM节点"><a href="#DOM节点" class="headerlink" title="DOM节点"></a>DOM节点</h2><p>根据W3C的HTML DOM标准，HTML文档中的所有内容都是节点<br>文档节点、元素节点、属性节点、文本节点、注释节点等。   </p>
-<h2 id="HTML-DOM节点树"><a href="#HTML-DOM节点树" class="headerlink" title="HTML DOM节点树"></a>HTML DOM节点树</h2><p>HTML文本会被解析为DOM树，树中的所有节点均可通过JavaScript进行访问。所有HTML元素（节点）均可被修改，也可以创建或删除节点。<br><img src="/2018/11/19/零碎知识/DOM节点树.PNG" alt="DOM节点树">   </p>
-<h2 id="节点的关系"><a href="#节点的关系" class="headerlink" title="节点的关系"></a>节点的关系</h2><p>父、子、同胞等术语用于描述这些关系。节点树中，顶端节点被称为根；每个节点都有父节点，除了根；一个节点可以拥有任意数量的子，同胞拥有相同的根。<br><img src="/2018/11/19/零碎知识/DOM节点.PNG" alt="DOM节点">   </p>
-<h1 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h1><p>每个元素都是一个矩形盒子，盒模型是元素大小的呈现方式。每个盒子有四个边：外边距边，边匡边，内填充边与内容边。<br><img src="/2018/11/19/零碎知识/盒模型.PNG" alt="盒模型"><br>盒子模型分为两种，一种是W3C标准盒模型，一种是IE盒模型。</p>
-<ol>
-<li>content-box （标准盒模型）<br>width = content宽度<br>height = content高度  </li>
-<li>border-box （IE盒模型）<br>width = border + padding + content宽度<br>height = border + padding + content高度   </li>
-</ol>
-<p>以上两者可以通过<code>box-sizing</code>属性自由转换，默认为<code>content-box</code>。   </p>
-<h2 id="JavaScript如何设置获取盒模型对应的宽和高"><a href="#JavaScript如何设置获取盒模型对应的宽和高" class="headerlink" title="JavaScript如何设置获取盒模型对应的宽和高"></a>JavaScript如何设置获取盒模型对应的宽和高</h2><ol>
-<li>dom.style.width/height 只能取到行内样式的宽和高，style标签中和link外链的样式取不到。   </li>
-<li>dom.currentStyle.width/height 取到的是最终渲染后的宽和高，只有IE支持此属性。   </li>
-<li>window.getComputedStyle(dom).width/height 同（2）但是多浏览器支持，IE9以上支持。   </li>
-<li>dom.getBoundingClientRect().width/height 也是得到渲染后的宽和高，大多浏览器支持。IE9以上支持，除此外还可以取到相对于视窗的上下左右的距离   </li>
-</ol>
-<h2 id="外边距重叠"><a href="#外边距重叠" class="headerlink" title="外边距重叠"></a>外边距重叠</h2><p>当两个或更多个垂直边距相遇时，它们将形成一个外边距。这个外边距的高度等于两个发生叠加的外边距的高度中的较大者。但是只有普通文档流中的快款的垂直外边距才会发生外边距叠加。行内框、浮动框或绝对定位框之间的外边距不会叠加。<br>垂直外边距叠加有三种情况：   </p>
-<ol>
-<li>元素自身叠加。当元素没有内容、内边距、边框时，它的上下边距就相遇了，即会在垂直方向产生叠加。当添加上述任何一项，叠加就会取消。   </li>
-<li>相邻元素叠加。   </li>
-<li>包含（父子）元素叠加。包含元素的外边距隔着父元素的内边距和边框，当这两项都不存在时，父子元素垂直外边距相邻，产生叠加。添加任何一项就会取消叠加。   </li>
-</ol>
-<h1 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h1><p>BFC（Block Formatting Context）：块格式化上下文。<br>BFC决定了元素如何对其内容进行定位，以及与其他元素的关系和相互作用。当设计到可视化布局时，BFC提供了一个环境，HTML元素在这个环境按照一定的规则进行布局。一个环境中的元素不会影响到其它环境中的布局。   </p>
-<h2 id="BFC原理（渲染规则）"><a href="#BFC原理（渲染规则）" class="headerlink" title="BFC原理（渲染规则）"></a>BFC原理（渲染规则）</h2><ol>
-<li>BFC元素垂直方向的边距会发生重叠。属于不同BFC外边距不会发生重叠。   </li>
-<li>BFC的区域不会与浮动元素的布局重叠。   </li>
-<li>BFC元素是一个独立的容器，外面的元素不会影响里面的元素。反之亦然。   </li>
-<li>计算BFC高度时，浮动元素也会参与计算（清除浮动）   </li>
-</ol>
-<h2 id="如何创建BFC"><a href="#如何创建BFC" class="headerlink" title="如何创建BFC"></a>如何创建BFC</h2><ol>
-<li>根元素或包含根元素的元素   </li>
-<li>浮动元素（元素的 <code>float</code> 不是 <code>none</code>）   </li>
-<li>绝对定位元素（元素的 <code>position</code> 为 <code>absolute</code> 或 <code>fixed</code>）   </li>
-<li>行内块元素（元素的 <code>display</code> 为 <code>inline-block</code>）   </li>
-<li>表格单元格（元素的 <code>display</code> 为 <code>table-cell</code>，HTML表格单元格默认为该值）   </li>
-<li>表格标题（元素的 <code>display</code> 为 <code>table-caption</code>，HTML表格标题默认为该值）   </li>
-<li>匿名表格单元格元素（元素的 <code>display</code> 为 <code>table</code>、<code>table-row</code>、 <code>table-row-group</code>、<code>table-header-group</code>、<code>table-footer-group</code>（分别是HTML <code>table</code>、<code>row</code>、<code>tbody</code>、<code>thead</code>、<code>tfoot</code> 的默认属性）或 <code>inline-table</code>）   </li>
-<li><code>overflow</code> 值不为 <code>visible</code> 的块元素   </li>
-<li><code>display</code> 值为 <code>flow-roo</code>t` 的元素   </li>
-<li><code>contain</code> 值为 <code>layout</code>、<code>content</code> 或 <code>strict</code> 的元素   </li>
-<li>弹性元素（<code>display</code>为 <code>flex</code> 或 <code>inline-flex</code> 元素的直接子元素）   </li>
-<li>网格元素（<code>display</code> 为 <code>grid</code> 或 <code>inline-grid</code> 元素的直接子元素）   </li>
-<li>多列容器（元素的 <code>column-count</code> 或 <code>column-width</code> 不为 <code>auto</code>，包括 <code>column-count</code> 为 <code>1</code>）<br><code>column-span</code> 为 <code>all</code> 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（标准变更，Chrome bug）  </li>
-</ol>
-<p>注：块格式化上下文包含创建它的元素内部的所有内容。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其他BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（Margin Collapsing）也只会发生在属于同一BFC的块级元素之间。   </p>
-<h1 id="CSS普通流（文档流）"><a href="#CSS普通流（文档流）" class="headerlink" title="CSS普通流（文档流）"></a>CSS普通流（文档流）</h1><p>元素按照其在HTML中的位置顺序决定排布的过程。</p>
-<h2 id="调节普通流元素位置"><a href="#调节普通流元素位置" class="headerlink" title="调节普通流元素位置"></a>调节普通流元素位置</h2><p>一般使用margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。margin用于布局分开元素使元素与元素互不相干；padding用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段“距离”。<br><code>注：只要不是float和绝对定位方式布局的，都在普通流里面。</code>   </p>
-<h1 id="变量对象"><a href="#变量对象" class="headerlink" title="变量对象"></a>变量对象</h1><h2 id="JavaScript的基本类型"><a href="#JavaScript的基本类型" class="headerlink" title="JavaScript的基本类型"></a>JavaScript的基本类型</h2><ol>
-<li>Number   </li>
-<li>String   </li>
-<li>Boolean   </li>
-<li>Undefined   </li>
-<li>Null   </li>
-<li>Object   </li>
-</ol>
-<p>五种基本类型保存在内存的栈中，值固定，复制其变量时会创建这个值得一个副本。使用<code>typeof</code>区分。前五中没有原型没有构造函数。   </p>
-<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>引用类型的值是对象，保存在堆中。引用类型的变量实际上是一个指针，他保存在栈中，指向堆内存中的对象。复制引用类型变量实际是复制该指针，所以他们都指向同一个对象，用<code>instanceof</code>确定哪一个值是哪种引用类型。   </p>
-<h2 id="内置对象、原生对象及宿主对象"><a href="#内置对象、原生对象及宿主对象" class="headerlink" title="内置对象、原生对象及宿主对象"></a>内置对象、原生对象及宿主对象</h2><p>内置对象和元素对象是被ECMAScript规范定义和实现的，两者之间的差异微不足道。所有ECMAScript实现的对象都是原生对象（其中一些是内置对象、一些在程序执行的时候创建，例如用户自定义对象）。内置对象是原生对象的一个子集、是在程序开始之前内置到ECMAScript里的（例如，parseInt, Match等）。所有的宿主对象是由宿主环境提供的，通常是浏览器，并可能包括如window、alert等。<br>注意，宿主对象可能是ES自身实现的，完全符合规范的语义。从这点来说，他们能称为“原生宿主”对象（尽快很理论），不过规范没有定义“原生宿主”对象的概念。   </p>
-<h2 id="特殊包装类"><a href="#特殊包装类" class="headerlink" title="特殊包装类"></a>特殊包装类</h2><ol>
-<li>Boolean: 布尔对象   </li>
-<li>String: 字符串对象   </li>
-<li>Number：数字对象   </li>
-</ol>
-<p>这些对象的创建，是通过相应的内置构造器创建，并且包含原生值作为其内部属性，这些对象可以转换成原始值，反之亦然。   </p>
-<pre><code>    var c = new Boolean(true);
-    var d = new String(&#39;test&#39;);
-    var e = new Number(10);
-
-    // 转换成原始值
-    // 使用不带new关键字的函数
-    с = Boolean(c);
-    d = String(d);
-    e = Number(e);
-
-    // 重新转换成对象
-    с = Object(c);
-    d = Object(d);
-    e = Object(e);   
-</code></pre><h2 id="typeof返回值"><a href="#typeof返回值" class="headerlink" title="typeof返回值"></a>typeof返回值</h2><p>实际是用来检测一个对象是否已经定义或者是否已经赋值。   </p>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Class</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>“foo”</td>
-<td>String</td>
-<td>string</td>
-</tr>
-<tr>
-<td>1.2</td>
-<td>Number</td>
-<td>number</td>
-</tr>
-<tr>
-<td>true</td>
-<td>Boolean</td>
-<td>boolean</td>
-</tr>
-<tr>
-<td>undefined</td>
-<td>Undefined</td>
-<td>undefined</td>
-</tr>
-<tr>
-<td>new Function(“”)</td>
-<td>Function</td>
-<td>function</td>
-</tr>
-<tr>
-<td>new String(“foo”)</td>
-<td>String</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new Number(1.2)</td>
-<td>Number</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new Boolean(true)</td>
-<td>Boolean</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new Date()</td>
-<td>Date</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new Error()</td>
-<td>Error</td>
-<td>object</td>
-</tr>
-<tr>
-<td>[1,2,3]</td>
-<td>Array</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new Array(1, 2, 3)</td>
-<td>Array</td>
-<td>object</td>
-</tr>
-<tr>
-<td>/abc/g</td>
-<td>RegExp</td>
-<td>object (function in Nitro/V8)</td>
-</tr>
-<tr>
-<td>new RegExp(“meow”)</td>
-<td>RegExp</td>
-<td>object (function in Nitro/V8)</td>
-</tr>
-<tr>
-<td>{}</td>
-<td>Object</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new Object()</td>
-<td>Object</td>
-<td>object</td>
-</tr>
-</tbody>
-</table>
-<p>返回的类型只有6种：   </p>
-<ol>
-<li>string   </li>
-<li>number   </li>
-<li>boolean   </li>
-<li>undefined   </li>
-<li>object   </li>
-<li>function   </li>
-</ol>
-<h2 id="instanceof-操作符"><a href="#instanceof-操作符" class="headerlink" title="instanceof 操作符"></a>instanceof 操作符</h2><p>instanceof 操作符用来比较两个操作数的构造函数。只有在比较自定义的对象时才有意义。如果用来比较内置类型，将会和 typeof 操作符 一样用处不大。   </p>
-<h2 id="Object-prototype-toString获取对象类型"><a href="#Object-prototype-toString获取对象类型" class="headerlink" title="Object.prototype.toString获取对象类型"></a>Object.prototype.toString获取对象类型</h2><p>检测一个对象的类型，强烈推荐使用 Object.prototype.toString 方法； 因为这是唯一一个可依赖的方式。typeof 的一些返回值在标准文档中并未定义， 因此不同的引擎实现可能不同。 我们使用Object.prototype.toString方法:    </p>
-<pre><code>Object.prototype.toString.call([])    // &quot;[object Array]&quot;
-Object.prototype.toString.call({})    // &quot;[object Object]&quot;
-Object.prototype.toString.call(2)    // &quot;[object Number]&quot;
-</code></pre>
           
+
+DOCTYPE和浏览器渲染模式
+浏览器解析HTML方式
+
+
+DOM结构
+W3C DOM标准
+DOM节点
+HTML DOM节点树
+节点的关系
+
+
+盒模型
+JavaScript如何设置获取盒模型对应的宽和高
+外边距重叠
+
+
+BFC
+BFC原理（渲染规则）
+如何创建BFC
+
+
+CSS普通流（文档流）
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/19/零碎知识/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -3049,74 +2127,31 @@ Object.prototype.toString.call(2)    // &quot;[object Number]&quot;
       
         
           
-            <!-- TOC -->
-<ul>
-<li><a href="#产生跨域的原因">产生跨域的原因</a></li>
-<li><a href="#同源策略">同源策略</a><ul>
-<li><a href="#定义">定义</a></li>
-<li><a href="#同源策略用意">同源策略用意</a></li>
-</ul>
-</li>
-<li><a href="#解决跨域问题">解决跨域问题</a><ul>
-<li><a href="#jsonp的解决方式">JSONP的解决方式</a></li>
-<li><a href="#服务端设置access-control-allow-origin">服务端设置<code>Access-Control-Allow-Origin</code></a></li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-<h1 id="产生跨域的原因"><a href="#产生跨域的原因" class="headerlink" title="产生跨域的原因"></a>产生跨域的原因</h1><p>跨域问题是浏览器同源策略限制，当前域名的js只能读取同域下的窗口属性</p>
-<h1 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>如果两个页面拥有相同的协议（protocol），端口和主机，那么这两个页面就属于同一个源（origin）<br>一个网站的网址组成包括协议名，子域名，主域名，端口号。比如<code>https://github.com/</code>，其中<code>https</code>是协议名，<code>www</code>是子域名，<code>github</code>是主域名，端口号是<code>80</code>，当在页面中从URL请求数据时，如果这个<code>URL</code>的协议名、子域名、主域名、端口号任意有一个不同，就会产生跨域问题。即使是在 <code>http://localhost:80/</code> 页面请求 <code>http://127.0.0.1:80/</code> 也会有跨域问题。   </p>
-<h2 id="同源策略用意"><a href="#同源策略用意" class="headerlink" title="同源策略用意"></a>同源策略用意</h2><p>同源策略限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的重要安全机制。   </p>
-<h1 id="解决跨域问题"><a href="#解决跨域问题" class="headerlink" title="解决跨域问题"></a>解决跨域问题</h1><p>解决跨域问题有以下几种方式：   </p>
-<ol>
-<li>使用<code>JSONP</code>    </li>
-<li>服务端代理   </li>
-<li>服务端设置<code>Request Header</code>头中<code>Access-Control-Allow-Origin</code>未指定可获取数据的域名   </li>
-</ol>
-<h2 id="JSONP的解决方式"><a href="#JSONP的解决方式" class="headerlink" title="JSONP的解决方式"></a>JSONP的解决方式</h2><ol>
-<li>原理<br>JSONP解决跨域问题的原理是，浏览器的<code>script</code>标签是不受同源策略限制（可以在网页中设置<code>script</code>的<code>src</code>属性为<code>cdn</code>服务器中静态文件的路径），这样就可以使用<code>script</code>标签从服务器获取数据，请求时添加一个参数为<code>callback=？</code>，？号是要执行的回调方法。   </li>
-<li><p>前端实现<br>以jQuery2.1.3的ajax方法为例：   </p>
-<pre><code> $.ajax({
-     url:&quot;&quot;,
-     dataType:&quot;jsonp&quot;,
-         data:{
-             params:&quot;&quot;
-             }
-     }).done(function(data){
-         //dosomething..
- })   
-</code></pre><p>仅仅是客户端使用<code>jsonp</code>请求数据是不行的，因为<code>jsonp</code>的请求是放在<code>script</code>标签中的，和普通请求不同的地方在于，它请求到的是一段js代码，如果服务端返回了<code>json</code>字符串，那么浏览器就会报错。所以jsonp返回数据需要服务端做一些处理。   </p>
-</li>
-<li>服务端返回数据处理   </li>
-</ol>
-<p>要获取请求到的数据，就需要服务端做一些判断，当参数中带有<code>callback</code>属性时，返回的<code>type</code>要为<code>pplication/javascript</code>，把数据作为<code>callback</code>的参数执行。示例：   </p>
-<pre><code>/**/ typeof jQuery21307270454438403249_1428044213638 === &#39;function&#39; &amp;&amp;
-    jQuery21307270454438403249_1428044213638({&quot;code&quot;:1,&quot;msg&quot;:&quot;success&quot;,&quot;data&quot;:{&quot;test&quot;:&quot;test&quot;});   
-</code></pre><p><code>express4.12.3</code>关于<code>JSONP</code>的实现代码：   </p>
-<pre><code>// jsonp
-if (typeof callback === &#39;string&#39; &amp;&amp; callback.length !== 0) {
-    this.charset = &#39;utf-8&#39;;
-    this.set(&#39;X-Content-Type-Options&#39;, &#39;nosniff&#39;);
-    this.set(&#39;Content-Type&#39;, &#39;text/javascript&#39;);
-
-    // restrict callback charset
-    callback = callback.replace(/[^\[\]\w$.]/g, &#39;&#39;);
-
-    // replace chars not allowed in JavaScript that are in JSON
-    body = body
-    .replace(/\u2028/g, &#39;\\u2028&#39;)
-    .replace(/\u2029/g, &#39;\\u2029&#39;);
-
-    // the /**/ is a specific security mitigation for &quot;Rosetta Flash JSONP abuse&quot;
-    // the typeof check is just to reduce client error noise
-    body = &#39;/**/ typeof &#39; + callback + &#39; === \&#39;function\&#39; &amp;&amp; &#39; + callback + &#39;(&#39; + body + &#39;);&#39;;   
-}   
-</code></pre><h2 id="服务端设置Access-Control-Allow-Origin"><a href="#服务端设置Access-Control-Allow-Origin" class="headerlink" title="服务端设置Access-Control-Allow-Origin"></a>服务端设置<code>Access-Control-Allow-Origin</code></h2><ol>
-<li>这种方式只要服务端把<code>response</code>的<code>header</code>头中设置<code>Access-Control-Allow-Origin</code>为制定可请求当前域名下数据的域名即可。一般情况下设为即可。这样客户端就不需要使用jsonp来获取数据。<br>关于<code>Access-Control-Allow-Origin</code>是否安全，有待讨论。   </li>
-<li>浏览器支持：<code>Access-Control-Allow-Origin</code>是<code>HTML5</code>新增的一想标准，IE10以下是不支持的，所以如果产品面向的是PC端，就要使用服务端代理或者<code>JSONP</code>。</li>
-</ol>
-
           
+
+产生跨域的原因
+同源策略
+定义
+同源策略用意
+
+
+解决跨域问题
+JSONP的解决方式
+服务端设置Access-Control-Allow-Origin
+
+
+
+
+产生跨域的原因跨域问题是浏览器同源策略限制，当前域名的js只能读取同域下的窗口属性
+同源策略定义如果两个页面拥有相同的协议（protoc
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/19/跨域/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

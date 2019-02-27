@@ -386,87 +386,32 @@
       
         
           
-            <!-- TOC -->
-<ul>
-<li><a href="#css常用布局">CSS常用布局</a><ul>
-<li><a href="#1两栏布局">1.两栏布局</a></li>
-<li><a href="#2三栏布局">2.三栏布局</a></li>
-<li><a href="#3水平居中">3.水平居中</a></li>
-<li><a href="#4水平居中及垂直居中">4.水平居中及垂直居中</a></li>
-</ul>
-</li>
-<li><a href="#flex布局">flex布局</a></li>
-</ul>
-<!-- /TOC -->
-<h1 id="CSS常用布局"><a href="#CSS常用布局" class="headerlink" title="CSS常用布局"></a>CSS常用布局</h1><h2 id="1-两栏布局"><a href="#1-两栏布局" class="headerlink" title="1.两栏布局"></a>1.两栏布局</h2><p>   一栏定宽，一栏自适应。</p>
-<h3 id="实现方式有两种："><a href="#实现方式有两种：" class="headerlink" title="实现方式有两种："></a>实现方式有两种：</h3><ol>
-<li><code>float</code>+<code>margin</code></li>
-<li><code>position：absolute</code>   </li>
-</ol>
-<h2 id="2-三栏布局"><a href="#2-三栏布局" class="headerlink" title="2.三栏布局"></a>2.三栏布局</h2><p>   两边定宽，然后中间的<code>width</code>是<code>auto</code>的，可以自适应内容，再加上<code>margin</code>边距来进行设定。</p>
-<h3 id="有四种实现方式"><a href="#有四种实现方式" class="headerlink" title="有四种实现方式"></a>有四种实现方式</h3><ol>
-<li>左右两栏<code>float</code>，中间栏使用<code>margin</code>进行撑开，注意，当页面宽度小于两边宽度之和时，右侧栏会被挤下去，造成HTML的结构不正确。</li>
-<li><code>position</code>实现，左右两栏使用<code>position</code>进行定位，中间栏使用<code>margin</code>进行定位。缺点是父元素有内外边距时，会导致中间栏的位置出现偏差。</li>
-<li>使用<code>float</code>和<code>bfc</code>配合圣杯布局。将middle的宽度设置为100%，然后将其<code>float</code>设置为left，其中的main块设置<code>margin</code>属性，然后左边栏设置<code>float</code>为left，之后设置<code>margin</code>为-100%，右栏也设置为<code>float：left</code>，之后<code>margin-left</code>为自身大小。缺点就是结构不正确，多了一层标签。</li>
-<li>flex布局。兼容性。   </li>
-</ol>
-<h2 id="3-水平居中"><a href="#3-水平居中" class="headerlink" title="3.水平居中"></a>3.水平居中</h2><ol>
-<li><code>margin：0 auto</code>；</li>
-<li><code>text-align</code>和<code>inline-block</code>的结合（父元素的<code>text-align</code>为<code>center</code>）</li>
-<li><code>position</code>绝对定位来实现居中布局，适用于块级元素不给出宽高的情况下（需要借助<code>transform</code>的translateX方法）。   </li>
-</ol>
-<pre><code>#parent {
-    position: relative;
-}
-#child {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-</code></pre><ol start="4">
-<li><code>flex</code>   </li>
-</ol>
-<pre><code>#parent {
-    display: flex;
-    justify-content: center;
-}
-</code></pre><h2 id="4-水平居中及垂直居中"><a href="#4-水平居中及垂直居中" class="headerlink" title="4.水平居中及垂直居中"></a>4.水平居中及垂直居中</h2><ol>
-<li>子元素 div 绝对定位，父元素需要被定位，子元素 top、bottom、left、right 四个位置值均为 0，子元素 <code>margin: auto</code>;</li>
-<li>position绝对定位及负外边距   </li>
-</ol>
-<h1 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h1><p><img src="/2018/11/18/布局方式/flex弹性布局.png" alt="flex弹性布局"></p>
-<ol>
-<li><p>Flex 布局，可以简便、完整、响应式地实现各种页面布局。Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。flex只支持IE 10+。<br><img src="/2018/11/18/布局方式/flex支持浏览器.PNG" alt="flex支持情况"></p>
-</li>
-<li><p>flex布局，子元素的<code>float</code>、<code>clear</code>和<code>vertical-align</code>属性失效。<br><img src="/2018/11/18/布局方式/flex模型.PNG" alt="flex模型">   </p>
-</li>
-<li><p>flex元素中，有两根轴，主轴<code>main axis</code>（默认水平，方向向右），交叉轴<code>cross axis</code>（位置是主轴顺时针旋转90°），主轴开始的位置为<code>main start</code>，主轴结束的位置为<code>main end</code>。交叉轴同理。<br>flex的子元素中，占据主轴的空间为<code>main size</code>，占据的交叉轴为<code>cross size</code>。   </p>
-</li>
-<li><p>父容器属性   </p>
-</li>
-</ol>
-<ul>
-<li><code>flex-direction</code>：主轴的方向（row，row-reverse，column，column-reverse）</li>
-<li><code>flex-wrap</code>：超出父容器自容器的排列样式（nowrap，wrap，wrap-reverse）</li>
-<li><code>flex-flow</code>：前两者的简写形式</li>
-<li><code>justify-content</code>：子容器在主轴的排列方向（flex-start，flex-end，center，space-between，space-around）</li>
-<li><code>align-items</code>：子容器在交叉轴的排列方向（flex-start，flex-end，center，baseline，stretch）</li>
-<li><code>align-content</code>：多根轴线的对齐方式（flex-start，flex-end，center，space-between，space-around，stretch）   </li>
-</ul>
-<ol start="5">
-<li>子容器属性</li>
-</ol>
-<ul>
-<li><code>order</code>：子容器的排列顺序(数值越小，排列越靠前，默认为0)</li>
-<li><code>flex-grow</code>：子容器剩余空间的拉伸比例(按比例给子容器分配空间)</li>
-<li><code>flex-shrink</code>：子容器超出空间的压缩比例(此属性要生效，父容器的flex-wrap要设置为nowrap)</li>
-<li><code>flex-basis</code>：子容器在不伸缩情况下的原始尺寸</li>
-<li><code>flex</code>：<code>flex-grow</code>、<code>flex-shrink</code>、<code>flex-basis</code>的简写(默认为0 1 auto)</li>
-<li><code>align-self</code>：允许子容器单个项目与其他项目不一样的对齐方式，可覆盖父容器属性，默认auto，表示继承父容器<code>align-items</code>，如果没有父元素，等同于stretch</li>
-</ul>
-
           
+
+CSS常用布局
+1.两栏布局
+2.三栏布局
+3.水平居中
+4.水平居中及垂直居中
+
+
+flex布局
+
+
+CSS常用布局1.两栏布局   一栏定宽，一栏自适应。
+实现方式有两种：
+float+margin
+position：absolute   
+
+2.三栏布局   两边定宽，然后中间的width
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/18/布局方式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -644,94 +589,29 @@
       
         
           
-            <!-- TOC -->
-<ul>
-<li><a href="#%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9Chttp%E7%8A%B6%E6%80%81%E7%A0%81">返回结果HTTP状态码</a><ul>
-<li><a href="#2xx-%E6%88%90%E5%8A%9F">2xx 成功</a><ul>
-<li><a href="#200-ok">200 OK</a></li>
-<li><a href="#204-no-content">204 No Content</a></li>
-<li><a href="#206-partial-content">206 Partial Content</a></li>
-</ul>
-</li>
-<li><a href="#3xx-%E9%87%8D%E5%AE%9A%E5%90%91">3xx 重定向</a><ul>
-<li><a href="#301-moved-permanently">301 Moved Permanently</a></li>
-<li><a href="#302-found">302 Found</a></li>
-<li><a href="#303-see-other">303 See Other</a></li>
-<li><a href="#304-not-modified">304 Not Modified</a></li>
-<li><a href="#307-temperorary-redirect">307 Temperorary Redirect</a></li>
-</ul>
-</li>
-<li><a href="#4xx-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF">4xx 客户端错误</a><ul>
-<li><a href="#400-bad-request">400 Bad Request</a></li>
-<li><a href="#401-unauthrized">401 Unauthrized</a></li>
-<li><a href="#403-forbidden">403 Forbidden</a></li>
-<li><a href="#403-not-found">403 Not Found</a></li>
-</ul>
-</li>
-<li><a href="#5xx-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%94%99%E8%AF%AF">5xx 服务器错误</a><ul>
-<li><a href="#501-internal-server-error">501 Internal Server Error</a></li>
-<li><a href="#503-service-unavailable">503 Service Unavailable</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-<h1 id="返回结果HTTP状态码"><a href="#返回结果HTTP状态码" class="headerlink" title="返回结果HTTP状态码"></a>返回结果HTTP状态码</h1><p>HTTP状态码负责表示客户端的HTTP请求的返回结果、标记服务器端的处理是否正常、通知出现的错误等工作。<br>数字中的第一位指定了相应类别，后两位无分类。响应的类别有以下5种：   </p>
-<table>
-<thead>
-<tr>
-<th>代码</th>
-<th>类别</th>
-<th>原因短语</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1xx</td>
-<td>informational (信息性状态码)</td>
-<td>接收的请求正在处理</td>
-</tr>
-<tr>
-<td>2xx</td>
-<td>success (成功状态码)</td>
-<td>请求正常处理完毕</td>
-</tr>
-<tr>
-<td>3xx</td>
-<td>redirection (重定向状态码)</td>
-<td>需要进行附加操作以完成请求</td>
-</tr>
-<tr>
-<td>4xx</td>
-<td>client error (客户端错误状态码)</td>
-<td>服务器无法处理请求</td>
-</tr>
-<tr>
-<td>5xx</td>
-<td>server error (服务器错误状态码)</td>
-<td>服务器处理请求出错</td>
-</tr>
-</tbody>
-</table>
-<p>只要遵守状态码类别的定义，即使改变RFC2616中定义的状态码，或服务器端自行创建状态码都没问题。   </p>
-<h2 id="2xx-成功"><a href="#2xx-成功" class="headerlink" title="2xx 成功"></a>2xx 成功</h2><h3 id="200-OK"><a href="#200-OK" class="headerlink" title="200 OK"></a>200 OK</h3><p>表示从客户端发来的请求在服务器端被正常处理了。但是在响应报文内，随状态码一起返回的信息会因为方法的不同而发生改变。   </p>
-<h3 id="204-No-Content"><a href="#204-No-Content" class="headerlink" title="204 No Content"></a>204 No Content</h3><p>该状态码代表服务器接收的请求已经成功处理，但在返回的响应中不包含实体的主体部分。另外，也不允许返回任何实体的主体。一般在只需要向服务器发送信息，而不需要返回信息给客户端时使用。   </p>
-<h3 id="206-Partial-Content"><a href="#206-Partial-Content" class="headerlink" title="206 Partial Content"></a>206 Partial Content</h3><p>该状态码表示客户端进行了范围请求，而服务器成功执行了这部分的GET请求。响应报文中包含由<code>Content-Range</code>指定范围的实体内容。   </p>
-<h2 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx 重定向"></a>3xx 重定向</h2><p>3xx响应结果表明浏览器需要执行某些特殊的处理以正确处理请求。   </p>
-<h3 id="301-Moved-Permanently"><a href="#301-Moved-Permanently" class="headerlink" title="301 Moved Permanently"></a>301 Moved Permanently</h3><p>永久性重定向。该状态码表示请求的资源被分配了新的<code>URI</code>，同时，书签也应按需进行更新。   </p>
-<h3 id="302-Found"><a href="#302-Found" class="headerlink" title="302 Found"></a>302 Found</h3><p>临时性重定向。该状态码也表示请求的资源被分配了新的<code>URI</code>，但是临时性质的。并不会更新书签。  </p>
-<h3 id="303-See-Other"><a href="#303-See-Other" class="headerlink" title="303 See Other"></a>303 See Other</h3><p>该状态码表示请求的资源存在另一个<code>URI</code>，应使用GET方法定向获取请求的资源。与302的区别是，303明确表示客户端应该用GET方法获取资源。<br>当返回301、302、303时，几乎所有的浏览器都会把POST改成GET，并删除请求报文的主体，之后请求会自动再次发送。但301、302标准时禁止把<code>POST</code>方法改成<code>GET</code>的。</p>
-<h3 id="304-Not-Modified"><a href="#304-Not-Modified" class="headerlink" title="304 Not Modified"></a>304 Not Modified</h3><p>该状态码表示客户端发送附带条件的请求时，服务器允许访问资源，但因发生请求未满足的条件的情况后，直接返回304 <code>Not Modified</code>（服务器资源未改变，可直接使用客户端未过期的资源），返回时，也不包含任何响应的主体部分。并且304和重定向没有什么关系。   </p>
-<h3 id="307-Temperorary-Redirect"><a href="#307-Temperorary-Redirect" class="headerlink" title="307 Temperorary Redirect"></a>307 Temperorary Redirect</h3><p>临时重定向。与302有同样的含义，但307会按照标准，不会将<code>POST</code>改成<code>GET</code>。   </p>
-<h2 id="4xx-客户端错误"><a href="#4xx-客户端错误" class="headerlink" title="4xx 客户端错误"></a>4xx 客户端错误</h2><h3 id="400-Bad-Request"><a href="#400-Bad-Request" class="headerlink" title="400 Bad Request"></a>400 Bad Request</h3><p>表示请求报文中存在语法错误，需修改请求的内容再次发送请求。另外，浏览器会像200 OK一样对待该状态码。   </p>
-<h3 id="401-Unauthrized"><a href="#401-Unauthrized" class="headerlink" title="401 Unauthrized"></a>401 Unauthrized</h3><p>表示发送的请求需要有通过HTTP认证（BASIC 认证、DIGEST 认证的认证信息。若之前已进行过1次请求，则表示用户认证失败。<br>返回包含401的响应必须包含一个适用于被请求资源的<code>WWW-Authenticate</code> 首部以质询用户信息。当浏览器初次接收401响应，会弹出认证用的窗口。  </p>
-<h3 id="403-Forbidden"><a href="#403-Forbidden" class="headerlink" title="403 Forbidden"></a>403 Forbidden</h3><p>表明请求的资源被服务器拒绝了。并且服务器没有必要给出详细的拒绝理由。但是可以在实体的主体部分对原因进行描述。未获得文件系统的访问授权，访问权限出现某些问题（从未授权的发送元IP地址试图访问）等都可能是403的原因。   </p>
-<h3 id="403-Not-Found"><a href="#403-Not-Found" class="headerlink" title="403 Not Found"></a>403 Not Found</h3><p>表明服务器端上没有请求的资源。除此之外，还可以在服务器拒绝请求且不想说明理由时使用。   </p>
-<h2 id="5xx-服务器错误"><a href="#5xx-服务器错误" class="headerlink" title="5xx 服务器错误"></a>5xx 服务器错误</h2><h3 id="501-Internal-Server-Error"><a href="#501-Internal-Server-Error" class="headerlink" title="501 Internal Server Error"></a>501 Internal Server Error</h3><p>表明服务器端在执行请求时发生了错误。   </p>
-<h3 id="503-Service-Unavailable"><a href="#503-Service-Unavailable" class="headerlink" title="503 Service Unavailable"></a>503 Service Unavailable</h3><p>表明服务器端暂时处于超负载或正在停机维护，现在无法处理请求。<br><code>注：状态码有可能和实际状况不一致。</code></p>
-
           
+
+返回结果HTTP状态码
+2xx 成功
+200 OK
+204 No Content
+206 Partial Content
+
+
+3xx 重定向
+301 Moved Permanently
+302 Found
+303 See Other
+304 Not Modified
+307 Temperorar
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/18/HTTP状态码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -887,21 +767,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/18/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
