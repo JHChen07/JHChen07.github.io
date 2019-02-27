@@ -86,15 +86,18 @@
 
 
 
+<meta name="description" content="链接:http://caibaojian.com/javascript-timer.html来源:http://caibaojian.com 定时器JavaScript提供了一些原生的方法去延时去执行一段代码。指定的时间间隔表示何时将定时器的代码添加到队列，而不是何时执行代码。定时器有四种形式。    setTimeout设置一个定时器，在定时器到期后执行一次函数或代码段。   var timeo">
 <meta name="keywords" content="定时器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS定时器">
 <meta property="og:url" content="http://yoursite.com/2019/02/26/JS定时器/index.html">
 <meta property="og:site_name" content="jhchen の BLOG">
+<meta property="og:description" content="链接:http://caibaojian.com/javascript-timer.html来源:http://caibaojian.com 定时器JavaScript提供了一些原生的方法去延时去执行一段代码。指定的时间间隔表示何时将定时器的代码添加到队列，而不是何时执行代码。定时器有四种形式。    setTimeout设置一个定时器，在定时器到期后执行一次函数或代码段。   var timeo">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-26T02:05:33.406Z">
+<meta property="og:updated_time" content="2019-02-26T09:40:59.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS定时器">
+<meta name="twitter:description" content="链接:http://caibaojian.com/javascript-timer.html来源:http://caibaojian.com 定时器JavaScript提供了一些原生的方法去延时去执行一段代码。指定的时间间隔表示何时将定时器的代码添加到队列，而不是何时执行代码。定时器有四种形式。    setTimeout设置一个定时器，在定时器到期后执行一次函数或代码段。   var timeo">
 
 
 
@@ -324,7 +327,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  602
                 </span>
               
 
@@ -340,7 +343,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -361,7 +364,42 @@
       
 
       
-        
+        <p>链接:<a href="http://caibaojian.com/javascript-timer.html" target="_blank" rel="noopener">http://caibaojian.com/javascript-timer.html</a><br>来源:<a href="http://caibaojian.com" target="_blank" rel="noopener">http://caibaojian.com</a></p>
+<h1 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h1><p>JavaScript提供了一些原生的方法去延时去执行一段代码。指定的时间间隔表示何时将定时器的代码添加到队列，而不是何时执行代码。定时器有四种形式。   </p>
+<h2 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h2><p>设置一个定时器，在定时器到期后执行一次函数或代码段。  </p>
+<pre><code>var timeoutId = window.setTimeout(func[, delay, param1, param2, ...]);
+var timeoutId = window.setTimeout(code[, delay]);   
+</code></pre><p>参数说明：   </p>
+<ol>
+<li>timeoutId: 定时器 ID   </li>
+<li>func: 延迟后执行的函数   </li>
+<li>code: 延迟后执行的代码字符串，不推荐使用原理类似 eval()   </li>
+<li>delay: 延迟的时间（单位：毫秒），默认值为 0   </li>
+<li><p>param1,param2: 向延迟函数传递而外的参数，IE9 以上支持   </p>
+<h2 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h2><p>以固定的时间间隔重复调用一个函数或者代码段   </p>
+<p> var intervalId = window.setInterval(func, delay[, param1, param2, …]);<br> var intervalId = window.setInterval(code, delay);</p>
+</li>
+<li>intervalId: 重复操作的 ID   </li>
+<li>func: 延迟调用的函数   </li>
+<li>code：代码段   </li>
+<li>delay：延迟时间，没有默认值<br>当使用 setInterval 时， 仅当没有该定时器的其他任何代码实例时，才将定时器的代码添加到队列中。这确保了定时器代码加入到队列中的最小时间间隔为指定时间间隔。<br>这种重复定时器的规则有两个问题：（1）某些时间间隔会被跳过；（2）多个定时器的代码执行之间的间隔可能会比预期的小。   </li>
+</ol>
+<h2 id="setImmediate"><a href="#setImmediate" class="headerlink" title="setImmediate"></a>setImmediate</h2><p>在浏览器完全结束当前运行的操作后立即执行指定的函数（仅 IE10 和 node 0.10<br>+中有实现），类似 setTimeout(func, 0)    </p>
+<pre><code>var immediateId = setImmediate(func[, param1, param2, ...]);
+var immediateId = setImmediate(func);   
+</code></pre><ol>
+<li>immediateId：定时器ID   </li>
+<li>func：回调   </li>
+</ol>
+<h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h2><p>专门为实现高性能的帧动画而设计的API，但是不能指定延迟时间，而是根据浏览器的刷新频率而定（帧）   </p>
+<pre><code>var requestId = window.requestAnimationFrame(func);   
+</code></pre><h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ol>
+<li>setTimeout 有最小时间间隔限制，HTML5 标准为 4ms，小于 4ms 按照 4ms 处理，但是每个浏览器实现的最小间隔都不同   </li>
+<li>因为 JS 引擎只有一个线程，所以它将会强制异步事件排队执行    </li>
+<li>如果 setInterval 的回调执行时间长于指定的延迟，setInterval 将无间隔的一个接一个执行   </li>
+<li>this 的指向问题可以通过 bind 函数、定义变量、箭头函数的方式来解决   </li>
+</ol>
+
       
     </div>
     
@@ -402,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/26/RegExp/" rel="next" title="RegExp">
-                <i class="fa fa-chevron-left"></i> RegExp
+              <a href="/2019/02/26/定时器/" rel="next" title="JS定时器">
+                <i class="fa fa-chevron-left"></i> JS定时器
               </a>
             
           </div>
@@ -466,8 +504,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -484,7 +531,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -530,6 +577,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定时器"><span class="nav-number">1.</span> <span class="nav-text">定时器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#setTimeout"><span class="nav-number">1.1.</span> <span class="nav-text">setTimeout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setInterval"><span class="nav-number">1.2.</span> <span class="nav-text">setInterval</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setImmediate"><span class="nav-number">1.3.</span> <span class="nav-text">setImmediate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#requestAnimationFrame"><span class="nav-number">1.4.</span> <span class="nav-text">requestAnimationFrame</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意"><span class="nav-number">2.</span> <span class="nav-text">注意</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -558,7 +621,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.4k</span>
+    <span title="Site words total count">16k</span>
   
 
 </div>
