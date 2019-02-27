@@ -1306,10 +1306,12 @@ var timeoutId = window.setTimeout(code[, delay]);
 <li>func: 延迟后执行的函数   </li>
 <li>code: 延迟后执行的代码字符串，不推荐使用原理类似 eval()   </li>
 <li>delay: 延迟的时间（单位：毫秒），默认值为 0   </li>
-<li><p>param1,param2: 向延迟函数传递而外的参数，IE9 以上支持   </p>
-<h2 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h2><p>以固定的时间间隔重复调用一个函数或者代码段   </p>
-<p> var intervalId = window.setInterval(func, delay[, param1, param2, …]);<br> var intervalId = window.setInterval(code, delay);</p>
-</li>
+<li>param1,param2: 向延迟函数传递而外的参数，IE9 以上支持   </li>
+</ol>
+<h2 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h2><p>以固定的时间间隔重复调用一个函数或者代码段    </p>
+<pre><code>var intervalId = window.setInterval(func, delay[, param1, param2, ...]);
+var intervalId = window.setInterval(code, delay);
+</code></pre><ol>
 <li>intervalId: 重复操作的 ID   </li>
 <li>func: 延迟调用的函数   </li>
 <li>code：代码段   </li>

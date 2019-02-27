@@ -95,7 +95,7 @@
 <meta property="og:description" content="定时器 setTimeout setInterval setImmediate requestAnimationFrame   注意   参考链接:http://caibaojian.com/javascript-timer.html    定时器JavaScript提供了一些原生的方法去延时去执行一段代码。指定的时间间隔表示何时将定时器的代码添加到队列，而不是何时执行代码。定时器有四种形式。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/02/26/定时器/重复定时器.PNG">
-<meta property="og:updated_time" content="2019-02-27T02:45:14.308Z">
+<meta property="og:updated_time" content="2019-02-27T02:49:12.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS定时器">
 <meta name="twitter:description" content="定时器 setTimeout setInterval setImmediate requestAnimationFrame   注意   参考链接:http://caibaojian.com/javascript-timer.html    定时器JavaScript提供了一些原生的方法去延时去执行一段代码。指定的时间间隔表示何时将定时器的代码添加到队列，而不是何时执行代码。定时器有四种形式。">
@@ -389,10 +389,12 @@ var timeoutId = window.setTimeout(code[, delay]);
 <li>func: 延迟后执行的函数   </li>
 <li>code: 延迟后执行的代码字符串，不推荐使用原理类似 eval()   </li>
 <li>delay: 延迟的时间（单位：毫秒），默认值为 0   </li>
-<li><p>param1,param2: 向延迟函数传递而外的参数，IE9 以上支持   </p>
-<h2 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h2><p>以固定的时间间隔重复调用一个函数或者代码段   </p>
-<p> var intervalId = window.setInterval(func, delay[, param1, param2, …]);<br> var intervalId = window.setInterval(code, delay);</p>
-</li>
+<li>param1,param2: 向延迟函数传递而外的参数，IE9 以上支持   </li>
+</ol>
+<h2 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h2><p>以固定的时间间隔重复调用一个函数或者代码段    </p>
+<pre><code>var intervalId = window.setInterval(func, delay[, param1, param2, ...]);
+var intervalId = window.setInterval(code, delay);
+</code></pre><ol>
 <li>intervalId: 重复操作的 ID   </li>
 <li>func: 延迟调用的函数   </li>
 <li>code：代码段   </li>
