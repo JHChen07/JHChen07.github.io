@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript编程题,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。    数组查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     function indexOf(arr, item) {     return arr.i">
+<meta name="keywords" content="JavaScript编程题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS基础编程题">
+<meta property="og:url" content="http://yoursite.com/2019/02/27/JS基础编程题/index.html">
+<meta property="og:site_name" content="jhchen の BLOG">
+<meta property="og:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。    数组查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     function indexOf(arr, item) {     return arr.i">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-27T08:22:34.906Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS基础编程题">
+<meta name="twitter:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。    数组查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     function indexOf(arr, item) {     return arr.i">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/27/JS基础编程题/">
+
+
+
+
+
+  <title>JS基础编程题 | jhchen の BLOG</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/JHChen07" class="github-corner" aria-label="View source on GitHub">
+      <svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+      </svg>
+    </a>
+    <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jhchen の BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+<link href="/js/google-code-prettify/prettify.css" type="text/css" rel="stylesheet"> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/27/JS基础编程题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JHChen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jhchen の BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS基础编程题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-27T11:52:07+08:00">
+                2019-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这篇文章是在牛客网上关于JS能力测评经典题编程的记录。   </p>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="查找数组元素位置"><a href="#查找数组元素位置" class="headerlink" title="查找数组元素位置"></a>查找数组元素位置</h2><p><code>题目描述</code><br>找出元素 item 在给定数组 arr 中的位置<br><code>输出描述</code><br>如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[ 1, 2, 3, 4 ], 3   
+</code></pre><p><code>输出</code>   </p>
+<pre><code>2   
+</code></pre><p><code>代码</code>    </p>
+<pre><code>function indexOf(arr, item) {
+    return arr.indexOf(item);
+}
+</code></pre><h2 id="数组求和"><a href="#数组求和" class="headerlink" title="数组求和"></a>数组求和</h2><p><code>题目描述</code><br>计算给定数组 arr 中所有元素的总和<br><code>输入描述</code><br>数组中的元素均为 Number 类型<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[ 1, 2, 3, 4 ]  
+</code></pre><p><code>输出</code>   </p>
+<pre><code>10   
+</code></pre><p><code>代码</code>    </p>
+<pre><code>function sum(arr) {
+    var temp = 0;
+    for(var i = 0; i &lt; arr.length; i++) {
+        temp += arr[i];
+    }
+    return temp;
+}   
+</code></pre><h2 id="移除数组中的元素"><a href="#移除数组中的元素" class="headerlink" title="移除数组中的元素"></a>移除数组中的元素</h2><p><code>题目描述</code><br>移除数组 arr 中的所有值与 item 相等的元素。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 3, 4, 2], 2 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[1, 3, 4]   
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function remove(arr, item) {
+    var res = arr.filter(function(i, index, array) {
+        return (i != item);
+    })
+    return res;
+}   
+</code></pre><h2 id="移除数组中的元素-1"><a href="#移除数组中的元素-1" class="headerlink" title="移除数组中的元素+"></a>移除数组中的元素+</h2><p><code>题目描述</code><br>移除数组 arr 中的所有值与 item 相等的元素。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 2, 3, 4, 2, 2], 2 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[1, 3, 4]   
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function removeWithoutCopy(arr, item) {
+    arr.forEach(function(array) {
+        arr.splice(item, 1);
+    });
+    return arr;
+}   
+</code></pre><h2 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h2><p><code>题目描述</code><br>在数组 arr 末尾添加元素 item。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 3, 4],  10 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[1, 2, 3, 4, 10]  
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function append(arr, item) {
+    return arr.concat(item);
+}   
+</code></pre><h2 id="删除数组最后一个元素"><a href="#删除数组最后一个元素" class="headerlink" title="删除数组最后一个元素"></a>删除数组最后一个元素</h2><p><code>题目描述</code><br>删除数组 arr 最后一个元素。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 3, 4] 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[1, 2, 3]  
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function truncate(arr) {
+    return arr.slice(0, arr.length - 1);
+}   
+</code></pre><h2 id="添加元素-1"><a href="#添加元素-1" class="headerlink" title="添加元素"></a>添加元素</h2><p><code>题目描述</code><br>在数组 arr 开头添加元素 item。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 3, 4],  10 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[1, 2, 3, 4, 10]  
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function prepend(arr, item) {
+    return arr.slice().reverse().concat(item).reverse();
+}   
+</code></pre><h2 id="删除数组第一个元素"><a href="#删除数组第一个元素" class="headerlink" title="删除数组第一个元素"></a>删除数组第一个元素</h2><p><code>题目描述</code><br>删除数组 arr 第一个元素。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 3, 4] 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[2, 3， 4]  
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function curtail(arr) {
+return arr.slice(1);
+}   
+</code></pre><h2 id="数组合并"><a href="#数组合并" class="headerlink" title="数组合并"></a>数组合并</h2><p><code>题目描述</code><br>合并数组 arr1 和数组 arr2。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 3, 4], [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, 1] 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[1, 2, 3, 4, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, 1]  
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function concat(arr1, arr2) {
+    return arr1.concat(arr2);
+}    
+</code></pre><h2 id="添加元素-2"><a href="#添加元素-2" class="headerlink" title="添加元素"></a>添加元素</h2><p><code>题目描述</code><br>在数组 arr 的 index 处添加元素 item。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 3, 4], &#39;z&#39;, 2 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[1, 2, &#39;z&#39;, 3, 4]  
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function insert(arr, item, index) {
+    var a = arr.slice(0);
+    a.splice(index, 0, item);
+    return a;
+}   
+</code></pre><h2 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h2><p><code>题目描述</code><br>统计数组 arr 中值等于 item 的元素出现的次数<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 4, 4, 3, 4, 3], 4 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>3  
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function count(arr, item) {
+    var count = arr.filter(function(i, array) {
+        return (i === item);
+    })
+    return count.length;
+}   
+</code></pre><h2 id="查找重复元素"><a href="#查找重复元素" class="headerlink" title="查找重复元素"></a>查找重复元素</h2><p><code>题目描述</code><br>找出数组 arr 中重复出现过的元素<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 4, 4, 3, 3, 1, 5, 3] 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[1, 3, 4]  
+</code></pre><p><code>代码</code>   </p>
+<h2 id="求二次方"><a href="#求二次方" class="headerlink" title="求二次方"></a>求二次方</h2><p><code>题目描述</code><br>为数组 arr 中的每个元素求二次方。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 3, 4] 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[1, 4, 9, 16] 
+</code></pre><p><code>代码</code>    </p>
+<pre><code>function square(arr) {
+    return arr.map(function(item, array) {
+        return item*item;
+    })
+}   
+</code></pre><h2 id="查找元素位置"><a href="#查找元素位置" class="headerlink" title="查找元素位置"></a>查找元素位置</h2><p><code>题目描述</code><br>在数组 arr 中，查找值与 item 相等的元素出现的所有位置<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>&#39;abcdefabc&#39; 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[0, 6]
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function findAllOccurrences(arr, target) {
+    var res = new Array();
+    for(var i=0; i&lt;arr.length; i++) {
+        if(arr[i]===target) {
+            res.push(i);
+        }
+    }
+    return res;
+}   
+</code></pre><h2 id="避免全局变量"><a href="#避免全局变量" class="headerlink" title="避免全局变量"></a>避免全局变量</h2><p>给定的js代码中存在全局变量，请修复   </p>
+<pre><code>function globals() {
+    myObject = {
+    name : &#39;Jory&#39;
+    };
+
+    return myObject;
+}   
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function globals() {
+    var myObject = {
+    name : &#39;Jory&#39;
+    };
+    return myObject;
+}   
+</code></pre><h2 id="正确的函数定义"><a href="#正确的函数定义" class="headerlink" title="正确的函数定义"></a>正确的函数定义</h2><p><code>题目描述</code><br>请修复给定的 js 代码中，函数定义存在的问题        </p>
+<pre><code>function functions(flag) {
+    if (flag) {
+    function getValue() { return &#39;a&#39;; }
+    } else {
+    function getValue() { return &#39;b&#39;; }
+    }
+
+    return getValue();
+}
+</code></pre><p><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>true 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>a
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function functions(flag) {
+    if (flag) {
+    var getValue = function() { return &#39;a&#39;; }
+    } else {
+    var getValue = function() { return &#39;b&#39;; }
+    }
+    return getValue();
+}   
+</code></pre><h2 id="正确使用parseInt"><a href="#正确使用parseInt" class="headerlink" title="正确使用parseInt"></a>正确使用parseInt</h2><p><code>题目描述</code><br>修改 js 代码中 parseInt 的调用方式，使之通过全部测试用例   </p>
+<pre><code>function parse2Int(num) {
+    return parseInt(num);
+}
+</code></pre><p><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>&#39;12&#39;
+</code></pre><p><code>输出</code>   </p>
+<pre><code>12   
+</code></pre><p><code>示例2</code><br><code>输入</code>   </p>
+<pre><code>&#39;12px&#39;   
+</code></pre><p><code>输出</code>   </p>
+<pre><code>12   
+</code></pre><p><code>示例3</code><br><code>输入</code>   </p>
+<pre><code>&#39;0x12&#39;
+</code></pre><p><code>输出</code>   </p>
+<pre><code>0
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function parse2Int(num) {
+    return parseInt(num, 10);
+}
+</code></pre><h2 id="完全等同"><a href="#完全等同" class="headerlink" title="完全等同"></a>完全等同</h2><p><code>题目描述</code><br>判断 val1 和 val2 是否完全等同<br><code>代码</code>    </p>
+<pre><code>function identity(val1, val2) {
+    return val1===val2;
+}
+</code></pre><h2 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h2><p><code>题目描述</code><br>实现一个打点计时器，要求   </p>
+<ol>
+<li>从 start 到 end（包含 start 和 end），每隔 100 毫秒 console.log 一个数字，每次数字增幅为 1   </li>
+<li>返回的对象中需要包含一个 cancel 方法，用于停止定时操作   </li>
+<li>第一个数需要立即输出   </li>
+</ol>
+<p><code>代码</code>   </p>
+<pre><code>/*
+此题要注意数据的改变以及返回的是对象
+*/
+function count(start, end) {
+    console.log(start++);
+    var counting = setInterval(function() {
+        if(start &lt;= end) {
+            // 若此处没有进行自增操作，则打印的是同一个数
+        console.log(start++);
+        } else {
+            clearInterval(counting);
+        }
+    }, 100);
+    // 此处返回一个对象，如果直接返回cancel=function，则返回的是一个函数
+    return {
+        cancel: function() {
+            clearInterval(counting);
+        }
+    }
+}
+</code></pre><h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><p><code>题目描述</code><br>实现 fizzBuzz 函数，参数 num 与返回值的关系如下：    </p>
+<ol>
+<li>如果 num 能同时被 3 和 5 整除，返回字符串 fizzbuzz   </li>
+<li>如果 num 能被 3 整除，返回字符串 fizz   </li>
+<li>如果 num 能被 5 整除，返回字符串 buzz   </li>
+<li>如果参数为空或者不是 Number 类型，返回 false   </li>
+<li>其余情况，返回参数 num   </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>15 
+</code></pre><p><code>输出</code>   </p>
+<pre><code>15
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function fizzBuzz(num) {
+    if (num === null || num === &quot;&quot;) {
+        return false;
+    } else if (!isNaN(num)) {
+        if (num % 3 === 0 &amp;&amp; num % 5 === 0) {
+            return &quot;fizzbuzz&quot;;
+        } else if (num % 3 === 0) {
+            return &quot;fizz&quot;;
+        } else if (num % 5 === 0) {
+            return &quot;buzz&quot;;
+        } else return num;
+    } else {
+        return false;
+    }
+}
+</code></pre><h2 id="函数传参"><a href="#函数传参" class="headerlink" title="函数传参"></a>函数传参</h2><p><code>题目描述</code><br>将数组 arr 中的元素作为调用函数 fn 的参数<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>function (greeting, name, punctuation) {return greeting + &#39;, &#39; + name + (punctuation || &#39;!&#39;);}, [&#39;Hello&#39;, &#39;Ellie&#39;, &#39;!&#39;]
+</code></pre><p><code>输出</code>   </p>
+<pre><code>Hello, Ellie!
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function argsAsArray(fn, arr) {
+    return fn.apply(this, arr);
+}   
+</code></pre><h2 id="函数的上下文"><a href="#函数的上下文" class="headerlink" title="函数的上下文"></a>函数的上下文</h2><p><code>题目描述</code><br>将函数 fn 的执行上下文改为 obj 对象<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>function () {return this.greeting + &#39;, &#39; + this.name + &#39;!!!&#39;;}, {greeting: &#39;Hello&#39;, name: &#39;Rebecca&#39;}
+</code></pre><p><code>输出</code>   </p>
+<pre><code>Hello, Rebecca!!!
+</code></pre><p><code>代码</code>  </p>
+<pre><code>function speak(fn, obj) {
+    return fn.call(obj);
+}
+</code></pre><h2 id="返回函数"><a href="#返回函数" class="headerlink" title="返回函数"></a>返回函数</h2><p><code>题目描述</code><br>实现函数 functionFunction，调用之后满足如下条件：  </p>
+<ol>
+<li>返回值为一个函数 f   </li>
+<li>调用返回的函数 f，返回值为按照调用顺序的参数拼接，拼接字符为英文逗号加一个空格，即 ‘, ‘   </li>
+<li>所有函数的参数数量为 1，且均为 String 类型     </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>functionFunction(&#39;Hello&#39;)(&#39;world&#39;)
+</code></pre><p><code>输出</code>   </p>
+<pre><code>Hello, world
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function functionFunction(str) {
+    var f = function(s) {
+        return str.concat(&#39;, &#39;) + s;
+    };
+    return f;
+}
+</code></pre><h2 id="使用闭包"><a href="#使用闭包" class="headerlink" title="使用闭包"></a>使用闭包</h2><p><code>题目描述</code><br>实现函数 makeClosures，调用之后满足如下条件：   </p>
+<ol>
+<li>返回一个函数数组 result，长度与 arr 相同   </li>
+<li>运行 result 中第 i 个函数，即 <code>result[i]()</code>，结果与 fn(arr[i]) 相同   </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>[1, 2, 3], function (x) { 
+    return x * x; 
+}
+</code></pre><p><code>输出</code>   </p>
+<pre><code>4
+</code></pre><p><code>代码</code>     </p>
+<pre><code>function makeClosures(arr, fn) {   
+    var result = new Array();
+    for(var i=0; i&lt;arr.length; i++){
+        result[i] = function(i){
+            return function() {
+                return fn(i)
+            }
+        }(arr[i])
+    }
+    return result;
+}   
+</code></pre><h2 id="二次封装函数"><a href="#二次封装函数" class="headerlink" title="二次封装函数"></a>二次封装函数</h2><p><code>题目描述</code><br>已知函数 fn 执行需要 3 个参数。请实现函数 partial，调用之后满足如下条件：    </p>
+<ol>
+<li>返回一个函数 result，该函数接受一个参数   </li>
+<li>执行 result(str3) ，返回的结果与 fn(str1, str2, str3) 一致   </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>var sayIt = function(greeting, name, punctuation) {     return greeting + &#39;, &#39; + name + (punctuation || &#39;!&#39;); };  partial(sayIt, &#39;Hello&#39;, &#39;Ellie&#39;)(&#39;!!!&#39;);
+</code></pre><p><code>输出</code>   </p>
+<pre><code>Hello, Ellie!!!
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function partial(fn, str1, str2) {
+    var result = function(str) {
+        return fn.apply(null, [str1, str2, str])
+    }
+    return result;    
+}   
+</code></pre><h2 id="使用-arguments"><a href="#使用-arguments" class="headerlink" title="使用 arguments"></a>使用 arguments</h2><p><code>题目描述</code><br>函数 useArguments 可以接收 1 个及以上的参数。请实现函数 useArguments，返回所有调用参数相加后的结果。本题的测试参数全部为 Number 类型，不需考虑参数转换。<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>1, 2, 3, 4
+</code></pre><p><code>输出</code>   </p>
+<pre><code>10
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function useArguments() {
+    var sum = 0;
+    for(var i=0; i&lt;arguments.length; i++){
+        sum += arguments[i];
+    }
+    return sum;
+}
+</code></pre><h2 id="使用-apply-调用函数"><a href="#使用-apply-调用函数" class="headerlink" title="使用 apply 调用函数"></a>使用 apply 调用函数</h2><p><code>题目描述</code><br>实现函数 callIt，调用之后满足如下条件   </p>
+<ol>
+<li>返回的结果为调用 fn 之后的结果   </li>
+<li>fn 的调用参数为 callIt 的第一个参数之后的全部参数  </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>无
+</code></pre><p><code>输出</code>   </p>
+<pre><code>无
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function callIt(fn) {
+    return fn.apply(null, Array.prototype.slice.call(arguments, 1))
+}
+</code></pre><h2 id="二次封装函数-1"><a href="#二次封装函数-1" class="headerlink" title="二次封装函数"></a>二次封装函数</h2><p><code>题目描述</code><br>实现函数 partialUsingArguments，调用之后满足如下条件：   </p>
+<ol>
+<li>返回一个函数 result   </li>
+<li>调用 result 之后，返回的结果与调用函数 fn 的结果一致   </li>
+<li>fn 的调用参数为 partialUsingArguments 的第一个参数之后的全部参数以及 result 的调用参数   </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>无
+</code></pre><p><code>输出</code>   </p>
+<pre><code>无
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function partialUsingArguments(fn) {
+    var args = Array.prototype.slice.call(arguments, 1)
+    var result = function() {
+        return fn.apply(null, args.concat([].slice.call(arguments)))
+    };
+    return result;
+}
+</code></pre><h2 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h2><p><code>题目描述</code><br>已知 fn 为一个预定义函数，实现函数 curryIt，调用之后满足如下条件：   </p>
+<ol>
+<li>返回一个函数 a，a 的 length 属性值为 1（即显式声明 a 接收一个参数）   </li>
+<li>调用 a 之后，返回一个函数 b, b 的 length 属性值为 1   </li>
+<li>调用 b 之后，返回一个函数 c, c 的 length 属性值为 1   </li>
+<li>调用 c 之后，返回的结果与调用 fn 的返回值一致   </li>
+<li>fn 的参数依次为函数 a, b, c 的调用参数     </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>var fn = function (a, b, c) {return a + b + c}; curryIt(fn)(1)(2)(3);
+</code></pre><p><code>输出</code>   </p>
+<pre><code>6
+</code></pre><p><code>代码</code>   </p>
+<h2 id="或运算"><a href="#或运算" class="headerlink" title="或运算"></a>或运算</h2><p><code>题目描述</code><br>返回参数 a 和 b 的逻辑或运算结果<br><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>false, true
+</code></pre><p><code>输出</code>   </p>
+<pre><code>true
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function or(a, b) {
+    return a || b;
+}
+</code></pre><h2 id="且运算"><a href="#且运算" class="headerlink" title="且运算"></a>且运算</h2><p><code>题目描述</code><br>返回参数 a 和 b 的逻辑且运算结果<br><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>false, true
+</code></pre><p><code>输出</code>   </p>
+<pre><code>false
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function or(a, b) {
+    return a &amp;&amp; b;
+}
+</code></pre><h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p><code>题目描述</code><br>完成函数 createModule，调用之后满足如下要求：   </p>
+<ol>
+<li>返回一个对象   </li>
+<li>对象的 greeting 属性值等于 str1， name 属性值等于 str2   </li>
+<li>对象存在一个 sayIt 方法，该方法返回的字符串为 greeting属性值 + ‘, ‘ + name属性值      </li>
+</ol>
+<p><code>代码</code>   </p>
+<h2 id="二进制转换"><a href="#二进制转换" class="headerlink" title="二进制转换"></a>二进制转换</h2><p><code>题目描述</code><br>获取数字 num 二进制形式第 bit 位的值。注意：   </p>
+<ol>
+<li>bit 从 1 开始   </li>
+<li>返回 0 或 1   </li>
+<li>举例：2 的二进制为 10，第 1 位为 0，第 2 位为 1     </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>128, 8
+</code></pre><p><code>输出</code>   </p>
+<pre><code>1
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function valueAtBit(num, bit) {
+    var str = num.toString(2).split(&#39;&#39;).reverse();
+    return str[bit-1];
+}
+</code></pre><h2 id="二进制转换-1"><a href="#二进制转换-1" class="headerlink" title="二进制转换"></a>二进制转换</h2><p><code>题目描述</code><br>给定二进制字符串，将其换算成对应的十进制数字<br><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>&#39;11000000&#39;
+</code></pre><p><code>输出</code>   </p>
+<pre><code>192
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function base10(str) {
+    return parseInt(str, 2)
+}
+</code></pre><h2 id="二进制转换-2"><a href="#二进制转换-2" class="headerlink" title="二进制转换"></a>二进制转换</h2><p><code>题目描述</code><br>将给定数字转换成二进制字符串。如果字符串长度不足 8 位，则在前面补 0 到满8位。<br><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>65
+</code></pre><p><code>输出</code>   </p>
+<pre><code>01000001
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function convertToBinary(num) {
+    var res = num.toString(2);
+    while(res.length &lt; 8) {
+        res = &#39;0&#39; + res;
+    }
+    return res;
+}
+</code></pre><h2 id="乘法"><a href="#乘法" class="headerlink" title="乘法"></a>乘法</h2><p><code>题目描述</code><br>求 a 和 b 相乘的值，a 和 b 可能是小数，需要注意结果的精度问题<br><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>3, 0.0001
+</code></pre><p><code>输出</code>   </p>
+<pre><code>0.0003
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function multiply(a, b) {
+    return a*b;
+}
+</code></pre><h2 id="改变上下文"><a href="#改变上下文" class="headerlink" title="改变上下文"></a>改变上下文</h2><p><code>题目描述</code><br>将函数 fn 的执行上下文改为 obj，返回 fn 执行后的值<br><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>alterContext(function() {return this.greeting + &#39;, &#39; + this.name + &#39;!&#39;; }, {name: &#39;Rebecca&#39;, greeting: &#39;Yo&#39; })
+</code></pre><p><code>输出</code>   </p>
+<pre><code>Yo, Rebecca!
+</code></pre><p><code>代码</code>    </p>
+<pre><code>function alterContext(fn, obj) {
+    return fn.apply(obj, []);
+}
+</code></pre><h2 id="批量改变对象的属性"><a href="#批量改变对象的属性" class="headerlink" title="批量改变对象的属性"></a>批量改变对象的属性</h2><p><code>题目描述</code><br>给定一个构造函数 constructor，请完成 alterObjects 方法，将 constructor 的所有实例的 greeting 属性指向给定的 greeting 变量。<br><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>var C = function(name) {this.name = name; return this;}; 
+var obj1 = new C(&#39;Rebecca&#39;); 
+alterObjects(C, &#39;What\&#39;s up&#39;); obj1.greeting;
+</code></pre><p><code>输出</code>   </p>
+<pre><code>What&#39;s up
+</code></pre><p><code>代码</code>   </p>
+<h2 id="属性遍历"><a href="#属性遍历" class="headerlink" title="属性遍历"></a>属性遍历</h2><p><code>题目描述</code><br>找出对象 obj 不在原型链上的属性(注意这题测试例子的冒号后面也有一个空格~)   </p>
+<ol>
+<li>返回数组，格式为 key: value   </li>
+<li>结果数组不要求顺序      </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>var C = function() {this.foo = &#39;bar&#39;; this.baz = &#39;bim&#39;;}; 
+C.prototype.bop = &#39;bip&#39;; 
+iterate(new C());
+</code></pre><p><code>输出</code>   </p>
+<pre><code>[&quot;foo: bar&quot;, &quot;baz: bim&quot;]
+</code></pre><p><code>代码</code>   </p>
+<h2 id="判断是否包含数字"><a href="#判断是否包含数字" class="headerlink" title="判断是否包含数字"></a>判断是否包含数字</h2><p><code>题目描述</code><br>给定字符串 str，检查其是否包含数字，包含返回 true，否则返回 false<br><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>&#39;abc123&#39;
+</code></pre><p><code>输出</code>   </p>
+<pre><code>true
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function containsNumber(str) {
+    var pattern = /\d/;
+    return pattern.test(str);
+}
+</code></pre><h2 id="检查重复字符串"><a href="#检查重复字符串" class="headerlink" title="检查重复字符串"></a>检查重复字符串</h2><p><code>题目描述</code><br>给定字符串 str，检查其是否包含连续重复的字母（a-zA-Z），包含返回 true，否则返回 false<br><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>&#39;rattler&#39;
+</code></pre><p><code>输出</code>   </p>
+<pre><code>true
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function containsRepeatingLetter(str) {
+    var pattern = /([a-zA-Z])\1/;
+    return pattern.test(str);
+}
+</code></pre><h2 id="判断是否以元音字母结尾"><a href="#判断是否以元音字母结尾" class="headerlink" title="判断是否以元音字母结尾"></a>判断是否以元音字母结尾</h2><p><code>题目描述</code><br>给定字符串 str，检查其是否以元音字母结尾   </p>
+<ol>
+<li>元音字母包括 a，e，i，o，u，以及对应的大写   </li>
+<li>包含返回 true，否则返回 false        </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>&#39;gorilla&#39;
+</code></pre><p><code>输出</code>   </p>
+<pre><code>true
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function endsWithVowel(str) {
+    var pattern = new RegExp(&#39;/[aeiou]$/&#39;, &#39;i&#39;);
+    return /[aeiou]$/i.test(str);
+}
+</code></pre><h2 id="获取指定字符串"><a href="#获取指定字符串" class="headerlink" title="获取指定字符串"></a>获取指定字符串</h2><p><code>题目描述</code><br>给定字符串 str，检查其是否包含 连续3个数字    </p>
+<ol>
+<li>如果包含，返回最新出现的 3 个数字的字符串   </li>
+<li>如果不包含，返回 false       </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>&#39;9876543&#39;
+</code></pre><p><code>输出</code>   </p>
+<pre><code>987
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function captureThreeNumbers(str) {
+    var pattern = /\d{3}/;
+    if(pattern.test(str)){
+        return RegExp.lastMatch;
+    } else {
+        return false;
+    }
+}
+</code></pre><h2 id="判断是否符合指定格式"><a href="#判断是否符合指定格式" class="headerlink" title="判断是否符合指定格式"></a>判断是否符合指定格式</h2><p><code>题目描述</code><br>给定字符串 str，检查其是否符合如下格式   </p>
+<ol>
+<li>XXX-XXX-XXXX   </li>
+<li>其中 X 为 Number 类型       </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>&#39;800-555-1212&#39;
+</code></pre><p><code>输出</code>   </p>
+<pre><code>true
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function matchesPattern(str) {
+    return /^(\d{3})-\d{3}-\d{4}$/.test(str);
+}
+</code></pre><h2 id="判断是否符合-USD-格式"><a href="#判断是否符合-USD-格式" class="headerlink" title="判断是否符合 USD 格式"></a>判断是否符合 USD 格式</h2><p><code>题目描述</code><br>给定字符串 str，检查其是否符合美元书写格式   </p>
+<ol>
+<li>以 $ 开始   </li>
+<li>整数部分，从个位起，满 3 个数字用 , 分隔   </li>
+<li>如果为小数，则小数部分长度为 2   </li>
+<li>正确的格式如：$1,023,032.03 或者 $2.03，错误的格式如：$3,432,12.12 或者 $34,344.3       </li>
+</ol>
+<p><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>&#39;$20,933,209.93&#39;
+</code></pre><p><code>输出</code>   </p>
+<pre><code>true
+</code></pre><p><code>代码</code>   </p>
+<pre><code>function isUSD(str) {
+    return /^\$(0|[1-9]\d{0,2})(,\d{3})*(\.\d{2})?$/.test(str);
+}
+</code></pre>
+      
+    </div>
+    
+    
+    
+    <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+      
+    </div>
+    
+    <div>
+        
+          
+        
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript编程题/" rel="tag"><i class="fa fa-tag"></i> JavaScript编程题</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/26/JS事件处理/" rel="next" title="JS事件处理">
+                <i class="fa fa-chevron-left"></i> JS事件处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="JHChen">
+            
+              <p class="site-author-name" itemprop="name">JHChen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查找数组元素位置"><span class="nav-number">1.1.</span> <span class="nav-text">查找数组元素位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组求和"><span class="nav-number">1.2.</span> <span class="nav-text">数组求和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移除数组中的元素"><span class="nav-number">1.3.</span> <span class="nav-text">移除数组中的元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移除数组中的元素-1"><span class="nav-number">1.4.</span> <span class="nav-text">移除数组中的元素+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加元素"><span class="nav-number">1.5.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除数组最后一个元素"><span class="nav-number">1.6.</span> <span class="nav-text">删除数组最后一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加元素-1"><span class="nav-number">1.7.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除数组第一个元素"><span class="nav-number">1.8.</span> <span class="nav-text">删除数组第一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组合并"><span class="nav-number">1.9.</span> <span class="nav-text">数组合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加元素-2"><span class="nav-number">1.10.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计数"><span class="nav-number">1.11.</span> <span class="nav-text">计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找重复元素"><span class="nav-number">1.12.</span> <span class="nav-text">查找重复元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求二次方"><span class="nav-number">1.13.</span> <span class="nav-text">求二次方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找元素位置"><span class="nav-number">1.14.</span> <span class="nav-text">查找元素位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免全局变量"><span class="nav-number">1.15.</span> <span class="nav-text">避免全局变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确的函数定义"><span class="nav-number">1.16.</span> <span class="nav-text">正确的函数定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确使用parseInt"><span class="nav-number">1.17.</span> <span class="nav-text">正确使用parseInt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完全等同"><span class="nav-number">1.18.</span> <span class="nav-text">完全等同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计时器"><span class="nav-number">1.19.</span> <span class="nav-text">计时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制"><span class="nav-number">1.20.</span> <span class="nav-text">流程控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数传参"><span class="nav-number">1.21.</span> <span class="nav-text">函数传参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的上下文"><span class="nav-number">1.22.</span> <span class="nav-text">函数的上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回函数"><span class="nav-number">1.23.</span> <span class="nav-text">返回函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用闭包"><span class="nav-number">1.24.</span> <span class="nav-text">使用闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二次封装函数"><span class="nav-number">1.25.</span> <span class="nav-text">二次封装函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-arguments"><span class="nav-number">1.26.</span> <span class="nav-text">使用 arguments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-apply-调用函数"><span class="nav-number">1.27.</span> <span class="nav-text">使用 apply 调用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二次封装函数-1"><span class="nav-number">1.28.</span> <span class="nav-text">二次封装函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#柯里化"><span class="nav-number">1.29.</span> <span class="nav-text">柯里化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#或运算"><span class="nav-number">1.30.</span> <span class="nav-text">或运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#且运算"><span class="nav-number">1.31.</span> <span class="nav-text">且运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">1.32.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制转换"><span class="nav-number">1.33.</span> <span class="nav-text">二进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制转换-1"><span class="nav-number">1.34.</span> <span class="nav-text">二进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制转换-2"><span class="nav-number">1.35.</span> <span class="nav-text">二进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘法"><span class="nav-number">1.36.</span> <span class="nav-text">乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变上下文"><span class="nav-number">1.37.</span> <span class="nav-text">改变上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#批量改变对象的属性"><span class="nav-number">1.38.</span> <span class="nav-text">批量改变对象的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性遍历"><span class="nav-number">1.39.</span> <span class="nav-text">属性遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否包含数字"><span class="nav-number">1.40.</span> <span class="nav-text">判断是否包含数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查重复字符串"><span class="nav-number">1.41.</span> <span class="nav-text">检查重复字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否以元音字母结尾"><span class="nav-number">1.42.</span> <span class="nav-text">判断是否以元音字母结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取指定字符串"><span class="nav-number">1.43.</span> <span class="nav-text">获取指定字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否符合指定格式"><span class="nav-number">1.44.</span> <span class="nav-text">判断是否符合指定格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否符合-USD-格式"><span class="nav-number">1.45.</span> <span class="nav-text">判断是否符合 USD 格式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JHChen</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">19.1k</span>
+  
+
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(window).load(function(){
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+    })    
+  </script>
+  <script type="text/javascript" src="/js/src/clipboard.js"></script> 
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>
