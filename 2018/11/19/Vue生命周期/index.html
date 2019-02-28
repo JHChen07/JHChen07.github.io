@@ -86,23 +86,23 @@
 
 
 
-<meta name="description" content="vue.js 2.0 生命周期钩子 生命周期钩子函数 生命周期探究 数据挂载完成 数据更新 销毁实例 create和mounted相关 destroy相关       vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    生命">
+<meta name="description" content="1. vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    1.1. 生命周期钩子函数    1.2. 生命周期探究&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt;     &amp;lt;t">
 <meta name="keywords" content="Vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue生命周期">
 <meta property="og:url" content="http://yoursite.com/2018/11/19/Vue生命周期/index.html">
 <meta property="og:site_name" content="jhchen の BLOG">
-<meta property="og:description" content="vue.js 2.0 生命周期钩子 生命周期钩子函数 生命周期探究 数据挂载完成 数据更新 销毁实例 create和mounted相关 destroy相关       vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    生命">
+<meta property="og:description" content="1. vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    1.1. 生命周期钩子函数    1.2. 生命周期探究&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt;     &amp;lt;t">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期流程图.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期钩子函数报表.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期挂载结束.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期数据更新.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期销毁.png">
-<meta property="og:updated_time" content="2019-02-27T03:10:41.501Z">
+<meta property="og:updated_time" content="2019-02-28T07:03:03.824Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue生命周期">
-<meta name="twitter:description" content="vue.js 2.0 生命周期钩子 生命周期钩子函数 生命周期探究 数据挂载完成 数据更新 销毁实例 create和mounted相关 destroy相关       vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    生命">
+<meta name="twitter:description" content="1. vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    1.1. 生命周期钩子函数    1.2. 生命周期探究&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt;     &amp;lt;t">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期流程图.png">
 
 
@@ -355,7 +355,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  954
+                  929
                 </span>
               
 
@@ -392,25 +392,9 @@
       
 
       
-        <!-- TOC -->
-<ul>
-<li><a href="#vuejs-20-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90">vue.js 2.0 生命周期钩子</a><ul>
-<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0">生命周期钩子函数</a></li>
-<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%8E%A2%E7%A9%B6">生命周期探究</a><ul>
-<li><a href="#%E6%95%B0%E6%8D%AE%E6%8C%82%E8%BD%BD%E5%AE%8C%E6%88%90">数据挂载完成</a></li>
-<li><a href="#%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0">数据更新</a></li>
-<li><a href="#%E9%94%80%E6%AF%81%E5%AE%9E%E4%BE%8B">销毁实例</a></li>
-<li><a href="#create%E5%92%8Cmounted%E7%9B%B8%E5%85%B3">create和mounted相关</a></li>
-<li><a href="#destroy%E7%9B%B8%E5%85%B3">destroy相关</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-<h1 id="vue-js-2-0-生命周期钩子"><a href="#vue-js-2-0-生命周期钩子" class="headerlink" title="vue.js 2.0 生命周期钩子"></a>vue.js 2.0 生命周期钩子</h1><p>每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。<br><img src="/2018/11/19/Vue生命周期/生命周期流程图.png" alt="生命周期图示">   </p>
-<h2 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h2><p><img src="/2018/11/19/Vue生命周期/生命周期钩子函数报表.png" alt="生命周期钩子函数">   </p>
-<h2 id="生命周期探究"><a href="#生命周期探究" class="headerlink" title="生命周期探究"></a>生命周期探究</h2><pre><code>&lt;!DOCTYPE html&gt;
+        <h1 id="1-vue-js-2-0-生命周期钩子"><a href="#1-vue-js-2-0-生命周期钩子" class="headerlink" title="1. vue.js 2.0 生命周期钩子"></a>1. vue.js 2.0 生命周期钩子</h1><p>每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。<br><img src="/2018/11/19/Vue生命周期/生命周期流程图.png" alt="生命周期图示">   </p>
+<h2 id="1-1-生命周期钩子函数"><a href="#1-1-生命周期钩子函数" class="headerlink" title="1.1. 生命周期钩子函数"></a>1.1. 生命周期钩子函数</h2><p><img src="/2018/11/19/Vue生命周期/生命周期钩子函数报表.png" alt="生命周期钩子函数">   </p>
+<h2 id="1-2-生命周期探究"><a href="#1-2-生命周期探究" class="headerlink" title="1.2. 生命周期探究"></a>1.2. 生命周期探究</h2><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;&lt;/title&gt;
@@ -487,10 +471,10 @@ var app = new Vue({
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;   
-</code></pre><h3 id="数据挂载完成"><a href="#数据挂载完成" class="headerlink" title="数据挂载完成"></a>数据挂载完成</h3><p><img src="/2018/11/19/Vue生命周期/生命周期挂载结束.png" alt="数据挂载完成">   </p>
-<h3 id="数据更新"><a href="#数据更新" class="headerlink" title="数据更新"></a>数据更新</h3><p><img src="/2018/11/19/Vue生命周期/生命周期数据更新.png" alt="数据更新">   </p>
-<h3 id="销毁实例"><a href="#销毁实例" class="headerlink" title="销毁实例"></a>销毁实例</h3><p><img src="/2018/11/19/Vue生命周期/生命周期销毁.png" alt="销毁实例"> </p>
-<h3 id="create和mounted相关"><a href="#create和mounted相关" class="headerlink" title="create和mounted相关"></a>create和mounted相关</h3><ol>
+</code></pre><h3 id="1-2-1-数据挂载完成"><a href="#1-2-1-数据挂载完成" class="headerlink" title="1.2.1. 数据挂载完成"></a>1.2.1. 数据挂载完成</h3><p><img src="/2018/11/19/Vue生命周期/生命周期挂载结束.png" alt="数据挂载完成">   </p>
+<h3 id="1-2-2-数据更新"><a href="#1-2-2-数据更新" class="headerlink" title="1.2.2. 数据更新"></a>1.2.2. 数据更新</h3><p><img src="/2018/11/19/Vue生命周期/生命周期数据更新.png" alt="数据更新">   </p>
+<h3 id="1-2-3-销毁实例"><a href="#1-2-3-销毁实例" class="headerlink" title="1.2.3. 销毁实例"></a>1.2.3. 销毁实例</h3><p><img src="/2018/11/19/Vue生命周期/生命周期销毁.png" alt="销毁实例"> </p>
+<h3 id="1-2-4-create和mounted相关"><a href="#1-2-4-create和mounted相关" class="headerlink" title="1.2.4. create和mounted相关"></a>1.2.4. create和mounted相关</h3><ol>
 <li>beforeCreated: el和data并未初始化   </li>
 <li>created：完成了data数据的初始化，el并没有初始化   </li>
 <li>beforeMounted：完成了el和data的初始化   </li>
@@ -500,7 +484,7 @@ var app = new Vue({
 </ol>
 <pre><code>e.g. app.message = &#39;yes !! i do&#39;
 </code></pre><p>当data里的值被修改后，将会出发update的操作   </p>
-<h3 id="destroy相关"><a href="#destroy相关" class="headerlink" title="destroy相关"></a>destroy相关</h3><pre><code>app.$destroy();   
+<h3 id="1-2-5-destroy相关"><a href="#1-2-5-destroy相关" class="headerlink" title="1.2.5. destroy相关"></a>1.2.5. destroy相关</h3><pre><code>app.$destroy();   
 </code></pre><p>销毁完成后，我们再重新改变message的值，vue不在对此动作进行响应了。但是原先生成的DOM元素还在，相当于销毁后就不再受vue控制了。</p>
 
       
@@ -634,7 +618,7 @@ var app = new Vue({
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -689,7 +673,7 @@ var app = new Vue({
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-js-2-0-生命周期钩子"><span class="nav-number">1.</span> <span class="nav-text">vue.js 2.0 生命周期钩子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期钩子函数"><span class="nav-number">1.1.</span> <span class="nav-text">生命周期钩子函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期探究"><span class="nav-number">1.2.</span> <span class="nav-text">生命周期探究</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据挂载完成"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据挂载完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据更新"><span class="nav-number">1.2.2.</span> <span class="nav-text">数据更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#销毁实例"><span class="nav-number">1.2.3.</span> <span class="nav-text">销毁实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#create和mounted相关"><span class="nav-number">1.2.4.</span> <span class="nav-text">create和mounted相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#destroy相关"><span class="nav-number">1.2.5.</span> <span class="nav-text">destroy相关</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-vue-js-2-0-生命周期钩子"><span class="nav-number">1.</span> <span class="nav-text">1. vue.js 2.0 生命周期钩子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-生命周期钩子函数"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 生命周期钩子函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-生命周期探究"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. 生命周期探究</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-数据挂载完成"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1. 数据挂载完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-数据更新"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2. 数据更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-销毁实例"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3. 销毁实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-create和mounted相关"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.2.4. create和mounted相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-5-destroy相关"><span class="nav-number">1.2.5.</span> <span class="nav-text">1.2.5. destroy相关</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -724,7 +708,7 @@ var app = new Vue({
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">19.1k</span>
+    <span title="Site words total count">25k</span>
   
 
 </div>

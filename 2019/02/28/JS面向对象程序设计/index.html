@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文章是 JavaScript 高级程序设计第六章阅读笔记。ECMAScript 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。每个对象都是基于一个引用类型">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS面向对象程序设计">
+<meta property="og:url" content="http://yoursite.com/2019/02/28/JS面向对象程序设计/index.html">
+<meta property="og:site_name" content="jhchen の BLOG">
+<meta property="og:description" content="本文章是 JavaScript 高级程序设计第六章阅读笔记。ECMAScript 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。每个对象都是基于一个引用类型">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/02/28/JS面向对象程序设计/理解原型对象.png">
+<meta property="og:updated_time" content="2019-02-28T06:55:33.709Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS面向对象程序设计">
+<meta name="twitter:description" content="本文章是 JavaScript 高级程序设计第六章阅读笔记。ECMAScript 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。每个对象都是基于一个引用类型">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/28/JS面向对象程序设计/理解原型对象.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/28/JS面向对象程序设计/">
+
+
+
+
+
+  <title>JS面向对象程序设计 | jhchen の BLOG</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/JHChen07" class="github-corner" aria-label="View source on GitHub">
+      <svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/>
+      </svg>
+    </a>
+    <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jhchen の BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+<link href="/js/google-code-prettify/prettify.css" type="text/css" rel="stylesheet"> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/28/JS面向对象程序设计/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JHChen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jhchen の BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JS面向对象程序设计</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-28T10:12:30+08:00">
+                2019-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文章是 JavaScript 高级程序设计第六章阅读笔记。<br>ECMAScript 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。<br>每个对象都是基于一个引用类型创建的，这个引用类型可以是第5章讨论的原生类型，也可以是开发人员定义的类型。<br>ECMAScript 支持面向对象（OO）编程，但不使用类或者接口。   </p>
+<h1 id="1-属性类型"><a href="#1-属性类型" class="headerlink" title="1. 属性类型"></a>1. 属性类型</h1><p>ECMAScript 中有两种属性：数据属性和访问器属性。   </p>
+<h2 id="1-1-数据属性"><a href="#1-1-数据属性" class="headerlink" title="1.1. 数据属性"></a>1.1. 数据属性</h2><p>数据属性有4个描述其行为的特性。   </p>
+<ol>
+<li><code>Configurable</code>：表示能否通过 delete 删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性。</li>
+<li><code>Enumerable</code>：表示能否通过 for-in 循环返回属性。   </li>
+<li><code>Writable</code>：表示能否修改属性的值。   </li>
+<li>前三者默认值都为 true。  </li>
+<li><code>Value</code>：包含这个属性的数据值。默认值为 undefined。   </li>
+</ol>
+<p>要修改属性默认的特性，必须使用 ECMAScript 5的 Object.defineProperty(属性所在的对象，属性的名字，一个描述符对象)方法。其中，描述符（descriptor）对象的属性必须是：configurable、enumerable、writable 和value。设置其中的一或多个值，可以修改对性的特性值。   </p>
+<pre><code>Object.defineProperty(person, &quot;name&quot;, {
+    configurable: true,
+    value: &quot;Nicholas&quot;
+});
+</code></pre><p>注意，把 configurable 设置为 false，表示不能从对象中删除属性，即一旦把属性定义为不可配置的，就不能再把它变回可配置的了。再调用Object.defineProperty() 方法时会导致错误。如果不指定，configurable、enumerable 和 writable 特性的默认值都是 false。（与数据属性不同）（建议不要在 IE8 中使用这个方法）   </p>
+<h2 id="1-2-访问器属性"><a href="#1-2-访问器属性" class="headerlink" title="1.2. 访问器属性"></a>1.2. 访问器属性</h2><p>访问器属性不包含数据值。它们包含一对 getter 和 setter 函数（不是必需的）。在读取访问器属性时，会调用 getter 函数，这个函数负责返回有效的值；在写入访问器属性时，会调用 setter 函数并传入新值，这个函数负责决定如何处理数据。<br>访问器属性有如下 4 个特性：   </p>
+<ol>
+<li>Configurable：表示能否通过 delete 删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为数据属性。   </li>
+<li>Enumerable：表示能否通过 for-in 循环返回属性。   </li>
+<li>Get：在读取属性时调用的函数。   </li>
+<li>Set：在写入属性时调用的函数。   </li>
+</ol>
+<p>直接在对象上定义的属性，它们的 Configurable、Enumerable、Get 和 Set 特性默认值分别是 true、true、undefined 和 undefined。 访问器属性不能直接定义，必须使用 Object.defineProperty() 来定义。（此处的“year”为访问器属性名）    </p>
+<pre><code>var book = {
+    // 此种前面划线的写法表示智能通过对象方法访问的属性
+    _year: 2004,
+    edition: 1
+};
+Object.defineProperty(book, &quot;year&quot;, {
+    get: function() {
+        return this._year;
+    },
+    set: function(newValue) {
+    if (newValue &gt; 2004) {
+            this._year = newValue;
+            this.edition += newValue - 2004;
+        }
+    }
+});
+
+book.year = 2005;
+alert(book.edition); //2
+</code></pre><p>在不支持 Object.defineProperty() 方法的浏览器中不能修改 Configurable、Enumerable。   </p>
+<h2 id="1-3-定义多个属性"><a href="#1-3-定义多个属性" class="headerlink" title="1.3. 定义多个属性"></a>1.3. 定义多个属性</h2><p>ECMAScript 5 定义了一个 Object.defineProperties()，可以通过描述符一次定义多个属性。接收两个对象参数：第一个对象是要添加和修改其属性的对象，第二个对象的属性与第一个对象中要添加或修改的属性一一对应。  </p>
+<pre><code>var book = {};
+
+Object.defineProperties(book, {
+    // 数据属性
+    _year: {
+        value: 2004
+    },
+    edition: {
+        value: 1
+    },
+    // 访问器属性
+    year: {
+        get: function() {
+            return this._year;
+        },
+        set: function(newValue){
+            if (newValue &gt; 2004) {
+                this._year = newValue;
+                this.edition += newValue -2004;
+            }
+        }
+    }
+});
+</code></pre><h2 id="1-4-读取属性的特性"><a href="#1-4-读取属性的特性" class="headerlink" title="1.4. 读取属性的特性"></a>1.4. 读取属性的特性</h2><p>ECMAScript 5 的 Object.getOwnPropertyDescriptor() 方法，可以取得给定属性的描述符。方法接受两个参数：属性所在的对象和要读取其描述符的属性名称。返回值是一个对象。（JavaScript 中可以针对任何对象——包括 DOM 和 BOM 对象使用这个方法）（如果是访问器属性，这个对象的属性有 configurable、enumerable、get 和 set；如果是数据对象，这个对象的属性有 configurable、enumerable、writable和value。）   </p>
+<pre><code>var book = {};
+
+Object.defineProperties(book, {
+    _year: {
+        value: 2004
+    },
+    edition: {
+        value: 1
+    },
+    year: {
+        get: function() {
+            return this._year;
+        },
+        set: function(newValue) {
+            if (newValue &gt; 2004) {
+                this._year = newValue;
+                this.edition += newValue - 2004;
+            }
+        }
+    }
+});
+
+var descriptor = Object.getOwnPropertyDescriptor(book, &quot;_year&quot;);
+alert(descriptor.value);            //2004
+alert(descriptor.configurable);     //false
+alert(typeof descriptor.get);       //&quot;undefined&quot;
+
+var descriptor = Object.getOwnPropertyDescriptor(book, &quot;year&quot;);
+alert(descriptor.value);        //undefined
+alert(descriptor.enumerable);   //false
+alert(typeof descriptor.get);   //&quot;function&quot;
+</code></pre><h1 id="2-创建对象"><a href="#2-创建对象" class="headerlink" title="2. 创建对象"></a>2. 创建对象</h1><p>虽然 Object 构造函数或对象字面量都可以用来创建单个对象，但这些方法有个明显的缺点：使用同一个接口创建很多对象，会产生大量重复代码。下面介绍 7 种创建对象的模式（工厂模式，构造函数模式，原型模式，组合使用构造函数模式和原型模式，动态原型模式，寄生构造函数模式，稳妥构造函数模式）：   </p>
+<h2 id="2-1-工厂模式"><a href="#2-1-工厂模式" class="headerlink" title="2.1. 工厂模式"></a>2.1. 工厂模式</h2><p>在 ECMAScript 中无法创建类，工厂模式就用函数来封装以特定接口创建对象的细节。优点：解决了创建多个相似对象的问题，缺点：但却没有解决对象识别的问题。   </p>
+<pre><code>function createPerson(name, age, job) {
+    var o = new Object();
+    o.name = name;
+    o.age = age;
+    o.job = job;
+    o.sayName = function() {
+        alert(this.name);
+    };
+    return o;
+}
+
+var person1 = createPerson(&quot;Nicholas&quot;, 29, &quot;Software Engineer&quot;);
+var person2 = createPerson(&quot;Greg&quot;, 27, &quot;Doctor&quot;);
+</code></pre><h2 id="2-2-构造函数模式"><a href="#2-2-构造函数模式" class="headerlink" title="2.2. 构造函数模式"></a>2.2. 构造函数模式</h2><p>像 Object 和 Array 这样的原生构造函数，在运行时会自动出现在执行环境中。我们也可以创建自定义的构造函数，从而定义自定义的对象类型的属性和方法。   </p>
+<pre><code>function Person(name, age, job) {
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.sayName = function() {
+        alert(this.name);
+    };
+)
+var person1 = new Person(&quot;Nicholas&quot;, 29, &quot;Software Engineer&quot;);
+var person2 = new Person(&quot;Greg&quot;, 27, &quot;Doctor&quot;);
+</code></pre><p>与工厂模式的区别在于：   </p>
+<ul>
+<li>没有显式地创建对象；   </li>
+<li>直接将属性和方法赋给了 this 对象；   </li>
+<li>没有 return 语句。   </li>
+</ul>
+<p>要创建 Person 的新实例，<code>必须</code>使用 new 操作符。以这种方式调用构造函数实际上经历以下 4 个步骤：   </p>
+<ol>
+<li>创建一个新对象；   </li>
+<li>将构造函数的<code>作用域赋给新对象</code>（因此 this 就指向了这个新对象）；   </li>
+<li>执行构造函数中的代码（为这个新对象添加属性）；   </li>
+<li>返回新对象。   </li>
+</ol>
+<p>在前面例子的最后，person1 和 person2 分别保存着 Person 的一个不同实例。这两个对象都有一个 constructor（构造函数）属性，该属性指向 Person。<br>创建自定义的构造函数意味着将来可以将它的<code>实例标志</code>为一种特定的类型；而这正是构造函数模式胜过工厂模式的地方。   </p>
+<h3 id="2-2-1-构造函数当做函数"><a href="#2-2-1-构造函数当做函数" class="headerlink" title="2.2.1. 构造函数当做函数"></a>2.2.1. 构造函数当做函数</h3><p>构造函数与其他函数的唯一区别，就在于调用它们的方式不同。不过，构造函数毕竟也是函数，不存在定义构造函数的特殊语法。任何函数，只要通过 new 操作符来调用，那它就可以作为构造函数；而任何函数，如果不通过 new 操作符来调用，它就作为普通函数使用。<br>当在全局作用域中调用一个函数时，this 对象总是指向 <code>Global</code> 对象（在浏览器中就是 <code>window</code> 对象），可以使用 <code>apply()</code> 或者 <code>call()</code> 在某个特殊对象的作用于中调用构造函数。   </p>
+<h3 id="2-2-2-构造函数的问题"><a href="#2-2-2-构造函数的问题" class="headerlink" title="2.2.2. 构造函数的问题"></a>2.2.2. 构造函数的问题</h3><p>构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍。因此<code>不同实例上的同名函数都是不相等</code>的。但两个函数实现的功能都是一样的，<code>没有必要每创建一个新实例都创建一个新的函数对象</code>。（创建两个完成同样任务的 Function 实例的确没有必要；况且有 this 对象在，根本不用在执行代码前就把函数绑定到特定对象上面。）所以可以将这种函数定义在构造函数外部。但是这样就成了全局作用域上的函数，却只能被某个特定对象调用（名孚其实）。定义多个全局函数，这个自定义类型就没有封装性可言。（原生模式解决）。    </p>
+<h2 id="2-3-原生模式"><a href="#2-3-原生模式" class="headerlink" title="2.3. 原生模式"></a>2.3. 原生模式</h2><p>我们创建的每个（构造）函数都有一个 <code>prototype</code> （原型）属性，这个属性是一个<code>指针</code>，<code>指向一个对象</code>，而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。按照字面意思来理解，prototype 就是通过调用构造函数而创建的那个<code>对象实例的原型对象</code>。使用原型对象的好处是可以让所有对象实例<code>共享</code>它所包含的属性和方法。即不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型对象中。   </p>
+<pre><code>function Person() {
+}
+
+Person.prototype.name = &quot;Nicholas&quot;;
+Person.prototype.age = 29;
+Person.prototype.job = &quot;Software Engineer&quot;;
+Person.prototype.sayName = function() {
+    alert(this.name);
+};
+
+var person1 = new Person();
+person1.sayName();  //&quot;Nicholas&quot;
+
+var person2 = new Person();;
+person2.sayName();  //&quot;Nicholas&quot;
+
+alert(person1.sayName == person2.sayName);  //true    
+</code></pre><h3 id="2-3-1-理解原型对象"><a href="#2-3-1-理解原型对象" class="headerlink" title="2.3.1. 理解原型对象"></a>2.3.1. 理解原型对象</h3><p><img src="/2019/02/28/JS面向对象程序设计/理解原型对象.png" alt="理解原型对象"><br>Person.prototype.constructor （原型对象的构造函数）指向 Person （构造函数）。而通过这个构造函数，我们还可继续为原型对象添加其他属性和方法。<br>创建了自定义的构造函数之后，其原型对象默认<code>只会</code>取得 constructor 属性；至于其他方法，则都是从 Object 继承而来的。当调用构造函数创建一个新实例后，该实例的内部将包含一个指针（内部属性），指向构造函数的原型对象。<br>如上图，展示了 Person 构造函数、Person 的原型属性以及 Person 现有的两个实例之间的关系。其中，<code>Person.prototype 指向了原型对象</code>，而 Person.prototype.constructor 又指回了 Person。原型对象中除了包含 constructor 属性之外，还包括后来添加的其他属性。Person 的每个实例—— person1 和 person2 都包含了一个内部属性，该属性仅仅指向了 Person.prototype；换句话说，它们与构造函数没有直接关系。<br>isPrototypeOf()，Object.getPrototypeOf()，hasOwnProperty()<br>读取某个对象的属性时，两次搜索（实例→原型对象）。属性同名覆盖。不能通过对象重写原型中的值。要区分构造函数模式和原型模式。   </p>
+<h3 id="2-3-2-原型与-in-操作符"><a href="#2-3-2-原型与-in-操作符" class="headerlink" title="2.3.2. 原型与 in 操作符"></a>2.3.2. 原型与 in 操作符</h3><p>单独使用和在 for-in 循环中使用。单独使用操作符返回通过对象访问给定属性的情况（true/false）。在使用 for-in 循环时，返回的是能够通过对象访问的、可枚举的属性。<br>Object.keys()（仅限可枚举），Object.getOwnPrototypeNames() （不限枚举类型）可代替 for-in 循环。   </p>
+<h3 id="2-3-3-更简单的原型语法"><a href="#2-3-3-更简单的原型语法" class="headerlink" title="2.3.3. 更简单的原型语法"></a>2.3.3. 更简单的原型语法</h3><p>更常见的做法是用一个包含所有属性和方法的<code>对象字面量</code>来重写整个原型对象。   </p>
+<pre><code>Person.prototype = {
+    // 每创建一个函数，就会同时创建它的 prototype 对象，因此 constructor 属性也就变成了新对象的 constructor 属性（指向 Object 构造函数），不再指向 Person 函数。所以需要显式设置 constructor 属性到适当的值
+    constructor : Person,
+    name : &quot;Nicholoas&quot;,
+    age : 29,
+    job : &quot;Software Engineer&quot;,
+    sayName : function () {
+        alert(this.name);
+    }
+};
+</code></pre><p>这种方式重设 constructor 属性会导致它的 <code>Enumerable</code> 特性被设置为 true。兼容ECMAScript 5 的 j s引擎可以用 Object.defineProperty() 重设为 false。   </p>
+<h3 id="2-3-4-原型的动态性"><a href="#2-3-4-原型的动态性" class="headerlink" title="2.3.4. 原型的动态性"></a>2.3.4. 原型的动态性</h3><p>实例与原型之间的连接是一个指针，如果<code>重写</code>了原型对象就会<code>切断</code>现有原型与任何之前已经存在的对象实例之间的联系；它们引用的仍然是<code>最初的原型</code>。   </p>
+<h3 id="2-3-5-原生对象的原型"><a href="#2-3-5-原生对象的原型" class="headerlink" title="2.3.5. 原生对象的原型"></a>2.3.5. 原生对象的原型</h3><p>原型模式的重要性不仅体现在创建自定义类型方面，就连所有原生的引用类型，都是采用这种模式创建的。所有原生引用类型（Object、Array、String，等等）都在其<code>构造函数的原型上定义了方法</code>。通过原生对象的原型，不仅可以取得所有默认方法的引用，也可以定义新方法。   </p>
+<h3 id="2-3-6-原生对象的问题"><a href="#2-3-6-原生对象的问题" class="headerlink" title="2.3.6. 原生对象的问题"></a>2.3.6. 原生对象的问题</h3><p>属性共享，省略了给构造函数传递参数的环节导致实例对象缺少自己的属性。解决办法：组合使用构造函数模式和原型模式。   </p>
+<h2 id="2-4-组合使用构造函数模式和原型模式"><a href="#2-4-组合使用构造函数模式和原型模式" class="headerlink" title="2.4. 组合使用构造函数模式和原型模式"></a>2.4. 组合使用构造函数模式和原型模式</h2><p>构造函数模式用于定义实例属性，而原型模式用于定义方法和共享的属性。结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方法的引用，最大限度地节省了内存。另外，这种混成模式还支持向构造函数传递参数。   </p>
+<pre><code>function Person(name, age, job) {
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.friends = [&quot;Shelby&quot;, &quot;Court&quot;];
+}
+
+Person.prototype = {
+    constructor : Person,
+    sayName : function() {
+        alert(this.name);
+    }
+}
+
+var person1 = new Person(&quot;Nicholas&quot;, 29, &quot;Software Engineer&quot;);
+var person2 = new Person(&quot;Greg&quot;, 27, &quot;Doctor&quot;);
+
+person1.friends.push(&quot;Van&quot;);
+alert(person1.friends);     //&quot;Shelby,Count,Van&quot;
+alert(person2.friends);     //&quot;Shelby,Count&quot;
+alert(perosn1.friends == person2.friends);      //false
+alert(person1.sayName == person2.sayName);      //true
+</code></pre><h2 id="2-5-动态原型模式"><a href="#2-5-动态原型模式" class="headerlink" title="2.5. 动态原型模式"></a>2.5. 动态原型模式</h2><p>动态原型模式把所有信息都封装在了构造函数中，而通过构造函数中初始化原型（仅在必要的情况下），又保持了同时使用构造函数和原型的优点。换句话说就是通过检查某个应该存在的方法是否有效来决定是否需要初始化原型。    </p>
+<pre><code>function Person(name, age, job) {
+
+    //属性
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    //方法
+    if (typeof this.sayName != &quot;function&quot; {
+
+        Person.prototype.sayName = function() {
+            alert(this.name);
+        };
+    }
+}
+
+var friend = new Person(&quot;Nicholas&quot;, 29, &quot;Software Engineer&quot;);
+friend.sayName();
+</code></pre><h2 id="2-6-寄生构造函数模式"><a href="#2-6-寄生构造函数模式" class="headerlink" title="2.6. 寄生构造函数模式"></a>2.6. 寄生构造函数模式</h2><p>通常，在前几种模式都不适用的情况下，可以使用寄生（parasitic）构造函数模式。这种模式的基本思想是创建一个函数，该函数的作用仅仅是封装创建对象的代码，然后再返回新创建的对象；但从表面上看，这个函数又很像是典型的构造函数。（工厂模式与构造函数模式的结合）<br>这个模式可以在特殊的情况下用来为对象创建构造函数。假设我们想创建一个具有额外方法的特殊数组。用于不能直接修改 Array 构造函数，可以使用这个模式。<br>不能依赖 instanceof 来确定对象类型。尽量不要使用此种模式，因为构造函数返回的对象与其在外部创建的对象没有区别。   </p>
+<h2 id="2-7-稳妥构造函数模式"><a href="#2-7-稳妥构造函数模式" class="headerlink" title="2.7. 稳妥构造函数模式"></a>2.7. 稳妥构造函数模式</h2><p>稳妥对象指的是没有公共属性，而且其方法也不引用 this 的对象。稳妥对象最适合在一些安全的环境中（这些环境中会禁止使用 this 和 new ），或者在防止数据被其他应用程序（如 Mashup）改动时使用。稳妥构造函数遵循与寄生构造函数类似的模式，但有两点不同：一是新创建的对象的实例方法不引用 this；二是不适用new操作符调用构造函数。   </p>
+<pre><code>function Person(name, age, job) {
+
+    //创建要返回的对象
+    var o = new Object();
+
+    //可以在这里定义私有变量和函数
+
+    //添加方法
+    o.sayName function() {
+        alert(name);
+    };
+
+    //返回对象
+    return o;
+}
+</code></pre><h1 id="3-继承"><a href="#3-继承" class="headerlink" title="3. 继承"></a>3. 继承</h1><p>许多 OO 语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。如前所述，由于函数没有签名，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且实现继承主要是依靠原型链来实现的。    </p>
+<h2 id="3-1-原型链"><a href="#3-1-原型链" class="headerlink" title="3.1. 原型链"></a>3.1. 原型链</h2><p>ECMAScript 中描述了原型链的概念，并将原型链作为实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。 实例与原型关系的链条就是所谓的原型链。   </p>
+<h3 id="3-1-1-默认的类型"><a href="#3-1-1-默认的类型" class="headerlink" title="3.1.1. 默认的类型"></a>3.1.1. 默认的类型</h3><p>所有引用类型默认都继承了 Object，而这个继承也是通过原型链实现的。所有函数的默认原型都是 Object 的实例，因此默认原型都会包含一个内部指针，指向 Object.prototype。这也是所有自定义类型都会继承 toString()、valueOf() 等默认方法的根本原因。<br>两种方式确定原型和实例的关系，一是使用 instanceof 操作符，而是使用 isPropertyOf()。</p>
+<h3 id="3-1-2-谨慎地定义方法"><a href="#3-1-2-谨慎地定义方法" class="headerlink" title="3.1.2. 谨慎地定义方法"></a>3.1.2. 谨慎地定义方法</h3><p>子类型有时需要重写超类型中的某个方法，或者需要添加超类型中不存在的某个方法。但无论怎样，给原型添加方法的代码一定要放在给子类型替换原型的语句之后。<br>通过原型链实现继承时， 不能使用对象字面量创建原型方法。因为这样做就会重写原型链。   </p>
+<h3 id="3-1-3-原型链的问题"><a href="#3-1-3-原型链的问题" class="headerlink" title="3.1.3. 原型链的问题"></a>3.1.3. 原型链的问题</h3><p>包含引用类型值的原型属性会被所有实例共享（原型属性定义在构造函数中），就造成了对其中一个实例属性的更改会影响其他实例。（改动了原型）但是在创建子类型的实例时，不能向超类的构造函数传递参数。所以实际中很少使用原型链继承。   </p>
+<h2 id="3-2-借用构造函数"><a href="#3-2-借用构造函数" class="headerlink" title="3.2. 借用构造函数"></a>3.2. 借用构造函数</h2><p>在解决原型中包含引用类型值所带来的问题的过程中，开发人员开始使用一种叫做借用构造函数（constructor stealing）的技术（有时候也叫伪造对象或经典继承）。这种技术的基本思想相当简单，即在子类型构造函数的内部调用超类型构造函数。函数只不过是在特定环境中执行代码的对象，因此通过使用 apply() 和 call() 方法也可以在（将来）新创建的对象上执行构造函数，如下：   </p>
+<pre><code>function SuperType() {
+    this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+}
+
+function SubType() {
+    //继承了SuperType
+    SuperType.call(this);
+}
+
+var instance1 = new SubType();
+instance1.colors.push(&quot;black&quot;);
+alert(instance1.colors);    //&quot;red, blue, green, black&quot;
+
+var instance2 = new SubType();
+alert(instance2.colors);    //&quot;red, blue, green&quot;
+</code></pre><p>这样以后，每个实例的属性就都是超类型的副本，更改自身属性不会影响原型。</p>
+<h3 id="3-2-1-传递函数"><a href="#3-2-1-传递函数" class="headerlink" title="3.2.1. 传递函数"></a>3.2.1. 传递函数</h3><p>借用构造函数还能在子类型构造函数中向超类型构造函数传递参数。   </p>
+<h3 id="3-2-2-借用构造函数的问题"><a href="#3-2-2-借用构造函数的问题" class="headerlink" title="3.2.2. 借用构造函数的问题"></a>3.2.2. 借用构造函数的问题</h3><p>方法不能复用。   </p>
+<h2 id="3-3-组合继承"><a href="#3-3-组合继承" class="headerlink" title="3.3. 组合继承"></a>3.3. 组合继承</h2><p>组合继承（combination inheritance），有时候也叫做伪经典继承，指的是将原型链和借用构造函数的技术组合到一块，从而发挥二者之长的一种继承模式。其背后的思路是使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。这样，既通过在原型上定义方法实现了函数复用，又能够保证每个实例都有它自己的属性。组合继承集两者之优，成为了 JavaScript 中最常用的继承模式。而且，instanceof 和 isPrototypeOf() 也能够用于识别基于组合继承创建的对象。如下：   </p>
+<pre><code>function SuperType(name) {
+    this.name = name;
+    this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+}
+
+SuperType.prototype.sayName = function() {
+    alert(this.name);
+};
+
+function SubType(name, age) {
+
+    //继承属性
+    SuperType.call(this, name);
+
+    this.age = age;
+}
+
+//继承方法
+SubType.prototype = new SuperType();
+SubType.prototype.constructor = SubType;
+SupType.prototype.sayAge = function() {
+    alert(this.age);
+};
+
+var instance1 = new SubType(&quot;Nicholas&quot;, 29);
+instance1.colors.push(&quot;black&quot;);
+alert(instance1.colors);    //&quot;red, blue, green, black&quot;
+instance1.sayName();        //&quot;Nicolas&quot;
+instance1.sayAge();         //29
+
+var instance2 = new SubType(&quot;Greg&quot;, 27);
+alert(instance2.colors);    //&quot;red, blue, green&quot;
+instance2.sayName();        //&quot;Greg&quot;
+instance2.sayAge();         //27
+</code></pre><h2 id="3-4-原型式继承"><a href="#3-4-原型式继承" class="headerlink" title="3.4. 原型式继承"></a>3.4. 原型式继承</h2><p>此方法没有严格意义上的构造函数，借助原型可以基于已有的对象创建新对象，同时还不必因此创建自定义类型。   </p>
+<pre><code>function object(o) {
+    function F() {}
+    F.prototype = o;
+    return new F();
+}
+</code></pre><p>在 object() 函数内部，先创建了一个临时的构造函数，然后将传入的对象作为这个构造函数的原型，最后返回了这个临时类型的一个新实例。从本质上讲，object() 对传入其中的对象执行了一次浅复制。<br>ECMAScript 通过新增 Object.create() 方法规范化了原型式继承。缺点：包含引用类型值的属性始终都会共享相应的值，就像使用原型模式一样。   </p>
+<h2 id="3-5-寄生式继承"><a href="#3-5-寄生式继承" class="headerlink" title="3.5. 寄生式继承"></a>3.5. 寄生式继承</h2><p>创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，最后再像真的处理之后一样返回对象。缺点：使用寄生式集成来为对象添加函数，会由于不能做到函数复用而降低效率。   </p>
+<h2 id="3-6-寄生组合式继承"><a href="#3-6-寄生组合式继承" class="headerlink" title="3.6. 寄生组合式继承"></a>3.6. 寄生组合式继承</h2><p>组合继承的缺点是新建实例会调用 2 次超类构造函数。通过借用构造函数来继承属性，通过原型链的混成形式来继承方法。基本思路是：不必为了指定子类型的原型而调用超类型的构造函数，我们所需要的是超类型原型的一个副本而已。即使用寄生式继承来继承超类型的原型，然后再将结果指定给子类型的原型。优点：效率高，值调用一次超类型原型的构造函数，原型链还能保持不变，能正常使用 instanceof 和 isPrototypeOf()。是最理想的继承范式。   </p>
+<pre><code>function inheritPrototype(subType, superType) {
+    var prototype = object(superType.prototype);    //创建对象
+    prototype.constructor = subType;                //增强对象
+    subType.prototype = prototype;                  //指定对象
+}
+</code></pre><p>该示例中 inheritPrototype() 函数实现了寄生组合式继承的最简单形式。这个函数接收两个参数：子类型构造函数和超类型构造函数。在函数内部，第一步是创建超类型原型的一个副本。第二步是为创建的副本添加 constructor 属性，从而弥补因重写圆形而失去的默认的 constructor 属性。最后一步，将新创建的对象（即副本）赋值给子类型的原型。这样，就可以调用 inheritPrototype() 函数的语句，去替换前面例子中为子类型原型赋值的语句了。   </p>
+<pre><code>function SuperType(name) {
+    this.name = name;
+    this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
+}
+
+SuperType.prototype.sayName = function() {
+    alert(this.name);
+};
+
+function SubType(name, age) {
+    SuperType.call(this, name);
+    this.age = age;
+}
+
+inheritPrototype(SubType, SuperType);
+
+SubType.prototype.sayAge = function() {
+    alert(this.age);
+}
+</code></pre><p>该例的高效率体现在它只调用了一次 SuperType 构造函数，并且因此避免了在 SubType.prototype 上面创建不必要的、多余的属性。与此同时，原型链还能保持不变；因此，还能够正常使用 instanceof 和 isPrototypeOf()。开发人员普遍认为寄生组合式继承是引用类型最理想的继承范式。</p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+      
+          <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+      
+    </div>
+    
+    <div>
+        
+          
+        
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/27/JS基础编程题/" rel="next" title="JS基础编程题">
+                <i class="fa fa-chevron-left"></i> JS基础编程题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="JHChen">
+            
+              <p class="site-author-name" itemprop="name">JHChen</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-属性类型"><span class="nav-number">1.</span> <span class="nav-text">1. 属性类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-数据属性"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 数据属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-访问器属性"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. 访问器属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-定义多个属性"><span class="nav-number">1.3.</span> <span class="nav-text">1.3. 定义多个属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-读取属性的特性"><span class="nav-number">1.4.</span> <span class="nav-text">1.4. 读取属性的特性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-创建对象"><span class="nav-number">2.</span> <span class="nav-text">2. 创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-工厂模式"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-构造函数模式"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 构造函数模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-构造函数当做函数"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1. 构造函数当做函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-构造函数的问题"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2. 构造函数的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-原生模式"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. 原生模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-理解原型对象"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1. 理解原型对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-原型与-in-操作符"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2. 原型与 in 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-更简单的原型语法"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3. 更简单的原型语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4-原型的动态性"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4. 原型的动态性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-5-原生对象的原型"><span class="nav-number">2.3.5.</span> <span class="nav-text">2.3.5. 原生对象的原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-6-原生对象的问题"><span class="nav-number">2.3.6.</span> <span class="nav-text">2.3.6. 原生对象的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-组合使用构造函数模式和原型模式"><span class="nav-number">2.4.</span> <span class="nav-text">2.4. 组合使用构造函数模式和原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-动态原型模式"><span class="nav-number">2.5.</span> <span class="nav-text">2.5. 动态原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-寄生构造函数模式"><span class="nav-number">2.6.</span> <span class="nav-text">2.6. 寄生构造函数模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-稳妥构造函数模式"><span class="nav-number">2.7.</span> <span class="nav-text">2.7. 稳妥构造函数模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-继承"><span class="nav-number">3.</span> <span class="nav-text">3. 继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-原型链"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 原型链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-默认的类型"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1. 默认的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-谨慎地定义方法"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2. 谨慎地定义方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-原型链的问题"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3. 原型链的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-借用构造函数"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 借用构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-传递函数"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1. 传递函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-借用构造函数的问题"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2. 借用构造函数的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-组合继承"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. 组合继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-原型式继承"><span class="nav-number">3.4.</span> <span class="nav-text">3.4. 原型式继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-寄生式继承"><span class="nav-number">3.5.</span> <span class="nav-text">3.5. 寄生式继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-寄生组合式继承"><span class="nav-number">3.6.</span> <span class="nav-text">3.6. 寄生组合式继承</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JHChen</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">25k</span>
+  
+
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
+  <script type="text/javascript">
+    $(window).load(function(){
+      $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+      prettyPrint();
+    })    
+  </script>
+  <script type="text/javascript" src="/js/src/clipboard.js"></script> 
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+</body>
+</html>
