@@ -95,7 +95,7 @@
 <meta property="og:description" content="本文章是 JavaScript 高级程序设计第六章阅读笔记。ECMAScript 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。每个对象都是基于一个引用类型">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/02/28/JS面向对象程序设计/理解原型对象.png">
-<meta property="og:updated_time" content="2019-02-28T06:55:33.709Z">
+<meta property="og:updated_time" content="2019-02-28T09:09:09.019Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS面向对象程序设计">
 <meta name="twitter:description" content="本文章是 JavaScript 高级程序设计第六章阅读笔记。ECMAScript 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。每个对象都是基于一个引用类型">
@@ -351,7 +351,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5.9k
+                  6.3k
                 </span>
               
 
@@ -367,7 +367,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  22
+                  24
                 </span>
               
             </div>
@@ -548,11 +548,14 @@ var person2 = new Person();;
 person2.sayName();  //&quot;Nicholas&quot;
 
 alert(person1.sayName == person2.sayName);  //true    
-</code></pre><h3 id="2-3-1-理解原型对象"><a href="#2-3-1-理解原型对象" class="headerlink" title="2.3.1. 理解原型对象"></a>2.3.1. 理解原型对象</h3><p><img src="/2019/02/28/JS面向对象程序设计/理解原型对象.png" alt="理解原型对象"><br>Person.prototype.constructor （原型对象的构造函数）指向 Person （构造函数）。而通过这个构造函数，我们还可继续为原型对象添加其他属性和方法。<br>创建了自定义的构造函数之后，其原型对象默认<code>只会</code>取得 constructor 属性；至于其他方法，则都是从 Object 继承而来的。当调用构造函数创建一个新实例后，该实例的内部将包含一个指针（内部属性），指向构造函数的原型对象。<br>如上图，展示了 Person 构造函数、Person 的原型属性以及 Person 现有的两个实例之间的关系。其中，<code>Person.prototype 指向了原型对象</code>，而 Person.prototype.constructor 又指回了 Person。原型对象中除了包含 constructor 属性之外，还包括后来添加的其他属性。Person 的每个实例—— person1 和 person2 都包含了一个内部属性，该属性仅仅指向了 Person.prototype；换句话说，它们与构造函数没有直接关系。<br>isPrototypeOf()，Object.getPrototypeOf()，hasOwnProperty()<br>读取某个对象的属性时，两次搜索（实例→原型对象）。属性同名覆盖。不能通过对象重写原型中的值。要区分构造函数模式和原型模式。   </p>
-<h3 id="2-3-2-原型与-in-操作符"><a href="#2-3-2-原型与-in-操作符" class="headerlink" title="2.3.2. 原型与 in 操作符"></a>2.3.2. 原型与 in 操作符</h3><p>单独使用和在 for-in 循环中使用。单独使用操作符返回通过对象访问给定属性的情况（true/false）。在使用 for-in 循环时，返回的是能够通过对象访问的、可枚举的属性。<br>Object.keys()（仅限可枚举），Object.getOwnPrototypeNames() （不限枚举类型）可代替 for-in 循环。   </p>
+</code></pre><h3 id="2-3-1-理解原型对象"><a href="#2-3-1-理解原型对象" class="headerlink" title="2.3.1. 理解原型对象"></a>2.3.1. 理解原型对象</h3><p><img src="/2019/02/28/JS面向对象程序设计/理解原型对象.png" alt="理解原型对象"><br>创建一个新函数，就会根据一组特定规则为该函数创建一个 prototype 属性，这个属性指向函数的原型对象。在默认情况下，所有原型对象都会自动获得一个 constructor 属性，这个属性是一个指向 prototype 属性所在函数的指针。如图：Person.prototype.constructor （原型对象的构造函数）指向 Person （构造函数）。而通过这个构造函数，我们还可继续为原型对象添加其他属性和方法。<br>创建了自定义的构造函数之后，其原型对象默认<code>只会</code>取得 constructor 属性；至于其他方法，则都是从 Object 继承而来的。当调用构造函数创建一个新实例（如 person1）后，该实例的内部将包含一个指针<code>Prototype</code>（内部属性），指向<code>构造函数</code>的原型对象。<br>如上图，展示了 Person 构造函数、Person 的原型属性以及 Person 现有的两个实例之间的关系。其中，<code>Person.prototype 指向了原型对象</code>，而 Person.prototype.constructor 又指回了 Person。原型对象中除了包含 constructor 属性之外，还包括后来添加的其他属性。Person 的每个实例—— person1 和 person2 都包含了一个内部属性，该属性仅仅指向了 Person.prototype；换句话说，<code>它们与构造函数没有直接关系</code>。<br>isPrototypeOf() 用来确定对象之间是否存在 <code>Prototype</code> 属性联系，Object.getPrototypeOf() 返回对象的原型对象，hasOwnProperty() 检测属性存在于实例还是原型中。<br>读取某个对象的属性时，两次搜索（实例→原型对象）。属性同名覆盖。不能通过对象重写原型中的值。要区分构造函数模式和原型模式。   </p>
+<h3 id="2-3-2-原型与-in-操作符"><a href="#2-3-2-原型与-in-操作符" class="headerlink" title="2.3.2. 原型与 in 操作符"></a>2.3.2. 原型与 in 操作符</h3><p>单独使用和在 for-in 循环中使用。单独使用操作符返回通过对象访问给定属性的情况（true/false）。在使用 for-in 循环时，返回的是能够通过对象访问的、可枚举的属性。<br>Object.keys()（仅限可枚举），Object.getOwnPrototypeNames() （不限枚举类型，可以获得所有的实例属性）可代替 for-in 循环。   </p>
 <h3 id="2-3-3-更简单的原型语法"><a href="#2-3-3-更简单的原型语法" class="headerlink" title="2.3.3. 更简单的原型语法"></a>2.3.3. 更简单的原型语法</h3><p>更常见的做法是用一个包含所有属性和方法的<code>对象字面量</code>来重写整个原型对象。   </p>
 <pre><code>Person.prototype = {
-    // 每创建一个函数，就会同时创建它的 prototype 对象，因此 constructor 属性也就变成了新对象的 constructor 属性（指向 Object 构造函数），不再指向 Person 函数。所以需要显式设置 constructor 属性到适当的值
+    /* 每创建一个函数，就会同时创建它的 prototype 对象，
+    因此 constructor 属性也就变成了新对象的 constructor 属性（指向 Object 构造函数），
+    不再指向 Person 函数。所以需要显式设置 constructor 属性到适当的值
+    */
     constructor : Person,
     name : &quot;Nicholoas&quot;,
     age : 29,
@@ -561,9 +564,9 @@ alert(person1.sayName == person2.sayName);  //true
         alert(this.name);
     }
 };
-</code></pre><p>这种方式重设 constructor 属性会导致它的 <code>Enumerable</code> 特性被设置为 true。兼容ECMAScript 5 的 j s引擎可以用 Object.defineProperty() 重设为 false。   </p>
+</code></pre><p>这种方式重设 constructor 属性会导致它的 <code>Enumerable</code> 特性被设置为 true。兼容 ECMAScript 5 的 js 引擎可以用 Object.defineProperty() 重设为 false。   </p>
 <h3 id="2-3-4-原型的动态性"><a href="#2-3-4-原型的动态性" class="headerlink" title="2.3.4. 原型的动态性"></a>2.3.4. 原型的动态性</h3><p>实例与原型之间的连接是一个指针，如果<code>重写</code>了原型对象就会<code>切断</code>现有原型与任何之前已经存在的对象实例之间的联系；它们引用的仍然是<code>最初的原型</code>。   </p>
-<h3 id="2-3-5-原生对象的原型"><a href="#2-3-5-原生对象的原型" class="headerlink" title="2.3.5. 原生对象的原型"></a>2.3.5. 原生对象的原型</h3><p>原型模式的重要性不仅体现在创建自定义类型方面，就连所有原生的引用类型，都是采用这种模式创建的。所有原生引用类型（Object、Array、String，等等）都在其<code>构造函数的原型上定义了方法</code>。通过原生对象的原型，不仅可以取得所有默认方法的引用，也可以定义新方法。   </p>
+<h3 id="2-3-5-原生对象的原型"><a href="#2-3-5-原生对象的原型" class="headerlink" title="2.3.5. 原生对象的原型"></a>2.3.5. 原生对象的原型</h3><p>原型模式的重要性不仅体现在创建自定义类型方面，就连所有原生的引用类型，都是采用这种模式创建的。所有原生引用类型（Object、Array、String，等等）都在其<code>构造函数的原型上定义了方法</code>（如 Array.prototype 中可以找到 sort() 方法）。通过原生对象的原型，不仅可以取得所有默认方法的引用，也可以定义新方法。   </p>
 <h3 id="2-3-6-原生对象的问题"><a href="#2-3-6-原生对象的问题" class="headerlink" title="2.3.6. 原生对象的问题"></a>2.3.6. 原生对象的问题</h3><p>属性共享，省略了给构造函数传递参数的环节导致实例对象缺少自己的属性。解决办法：组合使用构造函数模式和原型模式。   </p>
 <h2 id="2-4-组合使用构造函数模式和原型模式"><a href="#2-4-组合使用构造函数模式和原型模式" class="headerlink" title="2.4. 组合使用构造函数模式和原型模式"></a>2.4. 组合使用构造函数模式和原型模式</h2><p>构造函数模式用于定义实例属性，而原型模式用于定义方法和共享的属性。结果，每个实例都会有自己的一份实例属性的副本，但同时又共享着对方法的引用，最大限度地节省了内存。另外，这种混成模式还支持向构造函数传递参数。   </p>
 <pre><code>function Person(name, age, job) {
@@ -623,12 +626,14 @@ friend.sayName();
     //返回对象
     return o;
 }
-</code></pre><h1 id="3-继承"><a href="#3-继承" class="headerlink" title="3. 继承"></a>3. 继承</h1><p>许多 OO 语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。如前所述，由于函数没有签名，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且实现继承主要是依靠原型链来实现的。    </p>
-<h2 id="3-1-原型链"><a href="#3-1-原型链" class="headerlink" title="3.1. 原型链"></a>3.1. 原型链</h2><p>ECMAScript 中描述了原型链的概念，并将原型链作为实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。 实例与原型关系的链条就是所谓的原型链。   </p>
-<h3 id="3-1-1-默认的类型"><a href="#3-1-1-默认的类型" class="headerlink" title="3.1.1. 默认的类型"></a>3.1.1. 默认的类型</h3><p>所有引用类型默认都继承了 Object，而这个继承也是通过原型链实现的。所有函数的默认原型都是 Object 的实例，因此默认原型都会包含一个内部指针，指向 Object.prototype。这也是所有自定义类型都会继承 toString()、valueOf() 等默认方法的根本原因。<br>两种方式确定原型和实例的关系，一是使用 instanceof 操作符，而是使用 isPropertyOf()。</p>
-<h3 id="3-1-2-谨慎地定义方法"><a href="#3-1-2-谨慎地定义方法" class="headerlink" title="3.1.2. 谨慎地定义方法"></a>3.1.2. 谨慎地定义方法</h3><p>子类型有时需要重写超类型中的某个方法，或者需要添加超类型中不存在的某个方法。但无论怎样，给原型添加方法的代码一定要放在给子类型替换原型的语句之后。<br>通过原型链实现继承时， 不能使用对象字面量创建原型方法。因为这样做就会重写原型链。   </p>
-<h3 id="3-1-3-原型链的问题"><a href="#3-1-3-原型链的问题" class="headerlink" title="3.1.3. 原型链的问题"></a>3.1.3. 原型链的问题</h3><p>包含引用类型值的原型属性会被所有实例共享（原型属性定义在构造函数中），就造成了对其中一个实例属性的更改会影响其他实例。（改动了原型）但是在创建子类型的实例时，不能向超类的构造函数传递参数。所以实际中很少使用原型链继承。   </p>
-<h2 id="3-2-借用构造函数"><a href="#3-2-借用构造函数" class="headerlink" title="3.2. 借用构造函数"></a>3.2. 借用构造函数</h2><p>在解决原型中包含引用类型值所带来的问题的过程中，开发人员开始使用一种叫做借用构造函数（constructor stealing）的技术（有时候也叫伪造对象或经典继承）。这种技术的基本思想相当简单，即在子类型构造函数的内部调用超类型构造函数。函数只不过是在特定环境中执行代码的对象，因此通过使用 apply() 和 call() 方法也可以在（将来）新创建的对象上执行构造函数，如下：   </p>
+</code></pre><h1 id="3-继承"><a href="#3-继承" class="headerlink" title="3. 继承"></a>3. 继承</h1><p>许多 OO 语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而<code>实现继承则继承实际的方法</code>。如前所述，由于<code>函数没有签名</code>，在 ECMAScript 中无法实现接口继承。ECMAScript 只支持实现继承，而且实现继承主要是依靠原型链来实现的。    </p>
+<h2 id="3-1-原型链"><a href="#3-1-原型链" class="headerlink" title="3.1. 原型链"></a>3.1. 原型链</h2><p>构造函数、原型和实例的关系：每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。<br>ECMAScript 中将原型链作为实现继承的主要方法。其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。 原型对象包含指向里一个原型的指针，实例与原型关系层层递进形成的的链条就是所谓的原型链。   </p>
+<h3 id="3-1-1-默认的类型"><a href="#3-1-1-默认的类型" class="headerlink" title="3.1.1. 默认的类型"></a>3.1.1. 默认的类型</h3><p>所有引用类型默认都继承了 Object，而这个继承也是通过原型链实现的。所有函数的默认原型都是 Object 的实例，因此默认原型都会包含一个内部指针，指向 Object.prototype。这也是所有自定义类型都会继承 toString()、valueOf() 等默认方法的根本原因。<br>两种方式确定原型和实例的关系，一是使用 instanceof 操作符（用于测试实例与原型链中出现过的构造函数），二是使用 isPropertyOf() （用于检测原型链中出现过的原型）。   </p>
+<pre><code>alert(instance instanceof Object);  //true
+alert(Object.prototype.isPrototypeOf(instance));  //true
+</code></pre><h3 id="3-1-2-谨慎地定义方法"><a href="#3-1-2-谨慎地定义方法" class="headerlink" title="3.1.2. 谨慎地定义方法"></a>3.1.2. 谨慎地定义方法</h3><p>子类型有时需要重写超类型中的某个方法，或者需要添加超类型中不存在的某个方法。但无论怎样，给原型添加方法的代码一定要放在给子类型替换原型的语句之后。<br>通过原型链实现继承时， 不能使用对象字面量创建原型方法。因为这样做就会重写原型链。   </p>
+<h3 id="3-1-3-原型链的问题"><a href="#3-1-3-原型链的问题" class="headerlink" title="3.1.3. 原型链的问题"></a>3.1.3. 原型链的问题</h3><p>包含引用类型值（如 Array 等）的原型属性会被所有实例共享（原型属性定义在构造函数中），就造成了对其中一个实例属性的更改会改变次原型属性，造成其他实例属性的改动。（改动了原型）但是在创建子类型的实例时，不能向超类的构造函数传递参数。所以实际中很少使用原型链继承。   </p>
+<h2 id="3-2-借用构造函数"><a href="#3-2-借用构造函数" class="headerlink" title="3.2. 借用构造函数"></a>3.2. 借用构造函数</h2><p>在解决原型中包含引用类型值所带来的问题的过程中，开发人员开始使用一种叫做借用构造函数（constructor stealing）的技术（有时候也叫伪造对象或经典继承）。这种技术的基本思想是在子类型构造函数的内部调用超类型构造函数。函数只不过是在特定环境中执行代码的对象，因此通过使用 apply() 和 call() 方法也可以在（将来）新创建的对象上执行构造函数，如下：   </p>
 <pre><code>function SuperType() {
     this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
 }
@@ -645,9 +650,23 @@ alert(instance1.colors);    //&quot;red, blue, green, black&quot;
 var instance2 = new SubType();
 alert(instance2.colors);    //&quot;red, blue, green&quot;
 </code></pre><p>这样以后，每个实例的属性就都是超类型的副本，更改自身属性不会影响原型。</p>
-<h3 id="3-2-1-传递函数"><a href="#3-2-1-传递函数" class="headerlink" title="3.2.1. 传递函数"></a>3.2.1. 传递函数</h3><p>借用构造函数还能在子类型构造函数中向超类型构造函数传递参数。   </p>
-<h3 id="3-2-2-借用构造函数的问题"><a href="#3-2-2-借用构造函数的问题" class="headerlink" title="3.2.2. 借用构造函数的问题"></a>3.2.2. 借用构造函数的问题</h3><p>方法不能复用。   </p>
-<h2 id="3-3-组合继承"><a href="#3-3-组合继承" class="headerlink" title="3.3. 组合继承"></a>3.3. 组合继承</h2><p>组合继承（combination inheritance），有时候也叫做伪经典继承，指的是将原型链和借用构造函数的技术组合到一块，从而发挥二者之长的一种继承模式。其背后的思路是使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。这样，既通过在原型上定义方法实现了函数复用，又能够保证每个实例都有它自己的属性。组合继承集两者之优，成为了 JavaScript 中最常用的继承模式。而且，instanceof 和 isPrototypeOf() 也能够用于识别基于组合继承创建的对象。如下：   </p>
+<h3 id="3-2-1-传递参数"><a href="#3-2-1-传递参数" class="headerlink" title="3.2.1. 传递参数"></a>3.2.1. 传递参数</h3><p>借用构造函数还能在子类型构造函数中向超类型构造函数传递参数。  </p>
+<pre><code>function SuperType(name) {
+    this.name = name;
+}
+
+function SubType() {
+    //继承了SuperType, 同时还传递了参数
+    SuperType.call(this, &#39;Amy&#39;);
+    // 实例属性
+    this.age = 20;
+}
+
+var instance1 = new SubType();
+alert(instance1.name);  // &#39;Amy&#39;
+alert(instance1.age);   // 20
+</code></pre><h3 id="3-2-2-借用构造函数的问题"><a href="#3-2-2-借用构造函数的问题" class="headerlink" title="3.2.2. 借用构造函数的问题"></a>3.2.2. 借用构造函数的问题</h3><p>原型对象中定义的方法不能复用。   </p>
+<h2 id="3-3-组合继承"><a href="#3-3-组合继承" class="headerlink" title="3.3. 组合继承"></a>3.3. 组合继承</h2><p>组合继承（combination inheritance），有时候也叫做伪经典继承，指的是将原型链和借用构造函数的技术组合到一起的一种继承模式。其思路是使用原型链实现对<code>原型属性和方法</code>的继承，而通过借用构造函数来实现对<code>实例属性</code>的继承。这样，既通过在原型上定义方法实现了函数复用，又能够保证每个实例都有它自己的属性。组合继承集两者之优，成为了 JavaScript 中最常用的继承模式。而且，instanceof 和 isPrototypeOf() 也能够用于识别基于组合继承创建的对象。如下：   </p>
 <pre><code>function SuperType(name) {
     this.name = name;
     this.colors = [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;];
@@ -665,7 +684,7 @@ function SubType(name, age) {
     this.age = age;
 }
 
-//继承方法
+//继承方法， 注意此处通过 new 来构造新的实例需要重新指向构造函数
 SubType.prototype = new SuperType();
 SubType.prototype.constructor = SubType;
 SupType.prototype.sayAge = function() {
@@ -689,7 +708,19 @@ instance2.sayAge();         //27
     return new F();
 }
 </code></pre><p>在 object() 函数内部，先创建了一个临时的构造函数，然后将传入的对象作为这个构造函数的原型，最后返回了这个临时类型的一个新实例。从本质上讲，object() 对传入其中的对象执行了一次浅复制。<br>ECMAScript 通过新增 Object.create() 方法规范化了原型式继承。缺点：包含引用类型值的属性始终都会共享相应的值，就像使用原型模式一样。   </p>
-<h2 id="3-5-寄生式继承"><a href="#3-5-寄生式继承" class="headerlink" title="3.5. 寄生式继承"></a>3.5. 寄生式继承</h2><p>创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，最后再像真的处理之后一样返回对象。缺点：使用寄生式集成来为对象添加函数，会由于不能做到函数复用而降低效率。   </p>
+<pre><code>var person = {
+    name: &#39;Nike&#39;,
+    friends: [&#39;Apple&#39;, &#39;Chili&#39;, &#39;Blank&#39;]
+};
+
+var anotherPerson = Object.create(Person, {
+    name: {
+        value: &#39;Greg&#39;
+    }
+});
+
+alert(anotherPerson.name); //&#39;Greg&#39;
+</code></pre><h2 id="3-5-寄生式继承"><a href="#3-5-寄生式继承" class="headerlink" title="3.5. 寄生式继承"></a>3.5. 寄生式继承</h2><p>创建一个仅用于封装继承过程的函数，该函数在内部以某种方式来增强对象，最后再像真的处理之后一样返回对象。缺点：使用寄生式集成来为对象添加函数，会由于不能做到函数复用而降低效率。   </p>
 <h2 id="3-6-寄生组合式继承"><a href="#3-6-寄生组合式继承" class="headerlink" title="3.6. 寄生组合式继承"></a>3.6. 寄生组合式继承</h2><p>组合继承的缺点是新建实例会调用 2 次超类构造函数。通过借用构造函数来继承属性，通过原型链的混成形式来继承方法。基本思路是：不必为了指定子类型的原型而调用超类型的构造函数，我们所需要的是超类型原型的一个副本而已。即使用寄生式继承来继承超类型的原型，然后再将结果指定给子类型的原型。优点：效率高，值调用一次超类型原型的构造函数，原型链还能保持不变，能正常使用 instanceof 和 isPrototypeOf()。是最理想的继承范式。   </p>
 <pre><code>function inheritPrototype(subType, superType) {
     var prototype = object(superType.prototype);    //创建对象
@@ -900,7 +931,7 @@ SubType.prototype.sayAge = function() {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-属性类型"><span class="nav-number">1.</span> <span class="nav-text">1. 属性类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-数据属性"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 数据属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-访问器属性"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. 访问器属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-定义多个属性"><span class="nav-number">1.3.</span> <span class="nav-text">1.3. 定义多个属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-读取属性的特性"><span class="nav-number">1.4.</span> <span class="nav-text">1.4. 读取属性的特性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-创建对象"><span class="nav-number">2.</span> <span class="nav-text">2. 创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-工厂模式"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-构造函数模式"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 构造函数模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-构造函数当做函数"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1. 构造函数当做函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-构造函数的问题"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2. 构造函数的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-原生模式"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. 原生模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-理解原型对象"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1. 理解原型对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-原型与-in-操作符"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2. 原型与 in 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-更简单的原型语法"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3. 更简单的原型语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4-原型的动态性"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4. 原型的动态性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-5-原生对象的原型"><span class="nav-number">2.3.5.</span> <span class="nav-text">2.3.5. 原生对象的原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-6-原生对象的问题"><span class="nav-number">2.3.6.</span> <span class="nav-text">2.3.6. 原生对象的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-组合使用构造函数模式和原型模式"><span class="nav-number">2.4.</span> <span class="nav-text">2.4. 组合使用构造函数模式和原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-动态原型模式"><span class="nav-number">2.5.</span> <span class="nav-text">2.5. 动态原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-寄生构造函数模式"><span class="nav-number">2.6.</span> <span class="nav-text">2.6. 寄生构造函数模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-稳妥构造函数模式"><span class="nav-number">2.7.</span> <span class="nav-text">2.7. 稳妥构造函数模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-继承"><span class="nav-number">3.</span> <span class="nav-text">3. 继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-原型链"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 原型链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-默认的类型"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1. 默认的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-谨慎地定义方法"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2. 谨慎地定义方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-原型链的问题"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3. 原型链的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-借用构造函数"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 借用构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-传递函数"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1. 传递函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-借用构造函数的问题"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2. 借用构造函数的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-组合继承"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. 组合继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-原型式继承"><span class="nav-number">3.4.</span> <span class="nav-text">3.4. 原型式继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-寄生式继承"><span class="nav-number">3.5.</span> <span class="nav-text">3.5. 寄生式继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-寄生组合式继承"><span class="nav-number">3.6.</span> <span class="nav-text">3.6. 寄生组合式继承</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-属性类型"><span class="nav-number">1.</span> <span class="nav-text">1. 属性类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-数据属性"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 数据属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-访问器属性"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. 访问器属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-定义多个属性"><span class="nav-number">1.3.</span> <span class="nav-text">1.3. 定义多个属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-读取属性的特性"><span class="nav-number">1.4.</span> <span class="nav-text">1.4. 读取属性的特性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-创建对象"><span class="nav-number">2.</span> <span class="nav-text">2. 创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-工厂模式"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. 工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-构造函数模式"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. 构造函数模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-构造函数当做函数"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1. 构造函数当做函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-构造函数的问题"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2. 构造函数的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-原生模式"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. 原生模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-理解原型对象"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1. 理解原型对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-原型与-in-操作符"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2. 原型与 in 操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-更简单的原型语法"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3. 更简单的原型语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4-原型的动态性"><span class="nav-number">2.3.4.</span> <span class="nav-text">2.3.4. 原型的动态性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-5-原生对象的原型"><span class="nav-number">2.3.5.</span> <span class="nav-text">2.3.5. 原生对象的原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-6-原生对象的问题"><span class="nav-number">2.3.6.</span> <span class="nav-text">2.3.6. 原生对象的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-组合使用构造函数模式和原型模式"><span class="nav-number">2.4.</span> <span class="nav-text">2.4. 组合使用构造函数模式和原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-动态原型模式"><span class="nav-number">2.5.</span> <span class="nav-text">2.5. 动态原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-寄生构造函数模式"><span class="nav-number">2.6.</span> <span class="nav-text">2.6. 寄生构造函数模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-稳妥构造函数模式"><span class="nav-number">2.7.</span> <span class="nav-text">2.7. 稳妥构造函数模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-继承"><span class="nav-number">3.</span> <span class="nav-text">3. 继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-原型链"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 原型链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-默认的类型"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1. 默认的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-谨慎地定义方法"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2. 谨慎地定义方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-原型链的问题"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.3. 原型链的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-借用构造函数"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 借用构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-传递参数"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1. 传递参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-借用构造函数的问题"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2. 借用构造函数的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-组合继承"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. 组合继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-原型式继承"><span class="nav-number">3.4.</span> <span class="nav-text">3.4. 原型式继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-寄生式继承"><span class="nav-number">3.5.</span> <span class="nav-text">3.5. 寄生式继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-寄生组合式继承"><span class="nav-number">3.6.</span> <span class="nav-text">3.6. 寄生组合式继承</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -935,7 +966,7 @@ SubType.prototype.sayAge = function() {
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">25k</span>
+    <span title="Site words total count">25.3k</span>
   
 
 </div>
