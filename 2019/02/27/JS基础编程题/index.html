@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="jhchen の BLOG">
 <meta property="og:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     function indexOf(arr, item) {     return arr.i">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-28T06:56:31.136Z">
+<meta property="og:updated_time" content="2019-02-28T10:11:05.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS基础编程题">
 <meta name="twitter:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     function indexOf(arr, item) {     return arr.i">
@@ -349,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.7k
+                  3.8k
                 </span>
               
 
@@ -787,7 +787,17 @@ function count(start, end) {
 <li>对象存在一个 sayIt 方法，该方法返回的字符串为 greeting属性值 + ‘, ‘ + name属性值      </li>
 </ol>
 <p><code>代码</code>   </p>
-<h2 id="二进制转换"><a href="#二进制转换" class="headerlink" title="二进制转换"></a>二进制转换</h2><p><code>题目描述</code><br>获取数字 num 二进制形式第 bit 位的值。注意：   </p>
+<pre><code>function createModule(str1, str2) {
+    var o = {};
+    // 工厂模式
+    o.greeting = str1;
+    o.name = str2;
+    o.sayIt = function() {
+        return this.greeting + &#39;, &#39;+ this.name;
+    }
+    return o;
+}
+</code></pre><h2 id="二进制转换"><a href="#二进制转换" class="headerlink" title="二进制转换"></a>二进制转换</h2><p><code>题目描述</code><br>获取数字 num 二进制形式第 bit 位的值。注意：   </p>
 <ol>
 <li>bit 从 1 开始   </li>
 <li>返回 0 或 1   </li>
@@ -845,7 +855,10 @@ alterObjects(C, &#39;What\&#39;s up&#39;); obj1.greeting;
 </code></pre><p><code>输出</code>   </p>
 <pre><code>What&#39;s up
 </code></pre><p><code>代码</code>   </p>
-<h2 id="属性遍历"><a href="#属性遍历" class="headerlink" title="属性遍历"></a>属性遍历</h2><p><code>题目描述</code><br>找出对象 obj 不在原型链上的属性(注意这题测试例子的冒号后面也有一个空格~)   </p>
+<pre><code>function alterObjects(constructor, greeting) {
+    constructor.prototype.greeting = greeting;
+}
+</code></pre><h2 id="属性遍历"><a href="#属性遍历" class="headerlink" title="属性遍历"></a>属性遍历</h2><p><code>题目描述</code><br>找出对象 obj 不在原型链上的属性(注意这题测试例子的冒号后面也有一个空格~)   </p>
 <ol>
 <li>返回数组，格式为 key: value   </li>
 <li>结果数组不要求顺序      </li>
@@ -857,7 +870,19 @@ iterate(new C());
 </code></pre><p><code>输出</code>   </p>
 <pre><code>[&quot;foo: bar&quot;, &quot;baz: bim&quot;]
 </code></pre><p><code>代码</code>   </p>
-<h2 id="判断是否包含数字"><a href="#判断是否包含数字" class="headerlink" title="判断是否包含数字"></a>判断是否包含数字</h2><p><code>题目描述</code><br>给定字符串 str，检查其是否包含数字，包含返回 true，否则返回 false<br><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>function iterate(obj) {
+    var result = [];
+    // 可以直接对obj进行遍历属性
+    for(var key in obj){
+        // 判断属性是在实例中还是原型对象中
+        if(obj.hasOwnProperty(key)) {
+            // 用obj[key]访问属性值，还可以运用数组的迭代算法
+            result.push(key + &#39;: &#39; + obj[key]);
+        }
+    }
+    return result;
+}
+</code></pre><h2 id="判断是否包含数字"><a href="#判断是否包含数字" class="headerlink" title="判断是否包含数字"></a>判断是否包含数字</h2><p><code>题目描述</code><br>给定字符串 str，检查其是否包含数字，包含返回 true，否则返回 false<br><code>示例1</code><br><code>输入</code>    </p>
 <pre><code>&#39;abc123&#39;
 </code></pre><p><code>输出</code>   </p>
 <pre><code>true
@@ -1157,7 +1182,7 @@ iterate(new C());
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">25.3k</span>
+    <span title="Site words total count">25.5k</span>
   
 
 </div>
