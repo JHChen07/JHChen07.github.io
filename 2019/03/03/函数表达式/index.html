@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Vue,">
+  <meta name="keywords" content="JavaScript,">
 
 
 
@@ -86,24 +86,21 @@
 
 
 
-<meta name="description" content="1. vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    1.1. 生命周期钩子函数    1.2. 生命周期探究&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt;     &amp;lt;t">
-<meta name="keywords" content="Vue">
+<meta name="description" content="定义函数的方式有 2 种：一种是函数声明，另一种是函数表达式。 函数声明function functionName(arg0, arg1, arg2) {     // 函数体 } 函数声明提升。在执行代码之前会先读取函数声明。    函数表达式常见形式：    var functionName = function(arg0, arg1, arg2) {     // 函数体 }; 这种情况下创">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue生命周期">
-<meta property="og:url" content="http://yoursite.com/2018/11/19/Vue生命周期/index.html">
+<meta property="og:title" content="函数表达式">
+<meta property="og:url" content="http://yoursite.com/2019/03/03/函数表达式/index.html">
 <meta property="og:site_name" content="jhchen の BLOG">
-<meta property="og:description" content="1. vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    1.1. 生命周期钩子函数    1.2. 生命周期探究&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt;     &amp;lt;t">
+<meta property="og:description" content="定义函数的方式有 2 种：一种是函数声明，另一种是函数表达式。 函数声明function functionName(arg0, arg1, arg2) {     // 函数体 } 函数声明提升。在执行代码之前会先读取函数声明。    函数表达式常见形式：    var functionName = function(arg0, arg1, arg2) {     // 函数体 }; 这种情况下创">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期流程图.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期钩子函数报表.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期挂载结束.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期数据更新.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期销毁.png">
-<meta property="og:updated_time" content="2019-02-28T07:03:03.824Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/03/函数表达式/函数作用域链.PNG">
+<meta property="og:image" content="http://yoursite.com/2019/03/03/函数表达式/闭包作用域链.PNG">
+<meta property="og:updated_time" content="2019-03-03T13:15:42.422Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue生命周期">
-<meta name="twitter:description" content="1. vue.js 2.0 生命周期钩子每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。    1.1. 生命周期钩子函数    1.2. 生命周期探究&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt;     &amp;lt;t">
-<meta name="twitter:image" content="http://yoursite.com/2018/11/19/Vue生命周期/生命周期流程图.png">
+<meta name="twitter:title" content="函数表达式">
+<meta name="twitter:description" content="定义函数的方式有 2 种：一种是函数声明，另一种是函数表达式。 函数声明function functionName(arg0, arg1, arg2) {     // 函数体 } 函数声明提升。在执行代码之前会先读取函数声明。    函数表达式常见形式：    var functionName = function(arg0, arg1, arg2) {     // 函数体 }; 这种情况下创">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/03/函数表达式/函数作用域链.PNG">
 
 
 
@@ -133,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/19/Vue生命周期/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/03/函数表达式/">
 
 
 
 
 
-  <title>Vue生命周期 | jhchen の BLOG</title>
+  <title>函数表达式 | jhchen の BLOG</title>
   
 
 
@@ -272,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/Vue生命周期/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/03/函数表达式/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="JHChen">
@@ -289,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Vue生命周期</h1>
+          <h1 class="post-title" itemprop="name headline">函数表达式</h1>
         
 
         <div class="post-meta">
@@ -301,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-19T16:54:30+08:00">
-                2018-11-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-03T16:29:02+08:00">
+                2019-03-03
               </time>
             
 
@@ -355,7 +352,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  929
+                  1.5k
                 </span>
               
 
@@ -371,7 +368,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -392,100 +389,142 @@
       
 
       
-        <h1 id="1-vue-js-2-0-生命周期钩子"><a href="#1-vue-js-2-0-生命周期钩子" class="headerlink" title="1. vue.js 2.0 生命周期钩子"></a>1. vue.js 2.0 生命周期钩子</h1><p>每个vue实例在被创建都要经过一系列的初始化过程，例如，需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等。同时在这个过程中也会运行一些叫做生命周期钩子的函数。<br><img src="/2018/11/19/Vue生命周期/生命周期流程图.png" alt="生命周期图示">   </p>
-<h2 id="1-1-生命周期钩子函数"><a href="#1-1-生命周期钩子函数" class="headerlink" title="1.1. 生命周期钩子函数"></a>1.1. 生命周期钩子函数</h2><p><img src="/2018/11/19/Vue生命周期/生命周期钩子函数报表.png" alt="生命周期钩子函数">   </p>
-<h2 id="1-2-生命周期探究"><a href="#1-2-生命周期探究" class="headerlink" title="1.2. 生命周期探究"></a>1.2. 生命周期探究</h2><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;&lt;/title&gt;
-    &lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.jsdelivr.net/vue/2.1.3/vue.js&quot;&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div id=&quot;app&quot;&gt;
-    &lt;p&gt;{{ message }}&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;script type=&quot;text/javascript&quot;&gt;
-
-var app = new Vue({
-    el: &#39;#app&#39;,
-    data: {
-        message : &quot;xuxiao is boy&quot; 
-    },
-    beforeCreate: function () {
-                console.group(&#39;beforeCreate 创建前状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot; , &quot;el     : &quot; + this.$el); //undefined
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //undefined 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message)  
-        },
-        created: function () {
-            console.group(&#39;created 创建完毕状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el); //undefined
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化
-        },
-        beforeMount: function () {
-            console.group(&#39;beforeMount 挂载前状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + (this.$el)); //已被初始化
-            console.log(this.$el);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化  
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化  
-        },
-        mounted: function () {
-            console.group(&#39;mounted 挂载结束状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el); //已被初始化
-            console.log(this.$el);    
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); //已被初始化
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); //已被初始化 
-        },
-        beforeUpdate: function () {
-            console.group(&#39;beforeUpdate 更新前状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
-            console.log(this.$el);   
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
-        },
-        updated: function () {
-            console.group(&#39;updated 更新完成状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
-            console.log(this.$el); 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
-        },
-        beforeDestroy: function () {
-            console.group(&#39;beforeDestroy 销毁前状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
-            console.log(this.$el);    
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message); 
-        },
-        destroyed: function () {
-            console.group(&#39;destroyed 销毁完成状态===============》&#39;);
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;el     : &quot; + this.$el);
-            console.log(this.$el);  
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;data   : &quot; + this.$data); 
-            console.log(&quot;%c%s&quot;, &quot;color:red&quot;,&quot;message: &quot; + this.message)
-        }
-    })
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;   
-</code></pre><h3 id="1-2-1-数据挂载完成"><a href="#1-2-1-数据挂载完成" class="headerlink" title="1.2.1. 数据挂载完成"></a>1.2.1. 数据挂载完成</h3><p><img src="/2018/11/19/Vue生命周期/生命周期挂载结束.png" alt="数据挂载完成">   </p>
-<h3 id="1-2-2-数据更新"><a href="#1-2-2-数据更新" class="headerlink" title="1.2.2. 数据更新"></a>1.2.2. 数据更新</h3><p><img src="/2018/11/19/Vue生命周期/生命周期数据更新.png" alt="数据更新">   </p>
-<h3 id="1-2-3-销毁实例"><a href="#1-2-3-销毁实例" class="headerlink" title="1.2.3. 销毁实例"></a>1.2.3. 销毁实例</h3><p><img src="/2018/11/19/Vue生命周期/生命周期销毁.png" alt="销毁实例"> </p>
-<h3 id="1-2-4-create和mounted相关"><a href="#1-2-4-create和mounted相关" class="headerlink" title="1.2.4. create和mounted相关"></a>1.2.4. create和mounted相关</h3><ol>
-<li>beforeCreated: el和data并未初始化   </li>
-<li>created：完成了data数据的初始化，el并没有初始化   </li>
-<li>beforeMounted：完成了el和data的初始化   </li>
-<li>mounted：完成挂载   </li>
-<li>beforeMounted钩子处，el并没有渲染新的值，这就是Virtual DOM，先把坑占住了。到后面mounted挂载的时候再把值渲染进去   </li>
-<li>update相关   </li>
+        <p>定义函数的方式有 2 种：一种是函数声明，另一种是函数表达式。</p>
+<h1 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h1><pre><code>function functionName(arg0, arg1, arg2) {
+    // 函数体
+}
+</code></pre><p>函数声明提升。在执行代码之前会先读取函数声明。   </p>
+<h1 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h1><p>常见形式：   </p>
+<pre><code>var functionName = function(arg0, arg1, arg2) {
+    // 函数体
+};
+</code></pre><p>这种情况下创建了匿名函数，匿名函数的 name 属性时空字符串。   </p>
+<h1 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h1><p>递归函数是一个函数通过名字调用自身。   </p>
+<pre><code>function factorial(num) {
+    if (bun &lt;= 1) {
+        return 1;
+    } else {
+        return num * factorial(num-1);
+    }
+}
+</code></pre><p>上述代码有个缺陷，当 factorial 不再是函数时，就会出现错误。所以，在非严格模式下，可以通过 arguments.callee（指向正在执行的函数的指针）解决问题。   </p>
+<pre><code>function factorial(num) {
+    if (bun &lt;= 1) {
+        return 1;
+    } else {
+        return num * arguments.callee(num-1);
+    }
+}
+</code></pre><p>严格模式下使用命名函数：   </p>
+<pre><code>var factorial = (function f(num) {
+    if (bun &lt;= 1) {
+        return 1;
+    } else {
+        return num * f(num-1);
+    }
+});
+</code></pre><h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><p>作用域链：每个函数都有自己的执行环境。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。当代码在一个环境中执行时，会创建变量对象的一个作用域链（scope chain）。作用域链的用途是，保证对执行环境有权访问的所有变量和函数的有序访问。作用域链的前端，始终都是当前执行的代码所在的环境的变量对象。如果这个环境是函数，则将其活动对象（activation object）作为变量对象。活动对象在最开始时只包含一个变量， 即 arguments 对象（不存在于全局环境中）。作用域中的下一个变量对象来自包含（外部）环境，而再下一个变量对象则来自下一个包含环境。这样一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。作用域本质上是一个指向变量对象的指针列表，它只引用但不包含实际变量对象。   </p>
+<pre><code>function compare(value1, value2) {
+    if (value1 &lt; value2) {
+        return -1;
+    } else if (value1 &gt; value2) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+var result = compare(5, 10);
+</code></pre><p>其作用域链如下图所示：<br><img src="/2019/03/03/函数表达式/函数作用域链.PNG" alt="作用域链"><br>函数执行过程中中，为读取和写入变量的值，就需要在作用域中查找变量。<br>标志符解析是沿着作用域链一级一级地搜索标识符的过程。搜索过程始终从作用域链的前端开始，然后逐级地向后回溯，直到找到标识符为止，找不到则导致错误。<br>当在函数内部定义了其他函数时，就创建了闭包。闭包有权访问包含函数内部的所有变量，原理如下：   </p>
+<ol>
+<li>在后台执行环境中，闭包的作用域链包含着他自己的作用域、包含函数的作用域和全局作用域。   </li>
+<li>通常，函数的作用域及其所有变量都会在函数执行结束后被销毁。   </li>
+<li>但是，当函数返回了一个闭包时，这个函数的作用域将会一直在内存中保存到闭包不存在为止。   </li>
 </ol>
-<pre><code>e.g. app.message = &#39;yes !! i do&#39;
-</code></pre><p>当data里的值被修改后，将会出发update的操作   </p>
-<h3 id="1-2-5-destroy相关"><a href="#1-2-5-destroy相关" class="headerlink" title="1.2.5. destroy相关"></a>1.2.5. destroy相关</h3><pre><code>app.$destroy();   
-</code></pre><p>销毁完成后，我们再重新改变message的值，vue不在对此动作进行响应了。但是原先生成的DOM元素还在，相当于销毁后就不再受vue控制了。</p>
+<pre><code>    function createComparisonFunction(propertyName) {
+        return function(object1, object2) {
+            var value1 = object1[propertyName];
+            var value2 = object2[propertyName];
+
+            if (value1 &lt; value2) {
+                return -1;
+            } else if (value1 &gt; value2) {
+                    return 1;
+                } else {
+                        return 0;
+                    }
+        };
+    }
+    // 创建函数
+    var compareNames = createComparisonFunction(&quot;name&quot;);
+    // 调用函数
+    var result = compare({ name: &quot;Nicholas&quot; }, { name: &quot;Greg&quot; });
+    // 接触对匿名函数的引用（释放内存）
+    compareNames = null;
+</code></pre><h2 id="闭包与变量"><a href="#闭包与变量" class="headerlink" title="闭包与变量"></a>闭包与变量</h2><p>作用域链导致闭包只能取得包含函数中任何变量中的最后一个值。但是闭包的确保存的是整个变量对象而不是单独的变量。对比两段代码：   </p>
+<pre><code>function createFunctions() {
+    var result = new Array();
+    for(var i = 0; i &lt; 10; i++) {
+        result[i] = function() {
+            return i;
+        }
+    }
+    return result;
+}
+
+function createFunctions() {
+    var result = new Array();
+    for(var i = 0; i &lt; 10; i++) {
+        result[i] = function(num) {
+            return function() {
+                return num
+            };
+        }(i);
+    }
+    return result;
+}
+</code></pre><p>在调用每个匿名函数时，传入变量 i。由于函数参数是按值传递的，所以会将 i 的当前值复制给参数 num。<br>调用 compareNames() 的过程中产生的作用域链关系如下：<br><img src="/2019/03/03/函数表达式/闭包作用域链.PNG" alt="闭包作用域链"><br>注意：创建闭包必须维护额外的作用域，所以过度使用可能会占用大量内存。   </p>
+<h1 id="关于-this-对象"><a href="#关于-this-对象" class="headerlink" title="关于 this 对象"></a>关于 this 对象</h1><p>this 对象是在运行时基于函数的执行环境绑定的：在全局函数中， this 等于 window， 而当函数被作为某个对象的方法调用时，this 等于那个对象。但是，闭包的函数执行环境具有全局性，因此其 this 对象通常指向 window（通过 apply() 或 call() 改变函数执行环境会将 this 指向其他对象）。如：    </p>
+<pre><code>var name = &quot;The window&quot;;
+
+var object = {
+    name: &quot;My Object&quot;;
+    getNameFunc: function() {
+        return function() {
+            return this.name;
+        };
+    }
+};
+alert(object.getNameFunc()()); //&quot;The window&quot;(非严格模式下)
+</code></pre><p>对比：   </p>
+<pre><code>var name = &quot;The window&quot;;
+
+var object = {
+    name: &quot;My Object&quot;;
+    getNameFunc: function() {
+        var that = this;
+        return function() {
+            return that.name;
+        };
+    }
+};
+alert(object.getNameFunc()()); //&quot;My Object&quot;
+</code></pre><p>以及：   </p>
+<pre><code>var name = &quot;The window&quot;;
+
+var object = {
+    name: &quot;My Object&quot;;
+    getName: function() {
+        return this.name;
+    }
+};
+object.getName;     //&quot;My Object&quot;
+(object.getName)(); //&quot;My Object&quot;（引用函数，保持了 this）
+(object.getName = object.getName)(); //&quot;The window&quot;（未保持 this）
+</code></pre><h1 id="模仿块级作用域"><a href="#模仿块级作用域" class="headerlink" title="模仿块级作用域"></a>模仿块级作用域</h1><p>用作块级作用域（通常称为私有作用域）的匿名函数：   </p>
+<pre><code>(function() {
+    // 块级作用域
+}) ();
+</code></pre><p>以上代码定义并立即调用了一个匿名函数。将函数声明包含在一对圆括号中，表示它实际上是一个函数表达式。紧随其后的一对圆括号表示立即调用这个函数。<br>这种用法经常在全局作用域中被用在函数外部，从而限制向全局作用域中添加过多的变量和函数。也可以减少闭包中占用内存的问题，因为没有指向匿名函数的引用。只要函数执行完毕，就可以立即销毁其作用域链了。   </p>
 
       
     </div>
@@ -514,7 +553,7 @@ var app = new Vue({
       
         <div class="post-tags">
           
-            <a href="/tags/Vue/" rel="tag"><i class="fa fa-tag"></i> Vue</a>
+            <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
           
         </div>
       
@@ -527,8 +566,8 @@ var app = new Vue({
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/19/零碎知识/" rel="next" title="零碎知识">
-                <i class="fa fa-chevron-left"></i> 零碎知识
+              <a href="/2019/02/28/JS面向对象程序设计/" rel="next" title="JS面向对象程序设计">
+                <i class="fa fa-chevron-left"></i> JS面向对象程序设计
               </a>
             
           </div>
@@ -536,10 +575,6 @@ var app = new Vue({
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/19/头条面试题/" rel="prev" title="头条面试题">
-                头条面试题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -673,7 +708,7 @@ var app = new Vue({
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-vue-js-2-0-生命周期钩子"><span class="nav-number">1.</span> <span class="nav-text">1. vue.js 2.0 生命周期钩子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-生命周期钩子函数"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 生命周期钩子函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-生命周期探究"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. 生命周期探究</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-数据挂载完成"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1. 数据挂载完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-数据更新"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2. 数据更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-销毁实例"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3. 销毁实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-create和mounted相关"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.2.4. create和mounted相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-5-destroy相关"><span class="nav-number">1.2.5.</span> <span class="nav-text">1.2.5. destroy相关</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数声明"><span class="nav-number">1.</span> <span class="nav-text">函数声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数表达式"><span class="nav-number">2.</span> <span class="nav-text">函数表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#递归"><span class="nav-number">3.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">4.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包与变量"><span class="nav-number">4.1.</span> <span class="nav-text">闭包与变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于-this-对象"><span class="nav-number">5.</span> <span class="nav-text">关于 this 对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模仿块级作用域"><span class="nav-number">6.</span> <span class="nav-text">模仿块级作用域</span></a></li></ol></div>
             
 
           </div>
