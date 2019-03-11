@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="jhchen の BLOG">
 <meta property="og:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     function indexOf(arr, item) {     return arr.i">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-28T10:11:05.518Z">
+<meta property="og:updated_time" content="2019-03-04T04:00:23.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS基础编程题">
 <meta name="twitter:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     function indexOf(arr, item) {     return arr.i">
@@ -764,7 +764,21 @@ function count(start, end) {
 </code></pre><p><code>输出</code>   </p>
 <pre><code>6
 </code></pre><p><code>代码</code>   </p>
-<h2 id="或运算"><a href="#或运算" class="headerlink" title="或运算"></a>或运算</h2><p><code>题目描述</code><br>返回参数 a 和 b 的逻辑或运算结果<br><code>示例1</code><br><code>输入</code>    </p>
+<pre><code>function curryIt(fn) {
+    return function a(num1) {
+        var aArgs = [].slice.call(arguments);
+        return function b(num2) {
+            var bArgs = [].slice.call(arguments);
+            var innerArgs = aArgs.concat(bArgs);
+            return function c(bum3) {
+                var cArgs = [].slice.call(arguments);
+                var finalArgs = cArgs.concat(innerArgs);
+                return fn.apply(null, finalArgs);
+            }
+        }
+    }
+}
+</code></pre><h2 id="或运算"><a href="#或运算" class="headerlink" title="或运算"></a>或运算</h2><p><code>题目描述</code><br>返回参数 a 和 b 的逻辑或运算结果<br><code>示例1</code><br><code>输入</code>    </p>
 <pre><code>false, true
 </code></pre><p><code>输出</code>   </p>
 <pre><code>true
@@ -1182,7 +1196,7 @@ iterate(new C());
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">27.8k</span>
+    <span title="Site words total count">28.3k</span>
   
 
 </div>

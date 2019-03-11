@@ -86,21 +86,21 @@
 
 
 
-<meta name="description" content="DOCTYPE和浏览器渲染模式 浏览器解析HTML方式   DOM结构 W3C DOM标准 DOM节点 HTML DOM节点树 节点的关系   盒模型 JavaScript如何设置获取盒模型对应的宽和高 外边距重叠   BFC BFC原理（渲染规则） 如何创建BFC   CSS普通流（文档流） 调节普通流元素位置   变量对象 JavaScript的基本类型 引用类型 内置对象、原生对象及宿主">
+<meta name="description" content="1. DOCTYPE 和浏览器渲染模式一个文档类型标记是一种标准通用标记语言的文档类型声明，目的是告知通用标记语言解析器，应该是用什么文档类型定义（DTD）来解析文档。DOCTYPE 还会对浏览器的渲染模式产生影响，不同的渲染模式会影响到浏览器对于 CSS 代码甚至是 JavaScript 脚本的解析，尤其是在 IE 系列浏览器中。因此，由 DOCTYPE 所决定的 HTML 页面的渲染模式至关重">
 <meta name="keywords" content="其他">
 <meta property="og:type" content="article">
 <meta property="og:title" content="零碎知识">
 <meta property="og:url" content="http://yoursite.com/2018/11/19/零碎知识/index.html">
 <meta property="og:site_name" content="jhchen の BLOG">
-<meta property="og:description" content="DOCTYPE和浏览器渲染模式 浏览器解析HTML方式   DOM结构 W3C DOM标准 DOM节点 HTML DOM节点树 节点的关系   盒模型 JavaScript如何设置获取盒模型对应的宽和高 外边距重叠   BFC BFC原理（渲染规则） 如何创建BFC   CSS普通流（文档流） 调节普通流元素位置   变量对象 JavaScript的基本类型 引用类型 内置对象、原生对象及宿主">
+<meta property="og:description" content="1. DOCTYPE 和浏览器渲染模式一个文档类型标记是一种标准通用标记语言的文档类型声明，目的是告知通用标记语言解析器，应该是用什么文档类型定义（DTD）来解析文档。DOCTYPE 还会对浏览器的渲染模式产生影响，不同的渲染模式会影响到浏览器对于 CSS 代码甚至是 JavaScript 脚本的解析，尤其是在 IE 系列浏览器中。因此，由 DOCTYPE 所决定的 HTML 页面的渲染模式至关重">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/11/19/零碎知识/DOM节点树.PNG">
 <meta property="og:image" content="http://yoursite.com/2018/11/19/零碎知识/DOM节点.PNG">
 <meta property="og:image" content="http://yoursite.com/2018/11/19/零碎知识/盒模型.PNG">
-<meta property="og:updated_time" content="2019-02-28T07:05:06.632Z">
+<meta property="og:updated_time" content="2019-03-11T03:07:42.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="零碎知识">
-<meta name="twitter:description" content="DOCTYPE和浏览器渲染模式 浏览器解析HTML方式   DOM结构 W3C DOM标准 DOM节点 HTML DOM节点树 节点的关系   盒模型 JavaScript如何设置获取盒模型对应的宽和高 外边距重叠   BFC BFC原理（渲染规则） 如何创建BFC   CSS普通流（文档流） 调节普通流元素位置   变量对象 JavaScript的基本类型 引用类型 内置对象、原生对象及宿主">
+<meta name="twitter:description" content="1. DOCTYPE 和浏览器渲染模式一个文档类型标记是一种标准通用标记语言的文档类型声明，目的是告知通用标记语言解析器，应该是用什么文档类型定义（DTD）来解析文档。DOCTYPE 还会对浏览器的渲染模式产生影响，不同的渲染模式会影响到浏览器对于 CSS 代码甚至是 JavaScript 脚本的解析，尤其是在 IE 系列浏览器中。因此，由 DOCTYPE 所决定的 HTML 页面的渲染模式至关重">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/19/零碎知识/DOM节点树.PNG">
 
 
@@ -353,7 +353,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.6k
+                  3.1k
                 </span>
               
 
@@ -369,7 +369,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  10
+                  11
                 </span>
               
             </div>
@@ -390,72 +390,125 @@
       
 
       
-        <!-- TOC -->
-<ul>
-<li><a href="#doctype和浏览器渲染模式">DOCTYPE和浏览器渲染模式</a><ul>
-<li><a href="#浏览器解析html方式">浏览器解析HTML方式</a></li>
-</ul>
-</li>
-<li><a href="#dom结构">DOM结构</a><ul>
-<li><a href="#w3c-dom标准">W3C DOM标准</a></li>
-<li><a href="#dom节点">DOM节点</a></li>
-<li><a href="#html-dom节点树">HTML DOM节点树</a></li>
-<li><a href="#节点的关系">节点的关系</a></li>
-</ul>
-</li>
-<li><a href="#盒模型">盒模型</a><ul>
-<li><a href="#javascript如何设置获取盒模型对应的宽和高">JavaScript如何设置获取盒模型对应的宽和高</a></li>
-<li><a href="#外边距重叠">外边距重叠</a></li>
-</ul>
-</li>
-<li><a href="#bfc">BFC</a><ul>
-<li><a href="#bfc原理渲染规则">BFC原理（渲染规则）</a></li>
-<li><a href="#如何创建bfc">如何创建BFC</a></li>
-</ul>
-</li>
-<li><a href="#css普通流文档流">CSS普通流（文档流）</a><ul>
-<li><a href="#调节普通流元素位置">调节普通流元素位置</a></li>
-</ul>
-</li>
-<li><a href="#变量对象">变量对象</a><ul>
-<li><a href="#javascript的基本类型">JavaScript的基本类型</a></li>
-<li><a href="#引用类型">引用类型</a></li>
-<li><a href="#内置对象原生对象及宿主对象">内置对象、原生对象及宿主对象</a></li>
-<li><a href="#特殊包装类">特殊包装类</a></li>
-<li><a href="#typeof返回值">typeof返回值</a></li>
-<li><a href="#instanceof-操作符">instanceof 操作符</a></li>
-<li><a href="#objectprototypetostring获取对象类型">Object.prototype.toString获取对象类型</a></li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-<h1 id="1-DOCTYPE和浏览器渲染模式"><a href="#1-DOCTYPE和浏览器渲染模式" class="headerlink" title="1. DOCTYPE和浏览器渲染模式"></a>1. DOCTYPE和浏览器渲染模式</h1><p>一个文档类型标记是一种标准通用标记语言的文档类型声明，目的是告知通用标记语言解析器，应该是用什么文档类型定义（DTD）来解析文档。DOCTYPE还会对浏览器的渲染模式产生影响，不同的渲染模式会影响到浏览器对于CSS代码甚至是JavaScript脚本的解析，尤其是在IE系列浏览器中。因此，由DOCTYPE所决定的HTML页面的渲染模式至关重要。   </p>
-<h2 id="1-1-浏览器解析HTML方式"><a href="#1-1-浏览器解析HTML方式" class="headerlink" title="1.1. 浏览器解析HTML方式"></a>1.1. 浏览器解析HTML方式</h2><ol>
-<li>非怪异（标准）模式   页面按照HTML和CSS的定义渲染   </li>
+        <h1 id="1-DOCTYPE-和浏览器渲染模式"><a href="#1-DOCTYPE-和浏览器渲染模式" class="headerlink" title="1. DOCTYPE 和浏览器渲染模式"></a>1. DOCTYPE 和浏览器渲染模式</h1><p>一个文档类型标记是一种标准通用标记语言的文档类型声明，目的是告知通用标记语言解析器，应该是用什么文档类型定义（DTD）来解析文档。DOCTYPE 还会对浏览器的渲染模式产生影响，不同的渲染模式会影响到浏览器对于 CSS 代码甚至是 JavaScript 脚本的解析，尤其是在 IE 系列浏览器中。因此，由 DOCTYPE 所决定的 HTML 页面的渲染模式至关重要。   </p>
+<h2 id="1-1-浏览器解析-HTML-方式"><a href="#1-1-浏览器解析-HTML-方式" class="headerlink" title="1.1. 浏览器解析 HTML 方式"></a>1.1. 浏览器解析 HTML 方式</h2><ol>
+<li>非怪异（标准）模式   页面按照 HTML 和 CSS 的定义渲染   </li>
 <li>怪异模式   尝试模拟旧浏览器的行为   </li>
 <li>部分怪异（近乎标准）模式   除了实施一种表单元格尺寸的怪异行为，其他符合标准  </li>
 </ol>
-<p>注：一个不含任何DOCTYPE的网页将会以怪异模式渲染。   </p>
-<h1 id="2-DOM结构"><a href="#2-DOM结构" class="headerlink" title="2. DOM结构"></a>2. DOM结构</h1><p>DOM：Document Object Module，文档对象模型。   </p>
-<h2 id="2-1-W3C-DOM标准"><a href="#2-1-W3C-DOM标准" class="headerlink" title="2.1. W3C DOM标准"></a>2.1. W3C DOM标准</h2><ol>
-<li>核心DOM - 针对任何结构化文档的标准模型   </li>
-<li>XML DOM - 针对XML文档的标准模型   </li>
-<li>HTML DOM - 针对HTML文档的标准模型   </li>
+<p>注：一个不含任何 DOCTYPE 的网页将会以怪异模式渲染。   </p>
+<h1 id="meta-标签及其属性"><a href="#meta-标签及其属性" class="headerlink" title="meta 标签及其属性"></a>meta 标签及其属性</h1><p>只存在于 head 元素内部的 <code>&lt;meta&gt;</code> 元素可提供有关页面的元信息，<code>&lt;meta&gt;</code> 标签位于文档的头部，不包含内容。它的属性定义了与文档有关的名称/值对。在 HTML 中，<code>&lt;meta&gt;</code> 标签没有结束标签，而其在 XHTML 中必须被正确地关闭。<br>meta 标签共有两个属性，name 和 http-equiv。   </p>
+<h2 id="name-属性"><a href="#name-属性" class="headerlink" title="name 属性"></a>name 属性</h2><p>name 属性主要用于描述网页，与之对应的属性值为 content，content 中的内容主要是便于搜索引擎机器人查找信息和分类信息用的。<br>meta标签的name属性语法格式是：    </p>
+<pre><code>&lt;meta name=&quot;参数&quot;content=&quot;具体的参数值&quot;&gt;。
+</code></pre><p>各个参数及其作用如下表：   </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keywords</td>
+<td>告知搜索引擎网页的关键字</td>
+</tr>
+<tr>
+<td>description</td>
+<td>网站内容描述</td>
+</tr>
+<tr>
+<td>robots</td>
+<td>机器人向导，告知其页面是否需要索引</td>
+</tr>
+<tr>
+<td>author</td>
+<td>标注网站的作者</td>
+</tr>
+<tr>
+<td>generator</td>
+<td>说明网页制作的软件</td>
+</tr>
+<tr>
+<td>revised</td>
+<td></td>
+</tr>
+<tr>
+<td>others</td>
+</tr>
+</tbody>
+</table>
+<h2 id="http-equiv"><a href="#http-equiv" class="headerlink" title="http-equiv"></a>http-equiv</h2><p>http-equiv 属性为名称/值对提供了名称。并指示服务器先在要传送的 MIME 文档头部包含名称/值对。至少要包含 content-type:text/html 。与之对应的属性值为 content，例如：   </p>
+<pre><code>&lt;meta http-equiv=&quot;charset&quot; content=&quot;iso-8859-1&quot;&gt;
+&lt;meta http-equiv=&quot;expires&quot; content=&quot;31 Dec 2008&quot;&gt;
+</code></pre><p>发送给浏览器的文档头部包含：   </p>
+<pre><code>content-type: text/html
+charset:iso-8859-1
+expires:31 Dec 2008
+</code></pre><p>各项参数及其作用如下表：   </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content-type</td>
+<td>显示字符集的设定</td>
+</tr>
+<tr>
+<td>expire</td>
+<td>设定网页的到期时间，过期之后需要重新传输</td>
+</tr>
+<tr>
+<td>pragma(cache 模式)</td>
+<td>禁止浏览器从本地计算机的缓存中访问页面内容</td>
+</tr>
+<tr>
+<td>refresh</td>
+<td>自动刷新并指向新页面</td>
+</tr>
+<tr>
+<td>set-cookie</td>
+<td>设置 cookie，如果网页过期，那么存盘的 cookie 将被删除，必须使用 GMT的时间格式</td>
+</tr>
+<tr>
+<td>window-target</td>
+<td>强制页面在当前西黄口以独立页面显示</td>
+</tr>
+<tr>
+<td>content-language</td>
+<td>显示语言的设定</td>
+</tr>
+<tr>
+<td>cache-control</td>
+<td>指定请求和相应遵循的缓存机制</td>
+</tr>
+</tbody>
+</table>
+<p>meta 标签可以便于搜索引擎排序，提高搜索引擎网站权重排名，定义页面使用的语言，自动刷新并指向新的页面，实现网页转换时的动态效果，控制页面缓冲，网页定级评价，控制网页显示的窗口等。</p>
+<h1 id="2-DOM-结构"><a href="#2-DOM-结构" class="headerlink" title="2. DOM 结构"></a>2. DOM 结构</h1><p>DOM：Document Object Module，文档对象模型。   </p>
+<h2 id="2-1-W3C-DOM-标准"><a href="#2-1-W3C-DOM-标准" class="headerlink" title="2.1. W3C DOM 标准"></a>2.1. W3C DOM 标准</h2><ol>
+<li>核心 DOM - 针对任何结构化文档的标准模型   </li>
+<li>XML DOM - 针对 XML 文档的标准模型   </li>
+<li>HTML DOM - 针对 HTML 文档的标准模型   </li>
 </ol>
-<h2 id="2-2-DOM节点"><a href="#2-2-DOM节点" class="headerlink" title="2.2. DOM节点"></a>2.2. DOM节点</h2><p>根据W3C的HTML DOM标准，HTML文档中的所有内容都是节点<br>文档节点、元素节点、属性节点、文本节点、注释节点等。   </p>
-<h2 id="2-3-HTML-DOM节点树"><a href="#2-3-HTML-DOM节点树" class="headerlink" title="2.3. HTML DOM节点树"></a>2.3. HTML DOM节点树</h2><p>HTML文本会被解析为DOM树，树中的所有节点均可通过JavaScript进行访问。所有HTML元素（节点）均可被修改，也可以创建或删除节点。<br><img src="/2018/11/19/零碎知识/DOM节点树.PNG" alt="DOM节点树">   </p>
+<h2 id="2-2-DOM-节点"><a href="#2-2-DOM-节点" class="headerlink" title="2.2. DOM 节点"></a>2.2. DOM 节点</h2><p>根据 W3C 的 HTML DOM 标准，HTML 文档中的所有内容都是节点<br>文档节点、元素节点、属性节点、文本节点、注释节点等。   </p>
+<h2 id="2-3-HTML-DOM节点树"><a href="#2-3-HTML-DOM节点树" class="headerlink" title="2.3. HTML DOM节点树"></a>2.3. HTML DOM节点树</h2><p>HTML 文本会被解析为 DOM 树，树中的所有节点均可通过 JavaScript 进行访问。所有HTML 元素（节点）均可被修改，也可以创建或删除节点。<br><img src="/2018/11/19/零碎知识/DOM节点树.PNG" alt="DOM节点树">   </p>
 <h2 id="2-4-节点的关系"><a href="#2-4-节点的关系" class="headerlink" title="2.4. 节点的关系"></a>2.4. 节点的关系</h2><p>父、子、同胞等术语用于描述这些关系。节点树中，顶端节点被称为根；每个节点都有父节点，除了根；一个节点可以拥有任意数量的子，同胞拥有相同的根。<br><img src="/2018/11/19/零碎知识/DOM节点.PNG" alt="DOM节点">   </p>
-<h1 id="3-盒模型"><a href="#3-盒模型" class="headerlink" title="3. 盒模型"></a>3. 盒模型</h1><p>每个元素都是一个矩形盒子，盒模型是元素大小的呈现方式。每个盒子有四个边：外边距边，边匡边，内填充边与内容边。<br><img src="/2018/11/19/零碎知识/盒模型.PNG" alt="盒模型"><br>盒子模型分为两种，一种是W3C标准盒模型，一种是IE盒模型。</p>
+<h1 id="3-盒模型"><a href="#3-盒模型" class="headerlink" title="3. 盒模型"></a>3. 盒模型</h1><p>每个元素都是一个矩形盒子，盒模型是元素大小的呈现方式。每个盒子有四个边：外边距边，边匡边，内填充边与内容边。<br><img src="/2018/11/19/零碎知识/盒模型.PNG" alt="盒模型"><br>盒子模型分为两种，一种是 W3C 标准盒模型，一种是IE盒模型。</p>
 <ol>
 <li>content-box （标准盒模型）<br>width = content宽度<br>height = content高度  </li>
-<li>border-box （IE盒模型）<br>width = border + padding + content宽度<br>height = border + padding + content高度   </li>
+<li>border-box （IE 盒模型）<br>width = border + padding + content宽度<br>height = border + padding + content高度   </li>
 </ol>
 <p>以上两者可以通过<code>box-sizing</code>属性自由转换，默认为<code>content-box</code>。   </p>
-<h2 id="3-1-JavaScript如何设置获取盒模型对应的宽和高"><a href="#3-1-JavaScript如何设置获取盒模型对应的宽和高" class="headerlink" title="3.1. JavaScript如何设置获取盒模型对应的宽和高"></a>3.1. JavaScript如何设置获取盒模型对应的宽和高</h2><ol>
-<li>dom.style.width/height 只能取到行内样式的宽和高，style标签中和link外链的样式取不到。   </li>
-<li>dom.currentStyle.width/height 取到的是最终渲染后的宽和高，只有IE支持此属性。   </li>
+<h2 id="3-1-JavaScript-如何设置获取盒模型对应的宽和高"><a href="#3-1-JavaScript-如何设置获取盒模型对应的宽和高" class="headerlink" title="3.1. JavaScript 如何设置获取盒模型对应的宽和高"></a>3.1. JavaScript 如何设置获取盒模型对应的宽和高</h2><ol>
+<li>dom.style.width/height 只能取到行内样式的宽和高，style 标签中和 link 外链的样式取不到。   </li>
+<li>dom.currentStyle.width/height 取到的是最终渲染后的宽和高，只有 IE 支持此属性。   </li>
 <li>window.getComputedStyle(dom).width/height 同（2）但是多浏览器支持，IE9以上支持。   </li>
-<li>dom.getBoundingClientRect().width/height 也是得到渲染后的宽和高，大多浏览器支持。IE9以上支持，除此外还可以取到相对于视窗的上下左右的距离   </li>
+<li>dom.getBoundingClientRect().width/height 也是得到渲染后的宽和高，大多浏览器支持。IE9 以上支持，除此外还可以取到相对于视窗的上下左右的距离   </li>
 </ol>
 <h2 id="3-2-外边距重叠"><a href="#3-2-外边距重叠" class="headerlink" title="3.2. 外边距重叠"></a>3.2. 外边距重叠</h2><p>当两个或更多个垂直边距相遇时，它们将形成一个外边距。这个外边距的高度等于两个发生叠加的外边距的高度中的较大者。但是只有普通文档流中的快款的垂直外边距才会发生外边距叠加。行内框、浮动框或绝对定位框之间的外边距不会叠加。<br>垂直外边距叠加有三种情况：   </p>
 <ol>
@@ -463,20 +516,20 @@
 <li>相邻元素叠加。   </li>
 <li>包含（父子）元素叠加。包含元素的外边距隔着父元素的内边距和边框，当这两项都不存在时，父子元素垂直外边距相邻，产生叠加。添加任何一项就会取消叠加。   </li>
 </ol>
-<h1 id="4-BFC"><a href="#4-BFC" class="headerlink" title="4. BFC"></a>4. BFC</h1><p>BFC（Block Formatting Context）：块格式化上下文。<br>BFC决定了元素如何对其内容进行定位，以及与其他元素的关系和相互作用。当设计到可视化布局时，BFC提供了一个环境，HTML元素在这个环境按照一定的规则进行布局。一个环境中的元素不会影响到其它环境中的布局。   </p>
-<h2 id="4-1-BFC原理（渲染规则）"><a href="#4-1-BFC原理（渲染规则）" class="headerlink" title="4.1. BFC原理（渲染规则）"></a>4.1. BFC原理（渲染规则）</h2><ol>
-<li>BFC元素垂直方向的边距会发生重叠。属于不同BFC外边距不会发生重叠。   </li>
-<li>BFC的区域不会与浮动元素的布局重叠。   </li>
-<li>BFC元素是一个独立的容器，外面的元素不会影响里面的元素。反之亦然。   </li>
-<li>计算BFC高度时，浮动元素也会参与计算（清除浮动）   </li>
+<h1 id="4-BFC"><a href="#4-BFC" class="headerlink" title="4. BFC"></a>4. BFC</h1><p>BFC（Block Formatting Context）：块格式化上下文。<br>BFC 决定了元素如何对其内容进行定位，以及与其他元素的关系和相互作用。当设计到可视化布局时，BFC提供了一个环境，HTML 元素在这个环境按照一定的规则进行布局。一个环境中的元素不会影响到其它环境中的布局。   </p>
+<h2 id="4-1-BFC-原理（渲染规则）"><a href="#4-1-BFC-原理（渲染规则）" class="headerlink" title="4.1. BFC 原理（渲染规则）"></a>4.1. BFC 原理（渲染规则）</h2><ol>
+<li>BFC 元素垂直方向的边距会发生重叠。属于不同 BFC 外边距不会发生重叠。   </li>
+<li>BFC 的区域不会与浮动元素的布局重叠。   </li>
+<li>BFC 元素是一个独立的容器，外面的元素不会影响里面的元素。反之亦然。   </li>
+<li>计算 BFC 高度时，浮动元素也会参与计算（清除浮动）   </li>
 </ol>
-<h2 id="4-2-如何创建BFC"><a href="#4-2-如何创建BFC" class="headerlink" title="4.2. 如何创建BFC"></a>4.2. 如何创建BFC</h2><ol>
+<h2 id="4-2-如何创建-BFC"><a href="#4-2-如何创建-BFC" class="headerlink" title="4.2. 如何创建 BFC"></a>4.2. 如何创建 BFC</h2><ol>
 <li>根元素或包含根元素的元素   </li>
 <li>浮动元素（元素的 <code>float</code> 不是 <code>none</code>）   </li>
 <li>绝对定位元素（元素的 <code>position</code> 为 <code>absolute</code> 或 <code>fixed</code>）   </li>
 <li>行内块元素（元素的 <code>display</code> 为 <code>inline-block</code>）   </li>
-<li>表格单元格（元素的 <code>display</code> 为 <code>table-cell</code>，HTML表格单元格默认为该值）   </li>
-<li>表格标题（元素的 <code>display</code> 为 <code>table-caption</code>，HTML表格标题默认为该值）   </li>
+<li>表格单元格（元素的 <code>display</code> 为 <code>table-cell</code>，HTML 表格单元格默认为该值）   </li>
+<li>表格标题（元素的 <code>display</code> 为 <code>table-caption</code>，HTML 表格标题默认为该值）   </li>
 <li>匿名表格单元格元素（元素的 <code>display</code> 为 <code>table</code>、<code>table-row</code>、 <code>table-row-group</code>、<code>table-header-group</code>、<code>table-footer-group</code>（分别是HTML <code>table</code>、<code>row</code>、<code>tbody</code>、<code>thead</code>、<code>tfoot</code> 的默认属性）或 <code>inline-table</code>）   </li>
 <li><code>overflow</code> 值不为 <code>visible</code> 的块元素   </li>
 <li><code>display</code> 值为 <code>flow-roo</code>t` 的元素   </li>
@@ -485,10 +538,10 @@
 <li>网格元素（<code>display</code> 为 <code>grid</code> 或 <code>inline-grid</code> 元素的直接子元素）   </li>
 <li>多列容器（元素的 <code>column-count</code> 或 <code>column-width</code> 不为 <code>auto</code>，包括 <code>column-count</code> 为 <code>1</code>）<br><code>column-span</code> 为 <code>all</code> 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（标准变更，Chrome bug）  </li>
 </ol>
-<p>注：块格式化上下文包含创建它的元素内部的所有内容。浮动定位和清除浮动时只会应用于同一个BFC内的元素。浮动不会影响其他BFC中元素的布局，而清除浮动只能清除同一BFC中在它前面的元素的浮动。外边距折叠（Margin Collapsing）也只会发生在属于同一BFC的块级元素之间。   </p>
-<h1 id="5-CSS普通流（文档流）"><a href="#5-CSS普通流（文档流）" class="headerlink" title="5. CSS普通流（文档流）"></a>5. CSS普通流（文档流）</h1><p>元素按照其在HTML中的位置顺序决定排布的过程。</p>
-<h2 id="5-1-调节普通流元素位置"><a href="#5-1-调节普通流元素位置" class="headerlink" title="5.1. 调节普通流元素位置"></a>5.1. 调节普通流元素位置</h2><p>一般使用margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。margin用于布局分开元素使元素与元素互不相干；padding用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段“距离”。<br><code>注：只要不是float和绝对定位方式布局的，都在普通流里面。</code>   </p>
-<h1 id="6-变量对象"><a href="#6-变量对象" class="headerlink" title="6. 变量对象"></a>6. 变量对象</h1><h2 id="6-1-JavaScript的基本类型"><a href="#6-1-JavaScript的基本类型" class="headerlink" title="6.1. JavaScript的基本类型"></a>6.1. JavaScript的基本类型</h2><ol>
+<p>注：块格式化上下文包含创建它的元素内部的所有内容。浮动定位和清除浮动时只会应用于同一个 BFC 内的元素。浮动不会影响其他 BFC 中元素的布局，而清除浮动只能清除同一 BFC 中在它前面的元素的浮动。外边距折叠（Margin Collapsing）也只会发生在属于同一 BFC 的块级元素之间。   </p>
+<h1 id="5-CSS普通流（文档流）"><a href="#5-CSS普通流（文档流）" class="headerlink" title="5. CSS普通流（文档流）"></a>5. CSS普通流（文档流）</h1><p>元素按照其在 HTML 中的位置顺序决定排布的过程。</p>
+<h2 id="5-1-调节普通流元素位置"><a href="#5-1-调节普通流元素位置" class="headerlink" title="5.1. 调节普通流元素位置"></a>5.1. 调节普通流元素位置</h2><p>一般使用 margin 是用来隔开元素与元素的间距；padding 是用来隔开元素与内容的间隔。margin 用于布局分开元素使元素与元素互不相干；padding 用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段“距离”。<br><code>注：只要不是 float 和绝对定位方式布局的，都在普通流里面。</code>   </p>
+<h1 id="6-变量对象"><a href="#6-变量对象" class="headerlink" title="6. 变量对象"></a>6. 变量对象</h1><h2 id="6-1-JavaScript-的基本类型"><a href="#6-1-JavaScript-的基本类型" class="headerlink" title="6.1. JavaScript 的基本类型"></a>6.1. JavaScript 的基本类型</h2><ol>
 <li>Number   </li>
 <li>String   </li>
 <li>Boolean   </li>
@@ -496,9 +549,9 @@
 <li>Null   </li>
 <li>Object   </li>
 </ol>
-<p>五种基本类型保存在内存的栈中，值固定，复制其变量时会创建这个值得一个副本。使用<code>typeof</code>区分。前五中没有原型没有构造函数。   </p>
+<p>五种基本类型保存在内存的栈中，值固定，复制其变量时会创建这个值得一个副本。使用 <code>typeof</code> 区分。前五中没有原型没有构造函数。   </p>
 <h2 id="6-2-引用类型"><a href="#6-2-引用类型" class="headerlink" title="6.2. 引用类型"></a>6.2. 引用类型</h2><p>引用类型的值是对象，保存在堆中。引用类型的变量实际上是一个指针，他保存在栈中，指向堆内存中的对象。复制引用类型变量实际是复制该指针，所以他们都指向同一个对象，用<code>instanceof</code>确定哪一个值是哪种引用类型。   </p>
-<h2 id="6-3-内置对象、原生对象及宿主对象"><a href="#6-3-内置对象、原生对象及宿主对象" class="headerlink" title="6.3. 内置对象、原生对象及宿主对象"></a>6.3. 内置对象、原生对象及宿主对象</h2><p>内置对象和元素对象是被ECMAScript规范定义和实现的，两者之间的差异微不足道。所有ECMAScript实现的对象都是原生对象（其中一些是内置对象、一些在程序执行的时候创建，例如用户自定义对象）。内置对象是原生对象的一个子集、是在程序开始之前内置到ECMAScript里的（例如，parseInt, Match等）。所有的宿主对象是由宿主环境提供的，通常是浏览器，并可能包括如window、alert等。<br>注意，宿主对象可能是ES自身实现的，完全符合规范的语义。从这点来说，他们能称为“原生宿主”对象（尽快很理论），不过规范没有定义“原生宿主”对象的概念。   </p>
+<h2 id="6-3-内置对象、原生对象及宿主对象"><a href="#6-3-内置对象、原生对象及宿主对象" class="headerlink" title="6.3. 内置对象、原生对象及宿主对象"></a>6.3. 内置对象、原生对象及宿主对象</h2><p>内置对象和元素对象是被 ECMAScript 规范定义和实现的，两者之间的差异微不足道。所有 ECMAScript 实现的对象都是原生对象（其中一些是内置对象、一些在程序执行的时候创建，例如用户自定义对象）。内置对象是原生对象的一个子集、是在程序开始之前内置到 ECMAScript 里的（例如，parseInt, Match等）。所有的宿主对象是由宿主环境提供的，通常是浏览器，并可能包括如 window、alert 等。<br>注意，宿主对象可能是 ES 自身实现的，完全符合规范的语义。从这点来说，他们能称为“原生宿主”对象（尽快很理论），不过规范没有定义“原生宿主”对象的概念。   </p>
 <h2 id="6-4-特殊包装类"><a href="#6-4-特殊包装类" class="headerlink" title="6.4. 特殊包装类"></a>6.4. 特殊包装类</h2><ol>
 <li>Boolean: 布尔对象   </li>
 <li>String: 字符串对象   </li>
@@ -510,7 +563,7 @@
     var e = new Number(10);
 
     // 转换成原始值
-    // 使用不带new关键字的函数
+    // 使用不带 new 关键字的函数
     с = Boolean(c);
     d = String(d);
     e = Number(e);
@@ -611,7 +664,7 @@
 </tr>
 </tbody>
 </table>
-<p>返回的类型只有6种：   </p>
+<p>返回的类型只有 6 种：   </p>
 <ol>
 <li>string   </li>
 <li>number   </li>
@@ -621,7 +674,7 @@
 <li>function   </li>
 </ol>
 <h2 id="6-6-instanceof-操作符"><a href="#6-6-instanceof-操作符" class="headerlink" title="6.6. instanceof 操作符"></a>6.6. instanceof 操作符</h2><p>instanceof 操作符用来比较两个操作数的构造函数。只有在比较自定义的对象时才有意义。如果用来比较内置类型，将会和 typeof 操作符 一样用处不大。   </p>
-<h2 id="6-7-Object-prototype-toString获取对象类型"><a href="#6-7-Object-prototype-toString获取对象类型" class="headerlink" title="6.7. Object.prototype.toString获取对象类型"></a>6.7. Object.prototype.toString获取对象类型</h2><p>检测一个对象的类型，强烈推荐使用 Object.prototype.toString 方法； 因为这是唯一一个可依赖的方式。typeof 的一些返回值在标准文档中并未定义， 因此不同的引擎实现可能不同。 我们使用Object.prototype.toString方法:    </p>
+<h2 id="6-7-Object-prototype-toString-获取对象类型"><a href="#6-7-Object-prototype-toString-获取对象类型" class="headerlink" title="6.7. Object.prototype.toString 获取对象类型"></a>6.7. Object.prototype.toString 获取对象类型</h2><p>检测一个对象的类型，强烈推荐使用 Object.prototype.toString 方法； 因为这是唯一一个可依赖的方式。typeof 的一些返回值在标准文档中并未定义， 因此不同的引擎实现可能不同。 我们使用Object.prototype.toString方法:    </p>
 <pre><code>Object.prototype.toString.call([])    // &quot;[object Array]&quot;
 Object.prototype.toString.call({})    // &quot;[object Object]&quot;
 Object.prototype.toString.call(2)    // &quot;[object Number]&quot;
@@ -812,7 +865,7 @@ Object.prototype.toString.call(2)    // &quot;[object Number]&quot;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-DOCTYPE和浏览器渲染模式"><span class="nav-number">1.</span> <span class="nav-text">1. DOCTYPE和浏览器渲染模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-浏览器解析HTML方式"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 浏览器解析HTML方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-DOM结构"><span class="nav-number">2.</span> <span class="nav-text">2. DOM结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-W3C-DOM标准"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. W3C DOM标准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-DOM节点"><span class="nav-number">2.2.</span> <span class="nav-text">2.2. DOM节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-HTML-DOM节点树"><span class="nav-number">2.3.</span> <span class="nav-text">2.3. HTML DOM节点树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-节点的关系"><span class="nav-number">2.4.</span> <span class="nav-text">2.4. 节点的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-盒模型"><span class="nav-number">3.</span> <span class="nav-text">3. 盒模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-JavaScript如何设置获取盒模型对应的宽和高"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. JavaScript如何设置获取盒模型对应的宽和高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-外边距重叠"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 外边距重叠</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-BFC"><span class="nav-number">4.</span> <span class="nav-text">4. BFC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-BFC原理（渲染规则）"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. BFC原理（渲染规则）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-如何创建BFC"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. 如何创建BFC</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-CSS普通流（文档流）"><span class="nav-number">5.</span> <span class="nav-text">5. CSS普通流（文档流）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-调节普通流元素位置"><span class="nav-number">5.1.</span> <span class="nav-text">5.1. 调节普通流元素位置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-变量对象"><span class="nav-number">6.</span> <span class="nav-text">6. 变量对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-JavaScript的基本类型"><span class="nav-number">6.1.</span> <span class="nav-text">6.1. JavaScript的基本类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-引用类型"><span class="nav-number">6.2.</span> <span class="nav-text">6.2. 引用类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-内置对象、原生对象及宿主对象"><span class="nav-number">6.3.</span> <span class="nav-text">6.3. 内置对象、原生对象及宿主对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-特殊包装类"><span class="nav-number">6.4.</span> <span class="nav-text">6.4. 特殊包装类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-typeof返回值"><span class="nav-number">6.5.</span> <span class="nav-text">6.5. typeof返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-6-instanceof-操作符"><span class="nav-number">6.6.</span> <span class="nav-text">6.6. instanceof 操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-7-Object-prototype-toString获取对象类型"><span class="nav-number">6.7.</span> <span class="nav-text">6.7. Object.prototype.toString获取对象类型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-DOCTYPE-和浏览器渲染模式"><span class="nav-number">1.</span> <span class="nav-text">1. DOCTYPE 和浏览器渲染模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-浏览器解析-HTML-方式"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 浏览器解析 HTML 方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#meta-标签及其属性"><span class="nav-number">2.</span> <span class="nav-text">meta 标签及其属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#name-属性"><span class="nav-number">2.1.</span> <span class="nav-text">name 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http-equiv"><span class="nav-number">2.2.</span> <span class="nav-text">http-equiv</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-DOM-结构"><span class="nav-number">3.</span> <span class="nav-text">2. DOM 结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-W3C-DOM-标准"><span class="nav-number">3.1.</span> <span class="nav-text">2.1. W3C DOM 标准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-DOM-节点"><span class="nav-number">3.2.</span> <span class="nav-text">2.2. DOM 节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-HTML-DOM节点树"><span class="nav-number">3.3.</span> <span class="nav-text">2.3. HTML DOM节点树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-节点的关系"><span class="nav-number">3.4.</span> <span class="nav-text">2.4. 节点的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-盒模型"><span class="nav-number">4.</span> <span class="nav-text">3. 盒模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-JavaScript-如何设置获取盒模型对应的宽和高"><span class="nav-number">4.1.</span> <span class="nav-text">3.1. JavaScript 如何设置获取盒模型对应的宽和高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-外边距重叠"><span class="nav-number">4.2.</span> <span class="nav-text">3.2. 外边距重叠</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-BFC"><span class="nav-number">5.</span> <span class="nav-text">4. BFC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-BFC-原理（渲染规则）"><span class="nav-number">5.1.</span> <span class="nav-text">4.1. BFC 原理（渲染规则）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-如何创建-BFC"><span class="nav-number">5.2.</span> <span class="nav-text">4.2. 如何创建 BFC</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-CSS普通流（文档流）"><span class="nav-number">6.</span> <span class="nav-text">5. CSS普通流（文档流）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-调节普通流元素位置"><span class="nav-number">6.1.</span> <span class="nav-text">5.1. 调节普通流元素位置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-变量对象"><span class="nav-number">7.</span> <span class="nav-text">6. 变量对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-JavaScript-的基本类型"><span class="nav-number">7.1.</span> <span class="nav-text">6.1. JavaScript 的基本类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-引用类型"><span class="nav-number">7.2.</span> <span class="nav-text">6.2. 引用类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-内置对象、原生对象及宿主对象"><span class="nav-number">7.3.</span> <span class="nav-text">6.3. 内置对象、原生对象及宿主对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-特殊包装类"><span class="nav-number">7.4.</span> <span class="nav-text">6.4. 特殊包装类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-typeof返回值"><span class="nav-number">7.5.</span> <span class="nav-text">6.5. typeof返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-6-instanceof-操作符"><span class="nav-number">7.6.</span> <span class="nav-text">6.6. instanceof 操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-7-Object-prototype-toString-获取对象类型"><span class="nav-number">7.7.</span> <span class="nav-text">6.7. Object.prototype.toString 获取对象类型</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -847,7 +900,7 @@ Object.prototype.toString.call(2)    // &quot;[object Number]&quot;
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">27.8k</span>
+    <span title="Site words total count">28.3k</span>
   
 
 </div>
