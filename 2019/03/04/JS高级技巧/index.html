@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="函数绑定函数绑定作用：将某个函数指针以值得形式进行传递，同时指定该函数的执行环境。函数绑定要创建一个函数，可以在特定的 this 环境中以指定参数调用另一个函数。函数绑定常和回调函数和事件处理程序一起使用，以便在把函数当成变量传递时保留执行环境。但是绑定函数需要跟多内存和开销，谨慎使用。       var handler = {     message: &amp;#39;Event handled&amp;#">
+<meta name="description" content="函数绑定函数绑定作用：将某个函数指针以值的形式进行传递，同时指定该函数的执行环境。函数绑定要创建一个函数，可以在特定的 this 环境中以指定参数调用另一个函数。函数绑定常和回调函数和事件处理程序一起使用，以便在把函数当成变量传递时保留执行环境。但是绑定函数需要更多内存和开销，谨慎使用。       var handler = {     message: &amp;#39;Event handled&amp;#">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS高级技巧">
 <meta property="og:url" content="http://yoursite.com/2019/03/04/JS高级技巧/index.html">
 <meta property="og:site_name" content="jhchen の BLOG">
-<meta property="og:description" content="函数绑定函数绑定作用：将某个函数指针以值得形式进行传递，同时指定该函数的执行环境。函数绑定要创建一个函数，可以在特定的 this 环境中以指定参数调用另一个函数。函数绑定常和回调函数和事件处理程序一起使用，以便在把函数当成变量传递时保留执行环境。但是绑定函数需要跟多内存和开销，谨慎使用。       var handler = {     message: &amp;#39;Event handled&amp;#">
+<meta property="og:description" content="函数绑定函数绑定作用：将某个函数指针以值的形式进行传递，同时指定该函数的执行环境。函数绑定要创建一个函数，可以在特定的 this 环境中以指定参数调用另一个函数。函数绑定常和回调函数和事件处理程序一起使用，以便在把函数当成变量传递时保留执行环境。但是绑定函数需要更多内存和开销，谨慎使用。       var handler = {     message: &amp;#39;Event handled&amp;#">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-04T03:41:54.322Z">
+<meta property="og:updated_time" content="2019-03-20T02:47:57.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS高级技巧">
-<meta name="twitter:description" content="函数绑定函数绑定作用：将某个函数指针以值得形式进行传递，同时指定该函数的执行环境。函数绑定要创建一个函数，可以在特定的 this 环境中以指定参数调用另一个函数。函数绑定常和回调函数和事件处理程序一起使用，以便在把函数当成变量传递时保留执行环境。但是绑定函数需要跟多内存和开销，谨慎使用。       var handler = {     message: &amp;#39;Event handled&amp;#">
+<meta name="twitter:description" content="函数绑定函数绑定作用：将某个函数指针以值的形式进行传递，同时指定该函数的执行环境。函数绑定要创建一个函数，可以在特定的 this 环境中以指定参数调用另一个函数。函数绑定常和回调函数和事件处理程序一起使用，以便在把函数当成变量传递时保留执行环境。但是绑定函数需要更多内存和开销，谨慎使用。       var handler = {     message: &amp;#39;Event handled&amp;#">
 
 
 
@@ -386,7 +386,7 @@
       
 
       
-        <h1 id="函数绑定"><a href="#函数绑定" class="headerlink" title="函数绑定"></a>函数绑定</h1><p>函数绑定作用：将某个函数指针以值得形式进行传递，同时指定该函数的执行环境。<br>函数绑定要创建一个函数，可以在特定的 this 环境中以指定参数调用另一个函数。函数绑定常和回调函数和事件处理程序一起使用，以便在把函数当成变量传递时保留执行环境。但是绑定函数需要跟多内存和开销，谨慎使用。      </p>
+        <h1 id="函数绑定"><a href="#函数绑定" class="headerlink" title="函数绑定"></a>函数绑定</h1><p>函数绑定作用：将某个函数指针以值的形式进行传递，同时指定该函数的执行环境。<br>函数绑定要创建一个函数，可以在特定的 this 环境中以指定参数调用另一个函数。函数绑定常和回调函数和事件处理程序一起使用，以便在把函数当成变量传递时保留执行环境。但是绑定函数需要更多内存和开销，谨慎使用。      </p>
 <pre><code>var handler = {
     message: &#39;Event handled&#39;,
 
@@ -602,7 +602,7 @@ EventUtil.addHandler(btn, &#39;click&#39;, bind(handler.handleClick,  handler, &
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -624,7 +624,7 @@ EventUtil.addHandler(btn, &#39;click&#39;, bind(handler.handleClick,  handler, &
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -692,7 +692,7 @@ EventUtil.addHandler(btn, &#39;click&#39;, bind(handler.handleClick,  handler, &
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">29.3k</span>
+    <span title="Site words total count">30.2k</span>
   
 
 </div>
