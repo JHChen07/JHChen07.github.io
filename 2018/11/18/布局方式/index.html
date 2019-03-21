@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/11/18/布局方式/flex弹性布局.png">
 <meta property="og:image" content="http://yoursite.com/2018/11/18/布局方式/flex支持浏览器.PNG">
 <meta property="og:image" content="http://yoursite.com/2018/11/18/布局方式/flex模型.PNG">
-<meta property="og:updated_time" content="2019-03-11T12:31:50.748Z">
+<meta property="og:updated_time" content="2019-03-21T12:53:25.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="布局方式">
 <meta name="twitter:description" content="CSS常用布局 1. 两栏布局   一栏定宽，一栏自适应。 实现方式有两种： float + margin position：absolute     2. 三栏布局   两边定宽，然后中间的 width 是 auto 的，可以自适应内容，再加上 margin 边距来进行设定。 有四种实现方式 左右两栏 float，中间栏使用 margin 进行撑开，注意，当页面宽度小于两边宽度之和时，右侧栏会被">
@@ -409,17 +409,13 @@
 <li><p><code>position</code> 绝对定位来实现居中布局，适用于块级元素不给出宽高的情况下（需要借助 <code>transform</code> 的 translateX 方法）。   </p>
 <p>#parent {<br>  position: relative;<br>}<br>#child {<br>  position: absolute;<br>  top: 0;<br>  left: 50%;<br>  transform: translateX(-50%);<br>}</p>
 </li>
-<li><code>flex</code>   </li>
-</ol>
-<pre><code>#parent {
-    display: flex;
-    justify-content: center;
-}
-</code></pre><h1 id="4-垂直居中"><a href="#4-垂直居中" class="headerlink" title="4. 垂直居中"></a>4. 垂直居中</h1><ol>
+<li><p><code>flex</code>   </p>
+<p>#parent {<br>  display: flex;<br>  justify-content: center;<br>}</p>
+<h1 id="4-垂直居中"><a href="#4-垂直居中" class="headerlink" title="4. 垂直居中"></a>4. 垂直居中</h1></li>
 <li>水平对齐 + 行高： text-align + line-height 实现单行文本水平垂直居中。</li>
 <li><p>水平 + 垂直对齐：text-align + vertical-align：   </p>
 <p>.parent {<br>  /<em>子元素为图片时，可不使用table-cell</em>/<br>  display: table-cell;<br>  text-align: center;<br>  vertical-align: middle;<br>}<br>.child {<br>  diaplay: inline-block;<br>}  </p>
-<ol start="3">
+<ol>
 <li>相对 + 绝对定位：在偏移属性为确定值得基础上，设置 margin：0 auto。   </li>
 </ol>
 </li>
