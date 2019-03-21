@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     function indexOf(arr, item) {     return arr.i">
+<meta name="description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     /* 需要考虑代码的鲁棒性， 首先需要判断支不支持 indexOf 函数， 如若不支持则采用">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS基础编程题">
 <meta property="og:url" content="http://yoursite.com/2019/02/27/JS基础编程题/index.html">
 <meta property="og:site_name" content="jhchen の BLOG">
-<meta property="og:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     function indexOf(arr, item) {     return arr.i">
+<meta property="og:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     /* 需要考虑代码的鲁棒性， 首先需要判断支不支持 indexOf 函数， 如若不支持则采用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-04T04:00:23.679Z">
+<meta property="og:updated_time" content="2019-03-20T12:51:05.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS基础编程题">
-<meta name="twitter:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     function indexOf(arr, item) {     return arr.i">
+<meta name="twitter:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     /* 需要考虑代码的鲁棒性， 首先需要判断支不支持 indexOf 函数， 如若不支持则采用">
 
 
 
@@ -337,6 +337,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
           
             <div class="post-wordcount">
@@ -349,7 +354,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3.8k
+                  4k
                 </span>
               
 
@@ -365,7 +370,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  16
+                  17
                 </span>
               
             </div>
@@ -392,20 +397,53 @@
 </code></pre><p><code>输出</code>   </p>
 <pre><code>2   
 </code></pre><p><code>代码</code>    </p>
-<pre><code>function indexOf(arr, item) {
-    return arr.indexOf(item);
+<pre><code>/* 需要考虑代码的鲁棒性，
+首先需要判断支不支持 indexOf 函数，
+如若不支持则采用顺序查找的方法，
+特别注意的是如果查找不到需要返回 -1*/
+function indexOf(arr, item) {
+    if(arr.length==0) return;
+    if(Array.prototype.indexOf) {
+        return arr.indexOf(item);
+    } else {
+        for(var i=0; i&lt;arr.length; i++) {
+            if(arr[i]===item) {
+                return i;
+            }
+        }
+    }
+    return -1;
 }
 </code></pre><h2 id="数组求和"><a href="#数组求和" class="headerlink" title="数组求和"></a>数组求和</h2><p><code>题目描述</code><br>计算给定数组 arr 中所有元素的总和<br><code>输入描述</code><br>数组中的元素均为 Number 类型<br><code>示例1</code><br><code>输入</code>   </p>
 <pre><code>[ 1, 2, 3, 4 ]  
 </code></pre><p><code>输出</code>   </p>
 <pre><code>10   
 </code></pre><p><code>代码</code>    </p>
-<pre><code>function sum(arr) {
+<pre><code>// 常规解法
+function sum(arr) {
+    if(arr.length==0) return;
     var temp = 0;
     for(var i = 0; i &lt; arr.length; i++) {
         temp += arr[i];
     }
     return temp;
+}
+// forEach 方法
+function sum(arr) {
+    if(arr.length==0) return;
+    var temp = 0;
+    arr.forEach(function(item) {
+        temp += item;
+    })
+    return temp;
+}
+// reduce 方法
+function sum(arr) {
+    if(arr.length==0) return;
+    var result = arr.reduce(function(pre, cur) {
+        return pre + cur;
+    })
+    return result;
 }   
 </code></pre><h2 id="移除数组中的元素"><a href="#移除数组中的元素" class="headerlink" title="移除数组中的元素"></a>移除数组中的元素</h2><p><code>题目描述</code><br>移除数组 arr 中的所有值与 item 相等的元素。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
 <pre><code>[1, 2, 3, 4, 2], 2 
@@ -414,7 +452,7 @@
 </code></pre><p><code>代码</code>   </p>
 <pre><code>function remove(arr, item) {
     var res = arr.filter(function(i, index, array) {
-        return (i != item);
+        return (i !== item);
     })
     return res;
 }   
@@ -435,6 +473,7 @@
 <pre><code>[1, 2, 3, 4, 10]  
 </code></pre><p><code>代码</code>   </p>
 <pre><code>function append(arr, item) {
+    // 应该考虑 item 为数组的情况
     return arr.concat(item);
 }   
 </code></pre><h2 id="删除数组最后一个元素"><a href="#删除数组最后一个元素" class="headerlink" title="删除数组最后一个元素"></a>删除数组最后一个元素</h2><p><code>题目描述</code><br>删除数组 arr 最后一个元素。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
@@ -451,15 +490,15 @@
 <pre><code>[1, 2, 3, 4, 10]  
 </code></pre><p><code>代码</code>   </p>
 <pre><code>function prepend(arr, item) {
-    return arr.slice().reverse().concat(item).reverse();
-}   
+    return [item].concat(arr);
+}  
 </code></pre><h2 id="删除数组第一个元素"><a href="#删除数组第一个元素" class="headerlink" title="删除数组第一个元素"></a>删除数组第一个元素</h2><p><code>题目描述</code><br>删除数组 arr 第一个元素。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
 <pre><code>[1, 2, 3, 4] 
 </code></pre><p><code>输出</code>   </p>
 <pre><code>[2, 3， 4]  
 </code></pre><p><code>代码</code>   </p>
 <pre><code>function curtail(arr) {
-return arr.slice(1);
+    return arr.slice(1);
 }   
 </code></pre><h2 id="数组合并"><a href="#数组合并" class="headerlink" title="数组合并"></a>数组合并</h2><p><code>题目描述</code><br>合并数组 arr1 和数组 arr2。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
 <pre><code>[1, 2, 3, 4], [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, 1] 
@@ -495,7 +534,23 @@ return arr.slice(1);
 </code></pre><p><code>输出</code>   </p>
 <pre><code>[1, 3, 4]  
 </code></pre><p><code>代码</code>   </p>
-<h2 id="求二次方"><a href="#求二次方" class="headerlink" title="求二次方"></a>求二次方</h2><p><code>题目描述</code><br>为数组 arr 中的每个元素求二次方。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
+<pre><code>function duplicates(arr) {
+    if(arr.length==0) return null;
+    var result = [];
+    arr = arr.sort(function(v1, v2) {
+        return v1 - v2;
+    });
+    for(var i=0; i&lt;arr.length; i++) {
+        if(arr[i]===arr[i+1]) {
+            result.push(arr[i]);
+            while(arr[i]===arr[i+1]) {
+                ++i;
+            }
+        }
+    }
+    return result;
+}
+</code></pre><h2 id="求二次方"><a href="#求二次方" class="headerlink" title="求二次方"></a>求二次方</h2><p><code>题目描述</code><br>为数组 arr 中的每个元素求二次方。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
 <pre><code>[1, 2, 3, 4] 
 </code></pre><p><code>输出</code>   </p>
 <pre><code>[1, 4, 9, 16] 
@@ -551,9 +606,9 @@ return arr.slice(1);
 </code></pre><p><code>代码</code>   </p>
 <pre><code>function functions(flag) {
     if (flag) {
-    var getValue = function() { return &#39;a&#39;; }
+        var getValue = function() { return &#39;a&#39;; }
     } else {
-    var getValue = function() { return &#39;b&#39;; }
+        var getValue = function() { return &#39;b&#39;; }
     }
     return getValue();
 }   
@@ -592,11 +647,11 @@ return arr.slice(1);
 此题要注意数据的改变以及返回的是对象
 */
 function count(start, end) {
-    console.log(start++);
+    console.log(start);
     var counting = setInterval(function() {
-        if(start &lt;= end) {
+        if(start &lt; end) {
             // 若此处没有进行自增操作，则打印的是同一个数
-        console.log(start++);
+        console.log(start += 1);
         } else {
             clearInterval(counting);
         }
@@ -1196,7 +1251,7 @@ iterate(new C());
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">30.2k</span>
+    <span title="Site words total count">30.4k</span>
   
 
 </div>
@@ -1212,6 +1267,26 @@ iterate(new C());
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
 
 
 
