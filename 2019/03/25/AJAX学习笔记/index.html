@@ -95,7 +95,7 @@
 <meta property="og:description" content="此文是学习 AJAX 教程的笔记摘要。    定义AJAX(Asynchronous JavaScript + XML), 能够向服务器请求额外的数据而无需卸载页面，是一种用于创建动态网页的技术，通过在后台与服务器进行少量数据交换， AJAX 可以使网页实现异步更新。带来更好的用户体验。AJAX 不是新的编程语言，而是一种使用现有标准的新方法。AJAX 最大的优点是在不重新加载整个页面的情况下，可">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/03/25/AJAX学习笔记/AJAX工作原理.PNG">
-<meta property="og:updated_time" content="2019-03-26T09:05:28.382Z">
+<meta property="og:updated_time" content="2019-03-26T09:53:56.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AJAX学习笔记">
 <meta name="twitter:description" content="此文是学习 AJAX 教程的笔记摘要。    定义AJAX(Asynchronous JavaScript + XML), 能够向服务器请求额外的数据而无需卸载页面，是一种用于创建动态网页的技术，通过在后台与服务器进行少量数据交换， AJAX 可以使网页实现异步更新。带来更好的用户体验。AJAX 不是新的编程语言，而是一种使用现有标准的新方法。AJAX 最大的优点是在不重新加载整个页面的情况下，可">
@@ -394,13 +394,14 @@
 <li>XMLHttpRequest 对象 (异步的与服务器交换数据)    </li>
 <li>JavaScript/DOM (信息显示/交互)  </li>
 <li>CSS (给数据定义样式)   </li>
-<li><p>XML (作为转换数据的格式)   </p>
-<h1 id="XMLHttpRequest-对象"><a href="#XMLHttpRequest-对象" class="headerlink" title="XMLHttpRequest 对象"></a>XMLHttpRequest 对象</h1><p>XMLHttpRequest 对象（简称 XHR），是 AJAX 技术的核心。在 XHR 出现之前， AJAX 式的通信必须借助一些 hack 手段来实现，大多数是使用隐藏的框架或内置框架。XHR 为向服务器发送请求和解析服务器相应提供了流畅的接口。能够以异步方式从服务器取得更多信息（可以使用 XHR 对象取得新数据，然后再通过 DOM 将新数据插入到页面中）。<br>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。<br>创建 XMLHttpRequest 对象：   </p>
-<p> variable = new XMLHttpRequest();<br>老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：   </p>
-<p> variable = new ActiveXObject(“Microsoft.XMLHTTP”);<br>为了应对所有的现代浏览器，包括 IE5 和 IE6，请检查浏览器是否支持 XMLHttpRequest 对象。如果支持，则创建 XMLHttpRequest 对象。如果不支持，则创建 ActiveXObject。   </p>
-<h1 id="使用-XMLHttpRequest-对象"><a href="#使用-XMLHttpRequest-对象" class="headerlink" title="使用 XMLHttpRequest 对象"></a>使用 XMLHttpRequest 对象</h1><h2 id="向服务器发送请求"><a href="#向服务器发送请求" class="headerlink" title="向服务器发送请求"></a>向服务器发送请求</h2><p>open() 和 send() 方法：   </p>
-</li>
+<li>XML (作为转换数据的格式)   </li>
 </ol>
+<h1 id="XMLHttpRequest-对象"><a href="#XMLHttpRequest-对象" class="headerlink" title="XMLHttpRequest 对象"></a>XMLHttpRequest 对象</h1><p>XMLHttpRequest 对象（简称 XHR），是 AJAX 技术的核心。在 XHR 出现之前， AJAX 式的通信必须借助一些 hack 手段来实现，大多数是使用隐藏的框架或内置框架。XHR 为向服务器发送请求和解析服务器相应提供了流畅的接口。能够以异步方式从服务器取得更多信息（可以使用 XHR 对象取得新数据，然后再通过 DOM 将新数据插入到页面中）。<br>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象。<br>创建 XMLHttpRequest 对象：   </p>
+<pre><code>variable = new XMLHttpRequest();
+</code></pre><p>老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象：   </p>
+<pre><code>variable = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+</code></pre><p>为了应对所有的现代浏览器，包括 IE5 和 IE6，请检查浏览器是否支持 XMLHttpRequest 对象。如果支持，则创建 XMLHttpRequest 对象。如果不支持，则创建 ActiveXObject。   </p>
+<h1 id="使用-XMLHttpRequest-对象"><a href="#使用-XMLHttpRequest-对象" class="headerlink" title="使用 XMLHttpRequest 对象"></a>使用 XMLHttpRequest 对象</h1><h2 id="向服务器发送请求"><a href="#向服务器发送请求" class="headerlink" title="向服务器发送请求"></a>向服务器发送请求</h2><p>open() 和 send() 方法：   </p>
 <table>
 <thead>
 <tr>
