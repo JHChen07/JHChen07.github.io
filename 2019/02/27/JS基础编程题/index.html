@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="jhchen の BLOG">
 <meta property="og:description" content="牛客网练习题这部分是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     /* 需要考虑代码的鲁棒性， 首先需要判断支不支持 indexOf 函数， 如若不">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-15T09:24:05.784Z">
+<meta property="og:updated_time" content="2019-04-15T09:27:05.080Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS基础编程题">
 <meta name="twitter:description" content="牛客网练习题这部分是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     /* 需要考虑代码的鲁棒性， 首先需要判断支不支持 indexOf 函数， 如若不">
@@ -365,7 +365,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  19
+                  18
                 </span>
               
             </div>
@@ -815,18 +815,16 @@ function count(start, end) {
 <pre><code>6
 </code></pre><p><code>代码</code>   </p>
 <pre><code>function curryIt(fn) {
-    return function a(num1) {
-        var aArgs = [].slice.call(arguments);
-        return function b(num2) {
-            var bArgs = [].slice.call(arguments);
-            var innerArgs = aArgs.concat(bArgs);
-            return function c(bum3) {
-                var cArgs = [].slice.call(arguments);
-                var finalArgs = cArgs.concat(innerArgs);
-                return fn.apply(null, finalArgs);
-            }
-        }
+    // 获取参数个数
+    var len = fn.length;
+    var args = [];
+    var result = function(arg) {
+        args.push(arg);
+        if(args.length&lt;len) {
+            return result;
+        } else return fn.apply(null, args);
     }
+    return result;
 }
 </code></pre><h2 id="或运算"><a href="#或运算" class="headerlink" title="或运算"></a>或运算</h2><p><code>题目描述</code><br>返回参数 a 和 b 的逻辑或运算结果<br><code>示例1</code><br><code>输入</code>    </p>
 <pre><code>false, true
