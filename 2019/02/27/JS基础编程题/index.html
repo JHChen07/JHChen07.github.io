@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="jhchen の BLOG">
 <meta property="og:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     /* 需要考虑代码的鲁棒性， 首先需要判断支不支持 indexOf 函数， 如若不支持则采用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-20T12:51:05.603Z">
+<meta property="og:updated_time" content="2019-04-15T09:16:43.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS基础编程题">
 <meta name="twitter:description" content="这篇文章是在牛客网上关于JS能力测评经典题编程的记录。      查找数组元素位置题目描述找出元素 item 在给定数组 arr 中的位置输出描述如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1示例1输入    [ 1, 2, 3, 4 ], 3    输出    2    代码     /* 需要考虑代码的鲁棒性， 首先需要判断支不支持 indexOf 函数， 如若不支持则采用">
@@ -349,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4k
+                  4.3k
                 </span>
               
 
@@ -365,7 +365,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  17
+                  19
                 </span>
               
             </div>
@@ -451,7 +451,7 @@ function sum(arr) {
     })
     return res;
 }   
-</code></pre><h2 id="移除数组中的元素-1"><a href="#移除数组中的元素-1" class="headerlink" title="移除数组中的元素+"></a>移除数组中的元素+</h2><p><code>题目描述</code><br>移除数组 arr 中的所有值与 item 相等的元素。不要直接修改数组 arr，结果返回新的数组<br><code>示例1</code><br><code>输入</code>   </p>
+</code></pre><h2 id="移除数组中的元素-1"><a href="#移除数组中的元素-1" class="headerlink" title="移除数组中的元素+"></a>移除数组中的元素+</h2><p><code>题目描述</code><br>移除数组 arr 中的所有值与 item 相等的元素，直接在给定的 arr 数组上进行操作，并将结果返回<br><code>示例1</code><br><code>输入</code>   </p>
 <pre><code>[1, 2, 2, 3, 4, 2, 2], 2 
 </code></pre><p><code>输出</code>   </p>
 <pre><code>[1, 3, 4]   
@@ -572,7 +572,7 @@ function sum(arr) {
 </code></pre><h2 id="避免全局变量"><a href="#避免全局变量" class="headerlink" title="避免全局变量"></a>避免全局变量</h2><p>给定的js代码中存在全局变量，请修复   </p>
 <pre><code>function globals() {
     myObject = {
-    name : &#39;Jory&#39;
+        name : &#39;Jory&#39;
     };
 
     return myObject;
@@ -580,16 +580,16 @@ function sum(arr) {
 </code></pre><p><code>代码</code>   </p>
 <pre><code>function globals() {
     var myObject = {
-    name : &#39;Jory&#39;
+        name : &#39;Jory&#39;
     };
     return myObject;
 }   
 </code></pre><h2 id="正确的函数定义"><a href="#正确的函数定义" class="headerlink" title="正确的函数定义"></a>正确的函数定义</h2><p><code>题目描述</code><br>请修复给定的 js 代码中，函数定义存在的问题        </p>
 <pre><code>function functions(flag) {
     if (flag) {
-    function getValue() { return &#39;a&#39;; }
+        function getValue() { return &#39;a&#39;; }
     } else {
-    function getValue() { return &#39;b&#39;; }
+        function getValue() { return &#39;b&#39;; }
     }
 
     return getValue();
@@ -1024,6 +1024,46 @@ iterate(new C());
 <pre><code>function isUSD(str) {
     return /^\$(0|[1-9]\d{0,2})(,\d{3})*(\.\d{2})?$/.test(str);
 }
+</code></pre><h1 id="面试笔试遇到的前端相关算法题"><a href="#面试笔试遇到的前端相关算法题" class="headerlink" title="面试笔试遇到的前端相关算法题"></a>面试笔试遇到的前端相关算法题</h1><h2 id="格式化数字"><a href="#格式化数字" class="headerlink" title="格式化数字"></a>格式化数字</h2><p><code>题目描述</code><br>给定数字或者字符串，将其格式化输出，要求如下：   </p>
+<ol>
+<li>若为字符串，则返回 -1；不为字符串则每个 3 位用 ’ (半角全角均可)隔开；      </li>
+<li>数字格式化为包含小数点后两位，如 23333 -&gt; 23,333.00；</li>
+<li>特殊情况：2e4 -&gt; 20,000.00  -2333 -&gt; -2,333.00；</li>
+<li>结果以字符串格式输出。   </li>
+</ol>
+<p><code>代码</code>   </p>
+<pre><code>function format(str) {
+    if(isNaN(str)) return -1;
+    str = Number(str).toFixed(2).toString();
+    if(str.length&lt;=6) {
+        return str;
+    }
+    var temp = str.split(&#39;&#39;);
+    var result = temp.slice(temp.length-3);
+    var count = 0;
+    for(var i=temp.length-4; i&gt;=0; i--) {
+        if(count&lt;3) {
+            result.unshift(temp[i]);
+            count++;
+        } else {
+            result.unshift(&#39;,&#39;);
+            result.unshift(temp[i]);
+            count = 1;
+        }
+    }
+    return result.join(&#39;&#39;);
+}
+</code></pre><h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2><p><code>题目描述</code><br>数组中可能存在重复元素，将数组去重，返回一个元素不重复的数组。<br><code>代码</code>   </p>
+<pre><code>function remove(arr) {
+    if(arr &amp;&amp; arr.length&lt;=1) return arr;
+    var result  = [];
+    arr.forEach(function(item, index) {
+        if(arr.indexOf(item)===index) {
+            result.push(item);
+        }
+    })
+    return result;
+}
 </code></pre>
       
     </div>
@@ -1211,7 +1251,7 @@ iterate(new C());
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查找数组元素位置"><span class="nav-number">1.</span> <span class="nav-text">查找数组元素位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组求和"><span class="nav-number">2.</span> <span class="nav-text">数组求和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移除数组中的元素"><span class="nav-number">3.</span> <span class="nav-text">移除数组中的元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移除数组中的元素-1"><span class="nav-number">4.</span> <span class="nav-text">移除数组中的元素+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加元素"><span class="nav-number">5.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除数组最后一个元素"><span class="nav-number">6.</span> <span class="nav-text">删除数组最后一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加元素-1"><span class="nav-number">7.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除数组第一个元素"><span class="nav-number">8.</span> <span class="nav-text">删除数组第一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组合并"><span class="nav-number">9.</span> <span class="nav-text">数组合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加元素-2"><span class="nav-number">10.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计数"><span class="nav-number">11.</span> <span class="nav-text">计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找重复元素"><span class="nav-number">12.</span> <span class="nav-text">查找重复元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求二次方"><span class="nav-number">13.</span> <span class="nav-text">求二次方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找元素位置"><span class="nav-number">14.</span> <span class="nav-text">查找元素位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免全局变量"><span class="nav-number">15.</span> <span class="nav-text">避免全局变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确的函数定义"><span class="nav-number">16.</span> <span class="nav-text">正确的函数定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确使用parseInt"><span class="nav-number">17.</span> <span class="nav-text">正确使用parseInt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完全等同"><span class="nav-number">18.</span> <span class="nav-text">完全等同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计时器"><span class="nav-number">19.</span> <span class="nav-text">计时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制"><span class="nav-number">20.</span> <span class="nav-text">流程控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数传参"><span class="nav-number">21.</span> <span class="nav-text">函数传参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的上下文"><span class="nav-number">22.</span> <span class="nav-text">函数的上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回函数"><span class="nav-number">23.</span> <span class="nav-text">返回函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用闭包"><span class="nav-number">24.</span> <span class="nav-text">使用闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二次封装函数"><span class="nav-number">25.</span> <span class="nav-text">二次封装函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-arguments"><span class="nav-number">26.</span> <span class="nav-text">使用 arguments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-apply-调用函数"><span class="nav-number">27.</span> <span class="nav-text">使用 apply 调用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二次封装函数-1"><span class="nav-number">28.</span> <span class="nav-text">二次封装函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#柯里化"><span class="nav-number">29.</span> <span class="nav-text">柯里化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#或运算"><span class="nav-number">30.</span> <span class="nav-text">或运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#且运算"><span class="nav-number">31.</span> <span class="nav-text">且运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">32.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制转换"><span class="nav-number">33.</span> <span class="nav-text">二进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制转换-1"><span class="nav-number">34.</span> <span class="nav-text">二进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制转换-2"><span class="nav-number">35.</span> <span class="nav-text">二进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘法"><span class="nav-number">36.</span> <span class="nav-text">乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变上下文"><span class="nav-number">37.</span> <span class="nav-text">改变上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#批量改变对象的属性"><span class="nav-number">38.</span> <span class="nav-text">批量改变对象的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性遍历"><span class="nav-number">39.</span> <span class="nav-text">属性遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否包含数字"><span class="nav-number">40.</span> <span class="nav-text">判断是否包含数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查重复字符串"><span class="nav-number">41.</span> <span class="nav-text">检查重复字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否以元音字母结尾"><span class="nav-number">42.</span> <span class="nav-text">判断是否以元音字母结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取指定字符串"><span class="nav-number">43.</span> <span class="nav-text">获取指定字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否符合指定格式"><span class="nav-number">44.</span> <span class="nav-text">判断是否符合指定格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否符合-USD-格式"><span class="nav-number">45.</span> <span class="nav-text">判断是否符合 USD 格式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查找数组元素位置"><span class="nav-number">1.</span> <span class="nav-text">查找数组元素位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组求和"><span class="nav-number">2.</span> <span class="nav-text">数组求和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移除数组中的元素"><span class="nav-number">3.</span> <span class="nav-text">移除数组中的元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移除数组中的元素-1"><span class="nav-number">4.</span> <span class="nav-text">移除数组中的元素+</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加元素"><span class="nav-number">5.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除数组最后一个元素"><span class="nav-number">6.</span> <span class="nav-text">删除数组最后一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加元素-1"><span class="nav-number">7.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除数组第一个元素"><span class="nav-number">8.</span> <span class="nav-text">删除数组第一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组合并"><span class="nav-number">9.</span> <span class="nav-text">数组合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加元素-2"><span class="nav-number">10.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计数"><span class="nav-number">11.</span> <span class="nav-text">计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找重复元素"><span class="nav-number">12.</span> <span class="nav-text">查找重复元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求二次方"><span class="nav-number">13.</span> <span class="nav-text">求二次方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找元素位置"><span class="nav-number">14.</span> <span class="nav-text">查找元素位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免全局变量"><span class="nav-number">15.</span> <span class="nav-text">避免全局变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确的函数定义"><span class="nav-number">16.</span> <span class="nav-text">正确的函数定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正确使用parseInt"><span class="nav-number">17.</span> <span class="nav-text">正确使用parseInt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完全等同"><span class="nav-number">18.</span> <span class="nav-text">完全等同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计时器"><span class="nav-number">19.</span> <span class="nav-text">计时器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流程控制"><span class="nav-number">20.</span> <span class="nav-text">流程控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数传参"><span class="nav-number">21.</span> <span class="nav-text">函数传参</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的上下文"><span class="nav-number">22.</span> <span class="nav-text">函数的上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#返回函数"><span class="nav-number">23.</span> <span class="nav-text">返回函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用闭包"><span class="nav-number">24.</span> <span class="nav-text">使用闭包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二次封装函数"><span class="nav-number">25.</span> <span class="nav-text">二次封装函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-arguments"><span class="nav-number">26.</span> <span class="nav-text">使用 arguments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-apply-调用函数"><span class="nav-number">27.</span> <span class="nav-text">使用 apply 调用函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二次封装函数-1"><span class="nav-number">28.</span> <span class="nav-text">二次封装函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#柯里化"><span class="nav-number">29.</span> <span class="nav-text">柯里化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#或运算"><span class="nav-number">30.</span> <span class="nav-text">或运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#且运算"><span class="nav-number">31.</span> <span class="nav-text">且运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">32.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制转换"><span class="nav-number">33.</span> <span class="nav-text">二进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制转换-1"><span class="nav-number">34.</span> <span class="nav-text">二进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制转换-2"><span class="nav-number">35.</span> <span class="nav-text">二进制转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乘法"><span class="nav-number">36.</span> <span class="nav-text">乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变上下文"><span class="nav-number">37.</span> <span class="nav-text">改变上下文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#批量改变对象的属性"><span class="nav-number">38.</span> <span class="nav-text">批量改变对象的属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性遍历"><span class="nav-number">39.</span> <span class="nav-text">属性遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否包含数字"><span class="nav-number">40.</span> <span class="nav-text">判断是否包含数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查重复字符串"><span class="nav-number">41.</span> <span class="nav-text">检查重复字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否以元音字母结尾"><span class="nav-number">42.</span> <span class="nav-text">判断是否以元音字母结尾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取指定字符串"><span class="nav-number">43.</span> <span class="nav-text">获取指定字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否符合指定格式"><span class="nav-number">44.</span> <span class="nav-text">判断是否符合指定格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否符合-USD-格式"><span class="nav-number">45.</span> <span class="nav-text">判断是否符合 USD 格式</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#面试笔试遇到的前端相关算法题"><span class="nav-number"></span> <span class="nav-text">面试笔试遇到的前端相关算法题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#格式化数字"><span class="nav-number">1.</span> <span class="nav-text">格式化数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组去重"><span class="nav-number">2.</span> <span class="nav-text">数组去重</span></a></li></ol></li></div>
             
 
           </div>
@@ -1246,7 +1286,7 @@ iterate(new C());
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">32.8k</span>
+    <span title="Site words total count">33.1k</span>
   
 
 </div>
